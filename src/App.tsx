@@ -24,7 +24,9 @@ import { CaseStudiesSection } from './components/CaseStudiesSection';
 import { EnterpriseArchitectureSection } from './components/EnterpriseArchitectureSection';
 import { ResearchComputingSection } from './components/ResearchComputingSection';
 import { HardwareInfrastructureSection } from './components/HardwareInfrastructureSection';
+import { BDAgentsSection } from './components/BDAgentsSection';
 import { GovernmentPracticeSection } from './components/GovernmentPracticeSection';
+import { GoogleCalendarModal } from './components/GoogleCalendarModal';
 
 export default function App() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
@@ -37,6 +39,17 @@ export default function App() {
   const [consultationOpen, setConsultationOpen] = useState(false);
   const [consultationService, setConsultationService] = useState<string | undefined>();
   const [consultationNotes, setConsultationNotes] = useState<string | undefined>();
+
+  // Google Calendar Modal State
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [calendarAttendeeEmail, setCalendarAttendeeEmail] = useState<string | undefined>();
+  const [calendarSubject, setCalendarSubject] = useState<string | undefined>();
+
+  const handleOpenCalendar = (attendeeEmail?: string, subject?: string) => {
+    if (attendeeEmail) setCalendarAttendeeEmail(attendeeEmail);
+    if (subject) setCalendarSubject(subject);
+    setCalendarOpen(true);
+  };
 
   // Toggle RTL direction when language changes
   useEffect(() => {
@@ -84,6 +97,7 @@ export default function App() {
         onNavigate={handleNavigate}
         onOpenAdvisor={() => setAdvisorOpen(true)}
         onOpenConsultation={() => handleOpenConsultation()}
+        onOpenCalendar={() => handleOpenCalendar()}
       />
 
       {/* Main Page Rendering */}
@@ -104,6 +118,10 @@ export default function App() {
             <AISolutionsShowcase
               currentLanguage={currentLanguage}
               onOpenAdvisor={() => setAdvisorOpen(true)}
+              onOpenConsultation={handleOpenConsultation}
+            />
+            <BDAgentsSection
+              onNavigate={handleNavigate}
               onOpenConsultation={handleOpenConsultation}
             />
             <CybersecurityCenter
@@ -203,6 +221,14 @@ export default function App() {
           />
         )}
 
+        {currentPage === 'bd-agents' && (
+          <BDAgentsSection
+            onNavigate={handleNavigate}
+            onOpenConsultation={handleOpenConsultation}
+            onOpenCalendar={handleOpenCalendar}
+          />
+        )}
+
         {currentPage === 'cybersecurity' && (
           <CybersecurityCenter
             currentLanguage={currentLanguage}
@@ -276,6 +302,13 @@ export default function App() {
         service={selectedServiceDetail}
         onClose={() => setSelectedServiceId(null)}
         onOpenConsultation={handleOpenConsultation}
+      />
+
+      <GoogleCalendarModal
+        isOpen={calendarOpen}
+        onClose={() => setCalendarOpen(false)}
+        initialAttendeeEmail={calendarAttendeeEmail}
+        initialMeetingSubject={calendarSubject}
       />
     </div>
   );

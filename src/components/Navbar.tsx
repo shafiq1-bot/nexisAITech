@@ -16,7 +16,8 @@ import {
   Landmark,
   Server,
   ArrowRight,
-  Mail
+  Mail,
+  Calendar
 } from 'lucide-react';
 import { Language, Region, PageId } from '../types';
 import { translations } from '../data/translations';
@@ -31,6 +32,7 @@ interface NavbarProps {
   onOpenAdvisor: () => void;
   onOpenConsultation: () => void;
   onOpenGmailModal?: () => void;
+  onOpenCalendar?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -43,6 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAdvisor,
   onOpenConsultation,
   onOpenGmailModal,
+  onOpenCalendar,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
@@ -205,6 +208,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            onClick={() => onNavigate('bd-agents')}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg border font-mono text-xs transition-all ${
+              currentPage === 'bd-agents'
+                ? 'bg-cyan-950 text-cyan-300 border-cyan-500 font-bold shadow-lg shadow-cyan-500/20'
+                : 'bg-slate-900/80 text-cyan-400 border-cyan-800/80 hover:bg-slate-800 hover:border-cyan-500'
+            }`}
+            id="nav-bd-agents-link"
+          >
+            <Bot className="w-3.5 h-3.5 text-cyan-400" />
+            <span>AI Lead Agents</span>
+            <span className="bg-cyan-500 text-slate-950 text-[9px] font-extrabold px-1 rounded uppercase">New</span>
+          </button>
+
+          <button
             onClick={() => onNavigate('markets')}
             className={`flex items-center gap-1 hover:text-blue-400 transition-colors ${currentPage === 'markets' ? 'text-blue-400 font-bold' : ''}`}
             id="nav-markets-link"
@@ -308,8 +325,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
 
-        {/* Action Buttons: AI Strategy Assistant & Schedule Consultation */}
-        <div className="hidden lg:flex items-center gap-3">
+        {/* Action Buttons: Google Calendar, AI Strategy Assistant & Schedule Consultation */}
+        <div className="hidden lg:flex items-center gap-2 sm:gap-3">
+          {onOpenCalendar && (
+            <button
+              onClick={onOpenCalendar}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-cyan-300 bg-cyan-950/80 border border-cyan-800/80 rounded-lg hover:bg-cyan-900 transition-all shadow-sm cursor-pointer"
+              id="google-calendar-header-btn"
+              title="Open Google Calendar Briefings Hub"
+            >
+              <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Google Calendar</span>
+            </button>
+          )}
+
           <button
             onClick={onOpenAdvisor}
             className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-purple-300 bg-purple-950/80 border border-purple-700/70 rounded-lg hover:bg-purple-900 transition-all shadow-sm cursor-pointer"

@@ -17,6 +17,7 @@ export type PageId =
   | 'government'
   | 'case-studies'
   | 'ai-solutions'
+  | 'bd-agents'
   | 'cybersecurity'
   | 'resources'
   | 'contact'
