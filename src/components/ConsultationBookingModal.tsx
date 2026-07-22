@@ -95,7 +95,7 @@ export const ConsultationBookingModal: React.FC<ConsultationBookingModalProps> =
                 Schedule Executive Consultation
               </span>
               <h3 className="text-2xl font-bold text-white mt-2">
-                Talk to an AI & Cybersecurity Architecture Specialist
+                Talk to a Nexis AI Architecture Specialist
               </h3>
               <p className="text-xs text-slate-400 mt-1">
                 Direct briefing for US, Saudi Arabia (Riyadh), and UAE (Dubai) enterprise leadership.

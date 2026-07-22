@@ -38,10 +38,10 @@ export const GmailWorkspaceModal: React.FC<GmailWorkspaceModalProps> = ({ isOpen
 
   // Compose state
   const [recipient, setRecipient] = useState('shafiqs1@gmail.com');
-  const [selectedAlias, setSelectedAlias] = useState('info@nexistechgroup.com');
-  const [subject, setSubject] = useState('Welcome to Nexis Tech Group - Enterprise Inquiry');
+  const [selectedAlias, setSelectedAlias] = useState('info@nexisai.us');
+  const [subject, setSubject] = useState('Welcome to Nexis AI - Enterprise Inquiry');
   const [body, setBody] = useState(
-    `<p>Dear Executive Team,</p><p>Thank you for reaching out to <strong>Nexis Tech Group</strong>. We have received your request regarding AI Transformation and Zero Trust Architecture.</p><p>Best regards,<br/><strong>Nexis Tech Group Executive Team</strong><br/>Owings Mills HQ: 848-482-1455</p>`
+    `<p>Dear Executive Team,</p><p>Thank you for reaching out to <strong>Nexis AI</strong>. We have received your request regarding AI Transformation and Zero Trust Architecture.</p><p>Best regards,<br/><strong>Nexis AI Executive Team</strong><br/>Owings Mills HQ: (443) 608-5425</p>`
   );
   const [sendingEmail, setSendingEmail] = useState(false);
   const [emailSuccess, setEmailSuccess] = useState<string | null>(null);
@@ -352,9 +352,9 @@ export const GmailWorkspaceModal: React.FC<GmailWorkspaceModalProps> = ({ isOpen
                   <span className="text-slate-400">Load Template:</span>
                   <button
                     onClick={() => {
-                      setSubject('Nexis Tech Group | Executive Consultation Confirmation');
+                      setSubject('Nexis AI | Executive Consultation Confirmation');
                       setBody(
-                        `<p>Dear Executive Client,</p><p>Your consultation with <strong>Nexis Tech Group</strong> (Owings Mills, MD) has been scheduled. Our senior AI & Zero Trust architects look forward to evaluating your infrastructure against NIST 800-53 and HIPAA compliance benchmarks.</p><p>Direct Office Line: 848-482-1455<br/>Email: info@nexistechgroup.com</p>`
+                        `<p>Dear Executive Client,</p><p>Your consultation with <strong>Nexis AI</strong> (Owings Mills, MD) has been scheduled. Our senior AI & Zero Trust architects look forward to evaluating your infrastructure against NIST 800-53 and HIPAA compliance benchmarks.</p><p>Direct Office Line: (443) 608-5425<br/>Email: info@nexisai.us</p>`
                       );
                     }}
                     className="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 text-blue-300 border border-slate-700 rounded-lg transition-colors"
@@ -363,9 +363,9 @@ export const GmailWorkspaceModal: React.FC<GmailWorkspaceModalProps> = ({ isOpen
                   </button>
                   <button
                     onClick={() => {
-                      setSubject('Support Request Confirmation - Nexis Tech Group');
+                      setSubject('Support Request Confirmation - Nexis AI');
                       setBody(
-                        `<p>Hello,</p><p>Thank you for contacting <strong>Nexis Tech Support</strong>. Your ticket has been routed to our 24/7 SOC / NOC engineering team.</p><p>Email: support@nexistechgroup.com<br/>Emergency Hotline: 848-482-1455</p>`
+                        `<p>Hello,</p><p>Thank you for contacting <strong>Nexis AI Support</strong>. Your ticket has been routed to our 24/7 SOC / NOC engineering team.</p><p>Email: info@nexisai.us<br/>Emergency Hotline: (443) 608-5425</p>`
                       );
                     }}
                     className="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 text-purple-300 border border-slate-700 rounded-lg transition-colors"

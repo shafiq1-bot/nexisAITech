@@ -42,14 +42,18 @@ export const Hero: React.FC<HeroProps> = ({
         
         {/* Top Badges */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-          <span className="inline-flex items-center gap-2 bg-blue-950/80 border border-blue-700/80 text-blue-300 text-xs font-semibold px-3.5 py-1.5 rounded-full shadow-lg backdrop-blur-md">
-            <Globe2 className="w-3.5 h-3.5 text-blue-400" />
-            <span>Serving United States • Saudi Arabia • UAE</span>
-          </span>
+          <button
+            onClick={() => onNavigate('markets')}
+            className="inline-flex items-center gap-2 bg-blue-950/90 border border-blue-600/80 hover:bg-blue-900 text-blue-200 text-xs font-semibold px-4 py-2 rounded-full shadow-lg backdrop-blur-md transition-all cursor-pointer"
+          >
+            <Globe2 className="w-4 h-4 text-cyan-400" />
+            <span>US Market (Primary HQ) • Saudi Arabia • UAE Regional Pages</span>
+            <span className="text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded font-mono">Explore Markets</span>
+          </button>
 
-          <span className="inline-flex items-center gap-2 bg-purple-950/80 border border-purple-700/80 text-purple-300 text-xs font-semibold px-3.5 py-1.5 rounded-full shadow-lg backdrop-blur-md">
+          <span className="inline-flex items-center gap-2 bg-purple-950/80 border border-purple-700/80 text-purple-300 text-xs font-semibold px-3.5 py-2 rounded-full shadow-lg backdrop-blur-md">
             <Sparkles className="w-3.5 h-3.5 text-purple-400 animate-pulse" />
-            <span>Enterprise AI & Sovereign Architecture</span>
+            <span>Nexis AI Autonomous Agents & Zero Trust</span>
           </span>
         </div>
 

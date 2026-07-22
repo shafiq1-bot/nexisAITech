@@ -63,7 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 ⚡ Executive Briefing
               </span>
               <span className="font-medium text-slate-100">
-                Enterprise AI & Zero Trust Modernization | Maryland HQ: <a href="tel:8484821455" className="font-mono text-emerald-300 underline font-bold hover:text-emerald-200">848-482-1455</a> | Email: <a href="mailto:shafiqs1@gmail.com" className="font-mono text-cyan-300 underline hover:text-cyan-200">shafiqs1@gmail.com</a>
+                Nexis AI Enterprise Agents & Zero Trust | US HQ: <a href="tel:14436085425" className="font-mono text-emerald-300 underline font-bold hover:text-emerald-200">(443) 608-5425</a> | Text / Call Hotline: <a href="sms:+14436085425" className="font-mono text-amber-300 underline font-bold hover:text-amber-200">(443) 608-5425</a> | Email: <a href="mailto:info@nexisai.us" className="font-mono text-cyan-300 underline hover:text-cyan-200">info@nexisai.us</a>
               </span>
             </div>
             <div className="hidden md:flex items-center gap-3 shrink-0">
@@ -96,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               {currentRegion === 'US' ? 'US HQ (Owings Mills, MD)' : currentRegion === 'KSA' ? 'KSA Regional Hub (Riyadh)' : 'UAE Regional Hub (Dubai)'}
             </span>
             <span className="hidden md:inline text-slate-400">
-              {t.quickContact}: <a href="tel:8484821455" className="text-slate-200 hover:text-emerald-400 transition-colors font-mono font-bold">848-482-1455</a>
+              {t.quickContact}: <a href="tel:14436085425" className="text-slate-200 hover:text-emerald-400 transition-colors font-mono font-bold">(443) 608-5425</a> | Text: <a href="sms:+14436085425" className="text-emerald-400 hover:underline font-mono font-bold">(443) 608-5425</a>
             </span>
           </div>
 
@@ -161,22 +161,31 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <div>
             <span className="text-xl font-bold tracking-tight text-white block font-sans">
-              NEXIS <span className="text-blue-400 font-normal">TECH</span>
+              NEXIS <span className="text-cyan-400 font-extrabold">AI</span>
             </span>
             <span className="text-[10px] tracking-widest text-slate-400 uppercase font-mono block -mt-1">
-              AI & Cyber Solutions
+              Enterprise Agents & Security
             </span>
           </div>
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <div className="hidden lg:flex items-center gap-5 text-sm font-medium text-slate-300">
           <button
             onClick={() => onNavigate('home')}
             className={`hover:text-blue-400 transition-colors ${currentPage === 'home' ? 'text-blue-400 font-semibold' : ''}`}
             id="nav-home-link"
           >
             {t.navHome}
+          </button>
+
+          <button
+            onClick={() => onNavigate('markets')}
+            className={`flex items-center gap-1 hover:text-blue-400 transition-colors ${currentPage === 'markets' ? 'text-blue-400 font-bold' : ''}`}
+            id="nav-markets-link"
+          >
+            <span className="text-xs bg-blue-950 text-blue-300 border border-blue-800 px-1.5 py-0.5 rounded font-mono uppercase">US & Global</span>
+            <span>Markets</span>
           </button>
 
           <button

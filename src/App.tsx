@@ -12,6 +12,8 @@ import { ResourcesHub } from './components/ResourcesHub';
 import { PartnerEcosystem } from './components/PartnerEcosystem';
 import { AboutSection } from './components/AboutSection';
 import { ContactSection } from './components/ContactSection';
+import { RegionalMarketsSection } from './components/RegionalMarketsSection';
+import { FloatingAIChatbot } from './components/FloatingAIChatbot';
 import { AIAdvisorModal } from './components/AIAdvisorModal';
 import { ConsultationBookingModal } from './components/ConsultationBookingModal';
 import { servicesData } from './data/companyData';
@@ -106,6 +108,11 @@ export default function App() {
               currentRegion={currentRegion}
               onOpenConsultation={handleOpenConsultation}
             />
+            <RegionalMarketsSection
+              currentRegion={currentRegion}
+              onSelectRegion={setCurrentRegion}
+              onOpenConsultation={handleOpenConsultation}
+            />
             <IndustriesSection
               currentLanguage={currentLanguage}
               currentRegion={currentRegion}
@@ -179,6 +186,14 @@ export default function App() {
           />
         )}
 
+        {currentPage === 'markets' && (
+          <RegionalMarketsSection
+            currentRegion={currentRegion}
+            onSelectRegion={setCurrentRegion}
+            onOpenConsultation={handleOpenConsultation}
+          />
+        )}
+
         {currentPage === 'contact' && (
           <ContactSection
             currentLanguage={currentLanguage}
@@ -188,6 +203,9 @@ export default function App() {
           />
         )}
       </main>
+
+      {/* Persistent Floating AI Chatbot */}
+      <FloatingAIChatbot onOpenConsultation={handleOpenConsultation} />
 
       {/* Global Footer */}
       <Footer

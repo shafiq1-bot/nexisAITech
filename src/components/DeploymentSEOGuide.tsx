@@ -34,12 +34,12 @@ export const DeploymentSEOGuide: React.FC<DeploymentSEOGuideProps> = ({ isOpen, 
   const schemaJsonLd = `{
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "Nexis Tech Group",
-  "url": "https://nexistechgroup.com",
-  "logo": "https://nexistechgroup.com/logo.png",
+  "name": "Nexis AI",
+  "url": "https://nexisai.us",
+  "logo": "https://nexisai.us/logo.png",
   "description": "Global enterprise technology consulting firm providing AI Transformation, Cybersecurity Modernization, Healthcare Interoperability, and Managed Infrastructure Solutions.",
-  "telephone": "848-482-1455",
-  "email": "shafiqs1@gmail.com",
+  "telephone": "(443) 608-5425",
+  "email": "info@nexisai.us",
   "address": [
     {
       "@type": "PostalAddress",

@@ -1,6 +1,6 @@
 {
-  "name": "Nexis Tech Group | Global AI & Technology Consulting",
-  "description": "Enterprise AI Transformation, Cybersecurity, Healthcare & Education Tech, and Managed Solutions across US, KSA, and UAE.",
+  "name": "Nexis AI | Enterprise AI & Cybersecurity",
+  "description": "Enterprise Autonomous AI Agents, Zero Trust Cybersecurity, Healthcare EHR/FHIR Interoperability, and High Performance Computing across US (Primary HQ), Saudi Arabia, and UAE.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

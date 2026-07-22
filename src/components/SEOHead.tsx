@@ -13,37 +13,73 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   currentRegion,
 }) => {
   useEffect(() => {
-    // Determine Page Title
+    const regionName =
+      currentRegion === 'KSA'
+        ? 'Saudi Arabia (Riyadh)'
+        : currentRegion === 'UAE'
+        ? 'United Arab Emirates (Dubai)'
+        : 'United States (Owings Mills, MD)';
+
+    // Page Titles
     const pageTitles: Record<PageId, string> = {
-      home: 'Nexis Tech Group | Enterprise AI Transformation & Zero Trust Cybersecurity',
-      about: 'About Us | Nexis Tech Group - Global Executive Leadership',
-      services: 'Enterprise IT Services & Practice Areas | Nexis Tech Group',
-      'service-detail': 'Enterprise Practice Area | Nexis Tech Group',
-      industries: 'Industry Practice Groups | Healthcare, Edu, Gov & Enterprise',
-      'industry-detail': 'Industry Practice Group | Nexis Tech Group',
-      'ai-solutions': 'Generative AI & LLM Solutions Showcase | Nexis Tech Group',
-      cybersecurity: 'Zero Trust Cybersecurity & Regulatory Compliance | Nexis Tech Group',
-      resources: 'Enterprise Insights, Whitepapers & Compliance Guides | Nexis Tech Group',
-      contact: 'Contact Us | Owings Mills HQ & Global Regional Offices | Nexis Tech Group',
-      assessment: 'Free AI Readiness & Maturity Scorecard | Nexis Tech Group',
-      'deployment-guide': 'Nexis Tech Group | Enterprise AI & Security Solutions',
+      home: `Nexis AI | Enterprise AI Transformation & Zero Trust Cybersecurity - ${regionName}`,
+      markets: `Regional Market Strategy | US Primary Market, Saudi Arabia (KSA) & UAE Hubs - Nexis AI`,
+      about: 'About Us | Executive Leadership, Vision & Global Offices - Nexis AI',
+      services: 'Enterprise IT Consulting Services & Practice Areas | Nexis AI',
+      'service-detail': 'Enterprise Practice Area Details | Nexis AI',
+      industries: 'Industry Practice Groups | Healthcare IT, Higher Ed HPC & Government - Nexis AI',
+      'industry-detail': 'Industry Practice Solutions | Nexis AI',
+      'ai-solutions': 'Generative AI, Agentic Workflows & Enterprise RAG Showcase | Nexis AI',
+      cybersecurity: 'Zero Trust Cybersecurity, NIST 800-53, HIPAA & NCA ECC Compliance - Nexis AI',
+      resources: 'Whitepapers, Compliance Guides, Case Studies & Insights | Nexis AI',
+      contact: 'Contact Us | Owings Mills HQ, Riyadh & Dubai Regional Hubs - Nexis AI',
+      assessment: 'Free Interactive AI Readiness & Security Maturity Scorecard | Nexis AI',
+      'deployment-guide': 'Enterprise Architecture & Deployment Specs | Nexis AI',
+    };
+
+    // Page Descriptions
+    const pageDescriptions: Record<PageId, string> = {
+      home: `Nexis AI delivers Autonomous AI Agents, Zero Trust Cybersecurity, Healthcare IT (EHR/FHIR), and High Performance Computing solutions across ${regionName}.`,
+      markets: 'Dedicated market insights and regional compliance architectures for US (Primary HQ), Saudi Arabia (Vision 2030), and UAE (AI Strategy 2031).',
+      about: 'Meet the executive leadership and technical architects at Nexis AI driving enterprise IT modernization across the US, Saudi Arabia, and UAE.',
+      services: 'Explore practice areas including Agentic AI Engineering, Zero Trust Security Operations, Healthcare Interoperability, and Higher Ed HPC Systems.',
+      'service-detail': 'Detailed architectural overview and implementation roadmap for Nexis AI enterprise technology practice areas.',
+      industries: 'Tailored technology solutions for Healthcare (EHR/FHIR), Higher Education (HPC/FERPA), Financial Services (SOC 2), and Public Sector Governance.',
+      'industry-detail': 'In-depth industry capabilities and compliance frameworks engineered by Nexis AI.',
+      'ai-solutions': 'Discover custom LLMs, RAG architectures, multi-agent orchestrations, and automated workflow solutions for enterprise platforms.',
+      cybersecurity: 'Zero Trust Architecture, SIEM/SOAR monitoring, Penetration Testing, and compliance mapping for NIST 800-53, HIPAA, and KSA NCA ECC.',
+      resources: 'Download executive research, NIST compliance checklists, AI implementation whitepapers, and regional regulatory guides.',
+      contact: 'Connect with Nexis AI executive consultants at our Owings Mills, MD headquarters or regional hubs in Riyadh and Dubai. Call or text (443) 608-5425.',
+      assessment: 'Take the 3-minute interactive AI & Security Maturity Scorecard to receive an instant compliance report and architectural recommendations.',
+      'deployment-guide': 'Technical specifications, API docs, deployment blueprints, and system performance benchmarks.',
     };
 
     const title = pageTitles[currentPage] || 'Nexis Tech Group | Enterprise AI & Cybersecurity';
+    const description = pageDescriptions[currentPage] || pageDescriptions.home;
+
+    // Document Title
     document.title = title;
 
-    // Update Meta Description
+    // Meta Description
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
       metaDescription = document.createElement('meta');
       metaDescription.setAttribute('name', 'description');
       document.head.appendChild(metaDescription);
     }
-    const descriptionText =
-      'Nexis Tech Group provides premier AI Transformation, Zero Trust Cybersecurity, Healthcare IT (EHR/FHIR), Higher Education HPC, and Managed Infrastructure Solutions across the US (Owings Mills, MD), Saudi Arabia (Riyadh), and UAE (Dubai).';
-    metaDescription.setAttribute('content', descriptionText);
+    metaDescription.setAttribute('content', description);
 
-    // Update OpenGraph Title & Description
+    // Canonical Tag
+    let canonicalTag = document.querySelector('link[rel="canonical"]');
+    if (!canonicalTag) {
+      canonicalTag = document.createElement('link');
+      canonicalTag.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalTag);
+    }
+    const pageSlug = currentPage === 'home' ? '' : `#${currentPage}`;
+    canonicalTag.setAttribute('href', `https://nexistechgroup.com/${pageSlug}`);
+
+    // OpenGraph Meta
     let ogTitle = document.querySelector('meta[property="og:title"]');
     if (!ogTitle) {
       ogTitle = document.createElement('meta');
@@ -58,9 +94,9 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       ogDesc.setAttribute('property', 'og:description');
       document.head.appendChild(ogDesc);
     }
-    ogDesc.setAttribute('content', descriptionText);
+    ogDesc.setAttribute('content', description);
 
-    // Inject / Update Schema.org JSON-LD structured data in head
+    // Inject / Update Schema.org JSON-LD structured data
     let schemaScript = document.getElementById('json-ld-schema') as HTMLScriptElement | null;
     if (!schemaScript) {
       schemaScript = document.createElement('script');
@@ -71,73 +107,96 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
     const structuredData = {
       '@context': 'https://schema.org',
-      '@type': 'ProfessionalService',
-      name: 'Nexis Tech Group',
-      url: 'https://nexistechgroup.com',
-      logo: 'https://nexistechgroup.com/logo.png',
-      image: 'https://nexistechgroup.com/og-image.jpg',
-      description: descriptionText,
-      telephone: '848-482-1455',
-      email: 'shafiqs1@gmail.com',
-      priceRange: '$$$$',
-      address: [
+      '@graph': [
         {
-          '@type': 'PostalAddress',
-          streetAddress: '11436 Cronhill Drive',
-          addressLocality: 'Owings Mills',
-          addressRegion: 'MD',
-          postalCode: '21117',
-          addressCountry: 'US',
+          '@type': 'Organization',
+          '@id': 'https://nexistechgroup.com/#organization',
+          name: 'Nexis Tech Group',
+          url: 'https://nexistechgroup.com',
+          logo: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop',
+          email: 'info@nexisai.us',
+          telephone: '443-608-5425',
+          sameAs: [
+            'https://www.linkedin.com/company/nexisai',
+            'https://twitter.com/nexisai',
+            'https://github.com/nexisai',
+          ],
         },
         {
-          '@type': 'PostalAddress',
-          addressLocality: 'Riyadh',
-          addressCountry: 'SA',
+          '@type': 'LocalBusiness',
+          '@id': 'https://nexisai.us/#hq-owings-mills',
+          name: 'Nexis AI - Executive Headquarters',
+          image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop',
+          telephone: '443-608-5425',
+          email: 'info@nexisai.us',
+          priceRange: '$$$$',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '11436 Cronhill Drive',
+            addressLocality: 'Owings Mills',
+            addressRegion: 'MD',
+            postalCode: '21117',
+            addressCountry: 'US',
+          },
+          geo: {
+            '@type': 'GeoCoordinates',
+            latitude: 39.4198,
+            longitude: -76.7803,
+          },
+          openingHoursSpecification: {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            opens: '08:00',
+            closes: '18:00',
+          },
         },
         {
-          '@type': 'PostalAddress',
-          addressLocality: 'Dubai',
-          addressCountry: 'AE',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://nexistechgroup.com',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: title,
+              item: `https://nexistechgroup.com/${pageSlug}`,
+            },
+          ],
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'What services does Nexis Tech Group specialize in?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Nexis Tech Group provides enterprise AI Transformation, Zero Trust Cybersecurity (NIST 800-53 / HIPAA / KSA NCA ECC), Healthcare IT (HL7/FHIR), Higher Education HPC Clusters, and Managed IT Infrastructure.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'Where is Nexis Tech Group located?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Our primary headquarters is located in Owings Mills, Maryland (11436 Cronhill Drive, 21117), with regional hub offices in Riyadh, Saudi Arabia, and Dubai, United Arab Emirates.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'How can I schedule an AI Readiness Audit or IT Consultation?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'You can schedule a consultation directly on our website, call or text our executive line at (443) 608-5425, or email info@nexisai.us.',
+              },
+            },
+          ],
         },
       ],
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'Enterprise Technology Services',
-        itemListElement: [
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'AI Transformation & Agentic Workflows',
-              description: 'Generative AI integration, private LLMs, and RAG architectures.',
-            },
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Zero Trust Cybersecurity & Governance',
-              description: 'NIST 800-53, HIPAA, SOC 2, and KSA NCA ECC compliance.',
-            },
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Healthcare IT & EHR Interoperability',
-              description: 'HL7/FHIR pipelines, medical imaging AI, and clinical workflows.',
-            },
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Higher Education HPC & IT Infrastructure',
-              description: 'High-performance computing clusters, campus networks, and FERPA compliance.',
-            },
-          },
-        ],
-      },
     };
 
     schemaScript.textContent = JSON.stringify(structuredData);
@@ -145,3 +204,4 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
   return null;
 };
+

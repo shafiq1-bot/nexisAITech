@@ -598,35 +598,42 @@ export const assessmentQuestionsData: AssessmentQuestion[] = [
   },
 ];
 
-export const primaryContactEmail = 'shafiqs1@gmail.com';
-export const mainUSAPhone = '848-482-1455';
+export const primaryContactEmail = 'info@nexisai.us';
+export const mainUSAPhone = '(443) 608-5425';
+export const mainUSASMS = '(443) 608-5425';
 
 export const regionalOffices = [
   {
     region: 'US',
-    country: 'United States',
+    country: 'United States (Primary Market)',
     city: 'Owings Mills, MD',
     address: '11436 Cronhill Drive, Owings Mills, MD 21117',
-    phone: '848-482-1455',
-    email: 'shafiqs1@gmail.com',
-    certifications: ['SOC 2 Type II', 'NIST 800-53 Compliant', 'HIPAA Certified', 'FERPA Ready'],
+    phone: '(443) 608-5425',
+    smsText: '(443) 608-5425',
+    email: 'info@nexisai.us',
+    isPrimary: true,
+    certifications: ['SOC 2 Type II', 'NIST 800-53 Rev 5 Compliant', 'HIPAA Certified', 'FERPA Ready', 'DoD CMMC Ready'],
   },
   {
     region: 'KSA',
     country: 'Saudi Arabia',
-    city: 'Riyadh',
+    city: 'Riyadh Hub',
     address: 'King Fahd Road, Al Olaya District, Riyadh 12214',
     phone: '+966 11 800 9988',
-    email: 'shafiqs1@gmail.com',
-    certifications: ['NCA ECC Compliant', 'NDMO Registered', 'MoH Approved Vendor'],
+    smsText: '(443) 608-5425',
+    email: 'info@nexisai.us',
+    isPrimary: false,
+    certifications: ['Saudi Vision 2030 Aligned', 'NCA ECC Compliant', 'NDMO Registered', 'MoH Approved AI Vendor'],
   },
   {
     region: 'UAE',
     country: 'United Arab Emirates',
-    city: 'Dubai & Abu Dhabi',
+    city: 'Dubai & Abu Dhabi Hub',
     address: 'DIFC Gate Precinct Building 4, Level 7, Dubai',
     phone: '+971 4 300 7766',
-    email: 'shafiqs1@gmail.com',
-    certifications: ['TDRA Certified', 'NABIDH / Malaffi Interoperable', 'ISO 27001'],
+    smsText: '(443) 608-5425',
+    email: 'info@nexisai.us',
+    isPrimary: false,
+    certifications: ['UAE Strategy for AI 2031', 'TDRA Cloud Certified', 'NABIDH / Malaffi Interoperable', 'ISO 27001'],
   },
 ];

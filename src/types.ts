@@ -4,6 +4,7 @@ export type Region = 'US' | 'KSA' | 'UAE';
 
 export type PageId = 
   | 'home'
+  | 'markets'
   | 'about'
   | 'services'
   | 'service-detail'

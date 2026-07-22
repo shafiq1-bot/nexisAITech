@@ -39,6 +39,57 @@ async function startServer() {
     });
   });
 
+  // Dynamic XML Sitemap Endpoint for Search Engine Crawlers
+  app.get('/sitemap.xml', (req, res) => {
+    const baseUrl = 'https://nexistechgroup.com';
+    const lastMod = new Date().toISOString().split('T')[0];
+
+    const urls = [
+      { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'daily' },
+      { loc: `${baseUrl}/#about`, priority: '0.8', changefreq: 'monthly' },
+      { loc: `${baseUrl}/#services`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/#industries`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/#ai-solutions`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/#cybersecurity`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/#resources`, priority: '0.8', changefreq: 'weekly' },
+      { loc: `${baseUrl}/#assessment`, priority: '0.8', changefreq: 'weekly' },
+      { loc: `${baseUrl}/#contact`, priority: '0.8', changefreq: 'monthly' },
+    ];
+
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls
+  .map(
+    (u) => `  <url>
+    <loc>${u.loc}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="${u.loc}" />
+    <xhtml:link rel="alternate" hreflang="ar" href="${u.loc}?lang=ar" />
+  </url>`
+  )
+  .join('\n')}
+</urlset>`;
+
+    res.header('Content-Type', 'application/xml');
+    res.send(xml);
+  });
+
+  // Search Engine Crawlers Instruction Endpoint (robots.txt)
+  app.get('/robots.txt', (req, res) => {
+    const robots = `User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://nexistechgroup.com/sitemap.xml
+Host: https://nexistechgroup.com`;
+
+    res.header('Content-Type', 'text/plain');
+    res.send(robots);
+  });
+
   // AI Technology Strategy & Advisory Endpoint (Gemini-powered)
   app.post('/api/ai-advisor', async (req, res) => {
     try {

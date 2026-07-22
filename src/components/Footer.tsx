@@ -144,12 +144,18 @@ export const Footer: React.FC<FooterProps> = ({
                 <BrainCircuit className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold text-white tracking-tight">
-                NEXIS <span className="text-blue-400 font-normal">TECH GROUP</span>
+                NEXIS <span className="text-cyan-400 font-extrabold">AI</span>
               </span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              Strategic technology advisor and AI transformation partner serving higher education institutions, healthcare networks, government agencies, and mid-market enterprises across the United States, Saudi Arabia, and the United Arab Emirates.
+              Nexis AI is a premier enterprise AI & Zero Trust technology consulting firm headquartered in Owings Mills, MD. We build autonomous AI agents, HIPAA/FHIR healthcare interoperability, NIST 800-53 security enclaves, and high-performance computing systems for US, Saudi Arabia, and UAE markets.
             </p>
+            <div className="pt-2 text-xs space-y-1">
+              <div className="text-slate-300 font-semibold">US Flagship HQ: Owings Mills, MD</div>
+              <div className="text-slate-400 font-mono">Default Phone: <a href="tel:14436085425" className="text-white hover:text-blue-400 underline">(443) 608-5425</a></div>
+              <div className="text-emerald-400 font-mono">SMS / Text Hotline: <a href="sms:+14436085425" className="underline font-bold">(443) 608-5425</a></div>
+              <div className="text-cyan-400 font-mono">Primary Email: <a href="mailto:info@nexisai.us" className="underline">info@nexisai.us</a></div>
+            </div>
             <div className="flex items-center gap-3 text-xs text-slate-400 font-mono">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
               <span>SOC 2 Type II • NIST 800-53 • HIPAA • NCA ECC</span>

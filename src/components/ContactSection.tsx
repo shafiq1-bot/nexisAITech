@@ -74,6 +74,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
                     <span>{office.phone}</span>
                   </p>
+                  <p className="flex items-center gap-2.5 font-mono text-emerald-300">
+                    <span className="text-xs bg-emerald-950 text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-800">SMS / Text</span>
+                    <a href={`sms:${office.smsText || '(443) 608-5425'}?body=Hello%20Nexis%20AI%20Team%2C%20I%20am%20requesting%20a%20consultation.`} className="hover:underline">
+                      {office.smsText || '(443) 608-5425'}
+                    </a>
+                  </p>
                   <p className="flex items-center gap-2.5">
                     <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
                     <span>{office.email}</span>
