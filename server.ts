@@ -8,7 +8,7 @@ dotenv.config();
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
 
   app.use(express.json({ limit: '10mb' }));
 
@@ -206,7 +206,7 @@ Keep your tone executive, trustworthy, concise, and professional.`;
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Nexis Tech Group Express server running on http://0.0.0.0:${PORT}`);
+    console.log(`Server is listening on port ${PORT}`);
   });
 }
 
