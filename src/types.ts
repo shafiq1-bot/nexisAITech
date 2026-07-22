@@ -4,12 +4,18 @@ export type Region = 'US' | 'KSA' | 'UAE';
 
 export type PageId = 
   | 'home'
+  | 'leadership'
   | 'markets'
   | 'about'
   | 'services'
   | 'service-detail'
+  | 'enterprise-architecture'
+  | 'research-computing'
+  | 'hardware-infrastructure'
   | 'industries'
   | 'industry-detail'
+  | 'government'
+  | 'case-studies'
   | 'ai-solutions'
   | 'cybersecurity'
   | 'resources'
@@ -79,6 +85,7 @@ export interface Partner {
   badge: string;
   category: string;
   description: string;
+  logoId?: string;
 }
 
 export interface AssessmentQuestion {

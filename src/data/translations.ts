@@ -30,8 +30,8 @@ export const translations: Record<Language, Record<string, string>> = {
     uaeRegion: 'United Arab Emirates (Dubai Hub)',
 
     // Hero Section
-    heroHeadline: 'Transform Your Organization with AI, Zero Trust Security & Digital Innovation',
-    heroSubheadline: 'Empowering Healthcare, Higher Education, Government, and Enterprises across the United States, Saudi Arabia, and the United Arab Emirates with resilient technology ecosystems.',
+    heroHeadline: 'Executive Advisory Led by a Former CIO & Technology Leader',
+    heroSubheadline: '20+ years of experience delivering enterprise digital transformation, autonomous AI agents, Zero Trust security, and high-performance research computing across government, healthcare, higher education, and research organizations.',
     heroStat1Label: 'IT Infrastructure Managed',
     heroStat1Value: '$500M+',
     heroStat2Label: 'Security Compliance Rate',

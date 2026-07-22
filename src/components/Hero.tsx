@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { Language, Region, PageId } from '../types';
 import { translations } from '../data/translations';
+import { AIVisualShowcase } from './AIVisualShowcase';
 
 interface HeroProps {
   currentLanguage: Language;
@@ -148,6 +149,9 @@ export const Hero: React.FC<HeroProps> = ({
             <div className="text-xs text-slate-400 mt-1 font-medium">{t.heroStat4Label}</div>
           </div>
         </div>
+
+        {/* Dynamic AI Executive Visual Showcase */}
+        <AIVisualShowcase onNavigate={onNavigate} onOpenConsultation={onOpenConsultation} />
 
       </div>
     </section>

@@ -19,7 +19,12 @@ import { ConsultationBookingModal } from './components/ConsultationBookingModal'
 import { servicesData } from './data/companyData';
 import { ServiceDetailModal } from './components/ServiceDetailModal';
 import { SEOHead } from './components/SEOHead';
-import { GmailWorkspaceModal } from './components/GmailWorkspaceModal';
+import { LeadershipSection } from './components/LeadershipSection';
+import { CaseStudiesSection } from './components/CaseStudiesSection';
+import { EnterpriseArchitectureSection } from './components/EnterpriseArchitectureSection';
+import { ResearchComputingSection } from './components/ResearchComputingSection';
+import { HardwareInfrastructureSection } from './components/HardwareInfrastructureSection';
+import { GovernmentPracticeSection } from './components/GovernmentPracticeSection';
 
 export default function App() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
@@ -32,7 +37,6 @@ export default function App() {
   const [consultationOpen, setConsultationOpen] = useState(false);
   const [consultationService, setConsultationService] = useState<string | undefined>();
   const [consultationNotes, setConsultationNotes] = useState<string | undefined>();
-  const [gmailModalOpen, setGmailModalOpen] = useState(false);
 
   // Toggle RTL direction when language changes
   useEffect(() => {
@@ -80,7 +84,6 @@ export default function App() {
         onNavigate={handleNavigate}
         onOpenAdvisor={() => setAdvisorOpen(true)}
         onOpenConsultation={() => handleOpenConsultation()}
-        onOpenGmailModal={() => setGmailModalOpen(true)}
       />
 
       {/* Main Page Rendering */}
@@ -108,11 +111,6 @@ export default function App() {
               currentRegion={currentRegion}
               onOpenConsultation={handleOpenConsultation}
             />
-            <RegionalMarketsSection
-              currentRegion={currentRegion}
-              onSelectRegion={setCurrentRegion}
-              onOpenConsultation={handleOpenConsultation}
-            />
             <IndustriesSection
               currentLanguage={currentLanguage}
               currentRegion={currentRegion}
@@ -123,6 +121,11 @@ export default function App() {
               onOpenConsultation={handleOpenConsultation}
             />
             <PartnerEcosystem />
+            <RegionalMarketsSection
+              currentRegion={currentRegion}
+              onSelectRegion={setCurrentRegion}
+              onOpenConsultation={handleOpenConsultation}
+            />
             <ResourcesHub
               currentLanguage={currentLanguage}
               onOpenConsultation={() => handleOpenConsultation()}
@@ -135,6 +138,42 @@ export default function App() {
             currentLanguage={currentLanguage}
             currentRegion={currentRegion}
             onOpenConsultation={() => handleOpenConsultation()}
+          />
+        )}
+
+        {currentPage === 'leadership' && (
+          <LeadershipSection
+            onOpenConsultation={handleOpenConsultation}
+          />
+        )}
+
+        {currentPage === 'case-studies' && (
+          <CaseStudiesSection
+            onOpenConsultation={handleOpenConsultation}
+          />
+        )}
+
+        {currentPage === 'enterprise-architecture' && (
+          <EnterpriseArchitectureSection
+            onOpenConsultation={handleOpenConsultation}
+          />
+        )}
+
+        {currentPage === 'research-computing' && (
+          <ResearchComputingSection
+            onOpenConsultation={handleOpenConsultation}
+          />
+        )}
+
+        {currentPage === 'hardware-infrastructure' && (
+          <HardwareInfrastructureSection
+            onOpenConsultation={handleOpenConsultation}
+          />
+        )}
+
+        {currentPage === 'government' && (
+          <GovernmentPracticeSection
+            onOpenConsultation={handleOpenConsultation}
           />
         )}
 
@@ -238,12 +277,6 @@ export default function App() {
         onClose={() => setSelectedServiceId(null)}
         onOpenConsultation={handleOpenConsultation}
       />
-
-      <GmailWorkspaceModal
-        isOpen={gmailModalOpen}
-        onClose={() => setGmailModalOpen(false)}
-      />
-
     </div>
   );
 }

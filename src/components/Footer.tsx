@@ -140,15 +140,29 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center">
-                <BrainCircuit className="w-5 h-5 text-white" />
+              <div className="relative w-9 h-9">
+                <div className="absolute -inset-1 rounded-lg bg-gradient-to-tr from-cyan-500 via-blue-600 to-emerald-400 opacity-75 blur-sm"></div>
+                <div className="relative w-9 h-9 rounded-lg bg-slate-950 border border-cyan-500/50 p-1 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 19V5l12 14V5" />
+                    <circle cx="4" cy="5" r="1.5" className="fill-cyan-400" />
+                    <circle cx="16" cy="19" r="1.5" className="fill-emerald-400" />
+                    <circle cx="16" cy="5" r="1.5" className="fill-purple-400" />
+                    <circle cx="4" cy="19" r="1.5" className="fill-blue-400" />
+                  </svg>
+                </div>
               </div>
-              <span className="text-xl font-bold text-white tracking-tight">
-                NEXIS <span className="text-cyan-400 font-extrabold">AI</span>
-              </span>
+              <div>
+                <span className="text-xl font-extrabold text-white tracking-tight block">
+                  NEXIS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400">AI</span>
+                </span>
+                <span className="text-[9px] font-extrabold tracking-wider text-slate-400 uppercase font-mono block -mt-1">
+                  Advisory • Consulting • Services
+                </span>
+              </div>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              Nexis AI is a premier enterprise AI & Zero Trust technology consulting firm headquartered in Owings Mills, MD. We build autonomous AI agents, HIPAA/FHIR healthcare interoperability, NIST 800-53 security enclaves, and high-performance computing systems for US, Saudi Arabia, and UAE markets.
+              Nexis AI is a premier Executive Advisory, Strategy Consulting & Enterprise Technology Services firm headquartered in Owings Mills, MD. We advise C-suite leaders and deliver autonomous AI agents, HIPAA/FHIR healthcare interoperability, NIST 800-53 security enclaves, and high-performance computing systems across global markets.
             </p>
             <div className="pt-2 text-xs space-y-1">
               <div className="text-slate-300 font-semibold">US Flagship HQ: Owings Mills, MD</div>
@@ -177,33 +191,33 @@ export const Footer: React.FC<FooterProps> = ({
             <h5 className="text-xs font-bold uppercase tracking-wider text-slate-200">Practice Areas</h5>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <button onClick={() => onNavigate('service-detail', 'ai-transformation')} className="hover:text-blue-400 transition-colors">
-                  AI Transformation
+                <button onClick={() => onNavigate('leadership')} className="hover:text-blue-400 transition-colors text-emerald-300 font-semibold">
+                  CIO Leadership Profile
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('service-detail', 'cybersecurity')} className="hover:text-blue-400 transition-colors">
-                  Cybersecurity & Zero Trust
+                <button onClick={() => onNavigate('case-studies')} className="hover:text-blue-400 transition-colors text-blue-300 font-semibold">
+                  Detailed Case Studies
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('service-detail', 'healthcare-technology')} className="hover:text-blue-400 transition-colors">
-                  Healthcare IT & EHR
+                <button onClick={() => onNavigate('enterprise-architecture')} className="hover:text-blue-400 transition-colors">
+                  Enterprise Architecture
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('service-detail', 'higher-education-technology')} className="hover:text-blue-400 transition-colors">
-                  Higher Education & HPC
+                <button onClick={() => onNavigate('research-computing')} className="hover:text-blue-400 transition-colors">
+                  Research Computing & HPC
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('service-detail', 'smb-solutions')} className="hover:text-blue-400 transition-colors">
-                  Managed SMB Solutions
+                <button onClick={() => onNavigate('hardware-infrastructure')} className="hover:text-blue-400 transition-colors">
+                  Hardware & Data Center
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('service-detail', 'hardware-infrastructure')} className="hover:text-blue-400 transition-colors">
-                  Hardware & GPU Infrastructure
+                <button onClick={() => onNavigate('government')} className="hover:text-blue-400 transition-colors">
+                  Government Practice
                 </button>
               </li>
             </ul>
