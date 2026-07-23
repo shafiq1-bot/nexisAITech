@@ -42,6 +42,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       contact: 'Contact Us | Owings Mills HQ, Riyadh & Dubai Regional Hubs - Nexis AI',
       assessment: 'Free Interactive AI Readiness & Security Maturity Scorecard | Nexis AI',
       'deployment-guide': 'Enterprise Architecture & Deployment Specs | Nexis AI',
+      'trust-center': 'Domain Verification & Security Trust Center | nexisai.us - Nexis AI',
     };
 
     // Page Descriptions
@@ -66,6 +67,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       contact: 'Connect with Nexis AI executive consultants at our Owings Mills, MD headquarters or regional hubs in Riyadh and Dubai. Call or text (443) 608-5425.',
       assessment: 'Take the 3-minute interactive AI & Security Maturity Scorecard to receive an instant compliance report and architectural recommendations.',
       'deployment-guide': 'Technical specifications, API docs, deployment blueprints, and system performance benchmarks.',
+      'trust-center': 'Official domain verification, RFC 9116 security.txt disclosure, DMARC/SPF authentication proofs, and Infoblox security unblock guide for nexisai.us.',
     };
 
     const title = pageTitles[currentPage] || 'Nexis Tech Group | Enterprise AI & Cybersecurity';
@@ -171,13 +173,13 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
               '@type': 'ListItem',
               position: 1,
               name: 'Home',
-              item: 'https://nexistechgroup.com',
+              item: 'https://nexisai.us',
             },
             {
               '@type': 'ListItem',
               position: 2,
               name: title,
-              item: `https://nexistechgroup.com/${pageSlug}`,
+              item: `https://nexisai.us/${pageSlug}`,
             },
           ],
         },

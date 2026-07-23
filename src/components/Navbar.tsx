@@ -222,6 +222,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            onClick={() => onNavigate('trust-center')}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg border font-mono text-xs transition-all ${
+              currentPage === 'trust-center'
+                ? 'bg-emerald-950 text-emerald-300 border-emerald-500 font-bold shadow-lg shadow-emerald-500/20'
+                : 'bg-slate-900/80 text-emerald-400 border-emerald-800/80 hover:bg-slate-800 hover:border-emerald-500'
+            }`}
+            id="nav-trust-center-link"
+          >
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Trust & Domain Security</span>
+            <span className="bg-emerald-500 text-slate-950 text-[9px] font-extrabold px-1 rounded uppercase">nexisai.us</span>
+          </button>
+
+          <button
             onClick={() => onNavigate('markets')}
             className={`flex items-center gap-1 hover:text-blue-400 transition-colors ${currentPage === 'markets' ? 'text-blue-400 font-bold' : ''}`}
             id="nav-markets-link"

@@ -27,6 +27,7 @@ import { HardwareInfrastructureSection } from './components/HardwareInfrastructu
 import { BDAgentsSection } from './components/BDAgentsSection';
 import { GovernmentPracticeSection } from './components/GovernmentPracticeSection';
 import { GoogleCalendarModal } from './components/GoogleCalendarModal';
+import { TrustSecurityCenter } from './components/TrustSecurityCenter';
 
 export default function App() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
@@ -231,6 +232,14 @@ export default function App() {
 
         {currentPage === 'cybersecurity' && (
           <CybersecurityCenter
+            currentLanguage={currentLanguage}
+            currentRegion={currentRegion}
+            onOpenConsultation={handleOpenConsultation}
+          />
+        )}
+
+        {currentPage === 'trust-center' && (
+          <TrustSecurityCenter
             currentLanguage={currentLanguage}
             currentRegion={currentRegion}
             onOpenConsultation={handleOpenConsultation}

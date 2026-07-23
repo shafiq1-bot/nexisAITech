@@ -280,6 +280,16 @@ export const Footer: React.FC<FooterProps> = ({
                 </button>
               </li>
               <li>
+                <button onClick={() => onNavigate('trust-center')} className="hover:text-emerald-400 transition-colors text-emerald-300 font-bold flex items-center gap-1">
+                  <span>🛡️ Domain Trust Center (nexisai.us)</span>
+                </button>
+              </li>
+              <li>
+                <a href="/.well-known/security.txt" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 transition-colors text-slate-400 font-mono">
+                  📄 RFC 9116 Security.txt
+                </a>
+              </li>
+              <li>
                 <button onClick={() => onNavigate('contact')} className="hover:text-blue-400 transition-colors">
                   Contact Owings Mills HQ
                 </button>
