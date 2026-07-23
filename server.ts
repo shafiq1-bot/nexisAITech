@@ -12,8 +12,27 @@ async function startServer() {
 
   app.use(express.json({ limit: '10mb' }));
 
+  // ACME Challenge Exemption for Google Certificate Authority / Let's Encrypt HTTP-01 SSL Validation
+  // Fixes 302 redirect loops during Cloud Run Custom Domain Mapping & SSL Certificate provisioning
+  app.use((req, res, next) => {
+    if (req.path.startsWith('/.well-known/acme-challenge/')) {
+      // Do NOT send HSTS or 301/302 redirects for ACME challenge tokens
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      return next();
+    }
+    next();
+  });
+
+  // ACME Challenge token route handler
+  app.get('/.well-known/acme-challenge/:token', (req, res) => {
+    res.status(200).type('text/plain').send(req.params.token);
+  });
+
   // Security Headers Middleware for Enterprise Trust & Security Scanners
   app.use((req, res, next) => {
+    if (req.path.startsWith('/.well-known/acme-challenge/')) {
+      return next();
+    }
     res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Frame-Options', 'SAMEORIGIN');
