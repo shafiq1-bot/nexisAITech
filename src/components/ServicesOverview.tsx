@@ -41,18 +41,18 @@ export const ServicesOverview: React.FC<ServicesOverviewProps> = ({
   };
 
   return (
-    <section id="services-section" className="py-20 bg-slate-900 text-slate-100 border-b border-slate-800">
+    <section id="services-section" className="py-20 bg-slate-50 text-slate-900 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-semibold uppercase tracking-widest text-blue-400 bg-blue-950 border border-blue-800 px-3.5 py-1 rounded-full">
+          <span className="text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-100 border border-blue-200 px-3.5 py-1 rounded-full">
             Core Practice Areas
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mt-4 tracking-tight">
             {t.servicesTitle}
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base mt-3">
+          <p className="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
             {t.servicesSubtitle}
           </p>
         </div>
@@ -62,22 +62,22 @@ export const ServicesOverview: React.FC<ServicesOverviewProps> = ({
           {servicesData.map((service) => (
             <div
               key={service.id}
-              className="bg-slate-950/80 border border-slate-800 hover:border-slate-700 rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-200 hover:shadow-2xl hover:-translate-y-1 group relative overflow-hidden"
+              className="bg-white border border-slate-200 hover:border-blue-400 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-200 hover:shadow-2xl hover:-translate-y-1 group relative overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 rounded-full blur-2xl group-hover:bg-blue-600/10 transition-colors pointer-events-none" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-colors pointer-events-none" />
 
               <div>
                 {/* Header Icon & Title */}
                 <div className="flex items-center justify-between mb-5">
-                  <div className="p-3 bg-slate-900 border border-slate-800 rounded-xl group-hover:border-slate-700 transition-colors">
+                  <div className="p-3 bg-slate-100 border border-slate-200 rounded-2xl group-hover:bg-blue-50 transition-colors">
                     {renderIcon(service.iconName)}
                   </div>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
                     {service.category.toUpperCase()}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                <h3 className="text-xl font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
                   {service.id === 'ai-transformation' && 'AI Transformation Services'}
                   {service.id === 'cybersecurity' && 'Cybersecurity & Zero Trust'}
                   {service.id === 'healthcare-technology' && 'Healthcare Technology'}
@@ -86,7 +86,7 @@ export const ServicesOverview: React.FC<ServicesOverviewProps> = ({
                   {service.id === 'hardware-infrastructure' && 'Hardware & Infrastructure'}
                 </h3>
 
-                <p className="text-xs text-slate-400 leading-relaxed mb-6">
+                <p className="text-xs text-slate-600 leading-relaxed mb-6 font-normal">
                   {service.id === 'ai-transformation' && service.shortDescKey ? t.serviceAIDesc : ''}
                   {service.id === 'cybersecurity' && service.shortDescKey ? t.serviceCyberDesc : ''}
                   {service.id === 'healthcare-technology' && service.shortDescKey ? t.serviceHealthcareDesc : ''}
@@ -96,18 +96,18 @@ export const ServicesOverview: React.FC<ServicesOverviewProps> = ({
                 </p>
 
                 {/* Key Features List */}
-                <div className="space-y-2 mb-6 border-t border-slate-800/80 pt-4">
-                  <div className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2">
+                <div className="space-y-2 mb-6 border-t border-slate-100 pt-4">
+                  <div className="text-[11px] font-bold text-slate-800 uppercase tracking-wider mb-2">
                     Key Features Included:
                   </div>
                   {service.features.slice(0, 4).map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                    <div key={idx} className="flex items-start gap-2 text-xs text-slate-700">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
                       <span className="line-clamp-1">{feature}</span>
                     </div>
                   ))}
                   {service.features.length > 4 && (
-                    <div className="text-[11px] text-blue-400 font-medium pt-1">
+                    <div className="text-[11px] text-blue-600 font-bold pt-1">
                       + {service.features.length - 4} additional enterprise modules
                     </div>
                   )}
@@ -115,10 +115,10 @@ export const ServicesOverview: React.FC<ServicesOverviewProps> = ({
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between gap-2">
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
                 <button
                   onClick={() => setSelectedService(service)}
-                  className="text-xs font-semibold text-blue-400 hover:text-blue-300 flex items-center gap-1.5 transition-colors cursor-pointer"
+                  className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1.5 transition-colors cursor-pointer"
                   id={`view-service-detail-${service.id}`}
                 >
                   <span>Explore Architecture</span>
@@ -127,7 +127,7 @@ export const ServicesOverview: React.FC<ServicesOverviewProps> = ({
 
                 <button
                   onClick={() => onOpenConsultation(service.id)}
-                  className="text-xs font-medium text-slate-300 hover:text-white bg-slate-900 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700/80 transition-colors cursor-pointer"
+                  className="text-xs font-semibold text-slate-700 hover:text-white bg-slate-100 hover:bg-slate-900 px-3.5 py-1.5 rounded-xl border border-slate-200 transition-colors cursor-pointer"
                   id={`consult-service-${service.id}`}
                 >
                   Consult

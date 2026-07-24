@@ -142,7 +142,7 @@ export const AIAdvisorModal: React.FC<AIAdvisorModalProps> = ({
           </button>
         </div>
 
-        {/* Region & Industry Filters Bar */}
+        {/* Region, Industry & Direct Contact Ribbon */}
         <div className="bg-slate-900/90 border-b border-slate-800/80 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs shrink-0">
           <div className="flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-1.5">
@@ -178,15 +178,23 @@ export const AIAdvisorModal: React.FC<AIAdvisorModalProps> = ({
             </div>
           </div>
 
-          <button
-            onClick={() => {
-              onClose();
-              onOpenConsultation();
-            }}
-            className="text-xs text-blue-400 hover:text-blue-300 font-semibold underline"
-          >
-            Book Human Advisory Session
-          </button>
+          <div className="flex items-center gap-3">
+            <a href="tel:+14436085425" className="text-blue-400 font-mono font-bold hover:underline flex items-center gap-1">
+              <span>📞 +1 (443) 608-5425</span>
+            </a>
+            <a href="mailto:shafiq.rahman@nexisai.us" className="text-emerald-400 font-mono text-[11px] hover:underline hidden sm:inline">
+              ✉️ shafiq.rahman@nexisai.us
+            </a>
+            <button
+              onClick={() => {
+                onClose();
+                onOpenConsultation();
+              }}
+              className="px-3 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-bold text-[11px] shadow transition-all cursor-pointer"
+            >
+              Book Consultation
+            </button>
+          </div>
         </div>
 
         {/* Conversation Body */}

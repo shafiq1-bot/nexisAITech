@@ -43,6 +43,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       assessment: 'Free Interactive AI Readiness & Security Maturity Scorecard | Nexis AI',
       'deployment-guide': 'Enterprise Architecture & Deployment Specs | Nexis AI',
       'trust-center': 'Domain Verification & Security Trust Center | nexisai.us - Nexis AI',
+      admin: 'Admin Command Portal & Client Database Workflow | Nexis AI',
     };
 
     // Page Descriptions
@@ -68,6 +69,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       assessment: 'Take the 3-minute interactive AI & Security Maturity Scorecard to receive an instant compliance report and architectural recommendations.',
       'deployment-guide': 'Technical specifications, API docs, deployment blueprints, and system performance benchmarks.',
       'trust-center': 'Official domain verification, RFC 9116 security.txt disclosure, DMARC/SPF authentication proofs, and Infoblox security unblock guide for nexisai.us.',
+      admin: 'Executive admin portal for managing consultation requests, assessment scorecards, and client communications.',
     };
 
     const title = pageTitles[currentPage] || 'Nexis Tech Group | Enterprise AI & Cybersecurity';

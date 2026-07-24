@@ -21,6 +21,7 @@ interface HeroProps {
   onNavigate: (page: PageId) => void;
   onOpenAdvisor: () => void;
   onOpenConsultation: () => void;
+  onOpenBookAudit?: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
@@ -29,11 +30,12 @@ export const Hero: React.FC<HeroProps> = ({
   onNavigate,
   onOpenAdvisor,
   onOpenConsultation,
+  onOpenBookAudit,
 }) => {
   const t = translations[currentLanguage];
 
   return (
-    <section className="relative bg-slate-950 text-white overflow-hidden pt-12 pb-20 border-b border-slate-800">
+    <section className="relative bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 text-white overflow-hidden pt-10 pb-16 border-b border-slate-800">
       {/* Visual Background Lighting & Grid Effects */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
@@ -43,19 +45,26 @@ export const Hero: React.FC<HeroProps> = ({
         
         {/* Top Badges */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+          {onOpenBookAudit && (
+            <button
+              onClick={onOpenBookAudit}
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-blue-600/30 transition-all cursor-pointer ring-2 ring-blue-400/50 animate-bounce"
+              id="hero-top-book-audit-badge"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-blue-200" />
+              <span>Book 2026 AI & Security Audit</span>
+              <span className="text-[10px] bg-white/20 text-white px-2 py-0.5 rounded-full font-mono">1-Click</span>
+            </button>
+          )}
+
           <button
             onClick={() => onNavigate('markets')}
             className="inline-flex items-center gap-2 bg-blue-950/90 border border-blue-600/80 hover:bg-blue-900 text-blue-200 text-xs font-semibold px-4 py-2 rounded-full shadow-lg backdrop-blur-md transition-all cursor-pointer"
           >
             <Globe2 className="w-4 h-4 text-cyan-400" />
-            <span>US Market (Primary HQ) • Saudi Arabia • UAE Regional Pages</span>
+            <span>US Market (HQ Owings Mills, MD) • KSA • UAE Regional Hubs</span>
             <span className="text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded font-mono">Explore Markets</span>
           </button>
-
-          <span className="inline-flex items-center gap-2 bg-purple-950/80 border border-purple-700/80 text-purple-300 text-xs font-semibold px-3.5 py-2 rounded-full shadow-lg backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5 text-purple-400 animate-pulse" />
-            <span>Nexis AI Autonomous Agents & Zero Trust</span>
-          </span>
         </div>
 
         {/* Hero Headlines */}
@@ -69,28 +78,39 @@ export const Hero: React.FC<HeroProps> = ({
           </p>
 
           {/* Action CTAs */}
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+            {onOpenBookAudit && (
+              <button
+                onClick={onOpenBookAudit}
+                className="px-7 py-3.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-all shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
+                id="hero-book-2026-audit-btn"
+              >
+                <Sparkles className="w-4 h-4 text-blue-200" />
+                <span>Book 2026 Audit</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            )}
+
             <button
               onClick={onOpenConsultation}
-              className="w-full sm:w-auto px-8 py-4 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all shadow-xl shadow-blue-900/40 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 group cursor-pointer"
+              className="px-6 py-3.5 text-xs font-semibold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all shadow-xl shadow-blue-900/40 flex items-center justify-center gap-2 group cursor-pointer"
               id="hero-schedule-consultation-btn"
             >
               <span>{t.scheduleConsultation}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
 
-            <button
-              onClick={() => onNavigate('assessment')}
-              className="w-full sm:w-auto px-8 py-4 text-sm font-semibold text-slate-200 bg-slate-900 border border-slate-700 hover:bg-slate-800 hover:border-slate-600 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
-              id="hero-request-assessment-btn"
+            <a
+              href="#free-tools"
+              className="px-6 py-3.5 text-xs font-semibold text-emerald-300 bg-emerald-950/90 border border-emerald-800 hover:bg-emerald-900 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
             >
-              <BarChart3 className="w-4 h-4 text-emerald-400" />
-              <span>{t.requestAssessment}</span>
-            </button>
+              <Cpu className="w-4 h-4 text-emerald-400" />
+              <span>Free Web SMS & Calling Tools</span>
+            </a>
 
             <button
               onClick={onOpenAdvisor}
-              className="w-full sm:w-auto px-6 py-4 text-sm font-semibold text-purple-200 bg-purple-950/80 border border-purple-700/80 hover:bg-purple-900 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="px-6 py-3.5 text-xs font-semibold text-purple-200 bg-purple-950/80 border border-purple-700/80 hover:bg-purple-900 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
               id="hero-ai-advisor-btn"
             >
               <BrainCircuit className="w-4 h-4 text-purple-400" />

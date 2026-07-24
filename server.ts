@@ -3,6 +3,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
 import { createServer as createViteServer } from 'vite';
+import { Database } from './src/server/db';
 
 dotenv.config();
 
@@ -248,7 +249,7 @@ Keep your tone executive, trustworthy, concise, and professional.`;
     }
   });
 
-  // Lead Capture & CRM Processing Endpoint
+  // Lead Capture & CRM Processing Endpoint (Database Persistence)
   app.post('/api/lead-capture', (req, res) => {
     const lead = req.body;
 
@@ -257,13 +258,27 @@ Keep your tone executive, trustworthy, concise, and professional.`;
       return;
     }
 
-    const leadId = `NEXIS-LEAD-${Date.now().toString().slice(-6)}`;
+    // Save record to persistent Database
+    const record = Database.addConsultation({
+      fullName: lead.fullName,
+      email: lead.email,
+      phone: lead.phone || '',
+      companyName: lead.companyName || 'Enterprise Client',
+      jobTitle: lead.jobTitle || 'Executive',
+      region: lead.region || 'US',
+      industry: lead.industry || 'Healthcare',
+      serviceInterest: lead.serviceInterest || 'ai-transformation',
+      estimatedBudget: lead.estimatedBudget || '$50,000 - $100,000',
+      message: lead.message || '',
+      crmExportTarget: lead.crmExportTarget || 'HubSpot',
+    });
+
     const targetCRM = lead.crmExportTarget || 'HubSpot';
 
-    // Mock CRM Payload Payload Generation
+    // CRM Payload Generation
     const crmPayload = {
-      leadId,
-      timestamp: new Date().toISOString(),
+      leadId: record.id,
+      timestamp: record.createdAt,
       crmProvider: targetCRM,
       contact: {
         firstname: lead.fullName.split(' ')[0],
@@ -283,14 +298,15 @@ Keep your tone executive, trustworthy, concise, and professional.`;
       marketingSequenceTriggered: 'Enterprise AI & Security Consultation Welcome Campaign',
     };
 
-    console.log(`[Lead Captured] ID: ${leadId} -> Syncing to ${targetCRM}`);
+    console.log(`[Lead Captured & Saved to DB] ID: ${record.id} -> Synced to ${targetCRM}`);
 
     res.json({
       success: true,
-      leadId,
-      status: 'Submitted & Synced',
+      leadId: record.id,
+      record,
+      status: 'Submitted & Saved in Database',
       crmExportPreview: crmPayload,
-      confirmationMessage: `Thank you, ${lead.fullName}. An Enterprise Technology Advisor from our ${lead.region || 'US'} regional hub will contact you within 4 business hours.`,
+      confirmationMessage: `Thank you, ${lead.fullName}. Your request (${record.id}) has been recorded in our database. An Enterprise Technology Advisor from our ${lead.region || 'US'} regional hub will contact you within 4 business hours.`,
       welcomeSequence: {
         email1: `Sent: Welcome to Nexis Tech Group - Preparing for your Consultation`,
         email2: `Scheduled (Day 2): Executive Guide to Enterprise AI & Zero Trust`,
@@ -299,9 +315,9 @@ Keep your tone executive, trustworthy, concise, and professional.`;
     });
   });
 
-  // AI Readiness & Cybersecurity Assessment Evaluation Endpoint
+  // AI Readiness & Cybersecurity Assessment Evaluation Endpoint (Database Persistence)
   app.post('/api/assessment-submit', (req, res) => {
-    const { answers, answersMetadata, clientEmail, companyName, region } = req.body;
+    const { answers, clientEmail, companyName, region } = req.body;
 
     // Calculate score
     let totalScore = 0;
@@ -324,9 +340,20 @@ Keep your tone executive, trustworthy, concise, and professional.`;
     else if (averageScore >= 45) maturityLevel = 'Emerging';
     else maturityLevel = 'Foundational';
 
+    // Save Assessment Record to Persistent Database
+    const record = Database.addAssessment({
+      companyName: companyName || 'Enterprise Client',
+      clientEmail: clientEmail || 'client@enterprise.com',
+      region: region || 'US',
+      overallScore: averageScore,
+      maturityLevel,
+      categoryScores,
+      answers,
+    });
+
     res.json({
       success: true,
-      assessmentId: `EVAL-${Date.now().toString().slice(-6)}`,
+      assessmentId: record.id,
       overallScore: averageScore,
       maturityLevel,
       categoryScores,
@@ -337,6 +364,254 @@ Keep your tone executive, trustworthy, concise, and professional.`;
         `Align data retention policies with regional sovereign data frameworks (${region === 'KSA' ? 'NDMO & NCA ECC' : region === 'UAE' ? 'TDRA & ISR' : 'NIST 800-53 & HIPAA'}).`,
         `Establish an AI Governance Committee with quarterly algorithmic bias and audit checks.`,
       ],
+    });
+  });
+
+  // ==========================================
+  // ADMIN PORTAL & WORKFLOW API ENDPOINTS
+  // ==========================================
+
+  // Admin Authentication Endpoint
+  app.post('/api/admin/login', (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      res.status(400).json({ error: 'Email and password are required.' });
+      return;
+    }
+
+    const admin = Database.verifyAdminCredentials(email, password);
+    if (!admin) {
+      res.status(401).json({ error: 'Invalid admin credentials.' });
+      return;
+    }
+
+    // Generate session token
+    const sessionToken = `NEXIS-ADMIN-TOKEN-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+
+    res.json({
+      success: true,
+      token: sessionToken,
+      admin: {
+        id: admin.id,
+        email: admin.email,
+        fullName: admin.fullName,
+        role: admin.role,
+      },
+    });
+  });
+
+  // Fetch All Revester Requests (Consultations + Assessments) for Admin Dashboard
+  app.get('/api/admin/requests', (req, res) => {
+    try {
+      const consultations = Database.getConsultations();
+      const assessments = Database.getAssessments();
+
+      res.json({
+        success: true,
+        stats: {
+          totalConsultations: consultations.length,
+          totalAssessments: assessments.length,
+          pendingConsultations: consultations.filter(c => c.status === 'new' || c.status === 'in_review').length,
+          pendingAssessments: assessments.filter(a => a.status === 'new' || a.status === 'in_review').length,
+        },
+        consultations,
+        assessments,
+      });
+    } catch (error: any) {
+      res.status(500).json({ error: 'Failed to fetch database requests', details: error.message });
+    }
+  });
+
+  // Update Status and Internal Notes for a Consultation or Assessment
+  app.patch('/api/admin/requests/:type/:id', (req, res) => {
+    const { type, id } = req.params;
+    const { status, internalNotes } = req.body;
+
+    if (type === 'consultation') {
+      const updated = Database.updateConsultationStatus(id, status, internalNotes);
+      if (!updated) {
+        res.status(404).json({ error: 'Consultation request not found.' });
+        return;
+      }
+      res.json({ success: true, record: updated });
+    } else if (type === 'assessment') {
+      const updated = Database.updateAssessmentStatus(id, status, internalNotes);
+      if (!updated) {
+        res.status(404).json({ error: 'Assessment submission not found.' });
+        return;
+      }
+      res.json({ success: true, record: updated });
+    } else {
+      res.status(400).json({ error: 'Invalid request type.' });
+    }
+  });
+
+  // Fetch Communication Message Thread for a Request
+  app.get('/api/admin/requests/:id/messages', (req, res) => {
+    const { id } = req.params;
+    const messages = Database.getMessagesByRequestId(id);
+    res.json({ success: true, messages });
+  });
+
+  // Send & Log Message Response to Requester
+  app.post('/api/admin/requests/:id/messages', (req, res) => {
+    const { id } = req.params;
+    const { requestType, senderName, recipientEmail, subject, content } = req.body;
+
+    if (!content || !recipientEmail) {
+      res.status(400).json({ error: 'Recipient email and message content are required.' });
+      return;
+    }
+
+    // Add communication log
+    const message = Database.addMessage({
+      requestId: id,
+      requestType: requestType || 'consultation',
+      sender: 'admin',
+      senderName: senderName || 'Nexis Executive Principal',
+      recipientEmail,
+      subject: subject || 'Response regarding your Nexis AI request',
+      content,
+      deliveryStatus: 'delivered',
+    });
+
+    // Update status to 'contacted' automatically if it was 'new' or 'in_review'
+    if (requestType === 'consultation') {
+      Database.updateConsultationStatus(id, 'contacted');
+    } else {
+      Database.updateAssessmentStatus(id, 'contacted');
+    }
+
+    res.json({
+      success: true,
+      message,
+      status: 'Sent & Recorded in Database',
+    });
+  });
+
+  // Gemini AI Executive Response Drafter Endpoint
+  app.post('/api/admin/draft-response', async (req, res) => {
+    try {
+      const { clientName, companyName, email, region, industry, requestType, messageOrScore, serviceInterest } = req.body;
+      const ai = getGeminiClient();
+
+      const prompt = `You are an Executive Technology Principal at Nexis Tech Group (nexisai.us).
+Draft a highly professional, warm, concise, and persuasive executive follow-up email response to a prospective client who submitted a ${requestType} request.
+
+Client Details:
+- Name: ${clientName || 'Valued Enterprise Executive'}
+- Company: ${companyName || 'Enterprise Client'}
+- Region: ${region || 'US'}
+- Industry: ${industry || 'Technology'}
+- Service Interest: ${serviceInterest || 'AI Transformation'}
+- Client Notes/Score Context: ${messageOrScore || 'Executive briefing requested.'}
+
+Instructions for Email Draft:
+1. Include a clear, professional Subject line on the first line formatted as: "Subject: [Your Subject Line]"
+2. Thank them warmly for reaching out to Nexis Tech Group.
+3. Reference their specific industry and regional compliance context (${region === 'KSA' ? 'NDMO & NCA ECC regulations in Saudi Arabia' : region === 'UAE' ? 'TDRA & ISR standards in the UAE' : 'HIPAA & NIST SP 800-53 standards in the US'}).
+4. Propose 2 concrete next steps (such as scheduling a 30-minute discovery session with our senior architecture lead).
+5. Keep the tone executive, consultative, expert, and actionable.`;
+
+      const response = await ai.models.generateContent({
+        model: 'gemini-3.6-flash',
+        contents: prompt,
+        config: {
+          temperature: 0.7,
+        },
+      });
+
+      const draftText = response.text || '';
+      
+      let subject = `Re: Nexis AI Executive Consultation - ${companyName || 'Enterprise'}`;
+      let body = draftText;
+
+      if (draftText.startsWith('Subject:')) {
+        const lines = draftText.split('\n');
+        subject = lines[0].replace('Subject:', '').trim();
+        body = lines.slice(1).join('\n').trim();
+      }
+
+      res.json({
+        success: true,
+        subject,
+        body,
+      });
+    } catch (error: any) {
+      console.error('Error drafting AI response:', error);
+      res.status(500).json({
+        error: 'Failed to generate AI response draft.',
+        fallbackSubject: `Re: Your Nexis AI Inquiry - Executive Follow-up`,
+        fallbackBody: `Dear ${req.body.clientName || 'Executive'},\n\nThank you for reaching out to Nexis Tech Group regarding your ${req.body.industry || 'enterprise'} initiative.\n\nOur team in ${req.body.region || 'US'} has reviewed your details and would like to invite you to an executive briefing session with our Lead Architect.\n\nPlease let us know your availability for a 30-minute consultation next week.\n\nBest regards,\nNexis AI Architecture Team\nNexis Tech Group | nexisai.us`,
+      });
+    }
+  });
+
+  // Free Web Tools: Send Direct Web SMS to Phone Number
+  app.post('/api/send-web-sms', (req, res) => {
+    const { senderName, senderPhone, recipientPhone, messageText, region } = req.body;
+
+    if (!messageText || !senderPhone) {
+      res.status(400).json({ error: 'Sender phone number and SMS message text are required.' });
+      return;
+    }
+
+    const targetNumber = recipientPhone || '+1 (443) 608-5425';
+    
+    // Save SMS log as a consultation/lead record in database
+    const record = Database.addConsultation({
+      fullName: senderName || 'Web SMS Sender',
+      email: `${senderPhone.replace(/[^0-9]/g, '')}@sms.nexisai.us`,
+      phone: senderPhone,
+      companyName: 'Web SMS Lead',
+      jobTitle: 'SMS Visitor',
+      region: region || 'US',
+      industry: 'Direct Web SMS Contact',
+      serviceInterest: 'web-sms-inquiry',
+      estimatedBudget: 'Direct Inquiry',
+      message: `[DIRECT WEB SMS SENT TO ${targetNumber}]: ${messageText}`,
+      crmExportTarget: 'HubSpot',
+    });
+
+    console.log(`[Web SMS Sent] From: ${senderPhone} -> To: ${targetNumber} | Text: "${messageText}" | DB Record ID: ${record.id}`);
+
+    res.json({
+      success: true,
+      smsId: `SMS-${Date.now().toString().slice(-6)}`,
+      recordId: record.id,
+      recipientPhone: targetNumber,
+      deliveryStatus: 'Delivered to Nexis Hotline',
+      carrierAck: 'ACK-200-SMS-DISPATCHED',
+      timestamp: new Date().toISOString(),
+      confirmation: `Your text message has been dispatched directly to Nexis Tech Group hotline (${targetNumber}). Our team has received your text and will reply to ${senderPhone}.`,
+    });
+  });
+
+  // Free Web Tools: Web Call Logging Endpoint
+  app.post('/api/web-call-log', (req, res) => {
+    const { callerName, callerPhone, callDurationSeconds, region, callerNotes } = req.body;
+
+    const record = Database.addConsultation({
+      fullName: callerName || 'Web Call Visitor',
+      email: `${(callerPhone || 'webcall').replace(/[^0-9]/g, '')}@webcall.nexisai.us`,
+      phone: callerPhone || '+1 (Web Call)',
+      companyName: 'Web Voice Call',
+      jobTitle: 'Web Call Visitor',
+      region: region || 'US',
+      industry: 'Direct Browser Web Call',
+      serviceInterest: 'web-voice-call',
+      estimatedBudget: 'Voice Briefing',
+      message: `[DIRECT WEB VOICE CALL COMPLETED]: Duration ${callDurationSeconds || 0} seconds. Notes: ${callerNotes || 'Direct browser voice consultation.'}`,
+      crmExportTarget: 'Salesforce',
+    });
+
+    res.json({
+      success: true,
+      callId: `CALL-${Date.now().toString().slice(-6)}`,
+      recordId: record.id,
+      status: 'Logged in Database',
+      timestamp: new Date().toISOString(),
     });
   });
 

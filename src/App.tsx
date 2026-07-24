@@ -28,6 +28,9 @@ import { BDAgentsSection } from './components/BDAgentsSection';
 import { GovernmentPracticeSection } from './components/GovernmentPracticeSection';
 import { GoogleCalendarModal } from './components/GoogleCalendarModal';
 import { TrustSecurityCenter } from './components/TrustSecurityCenter';
+import { AdminPortal } from './components/AdminPortal';
+import { BookAuditModal } from './components/BookAuditModal';
+import { FreeToolsSection } from './components/FreeToolsSection';
 
 export default function App() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
@@ -38,6 +41,7 @@ export default function App() {
   // Modals
   const [advisorOpen, setAdvisorOpen] = useState(false);
   const [consultationOpen, setConsultationOpen] = useState(false);
+  const [bookAuditOpen, setBookAuditOpen] = useState(false);
   const [consultationService, setConsultationService] = useState<string | undefined>();
   const [consultationNotes, setConsultationNotes] = useState<string | undefined>();
 
@@ -99,6 +103,7 @@ export default function App() {
         onOpenAdvisor={() => setAdvisorOpen(true)}
         onOpenConsultation={() => handleOpenConsultation()}
         onOpenCalendar={() => handleOpenCalendar()}
+        onOpenBookAudit={() => setBookAuditOpen(true)}
       />
 
       {/* Main Page Rendering */}
@@ -111,6 +116,11 @@ export default function App() {
               onNavigate={handleNavigate}
               onOpenAdvisor={() => setAdvisorOpen(true)}
               onOpenConsultation={() => handleOpenConsultation()}
+              onOpenBookAudit={() => setBookAuditOpen(true)}
+            />
+            <FreeToolsSection
+              currentRegion={currentRegion}
+              onOpenBookAudit={() => setBookAuditOpen(true)}
             />
             <ServicesOverview
               currentLanguage={currentLanguage}
@@ -246,6 +256,13 @@ export default function App() {
           />
         )}
 
+        {currentPage === 'admin' && (
+          <AdminPortal
+            currentRegion={currentRegion}
+            onOpenCalendar={handleOpenCalendar}
+          />
+        )}
+
         {currentPage === 'assessment' && (
           <AIReadinessAssessment
             currentRegion={currentRegion}
@@ -318,6 +335,12 @@ export default function App() {
         onClose={() => setCalendarOpen(false)}
         initialAttendeeEmail={calendarAttendeeEmail}
         initialMeetingSubject={calendarSubject}
+      />
+
+      <BookAuditModal
+        isOpen={bookAuditOpen}
+        onClose={() => setBookAuditOpen(false)}
+        currentRegion={currentRegion}
       />
     </div>
   );

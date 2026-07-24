@@ -23,7 +23,8 @@ export type PageId =
   | 'contact'
   | 'assessment'
   | 'deployment-guide'
-  | 'trust-center';
+  | 'trust-center'
+  | 'admin';
 
 export interface ServiceDetail {
   id: string;

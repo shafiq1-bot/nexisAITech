@@ -33,6 +33,7 @@ interface NavbarProps {
   onOpenConsultation: () => void;
   onOpenGmailModal?: () => void;
   onOpenCalendar?: () => void;
+  onOpenBookAudit?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -46,6 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenConsultation,
   onOpenGmailModal,
   onOpenCalendar,
+  onOpenBookAudit,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
@@ -236,6 +238,19 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            onClick={() => onNavigate('admin')}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg border font-mono text-xs transition-all ${
+              currentPage === 'admin'
+                ? 'bg-blue-950 text-blue-300 border-blue-500 font-bold shadow-lg shadow-blue-500/20'
+                : 'bg-slate-900/80 text-slate-300 border-slate-700 hover:bg-slate-800 hover:border-blue-500'
+            }`}
+            id="nav-admin-portal-link"
+          >
+            <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
+            <span>Admin Portal</span>
+          </button>
+
+          <button
             onClick={() => onNavigate('markets')}
             className={`flex items-center gap-1 hover:text-blue-400 transition-colors ${currentPage === 'markets' ? 'text-blue-400 font-bold' : ''}`}
             id="nav-markets-link"
@@ -339,8 +354,27 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
 
-        {/* Action Buttons: Google Calendar, AI Strategy Assistant & Schedule Consultation */}
-        <div className="hidden lg:flex items-center gap-2 sm:gap-3">
+        {/* Action Buttons: Book Audit, Free Tools, Google Calendar, AI Strategy Assistant */}
+        <div className="hidden lg:flex items-center gap-2">
+          {onOpenBookAudit && (
+            <button
+              onClick={onOpenBookAudit}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-extrabold text-white bg-blue-600 hover:bg-blue-500 rounded-lg shadow-md transition-all cursor-pointer ring-1 ring-blue-400/50"
+              id="book-2026-audit-nav-btn"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-blue-200" />
+              <span>Book 2026 Audit</span>
+            </button>
+          )}
+
+          <a
+            href="#free-tools"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-emerald-300 bg-emerald-950/80 border border-emerald-800 rounded-lg hover:bg-emerald-900 transition-all shadow-sm cursor-pointer"
+          >
+            <PhoneCall className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Free Web Tools</span>
+          </a>
+
           {onOpenCalendar && (
             <button
               onClick={onOpenCalendar}
@@ -349,7 +383,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               title="Open Google Calendar Briefings Hub"
             >
               <Calendar className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Google Calendar</span>
+              <span>Calendar</span>
             </button>
           )}
 
@@ -358,8 +392,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-purple-300 bg-purple-950/80 border border-purple-700/70 rounded-lg hover:bg-purple-900 transition-all shadow-sm cursor-pointer"
             id="ai-advisor-header-btn"
           >
-            <Sparkles className="w-3.5 h-3.5 text-purple-400 animate-spin" style={{ animationDuration: '4s' }} />
-            <span>AI Executive Advisor</span>
+            <BrainCircuit className="w-3.5 h-3.5 text-purple-400" />
+            <span>AI Advisor</span>
           </button>
 
           <button

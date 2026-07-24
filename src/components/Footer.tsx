@@ -285,6 +285,11 @@ export const Footer: React.FC<FooterProps> = ({
                 </button>
               </li>
               <li>
+                <button onClick={() => onNavigate('admin')} className="hover:text-blue-400 transition-colors text-blue-300 font-bold flex items-center gap-1">
+                  <span>🔒 Admin Command Portal (Database)</span>
+                </button>
+              </li>
+              <li>
                 <a href="/.well-known/security.txt" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 transition-colors text-slate-400 font-mono">
                   📄 RFC 9116 Security.txt
                 </a>
