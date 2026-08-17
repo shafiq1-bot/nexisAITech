@@ -209,9 +209,11 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
   const [callLog, setCallLog] = useState<string[]>([]);
 
   // Marketing Generator State
-  const [contentType, setContentType] = useState('LinkedIn Thought Leadership Post');
+  const [contentType, setContentType] = useState('Multi-Channel Social Media Campaign');
   const [marketingTopic, setMarketingTopic] = useState('How CIOs Can Scale Enterprise AI Without Sacrificing Zero Trust Security');
   const [generatedMarketingText, setGeneratedMarketingText] = useState('');
+  const [campaignData, setCampaignData] = useState<any>(null);
+  const [socialPlatformTab, setSocialPlatformTab] = useState<'linkedin' | 'twitter' | 'facebook' | 'instagram' | 'email'>('linkedin');
   const [isGeneratingMarketing, setIsGeneratingMarketing] = useState(false);
   const [copiedMarketing, setCopiedMarketing] = useState(false);
 
@@ -470,6 +472,9 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
       const data = await response.json();
       if (data.success) {
         setGeneratedMarketingText(data.generatedContent || '');
+        if (data.campaignData) {
+          setCampaignData(data.campaignData);
+        }
       }
     } catch (err) {
       console.error('Error generating marketing content:', err);
@@ -1075,81 +1080,249 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
           </div>
         )}
 
-        {/* TAB 3: INBOUND MARKETING & LEAD MAGNET AGENT */}
+        {/* TAB 3: SOCIAL MEDIA CAMPAIGN & MARKETING STUDIO */}
         {activeTab === 'marketing' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-5 space-y-6">
+            {/* Left Column: Campaign Strategy Controls */}
+            <div className="lg:col-span-4 space-y-6">
               <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
                 <h3 className="text-base font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
-                  <FileText className="w-5 h-5 text-cyan-400" />
-                  Configure Inbound Marketing Agent
+                  <Share2 className="w-5 h-5 text-purple-400" />
+                  Social Media Campaign Studio
                 </h3>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Content Type</label>
+                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Campaign Format</label>
                   <select
                     value={contentType}
                     onChange={(e) => setContentType(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-purple-500"
                   >
-                    <option value="LinkedIn Thought Leadership Post">LinkedIn Thought Leadership Post</option>
-                    <option value="Cold Phone Outreach Script">Cold Phone Outreach Script</option>
-                    <option value="Executive Briefing One-Pager Outline">Executive Briefing One-Pager Outline</option>
-                    <option value="Email Newsletter Attraction Teaser">Email Newsletter Attraction Teaser</option>
+                    <option value="Multi-Channel Social Media Campaign">Multi-Channel Social Media Campaign (LinkedIn, X, FB, IG)</option>
+                    <option value="LinkedIn Executive Thought Leadership">LinkedIn Executive Thought Leadership</option>
+                    <option value="Twitter / X Thread Campaign">Twitter / X 4-Part Thread</option>
+                    <option value="Instagram Reel / Video Ad Script">Instagram Reel / Video Script</option>
+                    <option value="Email Newsletter Lead Magnet Teaser">Email Newsletter Lead Magnet Teaser</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Topic or Keyword Focus</label>
+                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Core Topic & Value Proposition</label>
                   <textarea
-                    rows={3}
+                    rows={4}
                     value={marketingTopic}
                     onChange={(e) => setMarketingTopic(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-cyan-500"
+                    placeholder="e.g. How Healthcare CIOs can deploy Zero Trust AI Agents without FHIR data leaks..."
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-purple-500"
                   />
                 </div>
 
                 <button
                   onClick={handleGenerateMarketing}
                   disabled={isGeneratingMarketing}
-                  className="w-full py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full py-3.5 bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-extrabold text-xs rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
                 >
                   {isGeneratingMarketing ? (
                     <>
-                      <RefreshCw className="w-4 h-4 animate-spin" />
-                      <span>Generating Copy...</span>
+                      <RefreshCw className="w-4 h-4 animate-spin text-purple-200" />
+                      <span>Generating Multi-Channel Campaign...</span>
                     </>
                   ) : (
                     <>
-                      <Bot className="w-4 h-4" />
-                      <span>Generate Attraction Copy</span>
+                      <Sparkles className="w-4 h-4 text-purple-200" />
+                      <span>Generate Social Media Campaign</span>
                     </>
                   )}
                 </button>
+
+                {/* Contact CTA Badge */}
+                <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800/80 text-xs space-y-1">
+                  <div className="font-mono text-purple-400 font-bold">Campaign Contact Information</div>
+                  <div className="text-slate-300 text-[11px]">Direct Phone: +1 (443) 608-5425</div>
+                  <div className="text-slate-300 text-[11px]">Direct Email: shafiq.rahman@nexisai.us</div>
+                  <div className="text-slate-400 text-[10px]">US HQ: Owings Mills, MD 21117</div>
+                </div>
               </div>
             </div>
 
-            <div className="lg:col-span-7 space-y-6">
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                  <div className="flex items-center gap-2">
-                    <Share2 className="w-5 h-5 text-cyan-400" />
-                    <h3 className="text-base font-bold text-white">Generated Lead Attraction Copy</h3>
+            {/* Right Column: Multi-Platform Campaign Display */}
+            <div className="lg:col-span-8 space-y-6">
+              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
+                  <div>
+                    <h3 className="text-base font-extrabold text-white flex items-center gap-2">
+                      <Sparkles className="w-5 h-5 text-purple-400" />
+                      <span>{campaignData?.campaignTitle || 'AI Social Campaign Generator Output'}</span>
+                    </h3>
+                    <p className="text-xs text-slate-400 mt-0.5">
+                      Targeting: {campaignData?.targetAudience || 'CIOs, CTOs & IT Decision Makers'}
+                    </p>
                   </div>
+
+                  {/* Copy Button */}
                   {generatedMarketingText && (
                     <button
                       onClick={() => copyToClipboard(generatedMarketingText, 'marketing')}
-                      className="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-mono flex items-center gap-1.5"
+                      className="px-3 py-1.5 bg-purple-950 hover:bg-purple-900 border border-purple-700/80 text-purple-200 rounded-xl text-xs font-mono flex items-center gap-1.5 transition-all cursor-pointer self-start sm:self-auto"
                     >
                       {copiedMarketing ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                      <span>{copiedMarketing ? 'Copied' : 'Copy Text'}</span>
+                      <span>{copiedMarketing ? 'Copied Campaign' : 'Copy Active Post'}</span>
                     </button>
                   )}
                 </div>
 
-                <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-200 font-sans leading-relaxed min-h-64 whitespace-pre-wrap">
-                  {generatedMarketingText || 'Click "Generate Attraction Copy" to create marketing content for customer acquisition...'}
+                {/* Social Platform Tab Switcher */}
+                <div className="flex items-center gap-2 border-b border-slate-800 pb-3 overflow-x-auto scrollbar-none">
+                  <button
+                    onClick={() => setSocialPlatformTab('linkedin')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
+                      socialPlatformTab === 'linkedin'
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-white'
+                    }`}
+                  >
+                    <span>LinkedIn Post</span>
+                  </button>
+
+                  <button
+                    onClick={() => setSocialPlatformTab('twitter')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
+                      socialPlatformTab === 'twitter'
+                        ? 'bg-sky-600 text-white shadow-md'
+                        : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-white'
+                    }`}
+                  >
+                    <span>Twitter / X Thread</span>
+                  </button>
+
+                  <button
+                    onClick={() => setSocialPlatformTab('facebook')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
+                      socialPlatformTab === 'facebook'
+                        ? 'bg-indigo-600 text-white shadow-md'
+                        : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-white'
+                    }`}
+                  >
+                    <span>Facebook Ad</span>
+                  </button>
+
+                  <button
+                    onClick={() => setSocialPlatformTab('instagram')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
+                      socialPlatformTab === 'instagram'
+                        ? 'bg-pink-600 text-white shadow-md'
+                        : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-white'
+                    }`}
+                  >
+                    <span>IG Reel Script</span>
+                  </button>
+
+                  <button
+                    onClick={() => setSocialPlatformTab('email')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
+                      socialPlatformTab === 'email'
+                        ? 'bg-emerald-600 text-white shadow-md'
+                        : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-white'
+                    }`}
+                  >
+                    <span>Email Teaser</span>
+                  </button>
                 </div>
+
+                {/* Platform Active Post View */}
+                <div className="bg-slate-950 border border-slate-800 rounded-xl p-5 text-xs text-slate-200 font-sans leading-relaxed min-h-64 space-y-4">
+                  {socialPlatformTab === 'linkedin' && (
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-blue-400 font-bold font-mono text-[11px] border-b border-slate-800/80 pb-2">
+                        <span>LinkedIn Executive Thought Leadership Draft</span>
+                      </div>
+                      <div className="whitespace-pre-wrap leading-relaxed text-slate-200">
+                        {campaignData?.linkedInPost || generatedMarketingText || 'Click "Generate Social Media Campaign" to compile LinkedIn campaign content...'}
+                      </div>
+                    </div>
+                  )}
+
+                  {socialPlatformTab === 'twitter' && (
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-sky-400 font-bold font-mono text-[11px] border-b border-slate-800/80 pb-2">
+                        <span>Twitter / X Thread Sequence ({campaignData?.twitterThread?.length || 0} tweets)</span>
+                      </div>
+                      {campaignData?.twitterThread && Array.isArray(campaignData.twitterThread) ? (
+                        <div className="space-y-3">
+                          {campaignData.twitterThread.map((tweet: string, idx: number) => (
+                            <div key={idx} className="p-3 bg-slate-900 border border-slate-800 rounded-xl space-y-1">
+                              <span className="text-[10px] font-mono text-sky-400 font-bold">Tweet {idx + 1}/{campaignData.twitterThread.length}</span>
+                              <p className="text-xs text-slate-200">{tweet}</p>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-slate-400 italic">Generate campaign to see Twitter/X thread sequence...</p>
+                      )}
+                    </div>
+                  )}
+
+                  {socialPlatformTab === 'facebook' && (
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-indigo-400 font-bold font-mono text-[11px] border-b border-slate-800/80 pb-2">
+                        <span>Facebook & Meta Enterprise Promotional Post</span>
+                      </div>
+                      <div className="whitespace-pre-wrap leading-relaxed text-slate-200">
+                        {campaignData?.facebookPost || 'Generate campaign to see Facebook post draft...'}
+                      </div>
+                    </div>
+                  )}
+
+                  {socialPlatformTab === 'instagram' && (
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-pink-400 font-bold font-mono text-[11px] border-b border-slate-800/80 pb-2">
+                        <span>Instagram Reel & Video Ad Storyboard Script</span>
+                      </div>
+                      <div className="whitespace-pre-wrap leading-relaxed text-slate-200 bg-slate-900 p-4 rounded-xl border border-slate-800 font-mono text-[11px]">
+                        {campaignData?.instagramReelScript || 'Generate campaign to see Instagram video storyboard script...'}
+                      </div>
+                    </div>
+                  )}
+
+                  {socialPlatformTab === 'email' && (
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-emerald-400 font-bold font-mono text-[11px] border-b border-slate-800/80 pb-2">
+                        <span>Email Teaser Sequence</span>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="text-slate-300 font-bold">
+                          Subject: <span className="text-white font-normal">{campaignData?.emailTeaserSequence?.subjectLine || 'Executive Briefing Teaser'}</span>
+                        </div>
+                        <div className="p-3 bg-slate-900 border border-slate-800 rounded-xl text-slate-200">
+                          {campaignData?.emailTeaserSequence?.previewBody || 'Generate campaign to see email teaser sequence...'}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Hashtags & Ad Banner Visual Prompt */}
+                {campaignData && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div className="p-3.5 bg-slate-950 border border-slate-800 rounded-xl space-y-1">
+                      <div className="text-[11px] font-mono text-purple-400 font-bold">Recommended Campaign Hashtags</div>
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {campaignData.hashtags?.map((tag: string, idx: number) => (
+                          <span key={idx} className="text-[11px] font-mono text-purple-300 bg-purple-950 px-2 py-0.5 rounded border border-purple-800">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 bg-slate-950 border border-slate-800 rounded-xl space-y-1">
+                      <div className="text-[11px] font-mono text-cyan-400 font-bold">AI Visual Banner Prompt</div>
+                      <p className="text-[11px] text-slate-400 italic font-mono leading-tight">
+                        "{campaignData.adBannerPrompt}"
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

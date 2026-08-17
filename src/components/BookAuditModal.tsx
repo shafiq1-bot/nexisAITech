@@ -73,7 +73,7 @@ export const BookAuditModal: React.FC<BookAuditModalProps> = ({
       }
     } catch (err) {
       setErrorMsg('Network error. Please try again or call our hotline.');
-    } fontFinally: {
+    } finally {
       setSubmitting(false);
     }
   };

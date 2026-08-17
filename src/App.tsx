@@ -296,7 +296,10 @@ export default function App() {
       </main>
 
       {/* Persistent Floating AI Chatbot */}
-      <FloatingAIChatbot onOpenConsultation={handleOpenConsultation} />
+      <FloatingAIChatbot 
+        onOpenConsultation={handleOpenConsultation} 
+        onOpenBookAudit={() => setBookAuditOpen(true)}
+      />
 
       {/* Global Footer */}
       <Footer

@@ -798,35 +798,75 @@ Output MUST be JSON:
     });
   });
 
-  // AI Marketing Content & Lead Magnet Generator Endpoint
+  // AI Social Media Campaign & Marketing Content Generator Endpoint
   app.post('/api/bd-agent/generate-marketing-content', async (req, res) => {
     try {
       const { contentType, topic, targetAudience } = req.body;
       const ai = getGeminiClient();
 
-      const prompt = `You are a Chief Marketing Officer AI Agent specializing in B2B Tech Lead Generation.
-Generate a compelling ${contentType || 'LinkedIn Thought Leadership Post'} about "${topic || 'Enterprise AI Transformation and Zero Trust Architecture'}".
-Target Audience: ${targetAudience || 'CIOs, CTOs, IT Directors, Healthcare & Government Executives'}
+      const campaignPrompt = `You are a Chief Marketing Officer AI Agent specializing in B2B Social Media Campaigns & Lead Acquisition.
+Generate a complete multi-platform B2B Social Media Campaign for topic: "${topic || 'Enterprise AI Agents & Zero Trust Security'}" aimed at ${targetAudience || 'CIOs, CTOs, Healthcare & Government Leaders'}.
 
-Format instructions:
-1. Include an attention-grabbing hook headline.
-2. Outline 4 key strategic insights or statistics.
-3. Provide a compelling Call to Action (CTA) inviting prospects to download a whitepaper or request a free consultation at info@nexisai.us / (443) 608-5425.
-4. Add relevant B2B hashtags.`;
+Output MUST be a single JSON object with this exact structure:
+{
+  "campaignTitle": "String (e.g. 2026 Executive AI & Zero Trust Modernization)",
+  "targetAudience": "String",
+  "linkedInPost": "String (Long-form executive thought leadership post with hook, 3 key takeaways, CTA to book audit or call +1 (443) 608-5425, and hashtags)",
+  "twitterThread": ["Tweet 1 Hook", "Tweet 2 Insight", "Tweet 3 Solution", "Tweet 4 CTA + Link/Phone"],
+  "facebookPost": "String (Engaging promo copy with call to action)",
+  "instagramReelScript": "String (Visual directions & spoken script for 30s reel)",
+  "emailTeaserSequence": {
+    "subjectLine": "String",
+    "previewBody": "String"
+  },
+  "hashtags": ["#EnterpriseAI", "#ZeroTrust", "#Cybersecurity", "#HealthTech", "#NexisAI"],
+  "adBannerPrompt": "String (AI Image generation prompt for social post visual banner)",
+  "callToAction": "Call or Text +1 (443) 608-5425 or email shafiq.rahman@nexisai.us for a free 2026 AI Audit"
+}`;
 
       const response = await ai.models.generateContent({
         model: 'gemini-3.6-flash',
-        contents: prompt,
+        contents: campaignPrompt,
         config: {
+          responseMimeType: 'application/json',
           temperature: 0.8,
         },
       });
+
+      let campaignData = null;
+      try {
+        campaignData = JSON.parse(response.text || '{}');
+      } catch (e) {
+        console.error('Failed to parse campaign JSON:', e);
+      }
+
+      const generatedContent = campaignData?.linkedInPost || response.text || 'Campaign generated successfully.';
 
       res.json({
         success: true,
         contentType,
         topic,
-        generatedContent: response.text || 'Marketing content generated successfully.',
+        generatedContent,
+        campaignData: campaignData || {
+          campaignTitle: `${topic || 'AI & Security'} Campaign`,
+          targetAudience: targetAudience || 'Enterprise Executives',
+          linkedInPost: generatedContent,
+          twitterThread: [
+            `🚀 How are top CIOs scaling Enterprise AI while maintaining 100% Zero Trust compliance? A thread on 2026 strategy 👇`,
+            `1️⃣ Traditional perimeter defense fails with LLMs. You need micro-segmented AI enclaves with hardware HSM encryption.`,
+            `2️⃣ Nexis AI deploys SMART-on-FHIR clinical agents and NIST 800-53 compliant LLMs with zero data leaks.`,
+            `3️⃣ Ready to audit your infrastructure? Call or text our executive team directly at +1 (443) 608-5425 or visit nexisai.us`
+          ],
+          facebookPost: `Transform your enterprise with Nexis AI. Schedule your free 2026 AI & Cybersecurity Audit today! Contact us at +1 (443) 608-5425 or email shafiq.rahman@nexisai.us.`,
+          instagramReelScript: `[VISUAL]: Animated 3D GPU server rack transitioning to Zero Trust shield.\n[AUDIO]: "Is your enterprise AI fully secured against data leaks? Nexis AI builds sovereign AI enclaves for healthcare and finance. Call +1 443 608 5425 to learn more."`,
+          emailTeaserSequence: {
+            subjectLine: `Exclusive Executive Briefing: ${topic || '2026 AI Strategy'}`,
+            previewBody: `Discover how leading healthcare and enterprise organizations are deploying custom AI agents safely with Nexis Tech Group.`
+          },
+          hashtags: ['#EnterpriseAI', '#ZeroTrust', '#Cybersecurity', '#HealthTech', '#NexisAI'],
+          adBannerPrompt: 'High-tech dark blue holographic brain surrounded by glowing cybersecurity shield icons and fiber optic networks.',
+          callToAction: 'Call or Text +1 (443) 608-5425 or email shafiq.rahman@nexisai.us'
+        }
       });
     } catch (error: any) {
       res.status(500).json({ error: 'Failed to generate marketing content', details: error.message });

@@ -11,7 +11,14 @@ import {
   ArrowUpRight, 
   Minimize2, 
   Maximize2,
-  ChevronDown
+  ChevronDown,
+  Mic,
+  MicOff,
+  Volume2,
+  VolumeX,
+  Mail,
+  MapPin,
+  Calendar
 } from 'lucide-react';
 import { mainUSAPhone, mainUSASMS, primaryContactEmail } from '../data/companyData';
 
@@ -24,20 +31,26 @@ interface Message {
 
 interface FloatingAIChatbotProps {
   onOpenConsultation: (service?: string, notes?: string) => void;
+  onOpenBookAudit?: () => void;
 }
 
-export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({ onOpenConsultation }) => {
+export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({ 
+  onOpenConsultation,
+  onOpenBookAudit 
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
       sender: 'bot',
-      text: 'Welcome to Nexis AI! I am your Enterprise AI & Cybersecurity Advisor. How can I assist your organization today with AI Agents, Zero Trust, or Healthcare EHR/FHIR compliance?',
+      text: 'Welcome to Nexis AI! I am your Enterprise AI & Voice Advisor. How can I assist your organization today with AI Agents, Zero Trust, or Healthcare EHR/FHIR compliance?',
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     },
   ]);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isVoiceOutputEnabled, setIsVoiceOutputEnabled] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -45,6 +58,63 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({ onOpenCons
       chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages, isOpen]);
+
+  // Voice Text-to-Speech synthesis
+  const speakText = (text: string) => {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel(); // Stop any previous speech
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+    window.speechSynthesis.speak(utterance);
+  };
+
+  // Voice Speech Recognition Microphone input
+  const handleToggleMic = () => {
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert('Speech recognition is not supported in this browser. Please type your message.');
+      return;
+    }
+
+    if (isListening) {
+      setIsListening(false);
+      return;
+    }
+
+    try {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+
+      recognition.onstart = () => {
+        setIsListening(true);
+      };
+
+      recognition.onresult = (event: any) => {
+        const transcript = Array.from(event.results)
+          .map((result: any) => result[0])
+          .map((result: any) => result.transcript)
+          .join('');
+        setInputText(transcript);
+      };
+
+      recognition.onerror = (event: any) => {
+        console.error('Speech recognition error:', event.error);
+        setIsListening(false);
+      };
+
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+
+      recognition.start();
+    } catch (e) {
+      console.error('Failed to start speech recognition:', e);
+      setIsListening(false);
+    }
+  };
 
   const handleSendMessage = async (customPrompt?: string) => {
     const textToSend = customPrompt || inputText;
@@ -67,7 +137,7 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({ onOpenCons
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           prompt: textToSend,
-          companyContext: 'Nexis AI — Enterprise AI Agents, Zero Trust Security, Healthcare EHR/FHIR, and High Performance Computing. US HQ in Owings Mills MD.',
+          companyContext: 'Nexis AI — Enterprise AI Agents, Zero Trust Security, Healthcare EHR/FHIR, and High Performance Computing. US HQ in Owings Mills MD. Executive Phone: (443) 608-5425.',
         }),
       });
 
@@ -88,6 +158,11 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({ onOpenCons
       };
 
       setMessages((prev) => [...prev, botMsg]);
+
+      // Speak aloud if voice mode enabled
+      if (isVoiceOutputEnabled) {
+        speakText(botMsgText);
+      }
     } catch (err) {
       const fallbackMsg: Message = {
         id: (Date.now() + 1).toString(),
@@ -96,6 +171,7 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({ onOpenCons
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       setMessages((prev) => [...prev, fallbackMsg]);
+      if (isVoiceOutputEnabled) speakText(fallbackMsg.text);
     } finally {
       setIsLoading(false);
     }
@@ -173,21 +249,68 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({ onOpenCons
           </div>
 
           {/* Quick Contact & Action Ribbon */}
-          <div className="bg-slate-950 px-4 py-2 border-b border-slate-800 flex items-center justify-between text-xs">
-            <a
-              href={`sms:${mainUSASMS}?body=Hello%20Nexis%20AI%20Team%2C%20I%20am%20texting%20you%20from%20the%20website%20chatbot.`}
-              className="text-emerald-400 hover:underline flex items-center gap-1 font-semibold"
-            >
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span>Text SMS Hotline ({mainUSASMS})</span>
-            </a>
-            <a
-              href={`tel:${mainUSAPhone.replace(/[^0-9+]/g, '')}`}
-              className="text-blue-400 hover:underline flex items-center gap-1 font-semibold"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              <span>Call {mainUSAPhone}</span>
-            </a>
+          <div className="bg-slate-950 px-3 py-2 border-b border-slate-800 flex items-center justify-between text-xs shrink-0 flex-wrap gap-1">
+            <div className="flex items-center gap-2">
+              <a
+                href={`sms:${mainUSASMS}?body=Hello%20Nexis%20AI%20Team%2C%20I%20am%20texting%20you%20from%20the%20website%20chatbot.`}
+                className="text-emerald-400 hover:underline flex items-center gap-1 font-semibold text-[11px]"
+              >
+                <MessageSquare className="w-3 h-3" />
+                <span>Text ({mainUSASMS})</span>
+              </a>
+              <span className="text-slate-700">|</span>
+              <a
+                href={`tel:${mainUSAPhone.replace(/[^0-9+]/g, '')}`}
+                className="text-blue-400 hover:underline flex items-center gap-1 font-semibold text-[11px]"
+              >
+                <Phone className="w-3 h-3" />
+                <span>Call ({mainUSAPhone})</span>
+              </a>
+            </div>
+
+            <div className="flex items-center gap-1.5">
+              {onOpenBookAudit && (
+                <button
+                  onClick={() => {
+                    setIsOpen(false);
+                    onOpenBookAudit();
+                  }}
+                  className="px-2 py-0.5 rounded bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-[10px] shadow transition-all cursor-pointer flex items-center gap-1"
+                >
+                  <Sparkles className="w-2.5 h-2.5 text-blue-200" />
+                  <span>Book Audit</span>
+                </button>
+              )}
+
+              {/* Speaker TTS Voice Toggle */}
+              <button
+                onClick={() => {
+                  const nextState = !isVoiceOutputEnabled;
+                  setIsVoiceOutputEnabled(nextState);
+                  if (!nextState && 'speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                  }
+                }}
+                className={`p-1 rounded-md text-[10px] font-bold transition-all flex items-center gap-1 border cursor-pointer ${
+                  isVoiceOutputEnabled
+                    ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                    : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-slate-200'
+                }`}
+                title={isVoiceOutputEnabled ? 'Voice output ON (Click to mute)' : 'Voice output OFF (Click to enable AI speech)'}
+              >
+                {isVoiceOutputEnabled ? (
+                  <>
+                    <Volume2 className="w-3 h-3 text-amber-400 animate-pulse" />
+                    <span className="hidden sm:inline">Voice ON</span>
+                  </>
+                ) : (
+                  <>
+                    <VolumeX className="w-3 h-3" />
+                    <span className="hidden sm:inline">Mute Voice</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Chat Messages Body */}
@@ -236,14 +359,31 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({ onOpenCons
 
           {/* Input Footer Form */}
           <div className="p-3 bg-slate-900 border-t border-slate-800 flex items-center gap-2 shrink-0">
+            {/* Microphone STT Input Button */}
+            <button
+              onClick={handleToggleMic}
+              className={`p-2.5 rounded-xl border transition-all cursor-pointer shrink-0 ${
+                isListening
+                  ? 'bg-red-600 text-white border-red-500 animate-pulse ring-2 ring-red-400/50'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
+              }`}
+              title={isListening ? 'Listening... Speak now' : 'Click to speak using your microphone'}
+              aria-label="Speech recognition microphone"
+            >
+              {isListening ? <Mic className="w-4 h-4 text-white" /> : <MicOff className="w-4 h-4 text-slate-400" />}
+            </button>
+
             <input
               type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-              placeholder="Ask Nexis AI or type question..."
-              className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+              placeholder={isListening ? 'Listening to voice...' : 'Ask Nexis AI or type question...'}
+              className={`flex-1 bg-slate-950 border rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors ${
+                isListening ? 'border-red-500/80 ring-1 ring-red-500' : 'border-slate-800'
+              }`}
             />
+
             <button
               onClick={() => handleSendMessage()}
               disabled={isLoading || !inputText.trim()}
