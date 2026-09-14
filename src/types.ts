@@ -1,10 +1,13 @@
 export type Language = 'en' | 'ar';
 
-export type Region = 'US' | 'KSA' | 'UAE';
+export type Region = 'US' | 'EU' | 'KSA' | 'UAE';
 
 export type PageId = 
   | 'home'
   | 'leadership'
+  | 'executive-advisory'
+  | 'roi-framework'
+  | 'erp-modernization'
   | 'markets'
   | 'about'
   | 'services'
@@ -31,7 +34,7 @@ export interface ServiceDetail {
   titleKey: string;
   shortDescKey: string;
   iconName: string;
-  category: 'ai' | 'cyber' | 'healthcare' | 'education' | 'smb' | 'hardware';
+  category: 'ai' | 'cyber' | 'healthcare' | 'education' | 'smb' | 'hardware' | 'erp' | 'advisory';
   features: string[];
   benefits: string[];
   deliverables: string[];

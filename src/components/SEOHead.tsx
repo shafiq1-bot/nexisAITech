@@ -44,6 +44,9 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       'deployment-guide': 'Enterprise Architecture & Deployment Specs | Nexis AI',
       'trust-center': 'Domain Verification & Security Trust Center | nexisai.us - Nexis AI',
       admin: 'Admin Command Portal & Client Database Workflow | Nexis AI',
+      'executive-advisory': 'Former-CIO Executive Advisory & Boardroom Strategy | Nexis AI',
+      'erp-modernization': 'Enterprise ERP Modernization & Clean Core Automation (SAP S/4HANA & Oracle) | Nexis AI',
+      'roi-framework': 'Enterprise Value Framework (EVF™) & 90-Day ROI Realization | Nexis AI',
     };
 
     // Page Descriptions
@@ -70,6 +73,9 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       'deployment-guide': 'Technical specifications, API docs, deployment blueprints, and system performance benchmarks.',
       'trust-center': 'Official domain verification, RFC 9116 security.txt disclosure, DMARC/SPF authentication proofs, and Infoblox security unblock guide for nexisai.us.',
       admin: 'Executive admin portal for managing consultation requests, assessment scorecards, and client communications.',
+      'executive-advisory': 'Former-CIO C-suite advisory, boardroom technology guidance, Fractional CAIO, and vCISO strategic leadership across Americas and Europe.',
+      'erp-modernization': 'Modernize legacy SAP and Oracle ERP systems with a clean core architecture, agentic automation, and zero downtime cloud migration.',
+      'roi-framework': 'Calculate projected enterprise cost savings, payback period, and business value realization with Nexis AI EVF™ 90-day ROI framework.',
     };
 
     const title = pageTitles[currentPage] || 'Nexis Tech Group | Enterprise AI & Cybersecurity';

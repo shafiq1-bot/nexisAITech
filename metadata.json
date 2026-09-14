@@ -1,6 +1,6 @@
 {
-  "name": "Nexis AI | Enterprise AI & Cybersecurity",
-  "description": "Enterprise Autonomous AI Agents, Zero Trust Cybersecurity, Healthcare EHR/FHIR Interoperability, and High Performance Computing across US (Primary HQ), Saudi Arabia, and UAE.",
-  "requestFramePermissions": [],
+  "name": "Nexis AI | Enterprise AI, Executive Advisory & Cybersecurity",
+  "description": "Enterprise Autonomous AI Agents, Former CIO Executive Advisory, ERP Modernization, Zero Trust Cybersecurity, and Sovereign Cloud across Americas and Europe.",
+  "requestFramePermissions": ["microphone"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

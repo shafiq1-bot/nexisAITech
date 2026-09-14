@@ -74,6 +74,52 @@ export const RegionalMarketsSection: React.FC<RegionalMarketsSectionProps> = ({
         result: 'Reduced clinical documentation overhead by 74% while maintaining 100% HIPAA compliance across 12 hospitals.',
       },
     },
+    EU: {
+      title: 'Nexis AI — Europe Market (United Kingdom & European Union Hubs)',
+      badge: 'Transatlantic Sovereign AI & DORA Resilience Hub',
+      location: 'London (Canary Wharf) & Frankfurt (Finance Center)',
+      address: '1 Canada Square, Canary Wharf, London E14 5AA / Mainzer Landstraße, Frankfurt am Main',
+      phone: '+44 20 7946 0988',
+      smsText: '(443) 608-5425',
+      email: 'europe@nexisai.us',
+      overview:
+        'Engineered for strict European digital sovereignty, Nexis AI delivers EU AI Act conformity assessments, Digital Operational Resilience Act (DORA) ICT frameworks, NIS2 Directive compliance, and confidential cloud enclaves for financial institutions and enterprise conglomerates across the UK, Germany, and Western Europe.',
+      pillars: [
+        {
+          title: 'EU AI Act Conformity & Risk Classification',
+          desc: 'High-Risk AI system auditing, technical documentation compilation, fundamental rights impact assessments, and transparency governance under EU Regulation 2024/1689.',
+        },
+        {
+          title: 'DORA (Digital Operational Resilience Act) Readiness',
+          desc: 'ICT risk management frameworks, digital resilience testing (TLPT/threat-led penetration testing), and critical third-party provider oversight under EU 2022/2554.',
+        },
+        {
+          title: 'NIS2 Directive & Sovereign GDPR Enclaves',
+          desc: '24-hour incident notification workflows, executive cybersecurity accountability, and zero-leakage confidential computing on European soil (Frankfurt/London).',
+        },
+        {
+          title: 'SAP S/4HANA & Enterprise ERP Clean-Core Modernization',
+          desc: 'Decoupling legacy European ERP architectures into sovereign cloud containers, reducing technical debt while accelerating multi-ledger closes.',
+        },
+      ],
+      compliance: [
+        'EU AI Act Compliant',
+        'DORA EU 2022/2554',
+        'NIS2 Directive 2022/2555',
+        'GDPR Sovereign Enclaves',
+        'ISO/IEC 27001:2022',
+        'ISO 42001 (AI Management)',
+      ],
+      stats: [
+        { label: 'EU Regulatory Compliance', value: '100%' },
+        { label: 'DORA Resilience Benchmark', value: 'Level 5' },
+        { label: 'Sovereign Enclave Latency', value: '<8ms' },
+      ],
+      caseStudy: {
+        title: 'Pan-European Banking Consortium DORA & AI Governance',
+        result: 'Designed DORA-compliant ICT risk architecture and sovereign financial LLM pipeline with zero data transfer outside the European Economic Area (EEA).',
+      },
+    },
     KSA: {
       title: 'Nexis AI — Kingdom of Saudi Arabia (Riyadh Hub)',
       badge: 'Saudi Vision 2030 Strategic Technology Partner',
@@ -191,9 +237,27 @@ export const RegionalMarketsSection: React.FC<RegionalMarketsSectionProps> = ({
             }`}
           >
             <Flag className="w-5 h-5 text-blue-400" />
-            <span>United States (Primary HQ)</span>
+            <span>Americas (US Global HQ)</span>
             <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-700">
               Primary
+            </span>
+          </button>
+
+          <button
+            onClick={() => {
+              setActiveMarketTab('EU');
+              onSelectRegion('EU');
+            }}
+            className={`px-6 py-3.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-3 cursor-pointer shadow-lg ${
+              activeMarketTab === 'EU'
+                ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white ring-2 ring-cyan-400 shadow-cyan-900/40'
+                : 'bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800'
+            }`}
+          >
+            <Globe className="w-5 h-5 text-cyan-400" />
+            <span>Europe (UK & EU Hubs)</span>
+            <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-700">
+              EU AI & DORA
             </span>
           </button>
 
@@ -260,21 +324,21 @@ export const RegionalMarketsSection: React.FC<RegionalMarketsSectionProps> = ({
               </div>
               <div className="space-y-2 text-xs">
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-400">Default Phone:</span>
-                  <a href={`tel:${mainUSAPhone.replace(/[^0-9+]/g, '')}`} className="font-mono text-white font-semibold hover:text-blue-400 transition-colors">
-                    {mainUSAPhone}
+                  <span className="text-slate-400">Direct Phone:</span>
+                  <a href={`tel:${currentMarket.phone.replace(/[^0-9+]/g, '')}`} className="font-mono text-white font-semibold hover:text-blue-400 transition-colors">
+                    {currentMarket.phone}
                   </a>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-400">Direct SMS/Text:</span>
-                  <a href={`sms:${mainUSASMS}?body=Hello%20Nexis%20AI%20Team%2C%20I%20would%20like%20to%20discuss%20an%20AI%20and%20Cybersecurity%20project.`} className="font-mono text-emerald-400 font-semibold hover:underline">
-                    {mainUSASMS}
+                  <a href={`sms:${currentMarket.smsText}?body=Hello%20Nexis%20AI%20Team%2C%20I%20would%20like%20to%20discuss%20an%20AI%20and%20Cybersecurity%20project%20for%20the%20${activeMarketTab}%20region.`} className="font-mono text-emerald-400 font-semibold hover:underline">
+                    {currentMarket.smsText}
                   </a>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-400">Email:</span>
-                  <a href={`mailto:${primaryContactEmail}`} className="font-mono text-blue-300 font-semibold hover:underline">
-                    {primaryContactEmail}
+                  <span className="text-slate-400">Regional Email:</span>
+                  <a href={`mailto:${currentMarket.email}`} className="font-mono text-blue-300 font-semibold hover:underline">
+                    {currentMarket.email}
                   </a>
                 </div>
               </div>

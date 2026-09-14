@@ -98,10 +98,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-start">
             <span className="inline-flex items-center gap-1.5 font-medium text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2.5 py-0.5 rounded-full text-[11px]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              {currentRegion === 'US' ? 'US HQ (Owings Mills, MD)' : currentRegion === 'KSA' ? 'KSA Regional Hub (Riyadh)' : 'UAE Regional Hub (Dubai)'}
+              {currentRegion === 'US' ? 'US HQ (Owings Mills, MD)' : currentRegion === 'EU' ? 'EU Hubs (London & Frankfurt)' : currentRegion === 'KSA' ? 'KSA Regional Hub (Riyadh)' : 'UAE Regional Hub (Dubai)'}
             </span>
             <span className="hidden md:inline text-slate-400">
-              {t.quickContact}: <a href="tel:14436085425" className="text-slate-200 hover:text-emerald-400 transition-colors font-mono font-bold">(443) 608-5425</a> | Text: <a href="sms:+14436085425" className="text-emerald-400 hover:underline font-mono font-bold">(443) 608-5425</a>
+              {t.quickContact}: <a href="tel:14436085425" className="text-slate-200 hover:text-emerald-400 transition-colors font-mono font-bold">(443) 608-5425</a> | Text: <a href="sms:+14436085425" className="text-emerald-400 hover:underline font-mono font-bold">(443) 608-5425</a> | UK / EU: <a href="tel:+442079460988" className="text-cyan-300 hover:underline font-mono font-bold">+44 20 7946 0988</a>
             </span>
           </div>
 
@@ -117,6 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 id="region-selector-select"
               >
                 <option value="US" className="bg-slate-900 text-slate-200">🇺🇸 {t.usRegion}</option>
+                <option value="EU" className="bg-slate-900 text-slate-200">🇪🇺 {t.euRegion || 'Europe (UK & EU Hubs)'}</option>
                 <option value="KSA" className="bg-slate-900 text-slate-200">🇸🇦 {t.ksaRegion}</option>
                 <option value="UAE" className="bg-slate-900 text-slate-200">🇦🇪 {t.uaeRegion}</option>
               </select>
@@ -193,12 +194,29 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
-            onClick={() => onNavigate('leadership')}
-            className={`hover:text-blue-400 transition-colors flex items-center gap-1 ${currentPage === 'leadership' ? 'text-blue-400 font-bold' : ''}`}
-            id="nav-leadership-link"
+            onClick={() => onNavigate('executive-advisory')}
+            className={`hover:text-amber-400 transition-colors flex items-center gap-1 ${currentPage === 'executive-advisory' || currentPage === 'leadership' ? 'text-amber-400 font-bold' : ''}`}
+            id="nav-executive-advisory-link"
           >
-            <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-mono uppercase">CIO</span>
-            <span>Leadership</span>
+            <span className="text-[10px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.5 rounded font-mono uppercase font-extrabold">CIO</span>
+            <span>Advisory</span>
+          </button>
+
+          <button
+            onClick={() => onNavigate('roi-framework')}
+            className={`hover:text-emerald-400 transition-colors flex items-center gap-1 ${currentPage === 'roi-framework' ? 'text-emerald-400 font-bold' : ''}`}
+            id="nav-roi-framework-link"
+          >
+            <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-mono uppercase font-extrabold">ROI</span>
+            <span>Framework</span>
+          </button>
+
+          <button
+            onClick={() => onNavigate('erp-modernization')}
+            className={`hover:text-indigo-400 transition-colors ${currentPage === 'erp-modernization' ? 'text-indigo-400 font-bold' : ''}`}
+            id="nav-erp-modernization-link"
+          >
+            ERP & Cloud
           </button>
 
           <button
@@ -278,6 +296,39 @@ export const Navbar: React.FC<NavbarProps> = ({
             {servicesDropdownOpen && (
               <div className="absolute left-0 top-full w-80 bg-slate-900 border border-slate-700/90 rounded-xl shadow-2xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                 <div className="text-xs font-semibold text-slate-400 px-3 py-1.5 uppercase tracking-wider">Practice Areas</div>
+
+                <button
+                  onClick={() => { onNavigate('executive-advisory'); setServicesDropdownOpen(false); }}
+                  className="w-full text-left flex items-start gap-3 p-2 rounded-lg hover:bg-slate-800 transition-colors group"
+                >
+                  <Sparkles className="w-4 h-4 text-amber-400 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-slate-100 group-hover:text-amber-300">Executive Advisory (Former CIO)</div>
+                    <div className="text-[11px] text-slate-400">Fractional CIO, CAIO, vCISO & Boardroom Strategy</div>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => { onNavigate('roi-framework'); setServicesDropdownOpen(false); }}
+                  className="w-full text-left flex items-start gap-3 p-2 rounded-lg hover:bg-slate-800 transition-colors group"
+                >
+                  <FileCheck2 className="w-4 h-4 text-emerald-400 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-slate-100 group-hover:text-emerald-300">Enterprise Value Framework (EVF™)</div>
+                    <div className="text-[11px] text-slate-400">Quantified ROI, TCO & Payback Realization</div>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => { onNavigate('erp-modernization'); setServicesDropdownOpen(false); }}
+                  className="w-full text-left flex items-start gap-3 p-2 rounded-lg hover:bg-slate-800 transition-colors group"
+                >
+                  <Server className="w-4 h-4 text-indigo-400 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-slate-100 group-hover:text-indigo-300">ERP Modernization & Clean Core</div>
+                    <div className="text-[11px] text-slate-400">SAP S/4HANA, Oracle Cloud, NetSuite & Workday</div>
+                  </div>
+                </button>
                 
                 <button
                   onClick={() => { onNavigate('enterprise-architecture'); setServicesDropdownOpen(false); }}
@@ -428,6 +479,29 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+          <button
+            onClick={() => { onNavigate('executive-advisory'); setMobileMenuOpen(false); }}
+            className="block w-full text-left py-2 text-amber-400 hover:text-amber-300 font-bold border-b border-slate-800 flex items-center justify-between"
+          >
+            <span>Executive Advisory (Former CIO)</span>
+            <span className="text-[10px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.5 rounded font-mono">C-SUITE</span>
+          </button>
+
+          <button
+            onClick={() => { onNavigate('roi-framework'); setMobileMenuOpen(false); }}
+            className="block w-full text-left py-2 text-emerald-400 hover:text-emerald-300 font-bold border-b border-slate-800 flex items-center justify-between"
+          >
+            <span>Enterprise ROI & TCO Framework</span>
+            <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-mono">EVF™</span>
+          </button>
+
+          <button
+            onClick={() => { onNavigate('erp-modernization'); setMobileMenuOpen(false); }}
+            className="block w-full text-left py-2 text-indigo-400 hover:text-indigo-300 font-medium border-b border-slate-800"
+          >
+            ERP Modernization (SAP & Oracle)
+          </button>
+
           <button
             onClick={() => { onNavigate('home'); setMobileMenuOpen(false); }}
             className="block w-full text-left py-2 text-slate-200 hover:text-blue-400 font-medium border-b border-slate-800"

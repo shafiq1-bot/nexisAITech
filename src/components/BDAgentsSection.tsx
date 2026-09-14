@@ -671,12 +671,13 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
               onClick={() => setActiveTab('marketing')}
               className={`px-4 py-2.5 rounded-xl text-xs font-bold font-mono transition-all flex items-center gap-2 ${
                 activeTab === 'marketing'
-                  ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/20'
+                  ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/20'
                   : 'bg-slate-900 text-slate-400 border border-slate-800 hover:bg-slate-800 hover:text-white'
               }`}
             >
-              <FileText className="w-4 h-4" />
-              <span>4. Marketing Generator</span>
+              <Share2 className="w-4 h-4 text-purple-400" />
+              <span>4. Social Media Campaign</span>
+              <span className="bg-purple-500/20 text-purple-300 text-[9px] font-extrabold px-1.5 py-0.5 rounded border border-purple-500/30">AI Viral</span>
             </button>
 
             <button
@@ -1107,14 +1108,49 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Core Topic & Value Proposition</label>
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="text-xs font-mono font-bold text-slate-300">Core Topic & Value Proposition</label>
+                    <span className="text-[10px] text-purple-400 font-mono">Americas & Europe Presets</span>
+                  </div>
                   <textarea
-                    rows={4}
+                    rows={3}
                     value={marketingTopic}
                     onChange={(e) => setMarketingTopic(e.target.value)}
                     placeholder="e.g. How Healthcare CIOs can deploy Zero Trust AI Agents without FHIR data leaks..."
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-purple-500"
                   />
+
+                  {/* Preset Topic Quick Chips */}
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    <button
+                      type="button"
+                      onClick={() => setMarketingTopic('DORA & EU AI Act Compliance: How European Financial & Enterprise CIOs Navigate Risk with Zero Trust Sovereign Enclaves')}
+                      className="text-[10px] px-2 py-1 rounded-md bg-purple-950/70 hover:bg-purple-900 border border-purple-800/80 text-purple-200 transition-colors"
+                    >
+                      🇪🇺 DORA & EU AI Act
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setMarketingTopic('ERP Modernization: Clean Core Strategy for SAP S/4HANA & Oracle Cloud with Autonomous Agentic Automation')}
+                      className="text-[10px] px-2 py-1 rounded-md bg-slate-950 hover:bg-slate-800 border border-slate-700 text-cyan-300 transition-colors"
+                    >
+                      🏢 SAP/Oracle Clean Core
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setMarketingTopic('The 90-Day EVF™ Enterprise Value Realization: Why Former-CIO Board Advisory Outperforms Traditional Big 4 IT Consultancies')}
+                      className="text-[10px] px-2 py-1 rounded-md bg-slate-950 hover:bg-slate-800 border border-slate-700 text-emerald-300 transition-colors"
+                    >
+                      ⚡ Former-CIO EVF™ ROI
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setMarketingTopic('Healthcare EHR AI: SMART-on-FHIR Autonomous Clinical Note Agent with Zero Trust HIPAA Security')}
+                      className="text-[10px] px-2 py-1 rounded-md bg-slate-950 hover:bg-slate-800 border border-slate-700 text-blue-300 transition-colors"
+                    >
+                      🩺 Healthcare FHIR AI
+                    </button>
+                  </div>
                 </div>
 
                 <button

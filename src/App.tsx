@@ -31,6 +31,9 @@ import { TrustSecurityCenter } from './components/TrustSecurityCenter';
 import { AdminPortal } from './components/AdminPortal';
 import { BookAuditModal } from './components/BookAuditModal';
 import { FreeToolsSection } from './components/FreeToolsSection';
+import { EnterpriseROIFramework } from './components/EnterpriseROIFramework';
+import { ERPModernizationSection } from './components/ERPModernizationSection';
+import { ExecutiveAdvisorySection } from './components/ExecutiveAdvisorySection';
 
 export default function App() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
@@ -122,8 +125,22 @@ export default function App() {
               currentRegion={currentRegion}
               onOpenBookAudit={() => setBookAuditOpen(true)}
             />
+            <ExecutiveAdvisorySection
+              currentRegion={currentRegion}
+              onOpenConsultation={handleOpenConsultation}
+              onOpenCalendar={handleOpenCalendar}
+            />
+            <EnterpriseROIFramework
+              currentRegion={currentRegion}
+              onOpenConsultation={handleOpenConsultation}
+              onOpenBookAudit={() => setBookAuditOpen(true)}
+            />
             <ServicesOverview
               currentLanguage={currentLanguage}
+              onOpenConsultation={handleOpenConsultation}
+            />
+            <ERPModernizationSection
+              currentRegion={currentRegion}
               onOpenConsultation={handleOpenConsultation}
             />
             <AISolutionsShowcase
@@ -270,6 +287,29 @@ export default function App() {
           />
         )}
 
+        {currentPage === 'executive-advisory' && (
+          <ExecutiveAdvisorySection
+            currentRegion={currentRegion}
+            onOpenConsultation={handleOpenConsultation}
+            onOpenCalendar={handleOpenCalendar}
+          />
+        )}
+
+        {currentPage === 'roi-framework' && (
+          <EnterpriseROIFramework
+            currentRegion={currentRegion}
+            onOpenConsultation={handleOpenConsultation}
+            onOpenBookAudit={() => setBookAuditOpen(true)}
+          />
+        )}
+
+        {currentPage === 'erp-modernization' && (
+          <ERPModernizationSection
+            currentRegion={currentRegion}
+            onOpenConsultation={handleOpenConsultation}
+          />
+        )}
+
         {currentPage === 'resources' && (
           <ResourcesHub
             currentLanguage={currentLanguage}
@@ -299,6 +339,7 @@ export default function App() {
       <FloatingAIChatbot 
         onOpenConsultation={handleOpenConsultation} 
         onOpenBookAudit={() => setBookAuditOpen(true)}
+        onOpenCalendar={handleOpenCalendar}
       />
 
       {/* Global Footer */}
