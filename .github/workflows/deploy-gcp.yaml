@@ -8,8 +8,11 @@ on:
     branches:
       - main
       - master
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
 
 env:
+  # Mitigate Node 20 deprecation warning on Node 24 GitHub runners
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: 'true'
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   SERVICE_NAME: nexisai-service
   REGION: us-central1
@@ -18,18 +21,78 @@ jobs:
   deploy:
     name: Build & Deploy to Cloud Run
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Authenticate to Google Cloud
+      - name: Validate GitHub Secrets & Configuration
+        run: |
+          echo "Verifying deployment secrets configuration..."
+          MISSING=""
+          if [ -z "${{ secrets.GCP_SA_KEY }}" ] && [ -z "${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}" ]; then
+            MISSING="${MISSING}\n  - GCP_SA_KEY (Google Cloud Service Account JSON Key)"
+          fi
+          if [ -z "${{ secrets.GCP_PROJECT_ID }}" ]; then
+            MISSING="${MISSING}\n  - GCP_PROJECT_ID (Google Cloud Project ID, e.g. 'nexis-ai-enterprise')"
+          fi
+
+          if [ -n "$MISSING" ]; then
+            echo "::error title=Missing Required GitHub Secrets::The workflow cannot authenticate to Google Cloud because required secrets are not set in this repository."
+            echo "=========================================================================="
+            echo "❌ ACTION REQUIRED: Configure GitHub Repository Secrets"
+            echo "--------------------------------------------------------------------------"
+            echo "The following secrets are missing in GitHub repository settings:"
+            echo -e "$MISSING"
+            echo ""
+            echo "Follow these steps to add them:"
+            echo "1. In your GitHub repository, click: Settings -> Secrets and variables -> Actions"
+            echo "2. Click 'New repository secret'"
+            echo "3. Name: GCP_PROJECT_ID"
+            echo "   Value: <Your Google Cloud Project ID>"
+            echo "4. Click 'New repository secret'"
+            echo "   Name: GCP_SA_KEY"
+            echo "   Value: <Paste your Google Cloud Service Account JSON key>"
+            echo ""
+            echo "Need to generate the Service Account JSON key? Run in Google Cloud Shell:"
+            echo "   gcloud iam service-accounts create nexis-deployer --display-name='GitHub Deployer'"
+            echo "   gcloud projects add-iam-policy-binding \${GCP_PROJECT_ID} \\"
+            echo "     --member='serviceAccount:nexis-deployer@\${GCP_PROJECT_ID}.iam.gserviceaccount.com' \\"
+            echo "     --role='roles/run.admin'"
+            echo "   gcloud projects add-iam-policy-binding \${GCP_PROJECT_ID} \\"
+            echo "     --member='serviceAccount:nexis-deployer@\${GCP_PROJECT_ID}.iam.gserviceaccount.com' \\"
+            echo "     --role='roles/storage.admin'"
+            echo "   gcloud projects add-iam-policy-binding \${GCP_PROJECT_ID} \\"
+            echo "     --member='serviceAccount:nexis-deployer@\${GCP_PROJECT_ID}.iam.gserviceaccount.com' \\"
+            echo "     --role='roles/iam.serviceAccountUser'"
+            echo "   gcloud iam service-accounts keys create sa-key.json \\"
+            echo "     --iam-account=nexis-deployer@\${GCP_PROJECT_ID}.iam.gserviceaccount.com"
+            echo "   cat sa-key.json  # Copy this output into GitHub secret GCP_SA_KEY"
+            echo "=========================================================================="
+            exit 1
+          fi
+          echo "✅ All required deployment secrets are verified."
+
+      - name: Authenticate to Google Cloud (Service Account Key)
+        if: ${{ secrets.GCP_SA_KEY != '' }}
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
+      - name: Authenticate to Google Cloud (Workload Identity)
+        if: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER != '' && secrets.GCP_SA_KEY == '' }}
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ env.PROJECT_ID }}
 
       - name: Authorize Docker Push
         run: gcloud auth configure-docker --quiet
@@ -47,3 +110,4 @@ jobs:
             --platform=managed \
             --allow-unauthenticated \
             --port=8080
+
