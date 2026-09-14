@@ -62,8 +62,8 @@ export const Hero: React.FC<HeroProps> = ({
             className="inline-flex items-center gap-2 bg-blue-950/90 border border-blue-600/80 hover:bg-blue-900 text-blue-200 text-xs font-semibold px-4 py-2 rounded-full shadow-lg backdrop-blur-md transition-all cursor-pointer"
           >
             <Globe2 className="w-4 h-4 text-cyan-400" />
-            <span>US Market (HQ Owings Mills, MD) • KSA • UAE Regional Hubs</span>
-            <span className="text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded font-mono">Explore Markets</span>
+            <span>Americas (US HQ: Owings Mills, MD) • Europe (UK & EU Hubs) • Middle East (KSA & UAE)</span>
+            <span className="text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded font-mono">Global Hubs</span>
           </button>
         </div>
 
@@ -130,11 +130,15 @@ export const Hero: React.FC<HeroProps> = ({
             </span>
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>KSA NDMO & NCA Compliant</span>
+              <span>EU AI Act & DORA (EU 2022/2554)</span>
             </span>
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>UAE TDRA Sovereign Approved</span>
+              <span>GDPR / UK Data Protection Act</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <span>KSA NDMO & UAE Sovereign Approved</span>
             </span>
           </div>
         </div>

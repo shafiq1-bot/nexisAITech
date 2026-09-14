@@ -228,7 +228,7 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
   ];
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end">
+    <div className="fixed bottom-3 right-3 sm:bottom-5 sm:right-5 z-50 flex flex-col items-end max-w-[calc(100vw-1.5rem)]">
       {/* Floating Toggle Button when Closed */}
       {!isOpen && (
         <div className="flex flex-col items-end gap-2">
@@ -243,16 +243,16 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
 
           <button
             onClick={() => setIsOpen(true)}
-            className="px-4 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white shadow-2xl shadow-blue-900/50 flex items-center gap-3 transition-all hover:scale-105 active:scale-95 cursor-pointer ring-2 ring-blue-400/50"
+            className="px-3.5 py-3 sm:px-4 sm:py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white shadow-2xl shadow-blue-900/50 flex items-center gap-2.5 sm:gap-3 transition-all hover:scale-105 active:scale-95 cursor-pointer ring-2 ring-blue-400/50"
             aria-label="Open Nexis AI Executive Advisor"
           >
             <div className="relative">
-              <Bot className="w-6 h-6 text-white" />
-              <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full ring-2 ring-slate-950 animate-pulse" />
+              <Bot className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full ring-2 ring-slate-950 animate-pulse" />
             </div>
-            <div className="text-left hidden sm:block">
+            <div className="text-left">
               <div className="text-xs font-extrabold tracking-wide uppercase leading-tight">Nexis AI Advisor</div>
-              <div className="text-[10px] text-blue-200">Voice & Chat • Americas & Europe</div>
+              <div className="text-[10px] text-blue-200 hidden sm:block">Voice & Chat • Americas & Europe</div>
             </div>
           </button>
         </div>
@@ -260,7 +260,7 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
 
       {/* Expanded Chat & Advisory Widget */}
       {isOpen && (
-        <div className="w-[360px] sm:w-[440px] h-[600px] max-h-[85vh] bg-slate-900 border border-slate-700/80 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
+        <div className="w-[calc(100vw-1.5rem)] sm:w-[440px] h-[550px] sm:h-[600px] max-h-[85vh] bg-slate-900 border border-slate-700/80 rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
           {/* Header */}
           <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 p-4 border-b border-slate-800 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-3">

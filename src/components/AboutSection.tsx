@@ -39,7 +39,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             About Nexis Tech Group
           </h2>
           <p className="text-slate-300 text-base mt-3 leading-relaxed">
-            Bridging visionary AI transformation with unyielding enterprise security across North America and the Middle East.
+            Bridging visionary AI transformation with unyielding enterprise security across the Americas, Europe, and strategic global financial hubs.
           </p>
         </div>
 
@@ -50,26 +50,26 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               Our Core Mission
             </h3>
             <p className="text-slate-300 text-sm leading-relaxed">
-              Nexis Tech Group was founded to help healthcare systems, higher education institutions, government entities, and mid-market commercial organizations modernize, secure, and transform their IT ecosystems.
+              Nexis Tech Group was founded by a former Chief Information Officer to help healthcare systems, higher education institutions, government entities, and mid-market commercial enterprises modernize, secure, and monetize their IT ecosystems.
             </p>
             <p className="text-slate-300 text-sm leading-relaxed">
-              We specialize in navigating complex regulatory frameworks—including HIPAA, FERPA, NIST 800-53, SOC 2, Saudi Arabia NDMO/NCA ECC, and UAE TDRA standards—ensuring that every AI model, cloud pipeline, and Zero Trust boundary is fully compliant and sovereign.
+              We specialize in navigating complex transatlantic and global regulatory frameworks—including HIPAA, FERPA, NIST 800-53, SOC 2, European Union DORA (EU 2022/2554), EU AI Act (2024/1689), GDPR, Saudi Arabia NDMO/NCA ECC, and UAE TDRA standards—ensuring that every AI model, cloud pipeline, and Zero Trust boundary is fully compliant and sovereign.
             </p>
 
             <div className="space-y-3 pt-2">
               <div className="flex items-start gap-3 text-xs text-slate-200">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong>Executive Leadership:</strong> Decades of combined experience as CISO and CTO advisors at Fortune 500 companies and regional health authorities.</span>
+                <span><strong>Former CIO Stewardship:</strong> Founded and led by former enterprise CIO Shafiq Rahman, with real accountability over $250M+ IT budgets and boardroom governance.</span>
               </div>
 
               <div className="flex items-start gap-3 text-xs text-slate-200">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong>Domain Specialization:</strong> Deep specialization in Electronic Health Record (EHR) interoperability, University HPC research clusters, and GPU infrastructure.</span>
+                <span><strong>Domain Specialization:</strong> Deep specialization in Electronic Health Record (EHR) interoperability, Clean-Core ERP (SAP & Oracle), University HPC clusters, and GPU infrastructure.</span>
               </div>
 
               <div className="flex items-start gap-3 text-xs text-slate-200">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong>Global Tri-Regional Reach:</strong> Native operational teams stationed in Owings Mills, Maryland (US), Riyadh (Saudi Arabia), and Dubai (United Arab Emirates).</span>
+                <span><strong>Global Multi-Regional Reach:</strong> Active client advisory across the Americas (HQ Owings Mills, MD), Europe (London & Frankfurt), and the Middle East (Riyadh & Dubai).</span>
               </div>
             </div>
           </div>

@@ -59,8 +59,13 @@ export const CybersecurityCenter: React.FC<CybersecurityCenterProps> = ({
     { name: 'HIPAA', category: 'Healthcare', region: 'US' },
     { name: 'FERPA', category: 'Education', region: 'US' },
     { name: 'SOC 2 Type II', category: 'Enterprise', region: 'Global' },
-    { name: 'NIST 800-53', category: 'Federal & Public', region: 'US' },
-    { name: 'ISO 27001', category: 'Security Standard', region: 'Global' },
+    { name: 'NIST 800-53 Rev 5', category: 'Federal & Public', region: 'US' },
+    { name: 'DoD CMMC 2.0', category: 'Defense & Aerospace', region: 'US' },
+    { name: 'DORA (EU 2022/2554)', category: 'Financial Operational Resilience', region: 'EU' },
+    { name: 'EU AI Act (2024/1689)', category: 'High-Risk AI Governance', region: 'EU' },
+    { name: 'NIS2 Directive', category: 'Critical Infrastructure', region: 'EU' },
+    { name: 'ISO 27001 / ISO 42001', category: 'Security & AI Governance', region: 'Global' },
+    { name: 'GDPR / UK DPA', category: 'Data Privacy', region: 'EU/UK' },
     { name: 'KSA NCA ECC', category: 'Essential Cybersecurity', region: 'KSA' },
     { name: 'KSA NDMO', category: 'Data Protection', region: 'KSA' },
     { name: 'UAE TDRA ISR', category: 'Information Security', region: 'UAE' },
@@ -79,7 +84,7 @@ export const CybersecurityCenter: React.FC<CybersecurityCenterProps> = ({
             Cybersecurity Center & Compliance Readiness
           </h2>
           <p className="text-slate-400 text-sm sm:text-base mt-3">
-            Architecting Zero Trust identity boundaries, continuous threat monitoring, and audit-ready compliance across the United States, Saudi Arabia, and UAE.
+            Architecting Zero Trust identity boundaries, continuous threat monitoring, and audit-ready compliance across the Americas (NIST/CMMC/HIPAA), Europe (DORA/EU AI Act/NIS2), and strategic Middle East corridors.
           </p>
         </div>
 

@@ -457,117 +457,205 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
 
-        {/* Mobile Hamburger Toggle */}
+        {/* Mobile Action Shortcuts & Hamburger Toggle */}
         <div className="lg:hidden flex items-center gap-2">
+          {onOpenBookAudit && (
+            <button
+              onClick={onOpenBookAudit}
+              className="px-2.5 py-1.5 text-[11px] font-bold text-white bg-blue-600 rounded-lg shadow-sm flex items-center gap-1 active:scale-95 transition-transform"
+              id="mobile-book-audit-btn"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-blue-200" />
+              <span className="hidden sm:inline">Book</span> Audit
+            </button>
+          )}
           <button
             onClick={onOpenAdvisor}
-            className="p-1.5 text-purple-300 bg-purple-950 border border-purple-800 rounded-md"
+            className="p-2 text-purple-300 bg-purple-950/80 border border-purple-800 rounded-lg active:scale-95 transition-transform"
             id="mobile-ai-advisor-btn"
+            aria-label="AI Advisor"
           >
-            <Sparkles className="w-4 h-4 text-purple-400" />
+            <BrainCircuit className="w-4 h-4 text-purple-400" />
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-300 hover:text-white focus:outline-none"
+            className="p-2 text-slate-300 hover:text-white bg-slate-800/80 border border-slate-700/80 rounded-lg focus:outline-none active:scale-95 transition-transform"
             id="mobile-hamburger-btn"
+            aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-red-400" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu - Polished full touch navigation with categorization */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
-          <button
-            onClick={() => { onNavigate('executive-advisory'); setMobileMenuOpen(false); }}
-            className="block w-full text-left py-2 text-amber-400 hover:text-amber-300 font-bold border-b border-slate-800 flex items-center justify-between"
-          >
-            <span>Executive Advisory (Former CIO)</span>
-            <span className="text-[10px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.5 rounded font-mono">C-SUITE</span>
-          </button>
+        <div className="lg:hidden bg-slate-950/98 backdrop-blur-xl border-b border-slate-800 px-4 pt-3 pb-8 space-y-4 max-h-[85vh] overflow-y-auto overscroll-contain animate-in fade-in slide-in-from-top-3 duration-200 shadow-2xl">
+          {/* Quick Action Badges */}
+          <div className="grid grid-cols-2 gap-2 pb-2 border-b border-slate-800">
+            <button
+              onClick={() => { onOpenConsultation(); setMobileMenuOpen(false); }}
+              className="w-full py-2.5 px-3 text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg shadow-md flex items-center justify-center gap-1.5 active:scale-98"
+            >
+              <PhoneCall className="w-3.5 h-3.5" />
+              <span>Book Call</span>
+            </button>
+            {onOpenCalendar && (
+              <button
+                onClick={() => { onOpenCalendar(); setMobileMenuOpen(false); }}
+                className="w-full py-2.5 px-3 text-xs font-bold text-cyan-300 bg-cyan-950/80 border border-cyan-800 rounded-lg flex items-center justify-center gap-1.5 active:scale-98"
+              >
+                <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Calendar</span>
+              </button>
+            )}
+          </div>
 
-          <button
-            onClick={() => { onNavigate('roi-framework'); setMobileMenuOpen(false); }}
-            className="block w-full text-left py-2 text-emerald-400 hover:text-emerald-300 font-bold border-b border-slate-800 flex items-center justify-between"
-          >
-            <span>Enterprise ROI & TCO Framework</span>
-            <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-mono">EVF™</span>
-          </button>
+          {/* Section: Executive Leadership & Strategy */}
+          <div className="space-y-1">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 block font-mono">
+              Executive & Advisory
+            </span>
+            <button
+              onClick={() => { onNavigate('executive-advisory'); setMobileMenuOpen(false); }}
+              className="w-full text-left px-3 py-2.5 rounded-lg text-amber-300 hover:bg-amber-950/30 font-semibold border border-amber-900/40 flex items-center justify-between active:bg-amber-950/50"
+            >
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-amber-400" />
+                <span>Executive Advisory (Former CIO)</span>
+              </div>
+              <span className="text-[10px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.5 rounded font-mono font-bold">CIO</span>
+            </button>
 
-          <button
-            onClick={() => { onNavigate('erp-modernization'); setMobileMenuOpen(false); }}
-            className="block w-full text-left py-2 text-indigo-400 hover:text-indigo-300 font-medium border-b border-slate-800"
-          >
-            ERP Modernization (SAP & Oracle)
-          </button>
+            <button
+              onClick={() => { onNavigate('roi-framework'); setMobileMenuOpen(false); }}
+              className="w-full text-left px-3 py-2.5 rounded-lg text-emerald-300 hover:bg-emerald-950/30 font-semibold border border-emerald-900/40 flex items-center justify-between active:bg-emerald-950/50"
+            >
+              <div className="flex items-center gap-2">
+                <FileCheck2 className="w-4 h-4 text-emerald-400" />
+                <span>Enterprise Value Framework (EVF™)</span>
+              </div>
+              <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-mono font-bold">ROI</span>
+            </button>
 
-          <button
-            onClick={() => { onNavigate('home'); setMobileMenuOpen(false); }}
-            className="block w-full text-left py-2 text-slate-200 hover:text-blue-400 font-medium border-b border-slate-800"
-          >
-            {t.navHome}
-          </button>
+            <button
+              onClick={() => { onNavigate('erp-modernization'); setMobileMenuOpen(false); }}
+              className="w-full text-left px-3 py-2.5 rounded-lg text-indigo-300 hover:bg-indigo-950/30 font-semibold border border-indigo-900/40 flex items-center justify-between active:bg-indigo-950/50"
+            >
+              <div className="flex items-center gap-2">
+                <Server className="w-4 h-4 text-indigo-400" />
+                <span>ERP & Clean Core (SAP/Oracle)</span>
+              </div>
+              <span className="text-[10px] bg-indigo-950 text-indigo-300 border border-indigo-800 px-1.5 py-0.5 rounded font-mono">ERP</span>
+            </button>
+          </div>
 
-          <button
-            onClick={() => { onNavigate('about'); setMobileMenuOpen(false); }}
-            className="block w-full text-left py-2 text-slate-200 hover:text-blue-400 font-medium border-b border-slate-800"
-          >
-            {t.navAbout}
-          </button>
+          {/* Section: Core Navigation */}
+          <div className="space-y-1 pt-1 border-t border-slate-800/80">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 block font-mono">
+              Platform & Practices
+            </span>
+            <div className="grid grid-cols-2 gap-1.5">
+              <button
+                onClick={() => { onNavigate('home'); setMobileMenuOpen(false); }}
+                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'home' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
+              >
+                🏠 {t.navHome}
+              </button>
+              <button
+                onClick={() => { onNavigate('about'); setMobileMenuOpen(false); }}
+                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'about' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
+              >
+                🏢 {t.navAbout}
+              </button>
+              <button
+                onClick={() => { onNavigate('services'); setMobileMenuOpen(false); }}
+                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'services' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
+              >
+                ⚙️ {t.navServices}
+              </button>
+              <button
+                onClick={() => { onNavigate('industries'); setMobileMenuOpen(false); }}
+                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'industries' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
+              >
+                🏭 {t.navIndustries}
+              </button>
+              <button
+                onClick={() => { onNavigate('ai-solutions'); setMobileMenuOpen(false); }}
+                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'ai-solutions' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
+              >
+                🧠 {t.navAISolutions}
+              </button>
+              <button
+                onClick={() => { onNavigate('cybersecurity'); setMobileMenuOpen(false); }}
+                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'cybersecurity' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
+              >
+                🛡️ Zero Trust
+              </button>
+              <button
+                onClick={() => { onNavigate('case-studies'); setMobileMenuOpen(false); }}
+                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'case-studies' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
+              >
+                📊 Case Studies
+              </button>
+              <button
+                onClick={() => { onNavigate('markets'); setMobileMenuOpen(false); }}
+                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'markets' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
+              >
+                🌐 Global Markets
+              </button>
+            </div>
+          </div>
 
-          <button
-            onClick={() => { onNavigate('services'); setMobileMenuOpen(false); }}
-            className="block w-full text-left py-2 text-slate-200 hover:text-blue-400 font-medium border-b border-slate-800"
-          >
-            {t.navServices}
-          </button>
+          {/* Section: Live Portals & Agents */}
+          <div className="space-y-1.5 pt-1 border-t border-slate-800/80">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 block font-mono">
+              Portals & Autonomous Systems
+            </span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <button
+                onClick={() => { onNavigate('bd-agents'); setMobileMenuOpen(false); }}
+                className="w-full text-left p-2.5 rounded-lg bg-cyan-950/40 border border-cyan-800/60 text-cyan-300 text-xs font-semibold flex items-center justify-between active:bg-cyan-950/80"
+              >
+                <div className="flex items-center gap-2">
+                  <Bot className="w-4 h-4 text-cyan-400" />
+                  <span>AI Lead Generation Agents</span>
+                </div>
+                <span className="bg-cyan-500 text-slate-950 text-[9px] font-extrabold px-1 rounded uppercase">Live</span>
+              </button>
 
-          <button
-            onClick={() => { onNavigate('industries'); setMobileMenuOpen(false); }}
-            className="block w-full text-left py-2 text-slate-200 hover:text-blue-400 font-medium border-b border-slate-800"
-          >
-            {t.navIndustries}
-          </button>
+              <button
+                onClick={() => { onNavigate('trust-center'); setMobileMenuOpen(false); }}
+                className="w-full text-left p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-emerald-300 text-xs font-semibold flex items-center justify-between active:bg-emerald-950/80"
+              >
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <span>Trust & Domain Security</span>
+                </div>
+                <span className="bg-emerald-500 text-slate-950 text-[9px] font-extrabold px-1 rounded uppercase">nexisai.us</span>
+              </button>
+            </div>
+          </div>
 
-          <button
-            onClick={() => { onNavigate('ai-solutions'); setMobileMenuOpen(false); }}
-            className="block w-full text-left py-2 text-slate-200 hover:text-blue-400 font-medium border-b border-slate-800"
-          >
-            {t.navAISolutions}
-          </button>
+          {/* Section: Direct Touch Communications */}
+          <div className="pt-2 border-t border-slate-800 space-y-2">
+            <a
+              href="tel:14436085425"
+              className="w-full py-2.5 px-3 text-xs font-semibold text-emerald-300 bg-emerald-950/80 border border-emerald-800 rounded-lg flex items-center justify-center gap-2"
+            >
+              <PhoneCall className="w-4 h-4 text-emerald-400" />
+              <span>Direct Phone Call: (443) 608-5425</span>
+            </a>
 
-          <button
-            onClick={() => { onNavigate('cybersecurity'); setMobileMenuOpen(false); }}
-            className="block w-full text-left py-2 text-slate-200 hover:text-blue-400 font-medium border-b border-slate-800"
-          >
-            {t.navCybersecurity}
-          </button>
-
-          <button
-            onClick={() => { onNavigate('resources'); setMobileMenuOpen(false); }}
-            className="block w-full text-left py-2 text-slate-200 hover:text-blue-400 font-medium border-b border-slate-800"
-          >
-            {t.navResources}
-          </button>
-
-          <div className="pt-2 space-y-2">
             {onOpenGmailModal && (
               <button
                 onClick={() => { onOpenGmailModal(); setMobileMenuOpen(false); }}
-                className="w-full text-center py-2.5 text-sm font-semibold text-emerald-300 bg-emerald-950 border border-emerald-800 rounded-lg flex items-center justify-center gap-2"
+                className="w-full text-center py-2.5 px-3 text-xs font-semibold text-slate-200 bg-slate-900 border border-slate-700 rounded-lg flex items-center justify-center gap-2"
               >
-                <Mail className="w-4 h-4 text-emerald-400" />
-                <span>Gmail & Domain Mailboxes</span>
+                <Mail className="w-4 h-4 text-cyan-400" />
+                <span>Gmail & Enterprise Mailbox Access</span>
               </button>
             )}
-
-            <button
-              onClick={() => { onOpenConsultation(); setMobileMenuOpen(false); }}
-              className="w-full text-center py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md"
-            >
-              {t.scheduleConsultation}
-            </button>
           </div>
         </div>
       )}

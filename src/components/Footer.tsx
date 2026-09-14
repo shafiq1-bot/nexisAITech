@@ -306,11 +306,31 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Bottom Copyright & Legal */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <p>{t.copyright}</p>
-          <div className="flex items-center gap-6">
-            <a href="#privacy" onClick={(e) => { e.preventDefault(); alert('Nexis Tech Group Privacy Policy: Compliant with US Privacy Act, HIPAA, KSA Personal Data Protection Law (PDPL), and UAE Data Protection Regulations.'); }} className="hover:text-slate-300">Privacy Policy</a>
-            <a href="#terms" onClick={(e) => { e.preventDefault(); alert('Terms of Service: Standard Enterprise Service Level Agreement (SLA) & Data Protection Addendum (DPA).'); }} className="hover:text-slate-300">Terms of Service</a>
-            <a href="#security" onClick={(e) => { e.preventDefault(); onNavigate('cybersecurity'); }} className="hover:text-slate-300">Security Disclosure</a>
-            <a href="#contact" onClick={(e) => { e.preventDefault(); onNavigate('contact'); }} className="hover:text-slate-300">Executive Contact</a>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            <button
+              onClick={() => onNavigate('cybersecurity')}
+              className="hover:text-slate-300 transition-colors cursor-pointer"
+            >
+              Privacy & Regulatory Compliance
+            </button>
+            <button
+              onClick={() => onNavigate('trust-center')}
+              className="hover:text-slate-300 transition-colors cursor-pointer"
+            >
+              Terms & SLA
+            </button>
+            <button
+              onClick={() => onNavigate('cybersecurity')}
+              className="hover:text-slate-300 transition-colors cursor-pointer"
+            >
+              Security Disclosure
+            </button>
+            <button
+              onClick={() => onNavigate('contact')}
+              className="hover:text-slate-300 transition-colors cursor-pointer"
+            >
+              Executive Contact
+            </button>
           </div>
         </div>
 
