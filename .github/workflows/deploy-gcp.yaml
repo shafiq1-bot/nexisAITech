@@ -16,6 +16,9 @@ env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   SERVICE_NAME: nexisai-service
   REGION: us-central1
+  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+  WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+  GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
 jobs:
   deploy:
@@ -33,11 +36,11 @@ jobs:
         run: |
           echo "Verifying deployment secrets configuration..."
           MISSING=""
-          if [ -z "${{ secrets.GCP_SA_KEY }}" ] && [ -z "${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}" ]; then
-            MISSING="${MISSING}\n  - GCP_SA_KEY (Google Cloud Service Account JSON Key)"
+          if [ -z "$GCP_SA_KEY" ] && [ -z "$WORKLOAD_IDENTITY_PROVIDER" ]; then
+            MISSING="${MISSING}\n  - GCP_SA_KEY or WORKLOAD_IDENTITY_PROVIDER"
           fi
-          if [ -z "${{ secrets.GCP_PROJECT_ID }}" ]; then
-            MISSING="${MISSING}\n  - GCP_PROJECT_ID (Google Cloud Project ID, e.g. 'nexis-ai-enterprise')"
+          if [ -z "$PROJECT_ID" ]; then
+            MISSING="${MISSING}\n  - GCP_PROJECT_ID (Google Cloud Project ID, e.g. 'nexisaius')"
           fi
 
           if [ -n "$MISSING" ]; then
@@ -77,13 +80,13 @@ jobs:
           echo "✅ All required deployment secrets are verified."
 
       - name: Authenticate to Google Cloud (Service Account Key)
-        if: ${{ secrets.GCP_SA_KEY != '' }}
+        if: ${{ env.GCP_SA_KEY != '' }}
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Authenticate to Google Cloud (Workload Identity)
-        if: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER != '' && secrets.GCP_SA_KEY == '' }}
+        if: ${{ env.WORKLOAD_IDENTITY_PROVIDER != '' && env.GCP_SA_KEY == '' }}
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
