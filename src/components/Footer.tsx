@@ -191,8 +191,13 @@ export const Footer: React.FC<FooterProps> = ({
             <h5 className="text-xs font-bold uppercase tracking-wider text-slate-200">Practice Areas</h5>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
+                <button onClick={() => onNavigate('fractional-cio')} className="hover:text-amber-400 transition-colors text-amber-300 font-bold flex items-center gap-1">
+                  <span>Fractional CIO & 30-Day Diagnostic</span>
+                </button>
+              </li>
+              <li>
                 <button onClick={() => onNavigate('leadership')} className="hover:text-blue-400 transition-colors text-emerald-300 font-semibold">
-                  CIO Leadership Profile
+                  CIO Leadership Profile (Shafiq Rahman)
                 </button>
               </li>
               <li>

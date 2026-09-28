@@ -41,13 +41,13 @@ export const ExecutiveAdvisorySection: React.FC<ExecutiveAdvisorySectionProps> =
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-950/80 border border-amber-800/80 text-amber-400 text-xs font-mono font-semibold uppercase tracking-wider">
             <Crown className="w-3.5 h-3.5 text-amber-400" />
-            <span>Former Enterprise CIO & AI Entrepreneur</span>
+            <span>Former State CIO & Higher-Ed IT Director</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Executive Advisory Built on Real Operational Stewardship
           </h1>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-            Most consultancies send junior analysts with slide decks. Nexis AI is owned and led by Shafiq Rahman, an authentic former enterprise CIO who has governed $250M+ annual IT budgets, faced boardroom audits, and driven massive digital transformations.
+            Most consultancies send junior analysts with slide decks. Nexis AI is owned and led by Shafiq Rahman, an authentic former State CIO who has governed a $250M technology portfolio and 1,500 IT staff across six state agencies, faced boardroom and legislative audits, and driven massive multi-agency modernization.
           </p>
         </div>
 
@@ -74,9 +74,9 @@ export const ExecutiveAdvisorySection: React.FC<ExecutiveAdvisorySectionProps> =
                   SR
                 </div>
                 <div>
-                  <div className="font-extrabold text-white text-base">Shafqat (Shafiq) Rahman</div>
-                  <div className="text-xs text-amber-400 font-mono">Founder, Managing Director & Former Enterprise CIO</div>
-                  <div className="text-[11px] text-slate-400">20+ Years Executive Leadership across Americas, Europe & Global Markets</div>
+                  <div className="font-extrabold text-white text-base">Shafiq Rahman</div>
+                  <div className="text-xs text-amber-400 font-mono font-semibold">Owner, Fractional CIO & Former State CIO (Maryland Dept. of Transportation)</div>
+                  <div className="text-[11px] text-slate-400">Former Director of Enterprise IT, University of Maryland, Baltimore • 20+ Years Executive Leadership</div>
                 </div>
               </div>
             </div>
@@ -88,16 +88,16 @@ export const ExecutiveAdvisorySection: React.FC<ExecutiveAdvisorySectionProps> =
               </span>
               <div className="space-y-3">
                 <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                  <div className="text-2xl font-black text-amber-400 font-mono">$500M+</div>
-                  <div className="text-xs text-slate-300 font-medium">Enterprise IT & Cloud Capital Managed</div>
+                  <div className="text-2xl font-black text-amber-400 font-mono">$250M</div>
+                  <div className="text-xs text-slate-300 font-medium">State Portfolio Governed (1,500 IT Staff / 6 Agencies)</div>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                  <div className="text-2xl font-black text-blue-400 font-mono">180+</div>
-                  <div className="text-xs text-slate-300 font-medium">Large-Scale Enterprise Deployments</div>
+                  <div className="text-2xl font-black text-blue-400 font-mono">30 Days</div>
+                  <div className="text-xs text-slate-300 font-medium">Executive Diagnostic to Board-Ready Charter</div>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                  <div className="text-2xl font-black text-emerald-400 font-mono">99.9%</div>
-                  <div className="text-xs text-slate-300 font-medium">Audit Pass Rate (NIST, HIPAA, DORA, SOC 2)</div>
+                  <div className="text-2xl font-black text-emerald-400 font-mono">100%</div>
+                  <div className="text-xs text-slate-300 font-medium">Audit Pass Rate (NIST 800-53, HIPAA, HHS OCR, SOC 2)</div>
                 </div>
               </div>
 

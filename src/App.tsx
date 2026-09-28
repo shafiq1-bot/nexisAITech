@@ -34,6 +34,7 @@ import { FreeToolsSection } from './components/FreeToolsSection';
 import { EnterpriseROIFramework } from './components/EnterpriseROIFramework';
 import { ERPModernizationSection } from './components/ERPModernizationSection';
 import { ExecutiveAdvisorySection } from './components/ExecutiveAdvisorySection';
+import { FractionalCIOSection } from './components/FractionalCIOSection';
 
 export default function App() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
@@ -120,6 +121,10 @@ export default function App() {
               onOpenAdvisor={() => setAdvisorOpen(true)}
               onOpenConsultation={() => handleOpenConsultation()}
               onOpenBookAudit={() => setBookAuditOpen(true)}
+            />
+            <FractionalCIOSection
+              onOpenConsultation={handleOpenConsultation}
+              onOpenCalendar={handleOpenCalendar}
             />
             <FreeToolsSection
               currentRegion={currentRegion}
@@ -284,6 +289,13 @@ export default function App() {
           <AIReadinessAssessment
             currentRegion={currentRegion}
             onOpenConsultation={handleOpenConsultation}
+          />
+        )}
+
+        {currentPage === 'fractional-cio' && (
+          <FractionalCIOSection
+            onOpenConsultation={handleOpenConsultation}
+            onOpenCalendar={handleOpenCalendar}
           />
         )}
 

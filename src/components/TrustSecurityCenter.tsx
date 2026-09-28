@@ -337,12 +337,12 @@ Contact: ${userEmail || '[Your Contact Email]'}`;
                 </div>
 
                 <div className="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-3">
-                  <div className="font-mono text-xs font-bold text-emerald-400 uppercase">Managing Principal & Leadership</div>
+                  <div className="font-mono text-xs font-bold text-emerald-400 uppercase">Owner & Executive Leadership</div>
                   <div className="text-base font-bold text-white">Shafiq Rahman</div>
                   <div className="space-y-1 text-slate-300">
-                    <div>Former CIO & Executive Managing Principal</div>
+                    <div>Owner, Chief Information Officer (CIO) & Managing Director</div>
                     <div>20+ Years Enterprise IT & Cybersecurity Transformation</div>
-                    <div>Regional Hubs: Owings Mills, MD (USA) | Riyadh (KSA) | Dubai (UAE)</div>
+                    <div>Regional Hubs: Owings Mills, MD (USA) | London (UK) | Frankfurt (DE) | Riyadh (KSA)</div>
                     <div>LinkedIn: https://linkedin.com/in/shafiq-rahman-cio</div>
                   </div>
                 </div>
@@ -656,7 +656,7 @@ Policy: https://nexisai.us/#trust-center
 Domain: nexisai.us
 Organization: Nexis Tech Group LLC
 Address: 11436 Cronhill Drive, Owings Mills, MD 21117, USA
-Primary Executive: Shafiq Rahman, Managing Principal / Former CIO`}
+Primary Executive: Shafiq Rahman, Owner & Chief Information Officer (CIO)`}
             </pre>
           </div>
         )}

@@ -47,29 +47,29 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-white">
-              Our Core Mission
+              Executive Leadership for Mission-Driven Institutions
             </h3>
             <p className="text-slate-300 text-sm leading-relaxed">
-              Nexis Tech Group was founded by a former Chief Information Officer to help healthcare systems, higher education institutions, government entities, and mid-market commercial enterprises modernize, secure, and monetize their IT ecosystems.
+              Nexis Tech Group is owned and led by former State Chief Information Officer (CIO) Shafiq Rahman to give healthcare, higher-education, and public-sector leaders experienced executive technology leadership to govern AI, reduce operational risk, and turn stalled priorities into an executable portfolio—without the cost or delay of a full-time CIO search.
             </p>
             <p className="text-slate-300 text-sm leading-relaxed">
-              We specialize in navigating complex transatlantic and global regulatory frameworks—including HIPAA, FERPA, NIST 800-53, SOC 2, European Union DORA (EU 2022/2554), EU AI Act (2024/1689), GDPR, Saudi Arabia NDMO/NCA ECC, and UAE TDRA standards—ensuring that every AI model, cloud pipeline, and Zero Trust boundary is fully compliant and sovereign.
+              We specialize in navigating high-stakes regulatory frameworks—including NIST AI Risk Management Framework, HHS OCR Cybersecurity Guidelines, HIPAA Security Rules, FERPA, NIST SP 800-53, and European DORA/EU AI Act—ensuring that every AI model, clinical pipeline, and modernization roadmap is fully governed and board-approved.
             </p>
 
             <div className="space-y-3 pt-2">
               <div className="flex items-start gap-3 text-xs text-slate-200">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong>Former CIO Stewardship:</strong> Founded and led by former enterprise CIO Shafiq Rahman, with real accountability over $250M+ IT budgets and boardroom governance.</span>
+                <span><strong>Former State CIO Stewardship:</strong> Directed an approximately $250 million technology portfolio and 1,500 IT staff across six agencies at the Maryland Department of Transportation.</span>
               </div>
 
               <div className="flex items-start gap-3 text-xs text-slate-200">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong>Domain Specialization:</strong> Deep specialization in Electronic Health Record (EHR) interoperability, Clean-Core ERP (SAP & Oracle), University HPC clusters, and GPU infrastructure.</span>
+                <span><strong>Higher Education & Health Systems Context:</strong> Long-tenure leadership as Director of Enterprise IT at University of Maryland, Baltimore (academic medicine, biomedical research, graduate health sciences).</span>
               </div>
 
               <div className="flex items-start gap-3 text-xs text-slate-200">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong>Global Multi-Regional Reach:</strong> Active client advisory across the Americas (HQ Owings Mills, MD), Europe (London & Frankfurt), and the Middle East (Riyadh & Dubai).</span>
+                <span><strong>Productized Diagnostic Model:</strong> 30-day bounded technology and AI executive diagnostic delivering an executive brief, priority portfolio (now/next/later/stop), and 90-day action charter.</span>
               </div>
             </div>
           </div>

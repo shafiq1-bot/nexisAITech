@@ -9,7 +9,8 @@ import {
   Lock, 
   Cpu, 
   BarChart3,
-  Globe2
+  Globe2,
+  Award
 } from 'lucide-react';
 import { Language, Region, PageId } from '../types';
 import { translations } from '../data/translations';
@@ -79,17 +80,15 @@ export const Hero: React.FC<HeroProps> = ({
 
           {/* Action CTAs */}
           <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
-            {onOpenBookAudit && (
-              <button
-                onClick={onOpenBookAudit}
-                className="px-7 py-3.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-all shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
-                id="hero-book-2026-audit-btn"
-              >
-                <Sparkles className="w-4 h-4 text-blue-200" />
-                <span>Book 2026 Audit</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            )}
+            <button
+              onClick={() => onNavigate('executive-advisory')}
+              className="px-7 py-3.5 text-xs font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-xl transition-all shadow-xl shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
+              id="hero-fractional-cio-btn"
+            >
+              <Award className="w-4 h-4 text-slate-950" />
+              <span>Fractional CIO & 30-Day Diagnostic</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
 
             <button
               onClick={onOpenConsultation}
@@ -100,13 +99,16 @@ export const Hero: React.FC<HeroProps> = ({
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
 
-            <a
-              href="#free-tools"
-              className="px-6 py-3.5 text-xs font-semibold text-emerald-300 bg-emerald-950/90 border border-emerald-800 hover:bg-emerald-900 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
-            >
-              <Cpu className="w-4 h-4 text-emerald-400" />
-              <span>Free Web SMS & Calling Tools</span>
-            </a>
+            {onOpenBookAudit && (
+              <button
+                onClick={onOpenBookAudit}
+                className="px-6 py-3.5 text-xs font-semibold text-blue-200 bg-slate-900 border border-slate-700 hover:bg-slate-800 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                id="hero-book-2026-audit-btn"
+              >
+                <Sparkles className="w-4 h-4 text-blue-400" />
+                <span>Book 2026 AI Audit</span>
+              </button>
+            )}
 
             <button
               onClick={onOpenAdvisor}
@@ -114,7 +116,7 @@ export const Hero: React.FC<HeroProps> = ({
               id="hero-ai-advisor-btn"
             >
               <BrainCircuit className="w-4 h-4 text-purple-400" />
-              <span>Interactive AI Strategy Assistant</span>
+              <span>AI Strategy Assistant</span>
             </button>
           </div>
 

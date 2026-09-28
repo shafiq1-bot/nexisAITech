@@ -22,8 +22,9 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
     // Page Titles
     const pageTitles: Record<PageId, string> = {
-      home: `Nexis AI | Executive AI Advisory & Zero Trust - ${regionName}`,
-      leadership: 'Executive Leadership Profile | Former CIO 20+ Yrs Transformation - Nexis AI',
+      home: `Nexis AI | Fractional CIO & AI Governance Advisory - ${regionName}`,
+      'fractional-cio': 'Fractional CIO & AI Governance Advisory | 30-Day Executive Diagnostic - Shafiq Rahman',
+      leadership: 'Executive Leadership Profile | Former State CIO Shafiq Rahman 20+ Yrs Transformation',
       markets: `Regional Market Strategy | US Primary Market, Saudi Arabia (KSA) & UAE Hubs - Nexis AI`,
       about: 'About Us | Executive Leadership, Vision & Global Offices - Nexis AI',
       services: 'Enterprise IT Consulting Services & Practice Areas | Nexis AI',
@@ -51,8 +52,9 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
     // Page Descriptions
     const pageDescriptions: Record<PageId, string> = {
-      home: `Nexis AI delivers Autonomous AI Agents, Zero Trust Cybersecurity, Healthcare IT (EHR/FHIR), and High Performance Computing solutions across ${regionName}.`,
-      leadership: 'Executive biography, career timeline, and transformation achievements of Shafiq Rahman, former CIO and managing director of Nexis AI.',
+      home: `Fractional CIO & AI Governance Advisory led by former State CIO Shafiq Rahman. 30-Day Executive Diagnostics and Retainers for Healthcare, Higher-Ed, and Public Sector across ${regionName}.`,
+      'fractional-cio': 'Executive technology leadership for healthcare, higher education, and public sector organizations. 30-Day Executive Diagnostic, Fractional CIO Retainers, and NIST AI RMF governance.',
+      leadership: 'Executive biography, career timeline, and transformation achievements of Shafiq Rahman, former State CIO (MDOT) and Director of Enterprise IT (UMB).',
       markets: 'Dedicated market insights and regional compliance architectures for US (Primary HQ), Saudi Arabia (Vision 2030), and UAE (AI Strategy 2031).',
       about: 'Meet the executive leadership and technical architects at Nexis AI driving enterprise IT modernization across the US, Saudi Arabia, and UAE.',
       services: 'Explore practice areas including Agentic AI Engineering, Zero Trust Security Operations, Healthcare Interoperability, and Higher Ed HPC Systems.',

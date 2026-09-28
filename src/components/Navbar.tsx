@@ -194,12 +194,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
-            onClick={() => onNavigate('executive-advisory')}
-            className={`hover:text-amber-400 transition-colors flex items-center gap-1 ${currentPage === 'executive-advisory' || currentPage === 'leadership' ? 'text-amber-400 font-bold' : ''}`}
-            id="nav-executive-advisory-link"
+            onClick={() => onNavigate('fractional-cio')}
+            className={`hover:text-amber-400 transition-colors flex items-center gap-1.5 ${currentPage === 'fractional-cio' || currentPage === 'executive-advisory' || currentPage === 'leadership' ? 'text-amber-400 font-bold' : ''}`}
+            id="nav-fractional-cio-link"
           >
-            <span className="text-[10px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.5 rounded font-mono uppercase font-extrabold">CIO</span>
-            <span>Advisory</span>
+            <span className="text-[10px] bg-amber-500 text-slate-950 font-black px-1.5 py-0.5 rounded font-mono uppercase">CIO</span>
+            <span>Fractional CIO</span>
           </button>
 
           <button
@@ -517,14 +517,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               Executive & Advisory
             </span>
             <button
-              onClick={() => { onNavigate('executive-advisory'); setMobileMenuOpen(false); }}
+              onClick={() => { onNavigate('fractional-cio'); setMobileMenuOpen(false); }}
               className="w-full text-left px-3 py-2.5 rounded-lg text-amber-300 hover:bg-amber-950/30 font-semibold border border-amber-900/40 flex items-center justify-between active:bg-amber-950/50"
             >
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-amber-400" />
-                <span>Executive Advisory (Former CIO)</span>
+                <span>Fractional CIO & 30-Day Diagnostic</span>
               </div>
-              <span className="text-[10px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.5 rounded font-mono font-bold">CIO</span>
+              <span className="text-[10px] bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded font-mono font-black">NEW</span>
             </button>
 
             <button

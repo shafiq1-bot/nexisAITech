@@ -4,6 +4,7 @@ export type Region = 'US' | 'EU' | 'KSA' | 'UAE';
 
 export type PageId = 
   | 'home'
+  | 'fractional-cio'
   | 'leadership'
   | 'executive-advisory'
   | 'roi-framework'

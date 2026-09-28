@@ -31,16 +31,16 @@ export const translations: Record<Language, Record<string, string>> = {
     uaeRegion: 'United Arab Emirates (Dubai Hub)',
 
     // Hero Section
-    heroHeadline: 'Executive Advisory Led by a Former CIO & Technology Leader',
-    heroSubheadline: '20+ years of experience delivering enterprise digital transformation, autonomous AI agents, Zero Trust security, and high-performance research computing across Americas, Europe, and strategic global enterprises.',
-    heroStat1Label: 'IT Infrastructure Managed',
-    heroStat1Value: '$500M+',
-    heroStat2Label: 'Security Compliance Rate',
-    heroStat2Value: '99.9%',
-    heroStat3Label: 'AI & Cloud Deployments',
-    heroStat3Value: '180+',
-    heroStat4Label: 'Enterprise Client CSAT',
-    heroStat4Value: '98.5%',
+    heroHeadline: 'Fractional CIO & AI Governance Advisory',
+    heroSubheadline: 'Executive technology leadership for healthcare, higher education, and public-sector organizations navigating modernization, cyber risk, and responsible AI. Led by former State CIO Shafiq Rahman.',
+    heroStat1Label: 'Former State Portfolio Governed',
+    heroStat1Value: '$250M',
+    heroStat2Label: 'Executive Diagnostic Cadence',
+    heroStat2Value: '30 Days',
+    heroStat3Label: 'Executive Experience',
+    heroStat3Value: '20+ Yrs',
+    heroStat4Label: 'Audit & Governance Pass Rate',
+    heroStat4Value: '100%',
 
     // Core Value Proposition
     valuePropTitle: 'Strategic Technology Excellence for Modern Enterprises',
@@ -123,16 +123,16 @@ export const translations: Record<Language, Record<string, string>> = {
     uaeRegion: 'الإمارات العربية المتحدة (دبي)',
 
     // Hero Section
-    heroHeadline: 'استشارات تنفيذية بقيادة رئيس تنفيذي سابق للمعلومات وقائد تقني',
-    heroSubheadline: 'أكثر من 20 عاماً من الخبرة في قيادة التحول الرقمي ووكلاء الذكاء الاصطناعي وهندسة Zero Trust عبر الأمريكتين وأوروبا والأسواق العالمية.',
-    heroStat1Label: 'قيمة البنية التحتية المدارية',
-    heroStat1Value: '+500 مليون$',
-    heroStat2Label: 'معدل الامتثال الأمني',
-    heroStat2Value: '99.9%',
-    heroStat3Label: 'مشاريع الذكاء الاصطناعي والسحابة',
-    heroStat3Value: '+180',
-    heroStat4Label: 'رضا العملاء المؤسسيين',
-    heroStat4Value: '98.5%',
+    heroHeadline: 'خدمات رئيس تنفيذي للمعلومات جزئي (Fractional CIO) وحوكمة الذكاء الاصطناعي',
+    heroSubheadline: 'قيادة تكنولوجية تنفيذية لمؤسسات الرعاية الصحية والتعليم العالي والقطاع العام لإدارة التحديث والمخاطر السيبرانية والذكاء الاصطناعي المسؤول. بقيادة رئيس تكنولوجيا حكومي سابق شفيق رحمن.',
+    heroStat1Label: 'محفظة حكومية تمت إدارتها',
+    heroStat1Value: '250M$',
+    heroStat2Label: 'دورة التشخيص التنفيذي',
+    heroStat2Value: '30 يوماً',
+    heroStat3Label: 'سنوات القيادة التنفيذية',
+    heroStat3Value: '+20 عاماً',
+    heroStat4Label: 'معدل اجتياز التدقيق والحوكمة',
+    heroStat4Value: '100%',
 
     // Core Value Proposition
     valuePropTitle: 'التميز الاستراتيجي للتكنولوجيا للمؤسسات الحديثة',
