@@ -325,7 +325,7 @@ export const FreeToolsSection: React.FC<FreeToolsSectionProps> = ({
                       type="text"
                       value={senderName}
                       onChange={(e) => setSenderName(e.target.value)}
-                      placeholder="e.g., Alex Vance (IT Lead)"
+                      placeholder="e.g., Alex Morgan (IT Lead)"
                       className="w-full bg-slate-900 border border-slate-700 text-slate-100 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-blue-500"
                     />
                   </div>

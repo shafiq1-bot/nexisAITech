@@ -267,7 +267,7 @@ export const ExecutiveAdvisorySection: React.FC<ExecutiveAdvisorySectionProps> =
                 <tr>
                   <td className="p-4 font-bold text-slate-200">ROI Horizon</td>
                   <td className="p-4 text-slate-400">Open-ended billable hours without guaranteed deliverables</td>
-                  <td className="p-4 text-emerald-300 font-medium bg-emerald-950/20">Fixed 14-day audit $\rightarrow$ 90-day production MVP with 4.2-month payback</td>
+                  <td className="p-4 text-emerald-300 font-medium bg-emerald-950/20">Defined diagnostic deliverables, phased sprint roadmaps, and measurable institutional ROI</td>
                 </tr>
                 <tr>
                   <td className="p-4 font-bold text-slate-200">Transatlantic Compliance</td>

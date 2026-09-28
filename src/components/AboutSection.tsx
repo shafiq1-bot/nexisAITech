@@ -82,27 +82,27 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-slate-900 p-4 rounded-xl border border-slate-800 text-center">
-                <BrainCircuit className="w-6 h-6 text-purple-400 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-white font-mono">180+</div>
-                <div className="text-[11px] text-slate-400 mt-1">Enterprise AI Deployed</div>
+                <Award className="w-6 h-6 text-amber-400 mx-auto mb-2" />
+                <div className="text-xl font-bold text-white font-mono">20+ Years</div>
+                <div className="text-[11px] text-slate-400 mt-1">Executive Leadership</div>
               </div>
 
               <div className="bg-slate-900 p-4 rounded-xl border border-slate-800 text-center">
-                <ShieldCheck className="w-6 h-6 text-emerald-400 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-white font-mono">99.9%</div>
-                <div className="text-[11px] text-slate-400 mt-1">Security Audit Pass Rate</div>
+                <Building2 className="w-6 h-6 text-emerald-400 mx-auto mb-2" />
+                <div className="text-xl font-bold text-white font-mono">State CIO</div>
+                <div className="text-[11px] text-slate-400 mt-1">Maryland Dept of Transportation</div>
               </div>
 
               <div className="bg-slate-900 p-4 rounded-xl border border-slate-800 text-center">
                 <Stethoscope className="w-6 h-6 text-cyan-400 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-white font-mono">35+</div>
-                <div className="text-[11px] text-slate-400 mt-1">Hospital Systems Advised</div>
+                <div className="text-xl font-bold text-white font-mono">UMB / UMSOM</div>
+                <div className="text-[11px] text-slate-400 mt-1">Academic Medicine & Health IT</div>
               </div>
 
               <div className="bg-slate-900 p-4 rounded-xl border border-slate-800 text-center">
                 <GraduationCap className="w-6 h-6 text-blue-400 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-white font-mono">50+</div>
-                <div className="text-[11px] text-slate-400 mt-1">Universities & HPC Labs</div>
+                <div className="text-xl font-bold text-white font-mono">MS, MBA, MCS</div>
+                <div className="text-[11px] text-slate-400 mt-1">PMP® Certified Leader</div>
               </div>
             </div>
 

@@ -562,7 +562,7 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
                   <div className="space-y-2 pt-1">
                     <input
                       type="text"
-                      placeholder="Your Name (e.g., Alex Vance)"
+                      placeholder="Your Name (e.g., Alex Morgan)"
                       value={visitorName}
                       onChange={(e) => setVisitorName(e.target.value)}
                       className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"

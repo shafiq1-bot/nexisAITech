@@ -17,7 +17,8 @@ import {
   Server,
   ArrowRight,
   Mail,
-  Calendar
+  Calendar,
+  BarChart3
 } from 'lucide-react';
 import { Language, Region, PageId } from '../types';
 import { translations } from '../data/translations';
@@ -175,272 +176,166 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <div>
             <span className="text-xl font-extrabold tracking-tight text-white block font-sans">
-              NEXIS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400">AI</span>
+              NEXIS <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500">AI</span>
             </span>
             <span className="text-[9px] font-extrabold tracking-wider text-slate-400 uppercase font-mono block -mt-1">
-              Advisory • Consulting • Services
+              Executive Advisory · Led by Shafiq Rahman
             </span>
           </div>
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-4 text-sm font-medium text-slate-300">
+        <div className="hidden xl:flex items-center gap-4 text-xs font-semibold text-slate-300">
           <button
             onClick={() => onNavigate('home')}
-            className={`hover:text-blue-400 transition-colors ${currentPage === 'home' ? 'text-blue-400 font-semibold' : ''}`}
+            className={`hover:text-amber-400 transition-colors ${currentPage === 'home' ? 'text-amber-400 font-bold' : ''}`}
             id="nav-home-link"
           >
-            {t.navHome}
+            Home
           </button>
 
           <button
             onClick={() => onNavigate('fractional-cio')}
-            className={`hover:text-amber-400 transition-colors flex items-center gap-1.5 ${currentPage === 'fractional-cio' || currentPage === 'executive-advisory' || currentPage === 'leadership' ? 'text-amber-400 font-bold' : ''}`}
+            className={`hover:text-amber-400 transition-colors flex items-center gap-1 ${currentPage === 'fractional-cio' ? 'text-amber-400 font-bold' : ''}`}
             id="nav-fractional-cio-link"
           >
-            <span className="text-[10px] bg-amber-500 text-slate-950 font-black px-1.5 py-0.5 rounded font-mono uppercase">CIO</span>
+            <span className="text-[9px] bg-amber-500 text-slate-950 font-black px-1.5 py-0.5 rounded font-mono uppercase">CIO</span>
             <span>Fractional CIO</span>
           </button>
 
           <button
-            onClick={() => onNavigate('roi-framework')}
-            className={`hover:text-emerald-400 transition-colors flex items-center gap-1 ${currentPage === 'roi-framework' ? 'text-emerald-400 font-bold' : ''}`}
-            id="nav-roi-framework-link"
+            onClick={() => onNavigate('cio-advisory')}
+            className={`hover:text-amber-400 transition-colors ${currentPage === 'cio-advisory' ? 'text-amber-400 font-bold' : ''}`}
+            id="nav-cio-advisory-link"
           >
-            <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-mono uppercase font-extrabold">ROI</span>
-            <span>Framework</span>
+            CIO Advisory
           </button>
 
           <button
-            onClick={() => onNavigate('erp-modernization')}
-            className={`hover:text-indigo-400 transition-colors ${currentPage === 'erp-modernization' ? 'text-indigo-400 font-bold' : ''}`}
-            id="nav-erp-modernization-link"
+            onClick={() => onNavigate('ai-strategy')}
+            className={`hover:text-amber-400 transition-colors ${currentPage === 'ai-strategy' || currentPage === 'ai-governance' ? 'text-amber-400 font-bold' : ''}`}
+            id="nav-ai-strategy-link"
           >
-            ERP & Cloud
+            AI Strategy & Governance
           </button>
 
           <button
-            onClick={() => onNavigate('case-studies')}
-            className={`hover:text-blue-400 transition-colors ${currentPage === 'case-studies' ? 'text-blue-400 font-semibold' : ''}`}
-            id="nav-casestudies-link"
+            onClick={() => onNavigate('healthcare-cio-advisory')}
+            className={`hover:text-emerald-400 transition-colors ${currentPage === 'healthcare-cio-advisory' ? 'text-emerald-400 font-bold' : ''}`}
+            id="nav-healthcare-link"
           >
-            Case Studies
+            Healthcare
           </button>
 
           <button
-            onClick={() => onNavigate('bd-agents')}
+            onClick={() => onNavigate('higher-education-cio-advisory')}
+            className={`hover:text-blue-400 transition-colors ${currentPage === 'higher-education-cio-advisory' ? 'text-blue-400 font-bold' : ''}`}
+            id="nav-higher-ed-link"
+          >
+            Higher Ed
+          </button>
+
+          <button
+            onClick={() => onNavigate('insights')}
+            className={`hover:text-amber-400 transition-colors ${currentPage === 'insights' ? 'text-amber-400 font-bold' : ''}`}
+            id="nav-insights-link"
+          >
+            Insights
+          </button>
+
+          <button
+            onClick={() => onNavigate('assessment')}
             className={`flex items-center gap-1 px-2.5 py-1 rounded-lg border font-mono text-xs transition-all ${
-              currentPage === 'bd-agents'
-                ? 'bg-cyan-950 text-cyan-300 border-cyan-500 font-bold shadow-lg shadow-cyan-500/20'
-                : 'bg-slate-900/80 text-cyan-400 border-cyan-800/80 hover:bg-slate-800 hover:border-cyan-500'
+              currentPage === 'assessment'
+                ? 'bg-amber-500 text-slate-950 border-amber-400 font-black shadow-md'
+                : 'bg-amber-950/40 text-amber-300 border-amber-800/80 hover:bg-amber-900/60'
             }`}
-            id="nav-bd-agents-link"
+            id="nav-assessment-link"
           >
-            <Bot className="w-3.5 h-3.5 text-cyan-400" />
-            <span>AI Lead Agents</span>
-            <span className="bg-cyan-500 text-slate-950 text-[9px] font-extrabold px-1 rounded uppercase">New</span>
+            <BarChart3 className="w-3.5 h-3.5" />
+            <span>CIO Assessment</span>
           </button>
 
           <button
-            onClick={() => onNavigate('trust-center')}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg border font-mono text-xs transition-all ${
-              currentPage === 'trust-center'
-                ? 'bg-emerald-950 text-emerald-300 border-emerald-500 font-bold shadow-lg shadow-emerald-500/20'
-                : 'bg-slate-900/80 text-emerald-400 border-emerald-800/80 hover:bg-slate-800 hover:border-emerald-500'
-            }`}
-            id="nav-trust-center-link"
+            onClick={() => onNavigate('about')}
+            className={`hover:text-amber-400 transition-colors ${currentPage === 'about' || currentPage === 'leadership' ? 'text-amber-400 font-bold' : ''}`}
+            id="nav-about-link"
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Trust & Domain Security</span>
-            <span className="bg-emerald-500 text-slate-950 text-[9px] font-extrabold px-1 rounded uppercase">nexisai.us</span>
+            About Shafiq
           </button>
 
-          <button
-            onClick={() => onNavigate('admin')}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg border font-mono text-xs transition-all ${
-              currentPage === 'admin'
-                ? 'bg-blue-950 text-blue-300 border-blue-500 font-bold shadow-lg shadow-blue-500/20'
-                : 'bg-slate-900/80 text-slate-300 border-slate-700 hover:bg-slate-800 hover:border-blue-500'
-            }`}
-            id="nav-admin-portal-link"
-          >
-            <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
-            <span>Admin Portal</span>
-          </button>
-
-          <button
-            onClick={() => onNavigate('markets')}
-            className={`flex items-center gap-1 hover:text-blue-400 transition-colors ${currentPage === 'markets' ? 'text-blue-400 font-bold' : ''}`}
-            id="nav-markets-link"
-          >
-            <span>Markets</span>
-          </button>
-
-          {/* Services Menu Dropdown */}
+          {/* More Capabilities Dropdown */}
           <div 
             className="relative"
             onMouseEnter={() => setServicesDropdownOpen(true)}
             onMouseLeave={() => setServicesDropdownOpen(false)}
           >
             <button
-              onClick={() => onNavigate('services')}
-              className={`flex items-center gap-1 hover:text-blue-400 transition-colors py-2 ${
-                currentPage === 'services' || currentPage === 'service-detail' || currentPage === 'enterprise-architecture' || currentPage === 'research-computing' || currentPage === 'hardware-infrastructure' ? 'text-blue-400 font-semibold' : ''
-              }`}
-              id="nav-services-dropdown-btn"
+              className="flex items-center gap-1 text-slate-400 hover:text-white transition-colors py-2"
+              id="nav-more-dropdown-btn"
             >
-              {t.navServices}
-              <ChevronDown className={`w-4 h-4 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
+              <span>More</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {servicesDropdownOpen && (
-              <div className="absolute left-0 top-full w-80 bg-slate-900 border border-slate-700/90 rounded-xl shadow-2xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                <div className="text-xs font-semibold text-slate-400 px-3 py-1.5 uppercase tracking-wider">Practice Areas</div>
-
+              <div className="absolute right-0 top-full w-72 bg-slate-900 border border-slate-700/90 rounded-xl shadow-2xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                 <button
-                  onClick={() => { onNavigate('executive-advisory'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left flex items-start gap-3 p-2 rounded-lg hover:bg-slate-800 transition-colors group"
+                  onClick={() => { onNavigate('interim-cio'); setServicesDropdownOpen(false); }}
+                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
                 >
-                  <Sparkles className="w-4 h-4 text-amber-400 mt-0.5" />
-                  <div>
-                    <div className="text-xs font-bold text-slate-100 group-hover:text-amber-300">Executive Advisory (Former CIO)</div>
-                    <div className="text-[11px] text-slate-400">Fractional CIO, CAIO, vCISO & Boardroom Strategy</div>
-                  </div>
+                  <div className="font-bold text-red-400">Interim CIO Mandates</div>
+                  <div className="text-[11px] text-slate-400">Transition, crisis & vacancy leadership</div>
                 </button>
 
                 <button
-                  onClick={() => { onNavigate('roi-framework'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left flex items-start gap-3 p-2 rounded-lg hover:bg-slate-800 transition-colors group"
+                  onClick={() => { onNavigate('technology-governance'); setServicesDropdownOpen(false); }}
+                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
                 >
-                  <FileCheck2 className="w-4 h-4 text-emerald-400 mt-0.5" />
-                  <div>
-                    <div className="text-xs font-bold text-slate-100 group-hover:text-emerald-300">Enterprise Value Framework (EVF™)</div>
-                    <div className="text-[11px] text-slate-400">Quantified ROI, TCO & Payback Realization</div>
-                  </div>
+                  <div className="font-bold text-amber-300">Technology Governance</div>
+                  <div className="text-[11px] text-slate-400">Steering cadence, TCO & board oversight</div>
                 </button>
 
                 <button
-                  onClick={() => { onNavigate('erp-modernization'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left flex items-start gap-3 p-2 rounded-lg hover:bg-slate-800 transition-colors group"
+                  onClick={() => { onNavigate('case-studies'); setServicesDropdownOpen(false); }}
+                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
                 >
-                  <Server className="w-4 h-4 text-indigo-400 mt-0.5" />
-                  <div>
-                    <div className="text-xs font-bold text-slate-100 group-hover:text-indigo-300">ERP Modernization & Clean Core</div>
-                    <div className="text-[11px] text-slate-400">SAP S/4HANA, Oracle Cloud, NetSuite & Workday</div>
-                  </div>
-                </button>
-                
-                <button
-                  onClick={() => { onNavigate('enterprise-architecture'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left flex items-start gap-3 p-2 rounded-lg hover:bg-slate-800 transition-colors group"
-                >
-                  <FileCheck2 className="w-4 h-4 text-indigo-400 mt-0.5" />
-                  <div>
-                    <div className="text-xs font-bold text-slate-100 group-hover:text-indigo-300">Enterprise Architecture</div>
-                    <div className="text-[11px] text-slate-400">Application Portfolio & TIME Matrix</div>
-                  </div>
+                  <div className="font-bold text-emerald-400">Verified Case Studies</div>
+                  <div className="text-[11px] text-slate-400">Documented institutional transformations</div>
                 </button>
 
                 <button
-                  onClick={() => { onNavigate('research-computing'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left flex items-start gap-3 p-2 rounded-lg hover:bg-slate-800 transition-colors group"
+                  onClick={() => { onNavigate('resources'); setServicesDropdownOpen(false); }}
+                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
                 >
-                  <Server className="w-4 h-4 text-blue-400 mt-0.5" />
-                  <div>
-                    <div className="text-xs font-bold text-slate-100 group-hover:text-blue-300">Research Computing</div>
-                    <div className="text-[11px] text-slate-400">HPC Clusters, Slurm & NVIDIA GPUs</div>
-                  </div>
+                  <div className="font-bold text-blue-400">Executive Guides & Checklists</div>
+                  <div className="text-[11px] text-slate-400">10 CIO frameworks & lead magnets</div>
                 </button>
 
                 <button
-                  onClick={() => { onNavigate('hardware-infrastructure'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left flex items-start gap-3 p-2 rounded-lg hover:bg-slate-800 transition-colors group"
+                  onClick={() => { onNavigate('trust-center'); setServicesDropdownOpen(false); }}
+                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
                 >
-                  <Building2 className="w-4 h-4 text-emerald-400 mt-0.5" />
-                  <div>
-                    <div className="text-xs font-bold text-slate-100 group-hover:text-emerald-300">Hardware Infrastructure</div>
-                    <div className="text-[11px] text-slate-400">Data Centers, Cisco, Dell & HPE</div>
-                  </div>
+                  <div className="font-bold text-slate-200">Trust & Security Center</div>
+                  <div className="text-[11px] text-slate-400">Domain verification & RFC 9116</div>
                 </button>
 
                 <button
-                  onClick={() => { onNavigate('service-detail', 'ai-transformation'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left flex items-start gap-3 p-2 rounded-lg hover:bg-slate-800 transition-colors group"
+                  onClick={() => { onNavigate('admin'); setServicesDropdownOpen(false); }}
+                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-400 border-t border-slate-800 mt-1 block"
                 >
-                  <BrainCircuit className="w-4 h-4 text-purple-400 mt-0.5" />
-                  <div>
-                    <div className="text-xs font-bold text-slate-100 group-hover:text-purple-300">AI Transformation</div>
-                    <div className="text-[11px] text-slate-400">Autonomous Agents & RAG</div>
-                  </div>
-                </button>
-
-                <button
-                  onClick={() => { onNavigate('service-detail', 'cybersecurity'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left flex items-start gap-3 p-2 rounded-lg hover:bg-slate-800 transition-colors group"
-                >
-                  <ShieldCheck className="w-4 h-4 text-emerald-400 mt-0.5" />
-                  <div>
-                    <div className="text-xs font-bold text-slate-100 group-hover:text-emerald-300">Cybersecurity & Zero Trust</div>
-                    <div className="text-[11px] text-slate-400">NIST 800-53 & CMMC 2.0</div>
-                  </div>
+                  <div className="font-bold text-slate-400">Admin Portal / CRM</div>
                 </button>
               </div>
             )}
           </div>
-
-          <button
-            onClick={() => onNavigate('industries')}
-            className={`hover:text-blue-400 transition-colors ${currentPage === 'industries' ? 'text-blue-400 font-semibold' : ''}`}
-            id="nav-industries-link"
-          >
-            {t.navIndustries}
-          </button>
-
-          <button
-            onClick={() => onNavigate('resources')}
-            className={`hover:text-blue-400 transition-colors ${currentPage === 'resources' ? 'text-blue-400 font-semibold' : ''}`}
-            id="nav-resources-link"
-          >
-            {t.navResources}
-          </button>
         </div>
 
-        {/* Action Buttons: Book Audit, Free Tools, Google Calendar, AI Strategy Assistant */}
-        <div className="hidden lg:flex items-center gap-2">
-          {onOpenBookAudit && (
-            <button
-              onClick={onOpenBookAudit}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-extrabold text-white bg-blue-600 hover:bg-blue-500 rounded-lg shadow-md transition-all cursor-pointer ring-1 ring-blue-400/50"
-              id="book-2026-audit-nav-btn"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-blue-200" />
-              <span>Book 2026 Audit</span>
-            </button>
-          )}
-
-          <a
-            href="#free-tools"
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-emerald-300 bg-emerald-950/80 border border-emerald-800 rounded-lg hover:bg-emerald-900 transition-all shadow-sm cursor-pointer"
-          >
-            <PhoneCall className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Free Web Tools</span>
-          </a>
-
-          {onOpenCalendar && (
-            <button
-              onClick={onOpenCalendar}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-cyan-300 bg-cyan-950/80 border border-cyan-800/80 rounded-lg hover:bg-cyan-900 transition-all shadow-sm cursor-pointer"
-              id="google-calendar-header-btn"
-              title="Open Google Calendar Briefings Hub"
-            >
-              <Calendar className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Calendar</span>
-            </button>
-          )}
-
+        {/* Action Buttons: Schedule Conversation, CIO Assessment, AI Advisor */}
+        <div className="hidden xl:flex items-center gap-2.5">
           <button
-            onClick={onOpenAdvisor}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-purple-300 bg-purple-950/80 border border-purple-700/70 rounded-lg hover:bg-purple-900 transition-all shadow-sm cursor-pointer"
+            onClick={() => onNavigate('ai-advisor')}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-purple-300 bg-purple-950/80 border border-purple-700/70 rounded-xl hover:bg-purple-900 transition-all shadow-sm cursor-pointer"
             id="ai-advisor-header-btn"
           >
             <BrainCircuit className="w-3.5 h-3.5 text-purple-400" />
@@ -448,12 +343,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
-            onClick={onOpenConsultation}
-            className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg hover:from-blue-500 hover:to-indigo-500 transition-all shadow-md shadow-blue-900/40 hover:shadow-blue-600/30 cursor-pointer"
-            id="schedule-consultation-header-btn"
+            onClick={() => onNavigate('schedule')}
+            className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 rounded-xl hover:from-amber-300 hover:to-amber-400 transition-all shadow-md shadow-amber-500/20 cursor-pointer"
+            id="schedule-conversation-header-btn"
           >
-            <PhoneCall className="w-3.5 h-3.5" />
-            <span>{t.scheduleConsultation}</span>
+            <Calendar className="w-3.5 h-3.5 text-slate-950" />
+            <span>Schedule Conversation</span>
           </button>
         </div>
 

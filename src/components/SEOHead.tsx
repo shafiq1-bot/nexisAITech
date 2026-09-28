@@ -15,72 +15,94 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   useEffect(() => {
     const regionName =
       currentRegion === 'KSA'
-        ? 'Saudi Arabia (Riyadh)'
+        ? 'Saudi Arabia (Riyadh Hub)'
         : currentRegion === 'UAE'
-        ? 'United Arab Emirates (Dubai)'
+        ? 'United Arab Emirates (Dubai Hub)'
         : 'United States (Owings Mills, MD)';
 
-    // Page Titles
-    const pageTitles: Record<PageId, string> = {
-      home: `Nexis AI | Fractional CIO & AI Governance Advisory - ${regionName}`,
-      'fractional-cio': 'Fractional CIO & AI Governance Advisory | 30-Day Executive Diagnostic - Shafiq Rahman',
-      leadership: 'Executive Leadership Profile | Former State CIO Shafiq Rahman 20+ Yrs Transformation',
-      markets: `Regional Market Strategy | US Primary Market, Saudi Arabia (KSA) & UAE Hubs - Nexis AI`,
-      about: 'About Us | Executive Leadership, Vision & Global Offices - Nexis AI',
-      services: 'Enterprise IT Consulting Services & Practice Areas | Nexis AI',
+    // Comprehensive Page Titles
+    const pageTitles: Partial<Record<PageId, string>> = {
+      home: 'Nexis AI | Fractional CIO, CIO Advisory & Enterprise AI Governance',
+      'fractional-cio': 'Fractional CIO Services | Executive Technology Leadership - Shafiq Rahman',
+      'cio-advisory': 'CIO Advisory & Boardroom Technology Governance | Nexis AI',
+      'interim-cio': 'Interim CIO & Technology Executive Transition Leadership | Nexis AI',
+      'ai-strategy': 'Enterprise AI Strategy & Portfolio Modernization | Nexis AI',
+      'ai-governance': 'Enterprise AI Governance, NIST AI RMF & Model Risk | Nexis AI',
+      'healthcare-cio-advisory': 'Healthcare Technology & Clinical Informatics Advisory | Nexis AI',
+      'higher-education-cio-advisory': 'Higher Education & Academic Medical Center CIO Advisory | Nexis AI',
+      'technology-governance': 'Technology Governance, IT Steering & Board Reporting | Nexis AI',
+      'do-you-need-a-fractional-cio': 'Do You Need a Fractional CIO? Executive Diagnostic Guide | Nexis AI',
+      assessment: '12-Domain CIO Maturity Assessment & Executive Scorecard | Nexis AI',
+      'ai-advisor': 'AI Executive Qualification & Advisory Assistant | Nexis AI',
+      'case-studies': 'Verified & Documented Institutional Transformations | Nexis AI',
+      resources: 'Executive Thought Leadership, Lead Magnets & CIO Checklists | Nexis AI',
+      insights: 'Executive Insights, Architecture Guides & CIO Strategy | Nexis AI',
+      schedule: 'Schedule a CIO Advisory Conversation with Shafiq Rahman | Nexis AI',
+      about: 'About Shafiq Rahman, MS, MBA, MCS, PMP® | Former State CIO & Executive Advisor',
+      leadership: 'Shafiq Rahman, MS, MBA, MCS, PMP® - Leadership Profile & Credentials | Nexis AI',
+      markets: `Regional Market Strategy | US Primary Market & International Hubs - Nexis AI`,
+      services: 'Enterprise Technology Advisory Practice Areas | Nexis AI',
       'service-detail': 'Enterprise Practice Area Details | Nexis AI',
-      'enterprise-architecture': 'Enterprise Architecture Practice | Application Portfolio & TIME Matrix - Nexis AI',
-      'research-computing': 'Research Computing Practice | HPC Clusters, Slurm & NVIDIA GPUs - Nexis AI',
-      'hardware-infrastructure': 'Hardware Infrastructure Practice | Data Centers, Cisco & Dell EMC - Nexis AI',
-      industries: 'Industry Practice Groups | Healthcare IT, Higher Ed HPC & Government - Nexis AI',
+      'enterprise-architecture': 'Enterprise Architecture & Application Portfolio | Nexis AI',
+      'research-computing': 'Research Computing Practice | HPC Clusters & AI Supercomputing | Nexis AI',
+      'hardware-infrastructure': 'Hardware Infrastructure Practice | Data Centers & Networking | Nexis AI',
+      industries: 'Industry Practice Groups | Healthcare, Higher Ed & Public Sector | Nexis AI',
       'industry-detail': 'Industry Practice Solutions | Nexis AI',
-      government: 'Public Sector Practice | State Government, Transportation & NIST 800-53 - Nexis AI',
-      'case-studies': 'Detailed Client Case Studies & Architecture Blueprints | Nexis AI',
-      'ai-solutions': 'Generative AI, Agentic Workflows & Enterprise RAG Showcase | Nexis AI',
-      'bd-agents': 'AI Business Development & Lead Generator Marketing Agents | Nexis AI',
-      cybersecurity: 'Zero Trust Cybersecurity, NIST 800-53, HIPAA & NCA ECC Compliance - Nexis AI',
-      resources: 'Whitepapers, Compliance Guides, Case Studies & Insights | Nexis AI',
-      contact: 'Contact Us | Owings Mills HQ, Riyadh & Dubai Regional Hubs - Nexis AI',
-      assessment: 'Free Interactive AI Readiness & Security Maturity Scorecard | Nexis AI',
-      'deployment-guide': 'Enterprise Architecture & Deployment Specs | Nexis AI',
-      'trust-center': 'Domain Verification & Security Trust Center | nexisai.us - Nexis AI',
-      admin: 'Admin Command Portal & Client Database Workflow | Nexis AI',
-      'executive-advisory': 'Former-CIO Executive Advisory & Boardroom Strategy | Nexis AI',
-      'erp-modernization': 'Enterprise ERP Modernization & Clean Core Automation (SAP S/4HANA & Oracle) | Nexis AI',
-      'roi-framework': 'Enterprise Value Framework (EVF™) & 90-Day ROI Realization | Nexis AI',
+      government: 'Public Sector Practice | State Government IT & NIST 800-53 | Nexis AI',
+      'ai-solutions': 'Enterprise AI Systems & Agentic Workflows | Nexis AI',
+      'bd-agents': 'AI Business Development & Automated Lead Qualification | Nexis AI',
+      cybersecurity: 'Zero Trust Cybersecurity, NIST 800-53 & HIPAA Compliance | Nexis AI',
+      contact: 'Connect with Shafiq Rahman & Nexis AI Advisory Practice',
+      'deployment-guide': 'Technical Specifications & Cloud Architecture Specs | Nexis AI',
+      'trust-center': 'Domain Verification, Security Trust Center & RFC 9116 | nexisai.us',
+      admin: 'Admin Command Portal & Client CRM | Nexis AI',
+      'executive-advisory': 'Executive Advisory & Boardroom Technology Strategy | Nexis AI',
+      'erp-modernization': 'Enterprise ERP Modernization & Clean Core Automation | Nexis AI',
+      'roi-framework': 'Enterprise Value Framework & Technology Realization | Nexis AI',
     };
 
-    // Page Descriptions
-    const pageDescriptions: Record<PageId, string> = {
-      home: `Fractional CIO & AI Governance Advisory led by former State CIO Shafiq Rahman. 30-Day Executive Diagnostics and Retainers for Healthcare, Higher-Ed, and Public Sector across ${regionName}.`,
-      'fractional-cio': 'Executive technology leadership for healthcare, higher education, and public sector organizations. 30-Day Executive Diagnostic, Fractional CIO Retainers, and NIST AI RMF governance.',
-      leadership: 'Executive biography, career timeline, and transformation achievements of Shafiq Rahman, former State CIO (MDOT) and Director of Enterprise IT (UMB).',
-      markets: 'Dedicated market insights and regional compliance architectures for US (Primary HQ), Saudi Arabia (Vision 2030), and UAE (AI Strategy 2031).',
-      about: 'Meet the executive leadership and technical architects at Nexis AI driving enterprise IT modernization across the US, Saudi Arabia, and UAE.',
-      services: 'Explore practice areas including Agentic AI Engineering, Zero Trust Security Operations, Healthcare Interoperability, and Higher Ed HPC Systems.',
-      'service-detail': 'Detailed architectural overview and implementation roadmap for Nexis AI enterprise technology practice areas.',
-      'enterprise-architecture': 'Application portfolio rationalization, TIME matrix framework, IT governance, TOGAF 10 reference architectures, and technology roadmaps.',
-      'research-computing': 'HPC cluster deployment, Slurm workload management, NVIDIA DGX H100 SuperPODs, parallel storage (Lustre/GPFS), and CMMC research enclaves.',
-      'hardware-infrastructure': 'Data center consolidation, Cisco ACI networking, Dell EMC PowerEdge AI racks, HPE Cray supercomputers, Nutanix HCI, and VMware vSphere.',
-      industries: 'Tailored technology solutions for Healthcare (EHR/FHIR), Higher Education (HPC/FERPA), Financial Services (SOC 2), and Public Sector Governance.',
-      'industry-detail': 'In-depth industry capabilities and compliance frameworks engineered by Nexis AI.',
-      government: 'NIST SP 800-53 Rev 5 compliance, StateRAMP/FedRAMP enclaves, Department of Transportation systems, and CJIS public safety networks.',
-      'case-studies': 'Detailed enterprise transformation case studies covering client challenges, architecture flow diagrams, technologies used, and business metrics.',
-      'ai-solutions': 'Discover custom LLMs, RAG architectures, multi-agent orchestrations, and automated workflow solutions for enterprise platforms.',
-      'bd-agents': 'Automated B2B lead generation agents, personalized sales email drafting, and customer attraction AI marketing tools for business development.',
-      cybersecurity: 'Zero Trust Architecture, SIEM/SOAR monitoring, Penetration Testing, and compliance mapping for NIST 800-53, HIPAA, and KSA NCA ECC.',
-      resources: 'Download executive research, NIST compliance checklists, AI implementation whitepapers, and regional regulatory guides.',
-      contact: 'Connect with Nexis AI executive consultants at our Owings Mills, MD headquarters or regional hubs in Riyadh and Dubai. Call or text (443) 608-5425.',
-      assessment: 'Take the 3-minute interactive AI & Security Maturity Scorecard to receive an instant compliance report and architectural recommendations.',
-      'deployment-guide': 'Technical specifications, API docs, deployment blueprints, and system performance benchmarks.',
-      'trust-center': 'Official domain verification, RFC 9116 security.txt disclosure, DMARC/SPF authentication proofs, and Infoblox security unblock guide for nexisai.us.',
-      admin: 'Executive admin portal for managing consultation requests, assessment scorecards, and client communications.',
-      'executive-advisory': 'Former-CIO C-suite advisory, boardroom technology guidance, Fractional CAIO, and vCISO strategic leadership across Americas and Europe.',
-      'erp-modernization': 'Modernize legacy SAP and Oracle ERP systems with a clean core architecture, agentic automation, and zero downtime cloud migration.',
-      'roi-framework': 'Calculate projected enterprise cost savings, payback period, and business value realization with Nexis AI EVF™ 90-day ROI framework.',
+    // Concise, substantiated descriptions
+    const pageDescriptions: Partial<Record<PageId, string>> = {
+      home: 'Nexis AI provides Fractional CIO leadership and CIO Advisory for organizations navigating technology change, led by former State CIO Shafiq Rahman, MS, MBA, MCS, PMP®.',
+      'fractional-cio': 'Executive technology leadership without hiring a full-time CIO. Strategy, IT operating model, cybersecurity governance, AI strategy, cloud, and board reporting.',
+      'cio-advisory': 'Strategic technology advisory for CEOs, presidents, boards, and CFOs. Board technology briefings, vendor evaluation, IT investment, and enterprise architecture.',
+      'interim-cio': 'Experienced interim technology executive leadership during leadership transitions, restructuring, digital transformations, or unexpected vacancies.',
+      'ai-strategy': 'Pragmatic enterprise AI strategy: readiness assessments, use-case portfolios, data readiness, responsible AI, and measurable institutional value.',
+      'ai-governance': 'Systematic AI risk management aligned with NIST AI RMF 1.0, data classification, vendor AI audits, policy formulation, and board oversight.',
+      'healthcare-cio-advisory': 'Clinical informatics, EHR environments, HL7/FHIR interoperability, HIPAA compliance, and technology leadership for hospitals and health systems.',
+      'higher-education-cio-advisory': 'Higher education CIO strategy, research computing, HPC clusters, student technology, FERPA compliance, and academic health center integration.',
+      'technology-governance': 'IT steering committee frameworks, investment prioritization, architecture review, vendor SLAs, and board-ready executive reporting.',
+      'do-you-need-a-fractional-cio': 'Evaluate whether your organization needs an experienced Fractional CIO to steer technology strategy, security, and digital transformation.',
+      assessment: 'Evaluate your institution across 12 core CIO domains including strategy, cybersecurity, cloud, AI readiness, talent, and data governance.',
+      'ai-advisor': 'Engage the Nexis AI Executive Assistant to explore advisory services, qualify organizational needs, and schedule an executive discussion with Shafiq Rahman.',
+      'case-studies': 'Documented, anonymized case studies highlighting executive technology leadership across state government, academic medicine, and research institutions.',
+      resources: 'Download executive decision guides, CEO checklists, CIO assessment tools, and AI governance frameworks for leadership teams.',
+      insights: 'In-depth executive articles on fractional CIO leadership, AI governance, health system technology, and enterprise architecture by Shafiq Rahman.',
+      schedule: 'Book a confidential 20-minute executive introduction or 45-minute advisory scoping conversation with Shafiq Rahman, MS, MBA, MCS, PMP®.',
+      about: 'Executive biography of Shafiq Rahman, MS, MBA, MCS, PMP®: 20+ years of technology leadership across state government, academic health systems, and enterprise IT.',
+      leadership: 'Credentials, education, and career leadership of Shafiq Rahman, former CIO of MDOT and IT executive at University of Maryland, Baltimore.',
+      markets: 'Serving organizations across the United States with primary offices in Maryland, and international advisory hubs for global engagements.',
+      services: 'Executive technology advisory, enterprise architecture, cybersecurity governance, clinical informatics, and AI strategy capabilities.',
+      'service-detail': 'Detailed framework and deliverables for Nexis AI executive advisory practices.',
+      'enterprise-architecture': 'TOGAF-aligned application rationalization, technology standards, and cloud architecture modernization.',
+      'research-computing': 'High-performance computing (HPC) cluster strategy, research enclaves, and scientific computing infrastructure.',
+      'hardware-infrastructure': 'Strategic data center consolidation, enterprise networking, and core infrastructure governance.',
+      industries: 'Deep executive domain expertise across Healthcare, Higher Education, and Public Sector / State Agencies.',
+      'industry-detail': 'Industry-specific technology governance and strategic advisory capabilities.',
+      government: 'Public sector technology stewardship: NIST SP 800-53, StateRAMP, transportation systems, and inter-agency IT governance.',
+      'ai-solutions': 'Enterprise AI strategy, RAG architectures, and agentic workflows aligned with security and institutional goals.',
+      'bd-agents': 'Automated lead qualification and executive intake workflows designed for technology advisory operations.',
+      cybersecurity: 'Zero Trust architecture, NIST SP 800-53, HIPAA security rules, and cyber risk management for executive leadership.',
+      contact: 'Reach Shafiq Rahman and the Nexis AI advisory practice directly via phone, text, or email for confidential inquiries.',
+      'deployment-guide': 'Architecture specifications, governance runbooks, and enterprise technology standards.',
+      'trust-center': 'Official verification, RFC 9116 security contact, and domain trust documentation for nexisai.us.',
+      admin: 'Secure executive portal for managing client advisory pipelines, assessment diagnostics, and communications.',
+      'executive-advisory': 'Board-level technology briefings, M&A IT due diligence, and executive technology stewardship.',
+      'erp-modernization': 'ERP governance, clean core strategy, and migration oversight for mission-critical enterprise systems.',
+      'roi-framework': 'Value-driven technology portfolio realization, cost containment, and strategic investment measurement.',
     };
 
-    const title = pageTitles[currentPage] || 'Nexis Tech Group | Enterprise AI & Cybersecurity';
+    const title = pageTitles[currentPage] || pageTitles.home;
     const description = pageDescriptions[currentPage] || pageDescriptions.home;
 
     // Document Title
@@ -103,7 +125,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       document.head.appendChild(canonicalTag);
     }
     const pageSlug = currentPage === 'home' ? '' : `#${currentPage}`;
-    canonicalTag.setAttribute('href', `https://nexistechgroup.com/${pageSlug}`);
+    canonicalTag.setAttribute('href', `https://nexisai.us/${pageSlug}`);
 
     // OpenGraph Meta
     let ogTitle = document.querySelector('meta[property="og:title"]');
@@ -135,26 +157,40 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       '@context': 'https://schema.org',
       '@graph': [
         {
-          '@type': 'Organization',
-          '@id': 'https://nexistechgroup.com/#organization',
-          name: 'Nexis Tech Group',
-          url: 'https://nexistechgroup.com',
-          logo: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop',
-          email: 'info@nexisai.us',
-          telephone: '443-608-5425',
+          '@type': 'Person',
+          '@id': 'https://nexisai.us/#shafiq-rahman',
+          name: 'Shafiq Rahman, MS, MBA, MCS, PMP®',
+          jobTitle: 'Fractional CIO & Enterprise Technology Executive Advisor',
+          worksFor: {
+            '@id': 'https://nexisai.us/#organization',
+          },
+          description:
+            'Former Maryland Department of Transportation CIO and University of Maryland School of Medicine / UMB enterprise IT executive with 20+ years of technology leadership across government, higher education, academic medicine, and enterprise IT.',
+          url: 'https://nexisai.us/#about',
           sameAs: [
-            'https://www.linkedin.com/company/nexisai',
-            'https://twitter.com/nexisai',
-            'https://github.com/nexisai',
+            'https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/',
+          ],
+          knowsAbout: [
+            'Fractional CIO Leadership',
+            'CIO Advisory',
+            'Digital Transformation',
+            'Enterprise AI Governance',
+            'NIST AI Risk Management Framework',
+            'Clinical Informatics & EHR Systems',
+            'Higher Education & Research Computing',
+            'Zero Trust Cybersecurity',
           ],
         },
         {
-          '@type': 'LocalBusiness',
-          '@id': 'https://nexisai.us/#hq-owings-mills',
-          name: 'Nexis AI - Executive Headquarters',
-          image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop',
-          telephone: '443-608-5425',
-          email: 'info@nexisai.us',
+          '@type': 'ProfessionalService',
+          '@id': 'https://nexisai.us/#organization',
+          name: 'Nexis AI - Executive Technology Advisory & Enterprise AI',
+          url: 'https://nexisai.us',
+          founder: {
+            '@id': 'https://nexisai.us/#shafiq-rahman',
+          },
+          telephone: '+1-443-608-5425',
+          email: 'shafiqs1@gmail.com',
           priceRange: '$$$$',
           address: {
             '@type': 'PostalAddress',
@@ -164,60 +200,84 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
             postalCode: '21117',
             addressCountry: 'US',
           },
-          geo: {
-            '@type': 'GeoCoordinates',
-            latitude: 39.4198,
-            longitude: -76.7803,
+          areaServed: ['United States', 'International'],
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: 'Executive Technology Advisory Services',
+            itemListElement: [
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: 'Fractional CIO Leadership',
+                  description:
+                    'Strategic technology direction, IT operating model, cybersecurity oversight, and board reporting without hiring a full-time CIO.',
+                },
+              },
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: 'CIO Advisory & Boardroom Technology Governance',
+                  description:
+                    'Executive technology counsel for CEOs, boards of directors, and CFOs facing major technology decisions.',
+                },
+              },
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: 'Enterprise AI Strategy & Governance',
+                  description:
+                    'AI readiness evaluation, risk classification, policy formulation, and NIST AI RMF governance.',
+                },
+              },
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: 'Interim CIO Leadership',
+                  description:
+                    'Executive technology stewardship during leadership transitions, restructuring, or unforeseen departures.',
+                },
+              },
+            ],
           },
-          openingHoursSpecification: {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            opens: '08:00',
-            closes: '18:00',
-          },
-        },
-        {
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            {
-              '@type': 'ListItem',
-              position: 1,
-              name: 'Home',
-              item: 'https://nexisai.us',
-            },
-            {
-              '@type': 'ListItem',
-              position: 2,
-              name: title,
-              item: `https://nexisai.us/${pageSlug}`,
-            },
-          ],
         },
         {
           '@type': 'FAQPage',
+          '@id': 'https://nexisai.us/#faq',
           mainEntity: [
             {
               '@type': 'Question',
-              name: 'What services does Nexis Tech Group specialize in?',
+              name: 'What is a Fractional CIO and how does it differ from IT consulting?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Nexis Tech Group provides enterprise AI Transformation, Zero Trust Cybersecurity (NIST 800-53 / HIPAA / KSA NCA ECC), Healthcare IT (HL7/FHIR), Higher Education HPC Clusters, and Managed IT Infrastructure.',
+                text: 'A Fractional CIO serves as your executive technology leader—sitting on your leadership team, reporting to the CEO or Board, directing the technology roadmap, managing budgets, and governing vendors. Unlike consultants who advise from the outside or vendors who sell products, a Fractional CIO has institutional accountability for your technology outcomes.',
               },
             },
             {
               '@type': 'Question',
-              name: 'Where is Nexis Tech Group located?',
+              name: 'When should an organization engage a Fractional CIO instead of hiring a full-time CIO?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Our primary headquarters is located in Owings Mills, Maryland (11436 Cronhill Drive, 21117), with regional hub offices in Riyadh, Saudi Arabia, and Dubai, United Arab Emirates.',
+                text: 'Organizations typically engage a Fractional CIO when they need experienced CIO leadership ($350k-$500k+ total full-time compensation) for 10-25 hours per week, during critical growth transitions, during a permanent CIO search, when undertaking digital modernization, or when facing complex AI governance and cybersecurity challenges.',
               },
             },
             {
               '@type': 'Question',
-              name: 'How can I schedule an AI Readiness Audit or IT Consultation?',
+              name: 'Who leads the executive advisory practice at Nexis AI?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'You can schedule a consultation directly on our website, call or text our executive line at (443) 608-5425, or email info@nexisai.us.',
+                text: 'Nexis AI is led by Shafiq Rahman, MS, MBA, MCS, PMP®, an executive technology leader with 20+ years of experience including former State CIO (Maryland Department of Transportation) and Director of Enterprise IT at the University of Maryland, Baltimore / School of Medicine.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'What industries does Shafiq Rahman and Nexis AI primarily serve?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'The advisory practice specializes in Healthcare Systems & Academic Medicine, Higher Education & Research Universities, State and Regional Public Sector Agencies, and growing mid-market enterprises undergoing digital transformation.',
               },
             },
           ],
@@ -230,4 +290,3 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
   return null;
 };
-

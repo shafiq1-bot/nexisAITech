@@ -45,103 +45,96 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Top Badges */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-          {onOpenBookAudit && (
-            <button
-              onClick={onOpenBookAudit}
-              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-blue-600/30 transition-all cursor-pointer ring-2 ring-blue-400/50 animate-bounce"
-              id="hero-top-book-audit-badge"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-blue-200" />
-              <span>Book 2026 AI & Security Audit</span>
-              <span className="text-[10px] bg-white/20 text-white px-2 py-0.5 rounded-full font-mono">1-Click</span>
-            </button>
-          )}
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold uppercase tracking-wider">
+            <Award className="w-3.5 h-3.5 text-amber-400" />
+            <span>Fractional CIO | CIO Advisory | Enterprise AI Governance</span>
+          </div>
 
-          <button
-            onClick={() => onNavigate('markets')}
-            className="inline-flex items-center gap-2 bg-blue-950/90 border border-blue-600/80 hover:bg-blue-900 text-blue-200 text-xs font-semibold px-4 py-2 rounded-full shadow-lg backdrop-blur-md transition-all cursor-pointer"
+          <a
+            href="https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-slate-900 border border-slate-700 hover:bg-slate-800 text-blue-400 text-xs font-semibold px-3.5 py-1.5 rounded-full transition-all cursor-pointer"
           >
-            <Globe2 className="w-4 h-4 text-cyan-400" />
-            <span>Americas (US HQ: Owings Mills, MD) • Europe (UK & EU Hubs) • Middle East (KSA & UAE)</span>
-            <span className="text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded font-mono">Global Hubs</span>
-          </button>
+            <span>Shafiq Rahman, MS, MBA, MCS, PMP®</span>
+            <span className="text-[10px] bg-blue-600/30 text-blue-300 px-1.5 py-0.5 rounded font-mono">LinkedIn</span>
+          </a>
         </div>
 
         {/* Hero Headlines */}
         <div className="text-center max-w-4xl mx-auto space-y-6">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
-            {t.heroHeadline}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+            You May Not Need Another Technology Vendor.<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500">
+              You May Need CIO-Level Leadership.
+            </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto">
-            {t.heroSubheadline}
+          <p className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto">
+            Shafiq Rahman helps CEOs, presidents, boards, healthcare leaders, universities, and growing organizations turn technology strategy into measurable operational, clinical, institutional, and business outcomes—without immediately hiring a full-time executive.
           </p>
 
           {/* Action CTAs */}
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
             <button
-              onClick={() => onNavigate('executive-advisory')}
-              className="px-7 py-3.5 text-xs font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-xl transition-all shadow-xl shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
-              id="hero-fractional-cio-btn"
+              onClick={onOpenConsultation}
+              className="px-8 py-4 text-xs sm:text-sm font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-xl transition-all shadow-xl shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
+              id="hero-schedule-conversation-btn"
             >
-              <Award className="w-4 h-4 text-slate-950" />
-              <span>Fractional CIO & 30-Day Diagnostic</span>
+              <span>Schedule a CIO Advisory Conversation</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
             <button
-              onClick={onOpenConsultation}
-              className="px-6 py-3.5 text-xs font-semibold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all shadow-xl shadow-blue-900/40 flex items-center justify-center gap-2 group cursor-pointer"
-              id="hero-schedule-consultation-btn"
+              onClick={() => onNavigate('assessment')}
+              className="px-6 py-4 text-xs sm:text-sm font-semibold text-white bg-slate-900 border border-slate-700 hover:bg-slate-800 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              id="hero-readiness-assessment-btn"
             >
-              <span>{t.scheduleConsultation}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <BarChart3 className="w-4 h-4 text-amber-400" />
+              <span>Take the CIO Readiness Assessment</span>
             </button>
 
-            {onOpenBookAudit && (
-              <button
-                onClick={onOpenBookAudit}
-                className="px-6 py-3.5 text-xs font-semibold text-blue-200 bg-slate-900 border border-slate-700 hover:bg-slate-800 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
-                id="hero-book-2026-audit-btn"
-              >
-                <Sparkles className="w-4 h-4 text-blue-400" />
-                <span>Book 2026 AI Audit</span>
-              </button>
-            )}
-
             <button
-              onClick={onOpenAdvisor}
-              className="px-6 py-3.5 text-xs font-semibold text-purple-200 bg-purple-950/80 border border-purple-700/80 hover:bg-purple-900 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
-              id="hero-ai-advisor-btn"
+              onClick={() => onNavigate('fractional-cio')}
+              className="px-6 py-4 text-xs sm:text-sm font-semibold text-blue-300 bg-blue-950/60 border border-blue-800/80 hover:bg-blue-900/80 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+              id="hero-explore-services-btn"
             >
-              <BrainCircuit className="w-4 h-4 text-purple-400" />
-              <span>AI Strategy Assistant</span>
+              <span>Explore Fractional CIO Services</span>
+              <ArrowRight className="w-3.5 h-3.5 text-blue-400" />
             </button>
           </div>
 
-          {/* Key Compliance Pills */}
-          <div className="pt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-slate-400 font-mono">
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>HIPAA & FERPA Certified</span>
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>NIST 800-53 / SOC 2 Type II</span>
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>EU AI Act & DORA (EU 2022/2554)</span>
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>GDPR / UK Data Protection Act</span>
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>KSA NDMO & UAE Sovereign Approved</span>
-            </span>
+          {/* Verified Credibility Summary (Immediately Below Hero) */}
+          <div className="pt-8 border-t border-slate-800/80 mt-8">
+            <div className="text-[11px] font-mono uppercase text-slate-400 tracking-wider mb-3">
+              Verified Executive Experience & Leadership Credentials:
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+              <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
+                <div className="text-xs font-bold text-amber-400 font-mono">Former State CIO</div>
+                <div className="text-xs text-white font-semibold mt-0.5">Maryland Dept. of Transportation</div>
+                <div className="text-[11px] text-slate-400 mt-1">~$250M portfolio & 1,500 IT staff across 6 agencies.</div>
+              </div>
+
+              <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
+                <div className="text-xs font-bold text-blue-400 font-mono">Academic & Healthcare IT</div>
+                <div className="text-xs text-white font-semibold mt-0.5">Univ. of Maryland, Baltimore / UMSOM</div>
+                <div className="text-[11px] text-slate-400 mt-1">Academic medicine, biomedical research & clinical systems.</div>
+              </div>
+
+              <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
+                <div className="text-xs font-bold text-emerald-400 font-mono">20+ Years Leadership</div>
+                <div className="text-xs text-white font-semibold mt-0.5">Enterprise CIO Stewardship</div>
+                <div className="text-[11px] text-slate-400 mt-1">NIST SP 800-53, HIPAA, FERPA & Zero Trust.</div>
+              </div>
+
+              <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
+                <div className="text-xs font-bold text-purple-400 font-mono">Verified Credentials</div>
+                <div className="text-xs text-white font-semibold mt-0.5">MS, MBA, MCS, PMP®</div>
+                <div className="text-[11px] text-slate-400 mt-1">NIST AI Risk Management Framework 1.0.</div>
+              </div>
+            </div>
           </div>
         </div>
 
