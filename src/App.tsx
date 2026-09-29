@@ -13,10 +13,8 @@ import { IndustriesSection } from './components/IndustriesSection';
 import { AISolutionsShowcase } from './components/AISolutionsShowcase';
 import { AIReadinessAssessment } from './components/AIReadinessAssessment';
 import { ResourcesHub } from './components/ResourcesHub';
-import { PartnerEcosystem } from './components/PartnerEcosystem';
 import { ContactSection } from './components/ContactSection';
 import { RegionalMarketsSection } from './components/RegionalMarketsSection';
-import { FloatingAIChatbot } from './components/FloatingAIChatbot';
 import { AIAdvisorModal } from './components/AIAdvisorModal';
 import { ConsultationBookingModal } from './components/ConsultationBookingModal';
 import { servicesData } from './data/companyData';
@@ -24,11 +22,9 @@ import { ServiceDetailModal } from './components/ServiceDetailModal';
 import { SEOHead } from './components/SEOHead';
 import { GoogleCalendarModal } from './components/GoogleCalendarModal';
 import { TrustSecurityCenter } from './components/TrustSecurityCenter';
-import { AdminPortal } from './components/AdminPortal';
 import { BookAuditModal } from './components/BookAuditModal';
 import { FreeToolsSection } from './components/FreeToolsSection';
 import { ERPModernizationSection } from './components/ERPModernizationSection';
-import { BDAgentsSection } from './components/BDAgentsSection';
 import { EnterpriseArchitectureSection } from './components/EnterpriseArchitectureSection';
 import { ResearchComputingSection } from './components/ResearchComputingSection';
 import { HardwareInfrastructureSection } from './components/HardwareInfrastructureSection';
@@ -50,6 +46,8 @@ import { ShafiqRahmanAboutPage } from './components/ShafiqRahmanAboutPage';
 import { ExecutiveInsightsPage } from './components/ExecutiveInsightsPage';
 import { CIOMaturityAssessment } from './components/CIOMaturityAssessment';
 import { AIExecutiveAdvisor } from './components/AIExecutiveAdvisor';
+import { ResearchPublicationsPage } from './components/ResearchPublicationsPage';
+import { ExecutiveWorkMediaSection } from './components/ExecutiveWorkMediaSection';
 
 export default function App() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
@@ -150,13 +148,7 @@ export default function App() {
               onOpenCalendar={handleOpenCalendar}
             />
 
-            {/* Free Executive Tools & Diagnostics */}
-            <FreeToolsSection
-              currentRegion={currentRegion}
-              onOpenBookAudit={() => setBookAuditOpen(true)}
-            />
-
-            {/* Executive Advisory Retainers & Sprints */}
+            {/* Executive Advisory Retainers & Strategic Sprints */}
             <ExecutiveAdvisorySection
               currentRegion={currentRegion}
               onOpenConsultation={handleOpenConsultation}
@@ -176,40 +168,133 @@ export default function App() {
               onNavigate={handleNavigate}
             />
 
-            {/* Supporting Platform Services */}
-            <ServicesOverview
-              currentLanguage={currentLanguage}
+            {/* Peer-Reviewed Research & Clinical Publications Spotlight */}
+            <div className="bg-slate-900/60 border-y border-slate-800 py-16">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div className="space-y-2">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-mono font-bold uppercase tracking-wider">
+                      Academic Medicine & Clinical Scholarship
+                    </div>
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                      Peer-Reviewed Research & Clinical Informatics
+                    </h2>
+                    <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                      8 peer-reviewed research papers and proceedings authored by <strong className="text-white">Shafiq Rahman, MS, MBA, MCS, PMP®</strong> on clinical cybersecurity, EMR data integrity (E-Variance), hospital cyberattack emergency plans, and radiation oncology system integrations.
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-3 shrink-0">
+                    <a
+                      href="https://scholar.google.com/citations?user=L0j_am8AAAAJ&hl=en"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold rounded-xl transition-all flex items-center gap-2 shadow-sm"
+                    >
+                      <span className="text-amber-400 font-mono text-xs">Google Scholar</span>
+                      <span className="text-[10px] bg-blue-950 text-blue-300 px-1.5 py-0.5 rounded font-mono">11 Citations</span>
+                    </a>
+
+                    <button
+                      onClick={() => handleNavigate('research-publications')}
+                      className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold rounded-xl transition-all flex items-center gap-1.5 shadow-md shadow-amber-500/20 cursor-pointer"
+                    >
+                      <span>Explore 8 Publications</span>
+                      <span className="text-xs">→</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* 3 Featured Publications Snapshot */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                  <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-3 flex flex-col justify-between hover:border-slate-700 transition-all">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-[11px] font-mono">
+                        <span className="text-amber-400 font-bold bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/60">2018 · Cited by 9</span>
+                        <span className="text-slate-400">Appl Rad Oncol</span>
+                      </div>
+                      <h4 className="text-sm font-bold text-white line-clamp-2">
+                        The Impact of Cybersecurity in Radiation Oncology: Logistics and Challenges
+                      </h4>
+                      <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
+                        Evaluates attack surfaces on medical devices, linear accelerators, and oncology EMRs, recommending segmented network enclaves and clinical continuity plans.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleNavigate('research-publications')}
+                      className="text-xs text-blue-400 hover:text-amber-400 font-mono font-semibold self-start flex items-center gap-1"
+                    >
+                      <span>Read Glimpse & Impact</span>
+                      <span>→</span>
+                    </button>
+                  </div>
+
+                  <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-3 flex flex-col justify-between hover:border-slate-700 transition-all">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-[11px] font-mono">
+                        <span className="text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/60">2026 · Latest</span>
+                        <span className="text-slate-400">Healthcare Tech Letters</span>
+                      </div>
+                      <h4 className="text-sm font-bold text-white line-clamp-2">
+                        E‐Variance: An Application to Assure Clinical Data Integrity and Patient Safety in EMR
+                      </h4>
+                      <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
+                        Custom web-based incident learning application engineered to capture frontline EMR data errors and eliminate latent clinical hazards in hospital workflows.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleNavigate('research-publications')}
+                      className="text-xs text-blue-400 hover:text-amber-400 font-mono font-semibold self-start flex items-center gap-1"
+                    >
+                      <span>Read Glimpse & Impact</span>
+                      <span>→</span>
+                    </button>
+                  </div>
+
+                  <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-3 flex flex-col justify-between hover:border-slate-700 transition-all">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-[11px] font-mono">
+                        <span className="text-blue-400 font-bold bg-blue-950/60 px-2 py-0.5 rounded border border-blue-800/60">2017 · Disaster Recovery</span>
+                        <span className="text-slate-400">Medical Physics</span>
+                      </div>
+                      <h4 className="text-sm font-bold text-white line-clamp-2">
+                        A Risk Management Plan Against Cyber-Attacks: 24-Hour Emergency Continuity Plan
+                      </h4>
+                      <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
+                        Pioneering hospital disaster recovery protocol for a 6-site health system with 11 linear accelerators and 5 proton machines during catastrophic cyber compromise.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleNavigate('research-publications')}
+                      className="text-xs text-blue-400 hover:text-amber-400 font-mono font-semibold self-start flex items-center gap-1"
+                    >
+                      <span>Read Glimpse & Impact</span>
+                      <span>→</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Public Work Online, National Press & Keynotes Showcase */}
+            <ExecutiveWorkMediaSection
               onOpenConsultation={handleOpenConsultation}
+              onNavigate={handleNavigate}
+              isFullPage={false}
             />
 
-            {/* Supporting Cybersecurity & Compliance */}
-            <CybersecurityCenter
+            {/* Free Executive Tools & Diagnostics */}
+            <FreeToolsSection
+              currentRegion={currentRegion}
+              onOpenBookAudit={() => setBookAuditOpen(true)}
+            />
+
+            {/* Executive Direct Contact & Advisory Scheduling */}
+            <ContactSection
               currentLanguage={currentLanguage}
               currentRegion={currentRegion}
-              onOpenConsultation={handleOpenConsultation}
-            />
-
-            {/* Supporting Industry Verticals */}
-            <IndustriesSection
-              currentLanguage={currentLanguage}
-              currentRegion={currentRegion}
-              onOpenConsultation={handleOpenConsultation}
-            />
-
-            {/* Partner Ecosystem */}
-            <PartnerEcosystem />
-
-            {/* Regional Markets */}
-            <RegionalMarketsSection
-              currentRegion={currentRegion}
-              onSelectRegion={setCurrentRegion}
-              onOpenConsultation={handleOpenConsultation}
-            />
-
-            {/* Resources Hub */}
-            <ResourcesHub
-              currentLanguage={currentLanguage}
               onOpenConsultation={() => handleOpenConsultation()}
+              onOpenAdvisor={() => handleNavigate('ai-advisor')}
             />
           </>
         )}
@@ -328,6 +413,23 @@ export default function App() {
           />
         )}
 
+        {/* Dedicated Peer-Reviewed Research & Publications Page */}
+        {(currentPage === 'research-publications' || currentPage === 'publications') && (
+          <ResearchPublicationsPage
+            onOpenConsultation={handleOpenConsultation}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {/* Dedicated Press, Keynotes & Media Coverage Page */}
+        {(currentPage === 'press-media' || currentPage === 'executive-work') && (
+          <ExecutiveWorkMediaSection
+            onOpenConsultation={handleOpenConsultation}
+            onNavigate={handleNavigate}
+            isFullPage={true}
+          />
+        )}
+
         {/* Dedicated Scheduling Page */}
         {currentPage === 'schedule' && (
           <ExecutiveSchedulePage
@@ -341,6 +443,7 @@ export default function App() {
           <ShafiqRahmanAboutPage
             onOpenConsultation={handleOpenConsultation}
             onOpenCalendar={handleOpenCalendar}
+            onNavigate={handleNavigate}
           />
         )}
 
@@ -370,13 +473,10 @@ export default function App() {
         )}
 
         {currentPage === 'services' && (
-          <>
-            <ServicesOverview
-              currentLanguage={currentLanguage}
-              onOpenConsultation={handleOpenConsultation}
-            />
-            <PartnerEcosystem />
-          </>
+          <ServicesOverview
+            currentLanguage={currentLanguage}
+            onOpenConsultation={handleOpenConsultation}
+          />
         )}
 
         {currentPage === 'industries' && (
@@ -395,14 +495,6 @@ export default function App() {
           />
         )}
 
-        {currentPage === 'bd-agents' && (
-          <BDAgentsSection
-            onNavigate={handleNavigate}
-            onOpenConsultation={handleOpenConsultation}
-            onOpenCalendar={handleOpenCalendar}
-          />
-        )}
-
         {currentPage === 'cybersecurity' && (
           <CybersecurityCenter
             currentLanguage={currentLanguage}
@@ -416,13 +508,6 @@ export default function App() {
             currentLanguage={currentLanguage}
             currentRegion={currentRegion}
             onOpenConsultation={handleOpenConsultation}
-          />
-        )}
-
-        {currentPage === 'admin' && (
-          <AdminPortal
-            currentRegion={currentRegion}
-            onOpenCalendar={handleOpenCalendar}
           />
         )}
 
@@ -458,13 +543,6 @@ export default function App() {
           />
         )}
       </main>
-
-      {/* Persistent Floating AI Chatbot */}
-      <FloatingAIChatbot 
-        onOpenConsultation={handleOpenConsultation} 
-        onOpenBookAudit={() => setBookAuditOpen(true)}
-        onOpenCalendar={handleOpenCalendar}
-      />
 
       {/* Global Footer */}
       <Footer

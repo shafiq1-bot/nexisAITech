@@ -142,6 +142,26 @@ export const HealthcareCIOPage: React.FC<HealthcareCIOPageProps> = ({
               <p className="text-xs text-slate-300">Zero data persistence on unvetted clouds and 100% audit pass rates.</p>
             </div>
           </div>
+
+          {/* Peer-Reviewed Clinical Publications Callout */}
+          <div className="mt-4 p-5 bg-gradient-to-r from-blue-950/60 to-slate-950 border border-blue-800/50 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="text-xs font-mono font-bold text-blue-400 uppercase tracking-wider flex items-center gap-1.5">
+                <FileCheck2 className="w-3.5 h-3.5 text-blue-400" />
+                <span>Published Clinical Research (Google Scholar)</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-200">
+                Shafiq Rahman has authored 8 peer-reviewed publications on clinical cybersecurity, EMR data integrity (E-Variance), hospital cyber emergency plans, and radiation oncology system integrations.
+              </p>
+            </div>
+            <button
+              onClick={() => onNavigate('research-publications')}
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl transition-all shrink-0 self-start sm:self-center flex items-center gap-1.5 cursor-pointer shadow-md"
+            >
+              <span>Explore Research Papers</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       </div>
 

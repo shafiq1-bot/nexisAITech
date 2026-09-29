@@ -12,7 +12,8 @@ import {
   Award,
   Calendar,
   BarChart3,
-  ExternalLink
+  ExternalLink,
+  BookOpen
 } from 'lucide-react';
 import { Language, PageId } from '../types';
 import { translations } from '../data/translations';
@@ -238,6 +239,16 @@ export const Footer: React.FC<FooterProps> = ({
                   Verified Case Studies
                 </button>
               </li>
+              <li>
+                <button onClick={() => onNavigate('research-publications')} className="hover:text-amber-400 transition-colors text-cyan-400 font-bold flex items-center gap-1">
+                  <span>Research & Publications (8)</span>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('press-media')} className="hover:text-amber-400 transition-colors text-amber-300 font-semibold flex items-center gap-1">
+                  <span>Press, Keynotes & Articles</span>
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -245,6 +256,17 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="space-y-3">
             <h5 className="text-xs font-bold uppercase tracking-wider text-slate-200 font-mono">Executive Tools</h5>
             <ul className="space-y-2 text-xs text-slate-400">
+              <li>
+                <a
+                  href="https://scholar.google.com/citations?user=L0j_am8AAAAJ&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-amber-400 transition-colors text-slate-300 flex items-center gap-1 font-mono text-[11px]"
+                >
+                  <BookOpen className="w-3.5 h-3.5 text-blue-400" />
+                  <span>Google Scholar Profile</span>
+                </a>
+              </li>
               <li>
                 <button onClick={() => onNavigate('assessment')} className="hover:text-amber-400 transition-colors text-amber-300 font-bold flex items-center gap-1">
                   <BarChart3 className="w-3.5 h-3.5 text-amber-400" />
@@ -280,11 +302,6 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button onClick={() => onNavigate('trust-center')} className="hover:text-emerald-400 transition-colors text-slate-400">
                   Trust Center (nexisai.us)
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('admin')} className="hover:text-slate-200 transition-colors text-slate-500">
-                  Admin Command Portal
                 </button>
               </li>
             </ul>

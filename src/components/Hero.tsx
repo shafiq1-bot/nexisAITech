@@ -44,7 +44,7 @@ export const Hero: React.FC<HeroProps> = ({
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Top Badges */}
+        {/* Top Badges & Executive Photo */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold uppercase tracking-wider">
             <Award className="w-3.5 h-3.5 text-amber-400" />
@@ -55,10 +55,27 @@ export const Hero: React.FC<HeroProps> = ({
             href="https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-slate-900 border border-slate-700 hover:bg-slate-800 text-blue-400 text-xs font-semibold px-3.5 py-1.5 rounded-full transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 bg-slate-900 border border-slate-700 hover:border-blue-500 hover:bg-slate-800 text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full transition-all cursor-pointer shadow-sm group"
           >
+            <div className="w-5 h-5 rounded-full overflow-hidden border border-blue-400/50 shrink-0">
+              <img
+                src="/images/shafiq_rahman_headshot.jpg"
+                alt="Shafiq Rahman"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
             <span>Shafiq Rahman, MS, MBA, MCS, PMP®</span>
-            <span className="text-[10px] bg-blue-600/30 text-blue-300 px-1.5 py-0.5 rounded font-mono">LinkedIn</span>
+            <span className="text-[10px] bg-blue-600/30 text-blue-300 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-600 group-hover:text-white transition-colors">LinkedIn</span>
+          </a>
+
+          <a
+            href="https://scholar.google.com/citations?user=L0j_am8AAAAJ&hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 bg-slate-900 border border-slate-700 hover:border-amber-500/50 hover:bg-slate-800 text-slate-300 text-xs font-semibold px-3 py-1.5 rounded-full transition-all cursor-pointer shadow-sm"
+          >
+            <span className="text-amber-400 font-mono text-[11px]">8 Papers</span>
+            <span className="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 px-1.5 py-0.5 rounded font-mono">Google Scholar</span>
           </a>
         </div>
 

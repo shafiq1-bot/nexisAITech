@@ -297,6 +297,28 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </button>
 
                 <button
+                  onClick={() => { onNavigate('press-media'); setServicesDropdownOpen(false); }}
+                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-amber-400 flex items-center gap-1.5">
+                    <span>Press, Keynotes & Articles</span>
+                    <span className="text-[9px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.2 rounded font-mono">Media</span>
+                  </div>
+                  <div className="text-[11px] text-slate-400">Route Fifty, GovExec Summit, AutoTech Detroit & LinkedIn</div>
+                </button>
+
+                <button
+                  onClick={() => { onNavigate('research-publications'); setServicesDropdownOpen(false); }}
+                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-cyan-400 flex items-center gap-1.5">
+                    <span>Research & Publications</span>
+                    <span className="text-[9px] bg-cyan-950 text-cyan-300 border border-cyan-800 px-1.5 py-0.2 rounded font-mono">8 Papers</span>
+                  </div>
+                  <div className="text-[11px] text-slate-400">Clinical cybersecurity & EMR data integrity (Google Scholar)</div>
+                </button>
+
+                <button
                   onClick={() => { onNavigate('case-studies'); setServicesDropdownOpen(false); }}
                   className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
                 >
@@ -318,13 +340,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                 >
                   <div className="font-bold text-slate-200">Trust & Security Center</div>
                   <div className="text-[11px] text-slate-400">Domain verification & RFC 9116</div>
-                </button>
-
-                <button
-                  onClick={() => { onNavigate('admin'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-400 border-t border-slate-800 mt-1 block"
-                >
-                  <div className="font-bold text-slate-400">Admin Portal / CRM</div>
                 </button>
               </div>
             )}
@@ -494,6 +509,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                 📊 Case Studies
               </button>
               <button
+                onClick={() => { onNavigate('research-publications'); setMobileMenuOpen(false); }}
+                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'research-publications' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-cyan-300 hover:bg-slate-800/60'}`}
+              >
+                📚 Research (8 Papers)
+              </button>
+              <button
+                onClick={() => { onNavigate('press-media'); setMobileMenuOpen(false); }}
+                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'press-media' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-amber-300 hover:bg-slate-800/60'}`}
+              >
+                🎙️ Press & Keynotes
+              </button>
+              <button
                 onClick={() => { onNavigate('markets'); setMobileMenuOpen(false); }}
                 className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'markets' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
               >
@@ -502,34 +529,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          {/* Section: Live Portals & Agents */}
+          {/* Section: Trust & Security */}
           <div className="space-y-1.5 pt-1 border-t border-slate-800/80">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 block font-mono">
-              Portals & Autonomous Systems
-            </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <button
-                onClick={() => { onNavigate('bd-agents'); setMobileMenuOpen(false); }}
-                className="w-full text-left p-2.5 rounded-lg bg-cyan-950/40 border border-cyan-800/60 text-cyan-300 text-xs font-semibold flex items-center justify-between active:bg-cyan-950/80"
-              >
-                <div className="flex items-center gap-2">
-                  <Bot className="w-4 h-4 text-cyan-400" />
-                  <span>AI Lead Generation Agents</span>
-                </div>
-                <span className="bg-cyan-500 text-slate-950 text-[9px] font-extrabold px-1 rounded uppercase">Live</span>
-              </button>
-
-              <button
-                onClick={() => { onNavigate('trust-center'); setMobileMenuOpen(false); }}
-                className="w-full text-left p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-emerald-300 text-xs font-semibold flex items-center justify-between active:bg-emerald-950/80"
-              >
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                  <span>Trust & Domain Security</span>
-                </div>
-                <span className="bg-emerald-500 text-slate-950 text-[9px] font-extrabold px-1 rounded uppercase">nexisai.us</span>
-              </button>
-            </div>
+            <button
+              onClick={() => { onNavigate('trust-center'); setMobileMenuOpen(false); }}
+              className="w-full text-left p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-emerald-300 text-xs font-semibold flex items-center justify-between active:bg-emerald-950/80"
+            >
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span>Trust, RFC 9116 & Domain Security</span>
+              </div>
+              <span className="bg-emerald-500 text-slate-950 text-[9px] font-extrabold px-1.5 py-0.5 rounded uppercase font-mono">nexisai.us</span>
+            </button>
           </div>
 
           {/* Section: Direct Touch Communications */}
