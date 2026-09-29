@@ -1,76 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage -->
   <url>
-    <loc>https://nexistechgroup.com/</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://nexisai.us/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexistechgroup.com/" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexistechgroup.com/?lang=ar" />
   </url>
+
+  <!-- Core Practice: Fractional CIO -->
   <url>
-    <loc>https://nexistechgroup.com/#about</loc>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://nexisai.us/?page=fractional-cio</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Executive Leadership & Biography: Shafiq Rahman -->
+  <url>
+    <loc>https://nexisai.us/?page=about</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- National Press & Executive Media: Route Fifty & GovExec -->
+  <url>
+    <loc>https://nexisai.us/?page=press-media</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Peer-Reviewed Research Publications (Google Scholar) -->
+  <url>
+    <loc>https://nexisai.us/?page=research-publications</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Executive Advisory Scoping & Calendar -->
+  <url>
+    <loc>https://nexisai.us/?page=schedule</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- CIO Advisory & Boardroom Technology Governance -->
+  <url>
+    <loc>https://nexisai.us/?page=cio-advisory</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Interim CIO & Vacancy Leadership Mandates -->
+  <url>
+    <loc>https://nexisai.us/?page=interim-cio</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Healthcare & Academic Health System CIO Advisory -->
+  <url>
+    <loc>https://nexisai.us/?page=healthcare-cio-advisory</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Higher Education & Academic Medical Center Advisory -->
+  <url>
+    <loc>https://nexisai.us/?page=higher-education-cio-advisory</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Enterprise AI Strategy & NIST AI RMF Governance -->
+  <url>
+    <loc>https://nexisai.us/?page=ai-strategy</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Technology Governance & Board Oversight -->
+  <url>
+    <loc>https://nexisai.us/?page=technology-governance</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Verified Institutional Case Studies -->
+  <url>
+    <loc>https://nexisai.us/?page=case-studies</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- 12-Domain CIO Maturity Assessment & Scorecard -->
+  <url>
+    <loc>https://nexisai.us/?page=assessment</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Executive Insights, Playbooks & Architecture Guides -->
+  <url>
+    <loc>https://nexisai.us/?page=insights</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Executive Lead Magnets & Framework Downloads -->
+  <url>
+    <loc>https://nexisai.us/?page=resources</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Trust, RFC 9116 & Security Center -->
+  <url>
+    <loc>https://nexisai.us/?page=trust-center</loc>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexistechgroup.com/#about" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexistechgroup.com/#about?lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexistechgroup.com/#services</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexistechgroup.com/#services" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexistechgroup.com/#services?lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexistechgroup.com/#industries</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexistechgroup.com/#industries" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexistechgroup.com/#industries?lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexistechgroup.com/#ai-solutions</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexistechgroup.com/#ai-solutions" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexistechgroup.com/#ai-solutions?lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexistechgroup.com/#cybersecurity</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexistechgroup.com/#cybersecurity" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexistechgroup.com/#cybersecurity?lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexistechgroup.com/#resources</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexistechgroup.com/#resources" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexistechgroup.com/#resources?lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexistechgroup.com/#assessment</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexistechgroup.com/#assessment" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexistechgroup.com/#assessment?lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexistechgroup.com/#contact</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexistechgroup.com/#contact" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexistechgroup.com/#contact?lang=ar" />
+    <priority>0.80</priority>
   </url>
 </urlset>

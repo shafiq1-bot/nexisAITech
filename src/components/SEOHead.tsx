@@ -136,6 +136,24 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     canonicalTag.setAttribute('href', `https://nexisai.us/${pageSlug}`);
 
     // OpenGraph Meta
+    // Update Canonical and OpenGraph URLs dynamically
+    const canonicalUrl = currentPage === 'home' ? 'https://nexisai.us/' : `https://nexisai.us/?page=${currentPage}`;
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', canonicalUrl);
+
+    let ogUrl = document.querySelector('meta[property="og:url"]');
+    if (!ogUrl) {
+      ogUrl = document.createElement('meta');
+      ogUrl.setAttribute('property', 'og:url');
+      document.head.appendChild(ogUrl);
+    }
+    ogUrl.setAttribute('content', canonicalUrl);
+
     let ogTitle = document.querySelector('meta[property="og:title"]');
     if (!ogTitle) {
       ogTitle = document.createElement('meta');
@@ -174,11 +192,14 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
           },
           description:
             'Former Maryland Department of Transportation CIO and University of Maryland School of Medicine / UMB enterprise IT executive with 20+ years of technology leadership across government, higher education, academic medicine, and enterprise IT.',
-          url: 'https://nexisai.us/#about',
-          image: 'https://nexisai.us/images/shafiq_rahman_headshot.jpg',
+          url: 'https://nexisai.us/?page=about',
+          image: 'https://nexisai.us/images/autotech_detroit_shafiq.jpg',
           sameAs: [
             'https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/',
             'https://scholar.google.com/citations?user=L0j_am8AAAAJ&hl=en',
+            'https://www.route-fifty.com/digital-government/2025/07/transit-leaders-look-efficient-tech-driven-future/406859/',
+            'https://www.linkedin.com/posts/govexec_govexec-governmentefficiencysummit-digitalgovernment-activity-7356669995038195714-wtgM',
+            'https://www.facebook.com/DMI.DoMore/posts/join-dmi-at-autotechdetroit2024-and-hear-from-two-visionary-leaders-during-our-f/1063931645358952/'
           ],
           knowsAbout: [
             'Fractional CIO Leadership',
@@ -200,7 +221,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
           founder: {
             '@id': 'https://nexisai.us/#shafiq-rahman',
           },
-          telephone: '+1-443-608-5425',
+          telephone: '+1-410-934-7773',
           email: 'shafiqs1@gmail.com',
           priceRange: '$$$$',
           address: {

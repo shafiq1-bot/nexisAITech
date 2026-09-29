@@ -51,7 +51,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenBookAudit,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [practiceDropdownOpen, setPracticeDropdownOpen] = useState(false);
+  const [proofDropdownOpen, setProofDropdownOpen] = useState(false);
   const [showTopAnnouncement, setShowTopAnnouncement] = useState(true);
 
   const t = translations[currentLanguage];
@@ -59,30 +60,34 @@ export const Navbar: React.FC<NavbarProps> = ({
   const isRtl = currentLanguage === 'ar';
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-900 border-b border-slate-800 text-slate-100 shadow-xl">
-      {/* Prominent High-Impact Top Announcement Banner */}
+    <header className="sticky top-0 z-50 bg-slate-950/95 backdrop-blur-md border-b border-slate-800 text-slate-100 shadow-xl">
+      {/* Executive Practice Header Banner */}
       {showTopAnnouncement && (
-        <div className="bg-gradient-to-r from-blue-900 via-indigo-950 to-purple-900 text-slate-200 text-xs py-2 px-4 border-b border-blue-700/50 shadow-inner">
+        <div className="bg-gradient-to-r from-slate-900 via-blue-950/70 to-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-blue-900/40">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 text-center sm:text-left">
             <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
-              <span className="bg-blue-500/20 text-blue-300 font-semibold px-2 py-0.5 rounded border border-blue-400/30 text-[11px] uppercase tracking-wider">
-                ⚡ Executive Briefing
+              <span className="bg-amber-500/20 text-amber-300 font-bold px-2 py-0.5 rounded border border-amber-400/30 text-[10px] font-mono uppercase tracking-wider">
+                Executive CIO Advisory
               </span>
-              <span className="font-medium text-slate-100">
-                Nexis AI Enterprise Agents & Zero Trust | US HQ: <a href="tel:14436085425" className="font-mono text-emerald-300 underline font-bold hover:text-emerald-200">(443) 608-5425</a> | Text / Call Hotline: <a href="sms:+14436085425" className="font-mono text-amber-300 underline font-bold hover:text-amber-200">(443) 608-5425</a> | Email: <a href="mailto:info@nexisai.us" className="font-mono text-cyan-300 underline hover:text-cyan-200">info@nexisai.us</a>
+              <span className="font-medium text-slate-200 text-xs">
+                Led by <strong className="text-white">Shafiq Rahman, MS, MBA, MCS, PMP®</strong> · Former State CIO (MDOT) · Direct Office:{' '}
+                <a href="tel:+14109347773" className="font-mono text-amber-400 font-bold hover:underline">
+                  (410) 934-7773
+                </a>{' '}
+                · Washington D.C. & Maryland Metro
               </span>
             </div>
             <div className="hidden md:flex items-center gap-3 shrink-0">
               <button
-                onClick={onOpenConsultation}
-                className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3 py-1 rounded text-[11px] transition-colors inline-flex items-center gap-1 cursor-pointer"
+                onClick={() => onNavigate('schedule')}
+                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1 rounded-lg text-xs transition-colors inline-flex items-center gap-1 cursor-pointer shadow-sm"
               >
-                <span>Book 2026 Audit</span>
+                <span>Schedule Consultation</span>
                 <ArrowRight className="w-3 h-3" />
               </button>
               <button
                 onClick={() => setShowTopAnnouncement(false)}
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-slate-400 hover:text-white transition-colors cursor-pointer"
                 title="Dismiss Banner"
               >
                 <X className="w-3.5 h-3.5" />
@@ -99,10 +104,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-start">
             <span className="inline-flex items-center gap-1.5 font-medium text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2.5 py-0.5 rounded-full text-[11px]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              {currentRegion === 'US' ? 'US HQ (Owings Mills, MD)' : currentRegion === 'EU' ? 'EU Hubs (London & Frankfurt)' : currentRegion === 'KSA' ? 'KSA Regional Hub (Riyadh)' : 'UAE Regional Hub (Dubai)'}
+              {currentRegion === 'US' ? 'Washington D.C. & Maryland Metro (Owings Mills, MD)' : currentRegion === 'EU' ? 'EU Hubs (London & Frankfurt)' : currentRegion === 'KSA' ? 'KSA Regional Hub (Riyadh)' : 'UAE Regional Hub (Dubai)'}
             </span>
-            <span className="hidden md:inline text-slate-400">
-              {t.quickContact}: <a href="tel:14436085425" className="text-slate-200 hover:text-emerald-400 transition-colors font-mono font-bold">(443) 608-5425</a> | Text: <a href="sms:+14436085425" className="text-emerald-400 hover:underline font-mono font-bold">(443) 608-5425</a> | UK / EU: <a href="tel:+442079460988" className="text-cyan-300 hover:underline font-mono font-bold">+44 20 7946 0988</a>
+            <span className="hidden md:inline text-slate-300 text-xs">
+              Direct Executive Office: <a href="tel:+14109347773" className="text-amber-400 hover:underline font-mono font-bold">(410) 934-7773</a> | Confidential Inquiries: <a href="mailto:shafiqs1@gmail.com" className="text-slate-200 hover:text-amber-400 transition-colors font-mono">shafiqs1@gmail.com</a>
             </span>
           </div>
 
@@ -117,10 +122,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className="bg-transparent text-slate-200 text-xs font-medium focus:outline-none cursor-pointer"
                 id="region-selector-select"
               >
-                <option value="US" className="bg-slate-900 text-slate-200">🇺🇸 {t.usRegion}</option>
-                <option value="EU" className="bg-slate-900 text-slate-200">🇪🇺 {t.euRegion || 'Europe (UK & EU Hubs)'}</option>
-                <option value="KSA" className="bg-slate-900 text-slate-200">🇸🇦 {t.ksaRegion}</option>
-                <option value="UAE" className="bg-slate-900 text-slate-200">🇦🇪 {t.uaeRegion}</option>
+                <option value="US" className="bg-slate-900 text-slate-200">🇺🇸 United States (Primary Market)</option>
+                <option value="EU" className="bg-slate-900 text-slate-200">🇪🇺 Europe (UK & EU Hubs)</option>
+                <option value="KSA" className="bg-slate-900 text-slate-200">🇸🇦 Saudi Arabia (Riyadh Hub)</option>
+                <option value="UAE" className="bg-slate-900 text-slate-200">🇦🇪 United Arab Emirates (Dubai)</option>
               </select>
             </div>
 
@@ -154,38 +159,35 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Main Navigation Bar */}
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative">
-        {/* Logo */}
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between relative">
+        {/* Authoritative Executive Logo */}
         <div 
           onClick={() => onNavigate('home')} 
           className="flex items-center gap-3 cursor-pointer group"
           id="brand-logo-btn"
         >
-          <div className="relative w-10 h-10">
-            {/* Outer Rotating Glowing Halo Ring */}
-            <div className="absolute -inset-1 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-emerald-400 opacity-75 blur-sm group-hover:opacity-100 transition-opacity animate-pulse"></div>
-            <div className="relative w-10 h-10 rounded-xl bg-slate-950 border border-cyan-500/50 p-1 flex items-center justify-center shadow-2xl">
-              <svg className="w-6 h-6 text-cyan-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 19V5l12 14V5" />
-                <circle cx="4" cy="5" r="1.5" className="fill-cyan-400" />
-                <circle cx="16" cy="19" r="1.5" className="fill-emerald-400" />
-                <circle cx="16" cy="5" r="1.5" className="fill-purple-400" />
-                <circle cx="4" cy="19" r="1.5" className="fill-blue-400" />
-              </svg>
+          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-700 p-0.5 shadow-xl flex items-center justify-center group-hover:scale-105 transition-transform">
+            <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+              <span className="font-mono font-black text-sm tracking-tighter text-amber-400">SR</span>
             </div>
           </div>
           <div>
-            <span className="text-xl font-extrabold tracking-tight text-white block font-sans">
-              NEXIS <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500">AI</span>
-            </span>
-            <span className="text-[9px] font-extrabold tracking-wider text-slate-400 uppercase font-mono block -mt-1">
-              Executive Advisory · Led by Shafiq Rahman
+            <div className="flex items-center gap-1.5">
+              <span className="text-base sm:text-lg font-black tracking-tight text-white block font-sans">
+                SHAFIQ RAHMAN
+              </span>
+              <span className="text-[10px] font-mono font-bold bg-amber-500/15 border border-amber-500/40 text-amber-400 px-1.5 py-0.2 rounded">
+                CIO
+              </span>
+            </div>
+            <span className="text-[10px] font-medium tracking-wide text-slate-400 font-sans block">
+              Former State CIO · Executive Advisory · Nexis AI
             </span>
           </div>
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden xl:flex items-center gap-4 text-xs font-semibold text-slate-300">
+        <div className="hidden lg:flex items-center gap-4 text-xs font-semibold text-slate-300">
           <button
             onClick={() => onNavigate('home')}
             className={`hover:text-amber-400 transition-colors ${currentPage === 'home' ? 'text-amber-400 font-bold' : ''}`}
@@ -194,61 +196,163 @@ export const Navbar: React.FC<NavbarProps> = ({
             Home
           </button>
 
-          <button
-            onClick={() => onNavigate('fractional-cio')}
-            className={`hover:text-amber-400 transition-colors flex items-center gap-1 ${currentPage === 'fractional-cio' ? 'text-amber-400 font-bold' : ''}`}
-            id="nav-fractional-cio-link"
+          {/* Practice Areas Dropdown */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setPracticeDropdownOpen(true)}
+            onMouseLeave={() => setPracticeDropdownOpen(false)}
           >
-            <span className="text-[9px] bg-amber-500 text-slate-950 font-black px-1.5 py-0.5 rounded font-mono uppercase">CIO</span>
-            <span>Fractional CIO</span>
-          </button>
+            <button
+              className={`flex items-center gap-1 py-2 hover:text-amber-400 transition-colors ${
+                ['fractional-cio', 'cio-advisory', 'interim-cio', 'ai-strategy', 'ai-governance', 'healthcare-cio-advisory', 'higher-education-cio-advisory', 'technology-governance'].includes(currentPage)
+                  ? 'text-amber-400 font-bold'
+                  : ''
+              }`}
+              id="nav-practice-dropdown-btn"
+            >
+              <span>Practice Areas</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${practiceDropdownOpen ? 'rotate-180' : ''}`} />
+            </button>
 
-          <button
-            onClick={() => onNavigate('cio-advisory')}
-            className={`hover:text-amber-400 transition-colors ${currentPage === 'cio-advisory' ? 'text-amber-400 font-bold' : ''}`}
-            id="nav-cio-advisory-link"
-          >
-            CIO Advisory
-          </button>
+            {practiceDropdownOpen && (
+              <div className="absolute left-0 top-full w-80 bg-slate-900 border border-slate-700/90 rounded-2xl shadow-2xl p-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150 space-y-1">
+                <button
+                  onClick={() => { onNavigate('fractional-cio'); setPracticeDropdownOpen(false); }}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-amber-400 flex items-center justify-between">
+                    <span>Fractional CIO Services</span>
+                    <span className="text-[9px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.5 rounded font-mono">Core</span>
+                  </div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">30-day diagnostics, strategy & executive retainers</div>
+                </button>
 
-          <button
-            onClick={() => onNavigate('ai-strategy')}
-            className={`hover:text-amber-400 transition-colors ${currentPage === 'ai-strategy' || currentPage === 'ai-governance' ? 'text-amber-400 font-bold' : ''}`}
-            id="nav-ai-strategy-link"
-          >
-            AI Strategy & Governance
-          </button>
+                <button
+                  onClick={() => { onNavigate('interim-cio'); setPracticeDropdownOpen(false); }}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-red-400">Interim CIO Mandates</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Rapid leadership during CIO vacancies & critical turnarounds</div>
+                </button>
 
-          <button
-            onClick={() => onNavigate('healthcare-cio-advisory')}
-            className={`hover:text-emerald-400 transition-colors ${currentPage === 'healthcare-cio-advisory' ? 'text-emerald-400 font-bold' : ''}`}
-            id="nav-healthcare-link"
-          >
-            Healthcare
-          </button>
+                <button
+                  onClick={() => { onNavigate('ai-strategy'); setPracticeDropdownOpen(false); }}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-purple-400">Enterprise AI Strategy & NIST AI RMF</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Auditable AI risk governance, safety charters & vendor screening</div>
+                </button>
 
-          <button
-            onClick={() => onNavigate('higher-education-cio-advisory')}
-            className={`hover:text-blue-400 transition-colors ${currentPage === 'higher-education-cio-advisory' ? 'text-blue-400 font-bold' : ''}`}
-            id="nav-higher-ed-link"
-          >
-            Higher Ed
-          </button>
+                <button
+                  onClick={() => { onNavigate('healthcare-cio-advisory'); setPracticeDropdownOpen(false); }}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-emerald-400">Healthcare Systems & Clinical Informatics</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Hospital M&A, EHR data integrity, radiation oncology IT & HIPAA</div>
+                </button>
 
-          <button
-            onClick={() => onNavigate('insights')}
-            className={`hover:text-amber-400 transition-colors ${currentPage === 'insights' ? 'text-amber-400 font-bold' : ''}`}
-            id="nav-insights-link"
+                <button
+                  onClick={() => { onNavigate('higher-education-cio-advisory'); setPracticeDropdownOpen(false); }}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-cyan-400">Higher Education & Research Computing</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Slurm HPC clusters, campus ERPs & academic health science systems</div>
+                </button>
+
+                <button
+                  onClick={() => { onNavigate('technology-governance'); setPracticeDropdownOpen(false); }}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-blue-400">Technology Governance & Board Reporting</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Steering committee cadence, capital budget control & TCO</div>
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Evidence, Press & Publications Dropdown */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setProofDropdownOpen(true)}
+            onMouseLeave={() => setProofDropdownOpen(false)}
           >
-            Insights
-          </button>
+            <button
+              className={`flex items-center gap-1 py-2 hover:text-amber-400 transition-colors ${
+                ['press-media', 'executive-work', 'research-publications', 'publications', 'case-studies', 'insights', 'resources'].includes(currentPage)
+                  ? 'text-amber-400 font-bold'
+                  : ''
+              }`}
+              id="nav-proof-dropdown-btn"
+            >
+              <span>Evidence & Press</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${proofDropdownOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {proofDropdownOpen && (
+              <div className="absolute left-0 top-full w-84 bg-slate-900 border border-slate-700/90 rounded-2xl shadow-2xl p-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150 space-y-1">
+                <button
+                  onClick={() => { onNavigate('press-media'); setProofDropdownOpen(false); }}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-amber-400 flex items-center gap-1.5">
+                    <span>Press, Keynotes & Articles</span>
+                    <span className="text-[9px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.2 rounded font-mono">Media</span>
+                  </div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Route Fifty feature, GovExec Summit, AutoTech Detroit & LinkedIn</div>
+                </button>
+
+                <button
+                  onClick={() => { onNavigate('research-publications'); setProofDropdownOpen(false); }}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-cyan-400 flex items-center gap-1.5">
+                    <span>Peer-Reviewed Research</span>
+                    <span className="text-[9px] bg-cyan-950 text-cyan-300 border border-cyan-800 px-1.5 py-0.2 rounded font-mono">8 Papers</span>
+                  </div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Clinical cybersecurity, E-Variance & radiation oncology (Google Scholar)</div>
+                </button>
+
+                <button
+                  onClick={() => { onNavigate('case-studies'); setProofDropdownOpen(false); }}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-emerald-400">Verified Case Studies</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Documented multi-agency consolidation & hospital turnaround</div>
+                </button>
+
+                <button
+                  onClick={() => { onNavigate('insights'); setProofDropdownOpen(false); }}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-slate-200">Executive Insights & Playbooks</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">In-depth guides on portfolio rationalization and AI governance</div>
+                </button>
+
+                <button
+                  onClick={() => { onNavigate('resources'); setProofDropdownOpen(false); }}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
+                >
+                  <div className="font-bold text-blue-400">Executive Guides & Checklists</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">10 downloadable CIO decision frameworks & lead magnets</div>
+                </button>
+
+                <button
+                  onClick={() => { onNavigate('trust-center'); setProofDropdownOpen(false); }}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800 transition-colors text-xs text-slate-200 block border-t border-slate-800/80 mt-1 pt-2"
+                >
+                  <div className="font-bold text-slate-300">Trust & Security Center</div>
+                  <div className="text-[11px] text-slate-500 mt-0.5">Domain verification, security.txt & RFC 9116</div>
+                </button>
+              </div>
+            )}
+          </div>
 
           <button
             onClick={() => onNavigate('assessment')}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg border font-mono text-xs transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border font-mono text-xs transition-all ${
               currentPage === 'assessment'
-                ? 'bg-amber-500 text-slate-950 border-amber-400 font-black shadow-md'
-                : 'bg-amber-950/40 text-amber-300 border-amber-800/80 hover:bg-amber-900/60'
+                ? 'bg-amber-500 text-slate-950 border-amber-400 font-bold shadow-md'
+                : 'bg-amber-950/30 text-amber-300 border-amber-800/60 hover:bg-amber-900/50'
             }`}
             id="nav-assessment-link"
           >
@@ -263,107 +367,26 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             About Shafiq
           </button>
-
-          {/* More Capabilities Dropdown */}
-          <div 
-            className="relative"
-            onMouseEnter={() => setServicesDropdownOpen(true)}
-            onMouseLeave={() => setServicesDropdownOpen(false)}
-          >
-            <button
-              className="flex items-center gap-1 text-slate-400 hover:text-white transition-colors py-2"
-              id="nav-more-dropdown-btn"
-            >
-              <span>More</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
-            </button>
-
-            {servicesDropdownOpen && (
-              <div className="absolute right-0 top-full w-72 bg-slate-900 border border-slate-700/90 rounded-xl shadow-2xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                <button
-                  onClick={() => { onNavigate('interim-cio'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
-                >
-                  <div className="font-bold text-red-400">Interim CIO Mandates</div>
-                  <div className="text-[11px] text-slate-400">Transition, crisis & vacancy leadership</div>
-                </button>
-
-                <button
-                  onClick={() => { onNavigate('technology-governance'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
-                >
-                  <div className="font-bold text-amber-300">Technology Governance</div>
-                  <div className="text-[11px] text-slate-400">Steering cadence, TCO & board oversight</div>
-                </button>
-
-                <button
-                  onClick={() => { onNavigate('press-media'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
-                >
-                  <div className="font-bold text-amber-400 flex items-center gap-1.5">
-                    <span>Press, Keynotes & Articles</span>
-                    <span className="text-[9px] bg-amber-950 text-amber-300 border border-amber-800 px-1.5 py-0.2 rounded font-mono">Media</span>
-                  </div>
-                  <div className="text-[11px] text-slate-400">Route Fifty, GovExec Summit, AutoTech Detroit & LinkedIn</div>
-                </button>
-
-                <button
-                  onClick={() => { onNavigate('research-publications'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
-                >
-                  <div className="font-bold text-cyan-400 flex items-center gap-1.5">
-                    <span>Research & Publications</span>
-                    <span className="text-[9px] bg-cyan-950 text-cyan-300 border border-cyan-800 px-1.5 py-0.2 rounded font-mono">8 Papers</span>
-                  </div>
-                  <div className="text-[11px] text-slate-400">Clinical cybersecurity & EMR data integrity (Google Scholar)</div>
-                </button>
-
-                <button
-                  onClick={() => { onNavigate('case-studies'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
-                >
-                  <div className="font-bold text-emerald-400">Verified Case Studies</div>
-                  <div className="text-[11px] text-slate-400">Documented institutional transformations</div>
-                </button>
-
-                <button
-                  onClick={() => { onNavigate('resources'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
-                >
-                  <div className="font-bold text-blue-400">Executive Guides & Checklists</div>
-                  <div className="text-[11px] text-slate-400">10 CIO frameworks & lead magnets</div>
-                </button>
-
-                <button
-                  onClick={() => { onNavigate('trust-center'); setServicesDropdownOpen(false); }}
-                  className="w-full text-left p-2 rounded-lg hover:bg-slate-800 transition-colors text-xs text-slate-200 block"
-                >
-                  <div className="font-bold text-slate-200">Trust & Security Center</div>
-                  <div className="text-[11px] text-slate-400">Domain verification & RFC 9116</div>
-                </button>
-              </div>
-            )}
-          </div>
         </div>
 
-        {/* Action Buttons: Schedule Conversation, CIO Assessment, AI Advisor */}
-        <div className="hidden xl:flex items-center gap-2.5">
-          <button
-            onClick={() => onNavigate('ai-advisor')}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-purple-300 bg-purple-950/80 border border-purple-700/70 rounded-xl hover:bg-purple-900 transition-all shadow-sm cursor-pointer"
-            id="ai-advisor-header-btn"
+        {/* Action Buttons: Schedule Conversation, Hotline */}
+        <div className="hidden lg:flex items-center gap-3">
+          <a
+            href="tel:+14109347773"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-bold text-slate-200 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-xl transition-all shadow-sm"
+            title="Direct Executive Line"
           >
-            <BrainCircuit className="w-3.5 h-3.5 text-purple-400" />
-            <span>AI Advisor</span>
-          </button>
+            <PhoneCall className="w-3.5 h-3.5 text-emerald-400" />
+            <span>(410) 934-7773</span>
+          </a>
 
           <button
             onClick={() => onNavigate('schedule')}
-            className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 rounded-xl hover:from-amber-300 hover:to-amber-400 transition-all shadow-md shadow-amber-500/20 cursor-pointer"
+            className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 rounded-xl hover:scale-102 transition-all shadow-md shadow-amber-500/20 cursor-pointer"
             id="schedule-conversation-header-btn"
           >
             <Calendar className="w-3.5 h-3.5 text-slate-950" />
-            <span>Schedule Conversation</span>
+            <span>Schedule Advisory</span>
           </button>
         </div>
 
@@ -421,147 +444,133 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </div>
 
-          {/* Section: Executive Leadership & Strategy */}
+          {/* Section: Practice Areas */}
           <div className="space-y-1">
             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 block font-mono">
-              Executive & Advisory
+              Practice Areas
             </span>
-            <button
-              onClick={() => { onNavigate('fractional-cio'); setMobileMenuOpen(false); }}
-              className="w-full text-left px-3 py-2.5 rounded-lg text-amber-300 hover:bg-amber-950/30 font-semibold border border-amber-900/40 flex items-center justify-between active:bg-amber-950/50"
-            >
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-amber-400" />
-                <span>Fractional CIO & 30-Day Diagnostic</span>
-              </div>
-              <span className="text-[10px] bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded font-mono font-black">NEW</span>
-            </button>
+            <div className="space-y-1">
+              <button
+                onClick={() => { onNavigate('fractional-cio'); setMobileMenuOpen(false); }}
+                className="w-full text-left px-3 py-2 rounded-lg text-amber-300 hover:bg-amber-950/30 font-semibold border border-amber-900/40 flex items-center justify-between text-xs"
+              >
+                <span>Fractional CIO Services</span>
+                <span className="text-[9px] bg-amber-500 text-slate-950 px-1 rounded font-mono font-black">CORE</span>
+              </button>
 
-            <button
-              onClick={() => { onNavigate('roi-framework'); setMobileMenuOpen(false); }}
-              className="w-full text-left px-3 py-2.5 rounded-lg text-emerald-300 hover:bg-emerald-950/30 font-semibold border border-emerald-900/40 flex items-center justify-between active:bg-emerald-950/50"
-            >
-              <div className="flex items-center gap-2">
-                <FileCheck2 className="w-4 h-4 text-emerald-400" />
-                <span>Enterprise Value Framework (EVF™)</span>
-              </div>
-              <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-mono font-bold">ROI</span>
-            </button>
+              <button
+                onClick={() => { onNavigate('interim-cio'); setMobileMenuOpen(false); }}
+                className="w-full text-left px-3 py-2 rounded-lg text-red-300 hover:bg-slate-800 font-semibold text-xs"
+              >
+                <span>Interim CIO Mandates & Vacancy Leadership</span>
+              </button>
 
-            <button
-              onClick={() => { onNavigate('erp-modernization'); setMobileMenuOpen(false); }}
-              className="w-full text-left px-3 py-2.5 rounded-lg text-indigo-300 hover:bg-indigo-950/30 font-semibold border border-indigo-900/40 flex items-center justify-between active:bg-indigo-950/50"
-            >
-              <div className="flex items-center gap-2">
-                <Server className="w-4 h-4 text-indigo-400" />
-                <span>ERP & Clean Core (SAP/Oracle)</span>
-              </div>
-              <span className="text-[10px] bg-indigo-950 text-indigo-300 border border-indigo-800 px-1.5 py-0.5 rounded font-mono">ERP</span>
-            </button>
-          </div>
+              <button
+                onClick={() => { onNavigate('ai-strategy'); setMobileMenuOpen(false); }}
+                className="w-full text-left px-3 py-2 rounded-lg text-purple-300 hover:bg-slate-800 font-semibold text-xs"
+              >
+                <span>Enterprise AI Strategy & NIST AI RMF</span>
+              </button>
 
-          {/* Section: Core Navigation */}
-          <div className="space-y-1 pt-1 border-t border-slate-800/80">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 block font-mono">
-              Platform & Practices
-            </span>
-            <div className="grid grid-cols-2 gap-1.5">
               <button
-                onClick={() => { onNavigate('home'); setMobileMenuOpen(false); }}
-                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'home' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
+                onClick={() => { onNavigate('healthcare-cio-advisory'); setMobileMenuOpen(false); }}
+                className="w-full text-left px-3 py-2 rounded-lg text-emerald-300 hover:bg-slate-800 font-semibold text-xs"
               >
-                🏠 {t.navHome}
+                <span>Healthcare Systems & Clinical Informatics</span>
               </button>
+
               <button
-                onClick={() => { onNavigate('about'); setMobileMenuOpen(false); }}
-                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'about' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
+                onClick={() => { onNavigate('higher-education-cio-advisory'); setMobileMenuOpen(false); }}
+                className="w-full text-left px-3 py-2 rounded-lg text-cyan-300 hover:bg-slate-800 font-semibold text-xs"
               >
-                🏢 {t.navAbout}
+                <span>Higher Education & Research Computing</span>
               </button>
+
               <button
-                onClick={() => { onNavigate('services'); setMobileMenuOpen(false); }}
-                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'services' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
+                onClick={() => { onNavigate('technology-governance'); setMobileMenuOpen(false); }}
+                className="w-full text-left px-3 py-2 rounded-lg text-blue-300 hover:bg-slate-800 font-semibold text-xs"
               >
-                ⚙️ {t.navServices}
-              </button>
-              <button
-                onClick={() => { onNavigate('industries'); setMobileMenuOpen(false); }}
-                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'industries' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
-              >
-                🏭 {t.navIndustries}
-              </button>
-              <button
-                onClick={() => { onNavigate('ai-solutions'); setMobileMenuOpen(false); }}
-                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'ai-solutions' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
-              >
-                🧠 {t.navAISolutions}
-              </button>
-              <button
-                onClick={() => { onNavigate('cybersecurity'); setMobileMenuOpen(false); }}
-                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'cybersecurity' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
-              >
-                🛡️ Zero Trust
-              </button>
-              <button
-                onClick={() => { onNavigate('case-studies'); setMobileMenuOpen(false); }}
-                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'case-studies' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
-              >
-                📊 Case Studies
-              </button>
-              <button
-                onClick={() => { onNavigate('research-publications'); setMobileMenuOpen(false); }}
-                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'research-publications' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-cyan-300 hover:bg-slate-800/60'}`}
-              >
-                📚 Research (8 Papers)
-              </button>
-              <button
-                onClick={() => { onNavigate('press-media'); setMobileMenuOpen(false); }}
-                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'press-media' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-amber-300 hover:bg-slate-800/60'}`}
-              >
-                🎙️ Press & Keynotes
-              </button>
-              <button
-                onClick={() => { onNavigate('markets'); setMobileMenuOpen(false); }}
-                className={`text-left px-3 py-2 rounded-lg text-xs font-medium ${currentPage === 'markets' ? 'bg-blue-900/40 text-blue-300 border border-blue-700' : 'text-slate-300 hover:bg-slate-800/60'}`}
-              >
-                🌐 Global Markets
+                <span>Technology Governance & Board Reporting</span>
               </button>
             </div>
           </div>
 
-          {/* Section: Trust & Security */}
-          <div className="space-y-1.5 pt-1 border-t border-slate-800/80">
+          {/* Section: Evidence, Press & Publications */}
+          <div className="space-y-1 pt-2 border-t border-slate-800/80">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 block font-mono">
+              Evidence & National Media
+            </span>
+            <div className="grid grid-cols-2 gap-1.5">
+              <button
+                onClick={() => { onNavigate('press-media'); setMobileMenuOpen(false); }}
+                className="text-left px-3 py-2 rounded-lg text-xs font-semibold bg-amber-950/40 text-amber-300 border border-amber-800/60"
+              >
+                🎙️ Press & Keynotes
+              </button>
+              <button
+                onClick={() => { onNavigate('research-publications'); setMobileMenuOpen(false); }}
+                className="text-left px-3 py-2 rounded-lg text-xs font-semibold bg-cyan-950/40 text-cyan-300 border border-cyan-800/60"
+              >
+                📚 Research (8 Papers)
+              </button>
+              <button
+                onClick={() => { onNavigate('case-studies'); setMobileMenuOpen(false); }}
+                className="text-left px-3 py-2 rounded-lg text-xs font-medium text-slate-200 hover:bg-slate-800/60"
+              >
+                📊 Case Studies
+              </button>
+              <button
+                onClick={() => { onNavigate('insights'); setMobileMenuOpen(false); }}
+                className="text-left px-3 py-2 rounded-lg text-xs font-medium text-slate-200 hover:bg-slate-800/60"
+              >
+                💡 Insights & Playbooks
+              </button>
+              <button
+                onClick={() => { onNavigate('resources'); setMobileMenuOpen(false); }}
+                className="text-left px-3 py-2 rounded-lg text-xs font-medium text-slate-200 hover:bg-slate-800/60"
+              >
+                📑 CIO Checklists
+              </button>
+              <button
+                onClick={() => { onNavigate('about'); setMobileMenuOpen(false); }}
+                className="text-left px-3 py-2 rounded-lg text-xs font-medium text-amber-200 hover:bg-slate-800/60"
+              >
+                👤 About Shafiq
+              </button>
+            </div>
+          </div>
+
+          {/* Section: Diagnostic Assessment */}
+          <div className="pt-2 border-t border-slate-800/80">
             <button
-              onClick={() => { onNavigate('trust-center'); setMobileMenuOpen(false); }}
-              className="w-full text-left p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-emerald-300 text-xs font-semibold flex items-center justify-between active:bg-emerald-950/80"
+              onClick={() => { onNavigate('assessment'); setMobileMenuOpen(false); }}
+              className="w-full text-left p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold flex items-center justify-between"
             >
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>Trust, RFC 9116 & Domain Security</span>
+                <BarChart3 className="w-4 h-4 text-amber-400" />
+                <span>12-Domain CIO Maturity Assessment</span>
               </div>
-              <span className="bg-emerald-500 text-slate-950 text-[9px] font-extrabold px-1.5 py-0.5 rounded uppercase font-mono">nexisai.us</span>
+              <span className="bg-amber-500 text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded font-mono">DIAGNOSTIC</span>
             </button>
           </div>
 
           {/* Section: Direct Touch Communications */}
           <div className="pt-2 border-t border-slate-800 space-y-2">
             <a
-              href="tel:14436085425"
+              href="tel:+14109347773"
               className="w-full py-2.5 px-3 text-xs font-semibold text-emerald-300 bg-emerald-950/80 border border-emerald-800 rounded-lg flex items-center justify-center gap-2"
             >
               <PhoneCall className="w-4 h-4 text-emerald-400" />
-              <span>Direct Phone Call: (443) 608-5425</span>
+              <span>Direct Office: (410) 934-7773</span>
             </a>
 
-            {onOpenGmailModal && (
-              <button
-                onClick={() => { onOpenGmailModal(); setMobileMenuOpen(false); }}
-                className="w-full text-center py-2.5 px-3 text-xs font-semibold text-slate-200 bg-slate-900 border border-slate-700 rounded-lg flex items-center justify-center gap-2"
-              >
-                <Mail className="w-4 h-4 text-cyan-400" />
-                <span>Gmail & Enterprise Mailbox Access</span>
-              </button>
-            )}
+            <a
+              href="mailto:shafiqs1@gmail.com"
+              className="w-full py-2 px-3 text-xs font-medium text-slate-300 bg-slate-900 border border-slate-800 rounded-lg flex items-center justify-center gap-2"
+            >
+              <Mail className="w-4 h-4 text-amber-400" />
+              <span>Confidential Email: shafiqs1@gmail.com</span>
+            </a>
           </div>
         </div>
       )}

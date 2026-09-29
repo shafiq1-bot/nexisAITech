@@ -79,6 +79,31 @@ export default function App() {
     document.documentElement.lang = currentLanguage;
   }, [currentLanguage]);
 
+  // Deep-linking & URL SEO Synchronization
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const pageParam = params.get('page') as PageId | null;
+    const hash = window.location.hash.replace('#', '') as PageId | null;
+    const initialPage = pageParam || hash;
+
+    if (initialPage) {
+      setCurrentPage(initialPage);
+    }
+
+    const handlePopState = () => {
+      const currentParams = new URLSearchParams(window.location.search);
+      const p = currentParams.get('page') as PageId | null;
+      if (p) {
+        setCurrentPage(p);
+      } else {
+        setCurrentPage('home');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const handleNavigate = (page: PageId, detailId?: string) => {
     if (page === 'service-detail' && detailId) {
       setSelectedServiceId(detailId);
@@ -87,6 +112,14 @@ export default function App() {
     }
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Update browser URL query string for clean bookmarking & sharing
+    try {
+      const newUrl = page === 'home' ? window.location.pathname : `${window.location.pathname}?page=${page}`;
+      window.history.pushState({ page }, '', newUrl);
+    } catch {
+      // fallback in sandbox if history state restricted
+    }
   };
 
   const handleOpenConsultation = (serviceTitleOrNotes?: string) => {
