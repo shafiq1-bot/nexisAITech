@@ -47,63 +47,80 @@ export interface ExecutiveBio {
 export const executiveLeaderData: ExecutiveBio = {
   name: 'Shafiq Rahman, MS, MBA, MCS, PMP®',
   title: 'Fractional CIO & Enterprise Technology Executive Advisor',
-  tagline: 'University & Academic Health System CIO | Digital Transformation | AI Governance | Academic & Clinical Informatics',
+  tagline: 'Healthcare System & Academic Medicine CIO | State Government Digital Transformation | Responsible AI & Federated Governance',
   summary:
-    'Shafiq Rahman is an experienced enterprise technology executive who has served as State Chief Information Officer (CIO) for the Maryland Department of Transportation and as enterprise IT executive at the University of Maryland, Baltimore / University of Maryland School of Medicine. With over 20 years of technology leadership across state government, higher education, academic medicine, and clinical healthcare, Shafiq advises CEOs, university presidents, health system boards, and public authorities on technology strategy, digital transformation, AI governance, cybersecurity, and portfolio rationalization without the overhead or delay of a full-time executive search.',
-  yearsExperience: 20,
+    'Shafiq Rahman is an accomplished enterprise technology executive with more than two decades of leadership spanning academic health systems, clinical informatics, state government, higher education, and global federated institutions. He has served as State Chief Information Officer (CIO) & Chief Information and Digital Transformation Officer for the Maryland Department of Transportation ($250M+ portfolio, 1,500 IT staff across 6 operating administrations), as Director of Enterprise IT at the University of Maryland School of Medicine reporting directly to the Dean (supporting ~3,000 faculty, ~3,000 staff, >1,300 students/residents, and 25 departments), and currently as Strategic Advisor for Ascension / Saint Agnes Healthcare. An appointee to the Maryland Governor’s AI Sub-Cabinet, Shafiq pairs board-level governance and multi-million dollar portfolio rationalization with deep, hands-on clinical and enterprise systems execution.',
+  yearsExperience: 22,
   formerRoles: [
-    'Former State CIO — Maryland Department of Transportation (MDOT) ($250M technology portfolio, 1,500 IT staff across 6 agencies)',
-    'Former Enterprise IT Executive — University of Maryland, Baltimore (UMB) & School of Medicine (UMSOM)',
-    'Principal Executive Advisor — Nexis AI Fractional CIO & AI Governance Advisory',
-    'Executive Advisor — Zero Trust Cybersecurity, NIST AI RMF Governance & Enterprise Modernization',
+    'Strategic Advisor — Ascension / Saint Agnes Healthcare (Clinical Operations, EHR Workflow & Technology Rationalization)',
+    'Appointee — Maryland Governor’s AI Sub-Cabinet (Enterprise AI Governance, Privacy & Cybersecurity Architecture)',
+    'Former State CIO & Chief Information and Digital Transformation Officer — Maryland Department of Transportation (MDOT) ($250M+ portfolio, 1,500 IT staff, 6 agencies)',
+    'Former Director of Enterprise IT — University of Maryland School of Medicine (UMSOM) (Reporting to Dean, 3,000 faculty, 3,000 staff, 1,300+ students/residents)',
+    'Chair — Enterprise IT Governance Board & Architecture Review Board (ARB), State of Maryland (MDOT)',
+    'Founding Technology Leadership — Ministry of Education NEAS Program (Pakistan) in partnership with Aga Khan University leadership',
   ],
   keyHighlights: [
-    'Former State CIO (Maryland Department of Transportation): Executive stewardship over an approximately $250M technology portfolio and 1,500 IT staff across six state agencies.',
-    'Former Enterprise IT Leader (University of Maryland, Baltimore / UMSOM): Multi-year executive leadership across academic medicine, biomedical research labs, clinical hospital environments, and campus systems.',
-    'Pioneered "Diagnose → Govern → Deliver" operating model delivering executive decision control and board-ready roadmaps within 30 days.',
-    'Led governance and architecture for mission-critical clinical, enterprise, and research systems across Epic EHR, FHIR, Banner, SAP, and Slurm HPC GPU clusters.',
-    'Structured Zero Trust and regulatory compliance frameworks aligned with NIST SP 800-53 Rev 5, HHS OCR Security Guidelines, HIPAA, and FERPA.',
-    'Chaired executive technology steering committees advising state cabinet secretaries, university provosts, health system leadership, and boards of directors.',
+    'Current Strategic Advisor at Ascension / Saint Agnes: Advising clinical leadership on hospital technology workflow redesign, system interoperability, and clinical application rationalization.',
+    'Appointed to the Maryland Governor’s AI Sub-Cabinet: Formulating statewide executive frameworks balancing artificial intelligence innovation with privacy, cybersecurity, and responsible enterprise architecture.',
+    'Former State CIO (Maryland Department of Transportation): Led technology transformation across 6 operating administrations, 1,500 IT professionals, and a $250M+ technology portfolio.',
+    'Chaired Enterprise IT Governance & Architecture Review Boards: Established unified standards across a federated enterprise while preserving local operational agility.',
+    'Delivered $6 Million in Recurring Annual Savings: Architected and executed application rationalization reducing the enterprise portfolio from approximately 850 to 620 applications.',
+    'Director of Enterprise IT at University of Maryland School of Medicine: Reported directly to the Dean; supported an environment of 3,000 faculty, 3,000 staff, >1,300 students, residents and fellows, and 25 academic departments with close academic medical center integration.',
+    'Led Meditech-to-Epic Transformation: Orchestrated multi-facility clinical software migration, workflow redesign, interoperability, data integration, and post go-live optimization.',
+    'Global & Federated Governance: Formative technology leadership with Pakistan’s Ministry of Education NEAS program partnering with Aga Khan University leadership, bridging multi-country, multi-site institutional models with local realities.',
   ],
   careerTimeline: [
     {
-      period: '2021 – Present',
-      role: 'Principal Executive Advisor & Fractional CIO',
-      organization: 'Nexis AI | Executive Technology Advisory & Enterprise AI',
+      period: '2024 – Present',
+      role: 'Strategic Advisor (Clinical Operations & Technology Rationalization)',
+      organization: 'Ascension / Saint Agnes Healthcare',
       description:
-        'Providing fractional CIO leadership, 30-day technology diagnostics, AI governance charters (NIST AI RMF), and portfolio turnarounds for healthcare systems, universities, and public sector organizations.',
-      impact: 'Established board-level decision systems, stopped stalled multi-million dollar vendor expenditures, and established responsible AI frameworks for mission-driven institutions.',
+        'Working at the direct intersection of clinical operations, medical staff workflows, and enterprise technology. Guiding executive initiatives in workflow redesign, clinical system interoperability, EHR optimization, and application rationalization.',
+      impact:
+        'Streamlined clinical workflows, addressed integration bottlenecks, and eliminated redundant technology overhead across hospital departments.',
     },
     {
-      period: 'State CIO Tenure',
-      role: 'State Chief Information Officer (CIO) / Chief Information & Digital Transformation Officer',
+      period: 'Gubernatorial Appointment',
+      role: 'Appointee — Enterprise AI, Privacy & Architecture',
+      organization: 'Maryland Governor’s AI Sub-Cabinet',
+      description:
+        'State-level executive leadership balancing AI innovation with rigorous privacy, cybersecurity, responsible use standards, and enterprise cloud architecture across state government and public agencies.',
+      impact:
+        'Established practical, mission-driven governance frameworks for responsible AI deployment in public sector operations, workforce productivity, and institutional decision-making.',
+    },
+    {
+      period: 'State CIO & CDIO Tenure',
+      role: 'Chief Information & Digital Transformation Officer (State CIO)',
       organization: 'Maryland Department of Transportation (MDOT)',
       description:
-        'Executive governance, capital budgeting, cybersecurity defense, and enterprise systems modernization across an approximately $250 million technology portfolio and 1,500 IT staff spanning six state transportation and public safety agencies.',
-      impact: 'Consolidated statewide multi-agency infrastructure, established 99.999% uptime mission-critical dispatch operations, and rationalized multi-million dollar legacy software contracts.',
+        'Led enterprise technology transformation across 6 major operating administrations, ~1,500 IT professionals, and a $250M+ technology portfolio. Chaired the Enterprise IT Governance and Architecture Review Boards (ARB), instituting shared security, cloud, and data architectures.',
+      impact:
+        'Rationalized enterprise software portfolio from 850 to 620 applications, generating approximately $6 million in recurring annual savings, and established high-availability 24/7 mission-critical operations.',
     },
     {
-      period: 'Enterprise IT Leadership',
-      role: 'Director of Enterprise IT & Infrastructure',
-      organization: 'University of Maryland, Baltimore (UMB) & School of Medicine (UMSOM)',
+      period: 'Academic Medicine Leadership',
+      role: 'Director of Enterprise IT (Reporting to the Dean)',
+      organization: 'University of Maryland School of Medicine (UMSOM)',
       description:
-        'Executive leadership in an academic medicine, healthcare research, and graduate health sciences environment. Directed central core infrastructure, academic systems, enterprise data centers, and clinical network enclaves.',
-      impact: 'Modernized campus core systems, established HIPAA/FERPA-compliant biomedical research computing enclaves, and supported thousands of clinical faculty, researchers, and students.',
+        'Executive technology stewardship supporting ~3,000 faculty, ~3,000 staff, >1,300 students, residents and fellows, and ~25 academic departments, tightly integrated into the University of Maryland Medical System. Directed Meditech-to-Epic transformation and clinical integration.',
+      impact:
+        'Led major Meditech-to-Epic migration and hospital integration, realizing post go-live clinical adoption, workflow optimization, and high-security biomedical research environments.',
     },
     {
-      period: 'Senior Technology Architecture',
-      role: 'Director of Enterprise Infrastructure & Security Architecture',
-      organization: 'Regional Public Sector & Public Safety Technology Systems',
+      period: 'Foundational Leadership',
+      role: 'Senior Technology Leader — National Educational Assessment System (NEAS)',
+      organization: 'Ministry of Education (Pakistan) / Aga Khan University Collaboration',
       description:
-        'Directed high-resiliency regional fiber backbones, multi-site failover data centers, and identity-bound network perimeters for emergency public safety services.',
-      impact: 'Delivered zero-downtime disaster recovery architecture and modernized core public infrastructure.',
+        'Built large-scale educational assessment and data analysis infrastructure, working in close collaboration with Aga Khan University leaders, establishing foundational expertise in federated, multi-site institutional governance.',
+      impact:
+        'Pioneered national educational data collection and assessment models adapted to local infrastructure realities.',
     },
   ],
   achievements: [
-    { metric: '20+ Yrs', label: 'Executive Technology Leadership', detail: 'Real C-suite stewardship across state government, academic medicine & healthcare' },
-    { metric: '$250M', label: 'State Technology Portfolio', detail: 'Fiduciary leadership across 6 agencies and 1,500 IT staff as State CIO' },
-    { metric: '30 Days', label: 'Executive Diagnostic', detail: 'Rapid board-ready roadmap, priority portfolio & 90-day action charter' },
-    { metric: '100%', label: 'Audit Accountability', detail: 'NIST 800-53, HIPAA, HHS OCR, and NIST AI RMF governance frameworks' },
+    { metric: '$6M/yr', label: 'Recurring Savings Generated', detail: 'Rationalized 850 to 620 applications as State CIO (MDOT)' },
+    { metric: '$250M+', label: 'Enterprise Portfolio Stewardship', detail: 'Chaired Enterprise IT Governance & Architecture Review Boards across 6 agencies' },
+    { metric: '7,300+', label: 'Faculty, Staff & Residents Supported', detail: 'University of Maryland School of Medicine reporting directly to the Dean' },
+    { metric: 'Epic / Meditech', label: 'Clinical EHR Transformation', detail: 'Led major Meditech-to-Epic hospital migration & post go-live optimization' },
   ],
   certifications: [
     'PMP® (Project Management Professional - PMI)',
@@ -137,6 +154,24 @@ export const executiveLeaderData: ExecutiveBio = {
     },
   ],
   speakingEngagements: [
+    {
+      event: 'International Executive Webinar (Trade Expeditors)',
+      topic: 'Leading in the Age of Artificial Intelligence: AI Leadership, Cloud Strategy & Enterprise Modernization',
+      location: 'International Broadcast (Live Online)',
+      year: '2026',
+    },
+    {
+      event: 'GovExec Government Efficiency Summit',
+      topic: 'Accelerating Digital Services, AI Adoption & Portfolio Rationalization in Public Agencies',
+      location: 'Washington, DC / National Broadcast',
+      year: '2025',
+    },
+    {
+      event: 'AutoTech: Detroit 2024 (DMI Fireside Chat)',
+      topic: 'Software-Defined Mobility & Critical Infrastructure Cybersecurity Enclaves',
+      location: 'Detroit, MI',
+      year: '2024',
+    },
     {
       event: 'Enterprise Technology Executive Summit',
       topic: 'The CIO Playbook for Responsible AI Governance and Zero Trust Oversight',

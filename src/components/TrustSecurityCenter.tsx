@@ -343,7 +343,7 @@ Contact: ${userEmail || '[Your Contact Email]'}`;
                     <div>Owner, Chief Information Officer (CIO) & Managing Director</div>
                     <div>20+ Years Enterprise IT & Cybersecurity Transformation</div>
                     <div>Regional Hubs: Owings Mills, MD (USA) | London (UK) | Frankfurt (DE) | Riyadh (KSA)</div>
-                    <div>LinkedIn: https://linkedin.com/in/shafiq-rahman-cio</div>
+                    <div>LinkedIn: https://www.linkedin.com/in/shafiqr</div>
                   </div>
                 </div>
               </div>

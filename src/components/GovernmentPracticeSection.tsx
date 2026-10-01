@@ -62,7 +62,7 @@ export const GovernmentPracticeSection: React.FC<GovernmentPracticeSectionProps>
               State, Transportation, Public Safety & Federal Cyber Governance
             </h1>
             <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-              Led by a former public sector technology executive with deep experience guiding state cabinet secretaries, CIOs, and agency directors. We specialize in NIST SP 800-53 Rev 5 compliance, StateRAMP/FedRAMP enclaves, CJIS public safety networks, and master procurement agreements.
+              Led by <strong>Shafiq Rahman, MS, MBA, MCS, PMP®</strong>, former Chief Information & Digital Transformation Officer (State CIO) for the Maryland Department of Transportation ($250M+ portfolio, ~1,500 IT staff across 6 operating administrations, Chaired Enterprise IT Governance & Architecture Review Boards, and generated ~$6M in recurring annual savings) and appointee to the <strong>Maryland Governor’s AI Sub-Cabinet</strong>. We specialize in enterprise application rationalization, NIST SP 800-53 Rev 5 compliance, StateRAMP/FedRAMP enclaves, CJIS public safety networks, and responsible public sector AI governance.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">

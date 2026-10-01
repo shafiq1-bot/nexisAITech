@@ -44,8 +44,8 @@ export const HealthcareCIOPage: React.FC<HealthcareCIOPageProps> = ({
           Executive technology leadership for hospital systems, academic health centers, and clinical organizations navigating EHR transitions, clinical AI, HHS OCR cybersecurity audits, and physician documentation fatigue.
         </p>
 
-        <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
-          Led by <strong>Shafiq Rahman, MS, MBA, MCS, PMP®</strong>. Former enterprise IT leader at the University of Maryland, Baltimore / University of Maryland School of Medicine, bridging clinical workflows, biomedical research, and health system governance.
+        <p className="text-sm sm:text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">
+          Led by <strong>Shafiq Rahman, MS, MBA, MCS, PMP®</strong>. Currently Strategic Advisor at <strong>Ascension / Saint Agnes Healthcare</strong> (clinical operations, EHR workflow redesign, and technology rationalization); former Director of Enterprise IT at <strong>University of Maryland School of Medicine</strong> reporting directly to the Dean (supporting 3,000 faculty, 3,000 staff, 1,300+ students/residents, and 25 departments); and leader of large-scale <strong>Meditech-to-Epic clinical transformations</strong>.
         </p>
 
         <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
@@ -117,29 +117,29 @@ export const HealthcareCIOPage: React.FC<HealthcareCIOPageProps> = ({
         <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6">
           <div className="space-y-2">
             <span className="text-xs font-mono uppercase text-emerald-400 font-bold">Documented Track Record</span>
-            <h3 className="text-2xl font-bold text-white">Academic Health Center & Health System Experience</h3>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-              Shafiq Rahman’s clinical leadership was forged in high-stakes academic medicine at the University of Maryland School of Medicine and affiliated clinical networks—governing clinical data enclaves, biomedical research computing, and hospital systems.
+            <h3 className="text-2xl font-bold text-white">Academic Medicine, Health System & Strategic Advisory Track Record</h3>
+            <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+              Shafiq Rahman’s clinical leadership was forged in high-stakes academic medicine at the University of Maryland School of Medicine (supporting ~3,000 faculty, ~3,000 staff, 1,300+ students/residents, and 25 departments reporting directly to the Dean), leading enterprise Meditech-to-Epic clinical transformations, and actively advising clinical leadership at Ascension / Saint Agnes Healthcare.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
             <div className="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-2">
-              <div className="text-xs text-slate-400">Environment</div>
-              <div className="text-base font-bold text-white">Academic Medicine & Health Sciences</div>
-              <p className="text-xs text-slate-300">Biomedical research, clinical hospitals, dental, pharmacy, and nursing schools.</p>
+              <div className="text-xs text-amber-400 font-mono font-bold">Current Strategic Advisory</div>
+              <div className="text-base font-bold text-white">Ascension / Saint Agnes Healthcare</div>
+              <p className="text-xs text-slate-300">Clinical operations, physician documentation workflows, EHR optimization, and technology rationalization.</p>
             </div>
 
             <div className="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-2">
-              <div className="text-xs text-slate-400">Clinical Focus</div>
-              <div className="text-base font-bold text-white">EHR Modernization & FHIR</div>
-              <p className="text-xs text-slate-300">Connecting legacy hospital systems to modern clinical analytics and research enclaves.</p>
+              <div className="text-xs text-emerald-400 font-mono font-bold">Clinical EHR Transformation</div>
+              <div className="text-base font-bold text-white">Meditech-to-Epic Hospital Migration</div>
+              <p className="text-xs text-slate-300">Enterprise migration and integration enforcing post go-live adoption, workflow redesign, and measurable outcomes.</p>
             </div>
 
             <div className="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-2">
-              <div className="text-xs text-slate-400">Governance</div>
-              <div className="text-base font-bold text-white">HIPAA & HHS OCR Compliance</div>
-              <p className="text-xs text-slate-300">Zero data persistence on unvetted clouds and 100% audit pass rates.</p>
+              <div className="text-xs text-blue-400 font-mono font-bold">Academic Medicine Scope</div>
+              <div className="text-base font-bold text-white">Univ of Maryland School of Medicine</div>
+              <p className="text-xs text-slate-300">Reported directly to the Dean; governed clinical, biomedical research computing, and campus health sciences enclaves.</p>
             </div>
           </div>
 

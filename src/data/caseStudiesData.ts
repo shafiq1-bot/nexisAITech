@@ -18,28 +18,28 @@ export const detailedCaseStudies: DetailedCaseStudy[] = [
     title: 'State Transportation Authority: Multi-Agency Technology Portfolio Rationalization & Governance',
     category: 'State Government',
     context:
-      'A major state transportation department encompassing six operational business units and public safety divisions, supporting thousands of front-line workers and mission-critical 24/7 dispatch systems across an approximately $250M technology portfolio and 1,500 IT staff.',
+      'Led technology transformation across six major operating administrations, approximately 1,500 IT professionals, and a $250M+ technology portfolio as Chief Information & Digital Transformation Officer (State CIO) for the Maryland Department of Transportation.',
     challenge:
-      'Decades of decentralized procurement resulted in over 180 legacy applications with overlapping functional boundaries, escalating maintenance contracts, inconsistent cybersecurity controls, and delayed statutory modernization milestones.',
+      'Decades of decentralized procurement resulted in over 850 disparate applications across six operating administrations with overlapping functional boundaries, escalating vendor maintenance contracts, inconsistent security controls, and high operational overhead.',
     leadershipApproach:
-      'As State CIO, instituted a unified "Diagnose → Govern → Deliver" portfolio review across all six business units. Formed an executive technology investment council, established transparent scoring criteria for legacy systems (Tolerate, Invest, Migrate, Eliminate), and aligned capital budget requests directly with cabinet priorities.',
+      'Chaired the Enterprise IT Governance and Architecture Review Boards (ARB). Instituted common technology and security standards across the federated organization without compromising local operational flexibility. Orchestrated a rigorous application rationalization framework across all administrations.',
     technologiesUsed: [
-      'Enterprise Architecture Framework (TOGAF principles)',
-      'Legacy ERP & Fleet Maintenance Systems',
-      'Unified Identity & Access Management (IAM)',
-      'Multi-site High-Availability Data Centers',
-      'NIST SP 800-53 Rev 5 Security Controls',
+      'Enterprise Architecture Review Board (ARB) Governance',
+      'Application Portfolio Scoring (TIME: Tolerate, Invest, Migrate, Eliminate)',
+      'Enterprise Identity & Access Management (IAM)',
+      'Multi-agency Cloud Infrastructure & High-Availability Dispatch',
+      'NIST SP 800-53 Rev 5 & State Cybersecurity Mandates',
     ],
     governance:
-      'Established executive steering committees with named accountable business owners, consolidated IT procurement authority, and instituted quarterly cabinet-level milestone readouts with audit-proof tracking.',
+      'Enterprise IT Governance Board and ARB charters with cabinet-level reporting, unified capital procurement controls, and transparent audit-ready decision trails.',
     outcome:
-      'Rationalized redundant legacy software contracts, stabilized critical 99.999% dispatch uptime, eliminated shadow IT procurement, and redirected capital into modern digital public services.',
+      'Reduced application portfolio from approximately 850 to 620 applications, generating approximately $6 million in recurring annual savings, eliminating redundant vendor contracts, and modernizing digital citizen services.',
     lessons:
-      'Technology modernization in the public sector succeeds only when executive governance bridges legislative mandates with operational department heads before contracts are signed.',
+      'Federated governance succeeds when enterprise standards are established to connect strategy and security while preserving the operational flexibility individual operating agencies require.',
     keyOutputs: [
-      'Comprehensive Application Portfolio Rationalization Matrix',
-      'Unified Multi-Agency Capital Technology Budget Schedule',
-      'Standardized Security & Disaster Recovery Operating Charter',
+      '850-to-620 Application Portfolio Rationalization Matrix',
+      '$6M Recurring Annual Savings Realization Roadmap',
+      'Enterprise Architecture Review Board (ARB) Charter',
     ],
   },
   {
@@ -47,9 +47,9 @@ export const detailedCaseStudies: DetailedCaseStudy[] = [
     title: 'Academic Health Center & University: High-Performance Biomedical Research Computing & Compliance Enclaves',
     category: 'Academic Medicine',
     context:
-      'A leading academic health center and health sciences university with biomedical research laboratories, clinical trial facilities, and graduate schools of medicine, pharmacy, nursing, and dentistry.',
+      'Director of Enterprise IT at the University of Maryland School of Medicine, reporting directly to the Dean, supporting an environment of approximately 3,000 faculty, 3,000 staff, more than 1,300 students, residents and fellows, and approximately 25 academic departments with close integration into the broader academic medical center.',
     challenge:
-      'Faculty investigators and computational genomicists faced multi-week queue backlogs on legacy campus computing systems. Desperate research teams began setting up departmental shadow GPU workstations, inadvertently creating severe data leakage risks under HIPAA, FERPA, and federal grant compliance guidelines.',
+      'Faculty investigators, clinical trial teams, and genomic researchers required rapid computational power for complex biomedical workflows, but siloed departmental computing created security vulnerabilities, HIPAA/FERPA audit exposures, and inefficient capital spending.',
     leadershipApproach:
       'Conducted structured stakeholder discovery across academic deans, hospital clinical leadership, research vice presidents, and principal investigators. Architected a centralized, sovereign research computing strategy providing high-throughput GPU capacity with built-in data compliance boundaries.',
     technologiesUsed: [
@@ -62,7 +62,7 @@ export const detailedCaseStudies: DetailedCaseStudy[] = [
     governance:
       'Established a joint Research Computing Governance Board with faculty representation, tiered access controls for sensitive clinical trial data, and clear cost-recovery allocation policies.',
     outcome:
-      'Eliminated research cluster job waitlists, secured high-compliance research computing environments, and protected university intellectual property and federal grant standing.',
+      'Eliminated research cluster job waitlists, secured high-compliance research computing environments, and protected university intellectual property and federal grant standing across 25 academic departments.',
     lessons:
       'In academic medical centers, researchers will bypass central IT if performance falls short; enterprise governance must make the compliant path the fastest and easiest option for faculty.',
     keyOutputs: [
@@ -73,31 +73,31 @@ export const detailedCaseStudies: DetailedCaseStudy[] = [
   },
   {
     id: 'clinical-interoperability-ehr-modernization',
-    title: 'Regional Healthcare Health System: Clinical Interoperability, EHR Transition & Governance',
+    title: 'Health System EHR Transformation & Clinical Operations: Meditech-to-Epic & Strategic Advisory',
     category: 'Healthcare Systems',
     context:
-      'A multi-facility healthcare delivery network undergoing enterprise electronic health record (EHR) transitions across acute hospital care, ambulatory clinics, and regional diagnostic centers.',
+      'Led major clinical technology initiatives including Meditech-to-Epic transformation and hospital integration across affiliated health system environments. Currently serving as Strategic Advisor with Ascension / Saint Agnes Healthcare, addressing clinical operations, workflow redesign, and technology rationalization.',
     challenge:
-      'Fragmented clinical data flows between inpatient facilities and outpatient clinics caused severe clinician documentation friction, redundant diagnostic orders, and vulnerability to HHS OCR cybersecurity audit citations.',
+      'Transitioning from legacy hospital systems (Meditech) to modern enterprise EHRs (Epic) often risks clinical disruption, physician burnout, and unrealized investment if treated merely as an IT software deployment rather than an operational transformation.',
     leadershipApproach:
-      'Established executive clinical informatics governance uniting Chief Medical Officers, nursing executives, pharmacy directors, and IT engineering. Phased the migration with rigorous workflow testing and explicit clinical decision milestones.',
+      'Enforced the foundational principle that the value of an EHR investment is realized after go-live through clinical adoption, workflow redesign, interoperability, data integration, governance, optimization, and measurable clinical and operational outcomes. Conducted rigorous workflow testing with clinical department heads.',
     technologiesUsed: [
-      'Electronic Health Record Platforms (Epic / Meditech environments)',
+      'Epic EHR Enterprise Suite & Meditech Legacy Migration',
       'HL7 v2 & FHIR R4 API Interoperability Gateways',
-      'SMART-on-FHIR Clinical Decision Support Integration',
-      'Zero Trust Micro-segmentation for Medical IoT & Telemetry',
+      'Clinical Decision Support & CPOE Workflow Redesign',
+      'Ascension / Saint Agnes Clinical System Integration',
       'HHS OCR & HIPAA Security Rule Controls',
     ],
     governance:
-      'Bi-weekly clinical steering sessions, physician-led change advisory boards, and continuous audit verification against HHS OCR cybersecurity newsletter guidance.',
+      'Clinical informatics steering committees, physician-led change advisory boards, post go-live optimization charters, and continuous audit verification against HHS OCR cybersecurity guidance.',
     outcome:
-      'Delivered seamless bidirectional data flow across care facilities, reduced chart-search friction for attending physicians, and maintained flawless compliance during federal and state audits.',
+      'Delivered seamless Meditech-to-Epic migration across acute and ambulatory facilities, elevated physician workflow efficiency, reduced charting friction, and rationalized clinical software tools.',
     lessons:
-      'EHR projects are clinical change initiatives, not software installations. Without physician executive alignment, even the best technical architecture fails.',
+      'The true return on investment in healthcare technology happens post go-live: long-term success requires sustained clinician engagement, continuous workflow redesign, and disciplined data governance.',
     keyOutputs: [
-      'EHR Clinical Workflow Interoperability Blueprint',
-      'HHS OCR Security Safeguard Matrix',
-      'Physician Decision Support Governance Charter',
+      'Meditech-to-Epic Clinical Migration & Integration Blueprint',
+      'Post Go-Live Physician Workflow Optimization Framework',
+      'Clinical Application Rationalization Roadmap',
     ],
   },
   {

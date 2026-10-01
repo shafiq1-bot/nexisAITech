@@ -49,8 +49,8 @@ export const AIStrategyGovernancePage: React.FC<AIStrategyGovernancePageProps> =
           Move from disconnected AI experiments and vendor hype to an executive-governed AI portfolio that delivers measurable operational value while strictly complying with the NIST AI Risk Management Framework.
         </p>
 
-        <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
-          Led by <strong>Shafiq Rahman, MS, MBA, MCS, PMP®</strong>. Practical AI stewardship rooted in 20+ years of high-compliance healthcare, academic research, and state government technology governance.
+        <p className="text-sm sm:text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">
+          Led by <strong>Shafiq Rahman, MS, MBA, MCS, PMP®</strong>. Appointee to the <strong>Maryland Governor’s AI Sub-Cabinet</strong>, shaping executive policy balancing AI innovation with privacy, cybersecurity, responsible use, and enterprise architecture across healthcare, academic research, and government.
         </p>
 
         {/* Tab Toggle */}

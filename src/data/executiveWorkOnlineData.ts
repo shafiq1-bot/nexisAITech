@@ -1,7 +1,7 @@
 export interface ExecutiveMediaItem {
   id: string;
   title: string;
-  source: 'Route Fifty' | 'GovExec' | 'AutoTech Detroit / DMI' | 'LinkedIn Pulse' | 'Port of Baltimore' | 'Leadership Maryland';
+  source: 'Route Fifty' | 'GovExec' | 'AutoTech Detroit / DMI' | 'LinkedIn Pulse' | 'Port of Baltimore' | 'Leadership Maryland' | 'International Executive Broadcast';
   category: 'National Press' | 'Executive Summit' | 'Fireside Chat' | 'LinkedIn Article' | 'Keynote Address';
   date: string;
   url: string;
@@ -14,6 +14,28 @@ export interface ExecutiveMediaItem {
 }
 
 export const executiveMediaItems: ExecutiveMediaItem[] = [
+  {
+    id: 'international-executive-webinar-ai-leadership-2026',
+    title: 'International Executive Webinar: Leading in the Age of Artificial Intelligence',
+    source: 'International Executive Broadcast',
+    category: 'Keynote Address',
+    date: 'June 2026',
+    url: 'https://www.facebook.com/61578686475039/videos/1041366411579877?__so__=permalink',
+    imageUrl: '/images/international_executive_webinar_shafiq.jpg',
+    quote:
+      'Executive AI leadership is about more than adopting technology—it is about orchestrating cybersecurity, cloud strategy, and organizational governance so that artificial intelligence drives measurable, mission-critical impact.',
+    summary:
+      'Featured international keynote speaker for the high-level executive webinar "Leading in the Age of Artificial Intelligence," organized by Trade Expeditors Professional Development Center. Shafiq Rahman addressed global CEOs, public sector executives, IT leaders, and department heads on navigating generative AI, data governance, cloud migration, and workforce transformation.',
+    executiveTakeaway:
+      'Equips C-suite leaders with actionable governance frameworks to deploy AI safely, mitigate operational risks, and modernize legacy enterprise architectures.',
+    metricsOrHighlights: [
+      'Live international broadcast and interactive Q&A session with senior institutional leaders.',
+      'Comprehensive roadmap for AI leadership, Zero Trust security, and cloud infrastructure.',
+      'Tailored strategies for CEOs, department heads, and government technology leaders.',
+      'Hosted by Trade Expeditors Professional Development Center.',
+    ],
+    tags: ['AI Leadership', 'Digital Transformation', 'Executive Webinar', 'Cloud Strategy', 'Future of Work'],
+  },
   {
     id: 'route-fifty-transit-leaders-tech-future-2025',
     title: 'Transit Leaders Look to Efficient, Tech-Driven Future',
@@ -84,7 +106,7 @@ export const executiveMediaItems: ExecutiveMediaItem[] = [
     source: 'LinkedIn Pulse',
     category: 'LinkedIn Article',
     date: '2025',
-    url: 'https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/',
+    url: 'https://www.linkedin.com/in/shafiqr',
     quote:
       'Application rationalization is never just a software audit. It is a governance pact that aligns budget, risk, and user behavior.',
     summary:
@@ -104,7 +126,7 @@ export const executiveMediaItems: ExecutiveMediaItem[] = [
     source: 'LinkedIn Pulse',
     category: 'LinkedIn Article',
     date: '2025',
-    url: 'https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/',
+    url: 'https://www.linkedin.com/in/shafiqr',
     quote:
       'Silos protect comfort; unified IT protects the institution. Unification succeeds only when leaders build trust before they mandate tools.',
     summary:
@@ -144,7 +166,7 @@ export const executiveMediaItems: ExecutiveMediaItem[] = [
     source: 'Port of Baltimore',
     category: 'Keynote Address',
     date: '2024',
-    url: 'https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/',
+    url: 'https://www.linkedin.com/in/shafiqr',
     quote:
       'Operational technology in ports and transit is life-critical infrastructure. Cyber resilience and physical throughput must operate as one.',
     summary:
@@ -164,7 +186,7 @@ export const executiveMediaItems: ExecutiveMediaItem[] = [
     source: 'Leadership Maryland',
     category: 'Keynote Address',
     date: '2024',
-    url: 'https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/',
+    url: 'https://www.linkedin.com/in/shafiqr',
     quote:
       'True digital transformation is 80% people, governance, and culture—and 20% technology. Get the governance right, and the technology delivers.',
     summary:

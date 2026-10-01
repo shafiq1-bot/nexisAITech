@@ -52,16 +52,16 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
           <a
-            href="https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/"
+            href="https://www.linkedin.com/in/shafiqr"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-slate-900 border border-slate-700 hover:border-blue-500 hover:bg-slate-800 text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full transition-all cursor-pointer shadow-sm group"
+            className="inline-flex items-center gap-2.5 bg-slate-900 border border-slate-700 hover:border-blue-500 hover:bg-slate-800 text-blue-400 text-xs font-semibold px-3.5 py-1.5 rounded-full transition-all cursor-pointer shadow-sm group"
           >
-            <div className="w-5 h-5 rounded-full overflow-hidden border border-blue-400/50 shrink-0">
+            <div className="w-7 h-7 rounded-full overflow-hidden border border-blue-400/60 shrink-0 shadow-inner">
               <img
                 src="/images/shafiq_rahman_headshot.jpg"
                 alt="Shafiq Rahman"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-center"
               />
             </div>
             <span>Shafiq Rahman, MS, MBA, MCS, PMP®</span>
@@ -131,25 +131,25 @@ export const Hero: React.FC<HeroProps> = ({
               <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
                 <div className="text-xs font-bold text-amber-400 font-mono">Former State CIO</div>
                 <div className="text-xs text-white font-semibold mt-0.5">Maryland Dept. of Transportation</div>
-                <div className="text-[11px] text-slate-400 mt-1">~$250M portfolio & 1,500 IT staff across 6 agencies.</div>
+                <div className="text-[11px] text-slate-400 mt-1">$6M recurring savings · Chaired ARB & Governance across 6 agencies.</div>
               </div>
 
               <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
-                <div className="text-xs font-bold text-blue-400 font-mono">Academic & Healthcare IT</div>
-                <div className="text-xs text-white font-semibold mt-0.5">Univ. of Maryland, Baltimore / UMSOM</div>
-                <div className="text-[11px] text-slate-400 mt-1">Academic medicine, biomedical research & clinical systems.</div>
+                <div className="text-xs font-bold text-emerald-400 font-mono">Current Strategic Advisor</div>
+                <div className="text-xs text-white font-semibold mt-0.5">Ascension / Saint Agnes</div>
+                <div className="text-[11px] text-slate-400 mt-1">Clinical operations, EHR workflow redesign & rationalization.</div>
               </div>
 
               <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
-                <div className="text-xs font-bold text-emerald-400 font-mono">20+ Years Leadership</div>
-                <div className="text-xs text-white font-semibold mt-0.5">Enterprise CIO Stewardship</div>
-                <div className="text-[11px] text-slate-400 mt-1">NIST SP 800-53, HIPAA, FERPA & Zero Trust.</div>
+                <div className="text-xs font-bold text-blue-400 font-mono">Academic Medicine IT</div>
+                <div className="text-xs text-white font-semibold mt-0.5">Univ. of Maryland Medicine</div>
+                <div className="text-[11px] text-slate-400 mt-1">Reported to Dean; led Meditech-to-Epic hospital transformation.</div>
               </div>
 
               <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
-                <div className="text-xs font-bold text-purple-400 font-mono">Verified Credentials</div>
-                <div className="text-xs text-white font-semibold mt-0.5">MS, MBA, MCS, PMP®</div>
-                <div className="text-[11px] text-slate-400 mt-1">NIST AI Risk Management Framework 1.0.</div>
+                <div className="text-xs font-bold text-purple-400 font-mono">Governor's Appointee</div>
+                <div className="text-xs text-white font-semibold mt-0.5">Maryland AI Sub-Cabinet</div>
+                <div className="text-[11px] text-slate-400 mt-1">Responsible AI governance, privacy & MS, MBA, MCS, PMP®.</div>
               </div>
             </div>
           </div>

@@ -24,6 +24,7 @@ import {
   ResearchPublication,
 } from '../data/researchPublicationsData';
 import { PageId } from '../types';
+import shafiqHeadshot from '../assets/images/shafiq_rahman_official_headshot_1790789004412.jpg';
 
 interface ResearchPublicationsPageProps {
   onOpenConsultation: (subject?: string) => void;
@@ -85,7 +86,7 @@ export const ResearchPublicationsPage: React.FC<ResearchPublicationsPageProps> =
           </a>
 
           <a
-            href="https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/"
+            href="https://www.linkedin.com/in/shafiqr"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-slate-900 border border-slate-700 hover:border-blue-500 hover:bg-slate-800 text-blue-400 text-xs font-semibold px-3.5 py-1.5 rounded-full transition-all cursor-pointer shadow-sm"
@@ -118,13 +119,9 @@ export const ResearchPublicationsPage: React.FC<ResearchPublicationsPageProps> =
                 <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-amber-500 via-blue-600 to-emerald-400 opacity-60 blur-sm group-hover:opacity-90 transition-opacity"></div>
                 <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-2xl">
                   <img
-                    src="/images/shafiq_rahman_headshot.jpg"
+                    src={shafiqHeadshot}
                     alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Fractional CIO & Executive Advisor"
-                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      // Fallback in case path requires direct src import
-                      (e.target as HTMLElement).style.display = 'none';
-                    }}
+                    className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-2 text-center">
                     <span className="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-wider block">
@@ -156,7 +153,7 @@ export const ResearchPublicationsPage: React.FC<ResearchPublicationsPageProps> =
 
               <div className="flex flex-wrap items-center gap-3 pt-1">
                 <a
-                  href="https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/"
+                  href="https://www.linkedin.com/in/shafiqr"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 font-semibold font-mono underline"
@@ -432,7 +429,7 @@ export const ResearchPublicationsPage: React.FC<ResearchPublicationsPageProps> =
               Schedule Advisory Conversation
             </button>
             <a
-              href="https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/"
+              href="https://www.linkedin.com/in/shafiqr"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-blue-400 border border-slate-700 font-bold rounded-xl text-sm transition-all flex items-center gap-2"

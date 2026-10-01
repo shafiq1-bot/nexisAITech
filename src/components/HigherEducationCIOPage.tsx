@@ -44,8 +44,8 @@ export const HigherEducationCIOPage: React.FC<HigherEducationCIOPageProps> = ({
           Executive technology stewardship for University Presidents, Provosts, CFOs, and Deans balancing open academic research, high-performance GPU computing, tuition budget realities, and FERPA data compliance.
         </p>
 
-        <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
-          Led by <strong>Shafiq Rahman, MS, MBA, MCS, PMP®</strong>. Former enterprise IT leader at the University of Maryland, Baltimore (UMB) / University of Maryland School of Medicine (UMSOM), with deep experience in academic medical center governance.
+        <p className="text-sm sm:text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">
+          Led by <strong>Shafiq Rahman, MS, MBA, MCS, PMP®</strong>. Former Director of Enterprise IT at the <strong>University of Maryland School of Medicine</strong>, reporting directly to the Dean and supporting approximately 3,000 faculty, 3,000 staff, 1,300+ students, residents, and fellows, and 25 academic departments with close integration into the broader academic medical center.
         </p>
 
         <div className="pt-4 flex flex-wrap items-center justify-center gap-4">

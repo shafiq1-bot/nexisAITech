@@ -191,15 +191,16 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
             '@id': 'https://nexisai.us/#organization',
           },
           description:
-            'Former Maryland Department of Transportation CIO and University of Maryland School of Medicine / UMB enterprise IT executive with 20+ years of technology leadership across government, higher education, academic medicine, and enterprise IT.',
+            'Strategic Advisor at Ascension / Saint Agnes Healthcare; appointee to the Maryland Governor’s AI Sub-Cabinet; former Maryland Department of Transportation CIO ($250M+ portfolio, 1,500 IT staff across 6 agencies, generating $6M in recurring annual savings); former Director of Enterprise IT at University of Maryland School of Medicine reporting to the Dean; and leader of Meditech-to-Epic clinical transformations.',
           url: 'https://nexisai.us/?page=about',
           image: 'https://nexisai.us/images/autotech_detroit_shafiq.jpg',
           sameAs: [
-            'https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/',
+            'https://www.linkedin.com/in/shafiqr',
             'https://scholar.google.com/citations?user=L0j_am8AAAAJ&hl=en',
             'https://www.route-fifty.com/digital-government/2025/07/transit-leaders-look-efficient-tech-driven-future/406859/',
             'https://www.linkedin.com/posts/govexec_govexec-governmentefficiencysummit-digitalgovernment-activity-7356669995038195714-wtgM',
-            'https://www.facebook.com/DMI.DoMore/posts/join-dmi-at-autotechdetroit2024-and-hear-from-two-visionary-leaders-during-our-f/1063931645358952/'
+            'https://www.facebook.com/DMI.DoMore/posts/join-dmi-at-autotechdetroit2024-and-hear-from-two-visionary-leaders-during-our-f/1063931645358952/',
+            'https://www.facebook.com/61578686475039/videos/1041366411579877?__so__=permalink',
           ],
           knowsAbout: [
             'Fractional CIO Leadership',

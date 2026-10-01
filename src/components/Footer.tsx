@@ -132,7 +132,7 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
               <div className="text-slate-300 font-mono flex items-center gap-1.5">
                 <Phone className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Executive Line: <a href="tel:14436085425" className="text-white hover:text-amber-400 underline">(443) 608-5425</a></span>
+                <span>Executive Line: <a href="tel:+14109347773" className="text-white hover:text-amber-400 underline font-bold">(410) 934-7773</a></span>
               </div>
               <div className="text-slate-300 font-mono flex items-center gap-1.5">
                 <Mail className="w-3.5 h-3.5 text-cyan-400" />
@@ -140,7 +140,7 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
               <div className="pt-1">
                 <a
-                  href="https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/"
+                  href="https://www.linkedin.com/in/shafiqr"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 underline font-mono"

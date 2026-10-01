@@ -62,13 +62,13 @@ export const ExecutiveWorkMediaSection: React.FC<ExecutiveWorkMediaSectionProps>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-            Documented public sector transformation leadership, national media coverage on <strong className="text-white">Route Fifty</strong>, keynote addresses at <strong className="text-white">GovExec Summits</strong>, fireside chats at <strong className="text-white">AutoTech Detroit</strong>, and executive LinkedIn articles.
+            Documented public sector transformation leadership, appointment to the <strong className="text-white">Maryland Governor’s AI Sub-Cabinet</strong>, national media coverage on <strong className="text-white">Route Fifty</strong>, keynote addresses at <strong className="text-white">GovExec Summits</strong>, fireside chats at <strong className="text-white">AutoTech Detroit</strong>, international executive webinars, and strategic advisory with <strong className="text-white">Ascension / Saint Agnes</strong>.
           </p>
 
           {/* Social Proof Profiles */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <a
-              href="https://www.linkedin.com/in/shafiq-rahman-ms-mba-mcs-pmp%C2%AE-635b7115/"
+              href="https://www.linkedin.com/in/shafiqr"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#0077b5]/15 hover:bg-[#0077b5]/25 border border-[#0077b5]/40 text-blue-300 text-xs font-semibold px-4 py-2 rounded-full transition-all cursor-pointer shadow-sm"
@@ -127,8 +127,15 @@ export const ExecutiveWorkMediaSection: React.FC<ExecutiveWorkMediaSectionProps>
                       alt={item.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute top-2 right-2 bg-slate-950/80 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-amber-400 border border-slate-700">
-                      AutoTech Detroit 2024
+                    <div className="absolute top-2 right-2 bg-slate-950/85 backdrop-blur-md px-2.5 py-0.5 rounded-lg text-[10px] font-mono text-amber-300 border border-slate-700/80 flex items-center gap-1 shadow-md">
+                      {item.id.includes('webinar') ? (
+                        <>
+                          <Video className="w-3 h-3 text-red-400 animate-pulse" />
+                          <span>Live Broadcast</span>
+                        </>
+                      ) : (
+                        <span>AutoTech Detroit 2024</span>
+                      )}
                     </div>
                   </div>
                 )}
@@ -191,7 +198,7 @@ export const ExecutiveWorkMediaSection: React.FC<ExecutiveWorkMediaSectionProps>
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 font-bold font-mono transition-colors"
                 >
-                  <span>View Source Coverage</span>
+                  <span>{item.category === 'Keynote Address' || item.id.includes('webinar') ? 'Watch Video Broadcast' : 'View Source Coverage'}</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
 
