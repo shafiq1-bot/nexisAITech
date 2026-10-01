@@ -20,7 +20,7 @@ import { executiveLeaderData } from '../data/leadershipData';
 import { researchPublications, googleScholarProfile } from '../data/researchPublicationsData';
 import { executiveMediaItems } from '../data/executiveWorkOnlineData';
 import { PageId } from '../types';
-import shafiqHeadshot from '../assets/images/shafiq_rahman_official_headshot_1790789004412.jpg';
+import shafiqHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
 
 interface ShafiqRahmanAboutPageProps {
   onOpenConsultation: (subject?: string) => void;
@@ -33,7 +33,7 @@ export const ShafiqRahmanAboutPage: React.FC<ShafiqRahmanAboutPageProps> = ({
   onOpenCalendar,
   onNavigate,
 }) => {
-  const linkedInUrl = 'https://www.linkedin.com/in/shafiqr';
+  const linkedInUrl = 'https://www.linkedin.com/in/shafiqr/';
 
   return (
     <div className="bg-slate-950 text-slate-100 min-h-screen pt-24 pb-20 space-y-16">
@@ -51,6 +51,12 @@ export const ShafiqRahmanAboutPage: React.FC<ShafiqRahmanAboutPageProps> = ({
                 <div className="relative w-52 h-52 sm:w-64 sm:h-64 rounded-3xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-2xl">
                   <img
                     src={shafiqHeadshot}
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {
+                        target.src = '/images/shafiq_rahman_headshot.jpg';
+                      }
+                    }}
                     alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Executive Headshot"
                     loading="eager"
                     decoding="async"

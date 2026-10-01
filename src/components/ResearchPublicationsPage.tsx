@@ -24,7 +24,7 @@ import {
   ResearchPublication,
 } from '../data/researchPublicationsData';
 import { PageId } from '../types';
-import shafiqHeadshot from '../assets/images/shafiq_rahman_official_headshot_1790789004412.jpg';
+import shafiqHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
 
 interface ResearchPublicationsPageProps {
   onOpenConsultation: (subject?: string) => void;

@@ -15,6 +15,7 @@ import {
 import { Language, Region, PageId } from '../types';
 import { translations } from '../data/translations';
 import { AIVisualShowcase } from './AIVisualShowcase';
+import shafiqHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
 
 interface HeroProps {
   currentLanguage: Language;
@@ -52,15 +53,21 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
           <a
-            href="https://www.linkedin.com/in/shafiqr"
+            href="https://www.linkedin.com/in/shafiqr/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 bg-slate-900 border border-slate-700 hover:border-blue-500 hover:bg-slate-800 text-blue-400 text-xs font-semibold px-3.5 py-1.5 rounded-full transition-all cursor-pointer shadow-sm group"
           >
-            <div className="w-7 h-7 rounded-full overflow-hidden border border-blue-400/60 shrink-0 shadow-inner">
+            <div className="w-8 h-8 rounded-full overflow-hidden border border-blue-400/60 shrink-0 shadow-inner">
               <img
-                src="/images/shafiq_rahman_headshot.jpg"
-                alt="Shafiq Rahman"
+                src={shafiqHeadshot}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {
+                    target.src = '/images/shafiq_rahman_headshot.jpg';
+                  }
+                }}
+                alt="Shafiq Rahman, MS, MBA, MCS, PMP®"
                 className="w-full h-full object-cover object-center"
               />
             </div>

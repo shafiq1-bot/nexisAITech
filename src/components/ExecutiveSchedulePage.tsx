@@ -13,6 +13,7 @@ import {
   Lock,
 } from 'lucide-react';
 import { executiveLeaderData } from '../data/leadershipData';
+import shafiqHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
 
 interface ExecutiveSchedulePageProps {
   onOpenConsultation: (subject?: string) => void;
@@ -87,6 +88,29 @@ export const ExecutiveSchedulePage: React.FC<ExecutiveSchedulePageProps> = ({
         <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto">
           Every conversation is strictly confidential and non-disclosure protected. We focus on your triggering event, organizational priorities, and whether a 30-day executive diagnostic or fractional retainer makes sense.
         </p>
+
+        {/* Executive Portrait Badge */}
+        <div className="flex justify-center pt-2">
+          <div className="inline-flex items-center gap-3.5 px-4 py-2 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl">
+            <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-amber-500/60 shrink-0">
+              <img
+                src={shafiqHeadshot}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {
+                    target.src = '/images/shafiq_rahman_headshot.jpg';
+                  }
+                }}
+                alt="Shafiq Rahman, PMP®"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+            <div className="text-left">
+              <div className="text-xs font-bold text-white">Shafiq Rahman, MS, MBA, MCS, PMP®</div>
+              <div className="text-[10px] text-amber-400 font-mono">Former State CIO · Principal Executive Advisor</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Main Booking Container */}

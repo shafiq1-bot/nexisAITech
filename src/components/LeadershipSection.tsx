@@ -18,6 +18,7 @@ import {
   Users,
 } from 'lucide-react';
 import { executiveLeaderData } from '../data/leadershipData';
+import shafiqHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
 
 interface LeadershipSectionProps {
   onOpenConsultation: (subject?: string) => void;
@@ -31,42 +32,73 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ onOpenCons
         <div className="relative rounded-3xl bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 border border-slate-800 p-8 md:p-12 overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-8 space-y-6">
+            
+            {/* Executive Portrait Column */}
+            <div className="lg:col-span-3 flex flex-col items-center text-center">
+              <div className="relative group">
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-amber-500 via-blue-600 to-indigo-500 opacity-70 blur-md group-hover:opacity-100 transition-opacity" />
+                <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-2xl">
+                  <img
+                    src={shafiqHeadshot}
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {
+                        target.src = '/images/shafiq_rahman_headshot.jpg';
+                      }
+                    }}
+                    alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Former State CIO"
+                    className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+                    loading="eager"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-2">
+                    <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">
+                      Shafiq Rahman, PMP®
+                    </span>
+                    <span className="text-[10px] text-slate-400 font-mono block">
+                      Former State CIO
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Executive Info Column */}
+            <div className="lg:col-span-5 space-y-5">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold tracking-wider uppercase">
                 <Sparkles className="w-3.5 h-3.5 text-blue-400" />
                 Executive Advisory Leadership
               </div>
 
-              <div className="space-y-3">
-                <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+              <div className="space-y-2">
+                <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
                   {executiveLeaderData.name}
                 </h1>
-                <p className="text-xl font-semibold text-blue-400 font-mono">
+                <p className="text-base sm:text-lg font-semibold text-blue-400 font-mono">
                   {executiveLeaderData.title}
                 </p>
-                <p className="text-sm md:text-base text-slate-300 font-medium max-w-2xl">
+                <p className="text-xs sm:text-sm text-slate-300 font-medium">
                   {executiveLeaderData.tagline}
                 </p>
               </div>
 
-              <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
                 {executiveLeaderData.summary}
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap gap-4 pt-2">
+              <div className="flex flex-wrap gap-3 pt-1">
                 <button
                   onClick={() => onOpenConsultation('Schedule Executive Strategy Session with Former CIO')}
-                  className="px-6 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-blue-600/25 transition-all flex items-center gap-2 group"
+                  className="px-5 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-blue-600/25 transition-all flex items-center gap-2 text-xs group cursor-pointer"
                 >
                   <span>Schedule Strategy Session</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <a
-                  href="https://linkedin.com/in/ShafiqR"
+                  href="https://www.linkedin.com/in/shafiqr/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-blue-400 border border-slate-700 font-bold rounded-xl transition-all flex items-center gap-2"
+                  className="px-5 py-3 bg-slate-900 hover:bg-slate-800 text-blue-400 border border-slate-700 font-bold rounded-xl transition-all flex items-center gap-2 text-xs cursor-pointer shadow-sm"
                   id="leadership-linkedin-btn"
                 >
                   <svg className="w-4 h-4 fill-current text-blue-400" viewBox="0 0 24 24">

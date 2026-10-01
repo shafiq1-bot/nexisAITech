@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { Language, Region } from '../types';
 import { translations } from '../data/translations';
+import shafiqHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
 
 interface AboutSectionProps {
   currentLanguage: Language;
@@ -75,6 +76,35 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           </div>
 
           <div className="bg-slate-950 border border-slate-800 rounded-2xl p-8 space-y-6 shadow-2xl">
+            <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800">
+              <div className="relative w-16 h-16 rounded-xl overflow-hidden border border-amber-500/50 shrink-0 shadow-md">
+                <img
+                  src={shafiqHeadshot}
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {
+                      target.src = '/images/shafiq_rahman_headshot.jpg';
+                    }
+                  }}
+                  alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Practice Leader"
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+              <div className="min-w-0">
+                <div className="text-sm font-bold text-white truncate">Shafiq Rahman, PMP®</div>
+                <div className="text-xs text-amber-400 font-mono">Former State CIO · Executive Advisor</div>
+                <a
+                  href="https://www.linkedin.com/in/shafiqr/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[11px] text-blue-400 hover:text-blue-300 font-semibold inline-flex items-center gap-1 mt-0.5"
+                >
+                  <span>Connect on LinkedIn</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
             <h4 className="text-lg font-bold text-white flex items-center gap-2">
               <Award className="w-5 h-5 text-blue-400" />
               <span>Practice Leadership Standards</span>
