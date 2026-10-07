@@ -13,7 +13,7 @@ import {
   Lock,
 } from 'lucide-react';
 import { executiveLeaderData } from '../data/leadershipData';
-import shafiqHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
+import { useExecutiveHeadshot } from '../lib/useExecutiveHeadshot';
 
 interface ExecutiveSchedulePageProps {
   onOpenConsultation: (subject?: string) => void;
@@ -24,6 +24,7 @@ export const ExecutiveSchedulePage: React.FC<ExecutiveSchedulePageProps> = ({
   onOpenConsultation,
   onOpenCalendar,
 }) => {
+  const headshotUrl = useExecutiveHeadshot();
   const [selectedMeetingType, setSelectedMeetingType] = useState('20-Minute Executive Introduction');
   const [preferredDate, setPreferredDate] = useState('');
   const [preferredTime, setPreferredTime] = useState('Morning (9:00 AM – 12:00 PM EST)');
@@ -94,7 +95,7 @@ export const ExecutiveSchedulePage: React.FC<ExecutiveSchedulePageProps> = ({
           <div className="inline-flex items-center gap-3.5 px-4 py-2 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl">
             <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-amber-500/60 shrink-0">
               <img
-                src={shafiqHeadshot}
+                src={headshotUrl}
                 onError={(e) => {
                   const target = e.currentTarget;
                   if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {

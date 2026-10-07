@@ -24,7 +24,7 @@ import {
   ResearchPublication,
 } from '../data/researchPublicationsData';
 import { PageId } from '../types';
-import shafiqHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
+import { useExecutiveHeadshot } from '../lib/useExecutiveHeadshot';
 
 interface ResearchPublicationsPageProps {
   onOpenConsultation: (subject?: string) => void;
@@ -35,6 +35,7 @@ export const ResearchPublicationsPage: React.FC<ResearchPublicationsPageProps> =
   onOpenConsultation,
   onNavigate,
 }) => {
+  const headshotUrl = useExecutiveHeadshot();
   const [selectedDomain, setSelectedDomain] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [expandedPubId, setExpandedPubId] = useState<string | null>(null);
@@ -119,7 +120,7 @@ export const ResearchPublicationsPage: React.FC<ResearchPublicationsPageProps> =
                 <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-amber-500 via-blue-600 to-emerald-400 opacity-60 blur-sm group-hover:opacity-90 transition-opacity"></div>
                 <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-2xl">
                   <img
-                    src={shafiqHeadshot}
+                    src={headshotUrl}
                     alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Fractional CIO & Executive Advisor"
                     className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
                   />

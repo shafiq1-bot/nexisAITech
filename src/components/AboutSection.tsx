@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { Language, Region } from '../types';
 import { translations } from '../data/translations';
-import shafiqHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
+import { useExecutiveHeadshot } from '../lib/useExecutiveHeadshot';
 
 interface AboutSectionProps {
   currentLanguage: Language;
@@ -26,6 +26,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
   onOpenConsultation,
 }) => {
   const t = translations[currentLanguage];
+  const headshotUrl = useExecutiveHeadshot();
 
   return (
     <section className="py-20 bg-slate-900 text-slate-100 border-b border-slate-800">
@@ -79,7 +80,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800">
               <div className="relative w-16 h-16 rounded-xl overflow-hidden border border-amber-500/50 shrink-0 shadow-md">
                 <img
-                  src={shafiqHeadshot}
+                  src={headshotUrl}
                   onError={(e) => {
                     const target = e.currentTarget;
                     if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {

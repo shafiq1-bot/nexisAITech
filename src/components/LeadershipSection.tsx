@@ -18,13 +18,15 @@ import {
   Users,
 } from 'lucide-react';
 import { executiveLeaderData } from '../data/leadershipData';
-import shafiqHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
+import { useExecutiveHeadshot } from '../lib/useExecutiveHeadshot';
 
 interface LeadershipSectionProps {
   onOpenConsultation: (subject?: string) => void;
 }
 
 export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ onOpenConsultation }) => {
+  const headshotUrl = useExecutiveHeadshot();
+
   return (
     <div className="bg-slate-950 text-slate-100 min-h-screen py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
@@ -39,7 +41,7 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ onOpenCons
                 <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-amber-500 via-blue-600 to-indigo-500 opacity-70 blur-md group-hover:opacity-100 transition-opacity" />
                 <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-2xl">
                   <img
-                    src={shafiqHeadshot}
+                    src={headshotUrl}
                     onError={(e) => {
                       const target = e.currentTarget;
                       if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {

@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import fs from 'fs';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
 import { createServer as createViteServer } from 'vite';
@@ -11,7 +12,8 @@ async function startServer() {
   const app = express();
   const PORT = Number(process.env.PORT) || 3000;
 
-  app.use(express.json({ limit: '10mb' }));
+  app.use(express.json({ limit: '50mb' }));
+  app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
   // ACME Challenge Exemption for Google Certificate Authority / Let's Encrypt HTTP-01 SSL Validation
   // Fixes 302 redirect loops during Cloud Run Custom Domain Mapping & SSL Certificate provisioning
@@ -997,6 +999,72 @@ Output MUST be JSON:
       });
     } catch (error: any) {
       res.status(500).json({ error: 'Autopilot run failed', details: error.message });
+    }
+  });
+
+  // Executive Headshot Upload & Synchronization API
+  app.post('/api/upload-headshot', async (req, res) => {
+    try {
+      const { imageBase64, imageUrl } = req.body;
+      if (!imageBase64 && !imageUrl) {
+        return res.status(400).json({ error: 'imageBase64 or imageUrl is required' });
+      }
+
+      let buffer: Buffer;
+      if (imageBase64) {
+        const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, '');
+        buffer = Buffer.from(base64Data, 'base64');
+      } else {
+        const response = await fetch(imageUrl);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch image from URL: ${response.statusText}`);
+        }
+        const arrayBuffer = await response.arrayBuffer();
+        buffer = Buffer.from(arrayBuffer);
+      }
+
+      const pathsToUpdate = [
+        path.join(process.cwd(), 'public', 'images', 'shafiq_rahman_headshot.jpg'),
+        path.join(process.cwd(), 'public', 'images', 'shafiq_rahman_linkedin.jpg'),
+        path.join(process.cwd(), 'public', 'SRLinkedin.jpg'),
+        path.join(process.cwd(), 'public', 'images', 'SRLinkedin.jpg'),
+        path.join(process.cwd(), 'src', 'assets', 'images', 'shafiq_about_portrait_1790861662502.jpg'),
+        path.join(process.cwd(), 'src', 'assets', 'images', 'shafiq_rahman_headshot.jpg'),
+        path.join(process.cwd(), 'src', 'assets', 'images', 'shafiq_rahman_official_headshot_1790789004412.jpg'),
+      ];
+
+      for (const p of pathsToUpdate) {
+        try {
+          const dir = path.dirname(p);
+          if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+          fs.writeFileSync(p, buffer);
+        } catch (e) {
+          console.error('Error writing to path:', p, e);
+        }
+      }
+
+      // Also update dist paths if built
+      const distDir = path.join(process.cwd(), 'dist');
+      if (fs.existsSync(distDir)) {
+        const distPaths = [
+          path.join(distDir, 'images', 'shafiq_rahman_headshot.jpg'),
+          path.join(distDir, 'images', 'shafiq_rahman_linkedin.jpg'),
+          path.join(distDir, 'SRLinkedin.jpg'),
+          path.join(distDir, 'images', 'SRLinkedin.jpg'),
+        ];
+        for (const dp of distPaths) {
+          try {
+            const dir = path.dirname(dp);
+            if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+            fs.writeFileSync(dp, buffer);
+          } catch (e) {}
+        }
+      }
+
+      res.status(200).json({ success: true, message: 'Executive portrait updated across all locations.' });
+    } catch (err: any) {
+      console.error('Failed to update headshot:', err);
+      res.status(500).json({ error: 'Failed to update portrait', details: err.message });
     }
   });
 

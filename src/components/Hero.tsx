@@ -15,7 +15,7 @@ import {
 import { Language, Region, PageId } from '../types';
 import { translations } from '../data/translations';
 import { AIVisualShowcase } from './AIVisualShowcase';
-import shafiqHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
+import { useExecutiveHeadshot } from '../lib/useExecutiveHeadshot';
 
 interface HeroProps {
   currentLanguage: Language;
@@ -35,6 +35,7 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenBookAudit,
 }) => {
   const t = translations[currentLanguage];
+  const headshotUrl = useExecutiveHeadshot();
 
   return (
     <section className="relative bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 text-white overflow-hidden pt-10 pb-16 border-b border-slate-800">
@@ -60,7 +61,7 @@ export const Hero: React.FC<HeroProps> = ({
           >
             <div className="w-8 h-8 rounded-full overflow-hidden border border-blue-400/60 shrink-0 shadow-inner">
               <img
-                src={shafiqHeadshot}
+                src={headshotUrl}
                 onError={(e) => {
                   const target = e.currentTarget;
                   if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ShieldCheck,
   CheckCircle2,
@@ -20,7 +20,9 @@ import { executiveLeaderData } from '../data/leadershipData';
 import { researchPublications, googleScholarProfile } from '../data/researchPublicationsData';
 import { executiveMediaItems } from '../data/executiveWorkOnlineData';
 import { PageId } from '../types';
-import shafiqHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
+import { useExecutiveHeadshot } from '../lib/useExecutiveHeadshot';
+import { UploadHeadshotModal } from './UploadHeadshotModal';
+import { Camera } from 'lucide-react';
 
 interface ShafiqRahmanAboutPageProps {
   onOpenConsultation: (subject?: string) => void;
@@ -34,6 +36,8 @@ export const ShafiqRahmanAboutPage: React.FC<ShafiqRahmanAboutPageProps> = ({
   onNavigate,
 }) => {
   const linkedInUrl = 'https://www.linkedin.com/in/shafiqr/';
+  const headshotUrl = useExecutiveHeadshot();
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState<boolean>(false);
 
   return (
     <div className="bg-slate-950 text-slate-100 min-h-screen pt-24 pb-20 space-y-16">
@@ -46,11 +50,15 @@ export const ShafiqRahmanAboutPage: React.FC<ShafiqRahmanAboutPageProps> = ({
             
             {/* Picture Column */}
             <div className="lg:col-span-4 flex flex-col items-center text-center space-y-4">
-              <div className="relative group">
+              <div 
+                className="relative group cursor-pointer"
+                onClick={() => setIsUploadModalOpen(true)}
+                title="Click to change with your real photo"
+              >
                 <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-tr from-amber-500 via-blue-600 to-emerald-400 opacity-80 blur-md group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative w-52 h-52 sm:w-64 sm:h-64 rounded-3xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-2xl">
                   <img
-                    src={shafiqHeadshot}
+                    src={headshotUrl}
                     onError={(e) => {
                       const target = e.currentTarget;
                       if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {
@@ -60,8 +68,13 @@ export const ShafiqRahmanAboutPage: React.FC<ShafiqRahmanAboutPageProps> = ({
                     alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Executive Headshot"
                     loading="eager"
                     decoding="async"
-                    className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-3 text-center">
+                    <Camera className="w-8 h-8 text-amber-400 mb-1" />
+                    <span className="text-xs font-bold text-white">Click to Update Photo</span>
+                    <span className="text-[10px] text-slate-300">Choose SRLinkedin.jpg from files</span>
+                  </div>
                   <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-2.5">
                     <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block">
                       Shafiq Rahman, PMP®
@@ -73,8 +86,16 @@ export const ShafiqRahmanAboutPage: React.FC<ShafiqRahmanAboutPageProps> = ({
                 </div>
               </div>
 
-              {/* LinkedIn & Scholar Badges */}
+              {/* Upload & LinkedIn & Scholar Badges */}
               <div className="flex flex-col gap-2 w-full max-w-xs">
+                <button
+                  type="button"
+                  onClick={() => setIsUploadModalOpen(true)}
+                  className="w-full py-2.5 px-4 bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 font-bold rounded-xl transition-all flex items-center justify-center gap-2 text-xs cursor-pointer shadow-sm group"
+                >
+                  <Camera className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
+                  <span>Update Photo (Upload File)</span>
+                </button>
                 <a
                   href={linkedInUrl}
                   target="_blank"
@@ -523,6 +544,10 @@ export const ShafiqRahmanAboutPage: React.FC<ShafiqRahmanAboutPageProps> = ({
         </div>
       </div>
 
+      <UploadHeadshotModal
+        isOpen={isUploadModalOpen}
+        onClose={() => setIsUploadModalOpen(false)}
+      />
     </div>
   );
 };
