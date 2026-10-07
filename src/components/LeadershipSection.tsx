@@ -37,9 +37,9 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ onOpenCons
             
             {/* Executive Portrait Column */}
             <div className="lg:col-span-3 flex flex-col items-center text-center">
-              <div className="relative group">
-                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-amber-500 via-blue-600 to-indigo-500 opacity-70 blur-md group-hover:opacity-100 transition-opacity" />
-                <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-2xl">
+              <div className="relative pointer-events-none select-none">
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-amber-500 via-blue-600 to-indigo-500 opacity-70 blur-md pointer-events-none" />
+                <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-2xl pointer-events-none cursor-default">
                   <img
                     src={headshotUrl}
                     onError={(e) => {
@@ -49,10 +49,10 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ onOpenCons
                       }
                     }}
                     alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Former State CIO"
-                    className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center pointer-events-none select-none"
                     loading="eager"
                   />
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-2">
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-2 pointer-events-none">
                     <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">
                       Shafiq Rahman, PMP®
                     </span>
