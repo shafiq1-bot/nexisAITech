@@ -139,11 +139,15 @@ Primary Executive: Shafiq Rahman, Managing Principal / Former CIO
     });
   });
 
-  // Dynamic XML Sitemap Endpoint for Search Engine Crawlers
+  // Dynamic XML Sitemap Endpoint for Search Engine Crawlers (Google Search Console & Bing)
   app.get('/sitemap.xml', (req, res) => {
-    const baseUrl = 'https://nexisai.us';
+    const rawHost = (req.headers['x-forwarded-host'] as string) || req.get('host') || 'nexisai.us';
+    const host = rawHost.split(',')[0].trim();
+    const proto = (req.headers['x-forwarded-proto'] as string) || (req.secure ? 'https' : 'http') || 'https';
+    const baseUrl = `${proto}://${host}`;
     const lastMod = new Date().toISOString().split('T')[0];
 
+    // Standard-compliant XML sitemap (Google disallows '#' fragment identifiers in sitemap URLs)
     const urls = [
       { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'daily' },
       { loc: `${baseUrl}/?page=about`, priority: '0.9', changefreq: 'weekly' },
@@ -158,30 +162,33 @@ Primary Executive: Shafiq Rahman, Managing Principal / Former CIO
       { loc: `${baseUrl}/?page=schedule`, priority: '0.9', changefreq: 'daily' },
       { loc: `${baseUrl}/?page=assessment`, priority: '0.8', changefreq: 'weekly' },
       { loc: `${baseUrl}/?page=lead-magnets`, priority: '0.8', changefreq: 'weekly' },
-      { loc: `${baseUrl}/#trust-center`, priority: '0.8', changefreq: 'monthly' },
-      { loc: `${baseUrl}/#services`, priority: '0.8', changefreq: 'weekly' },
-      { loc: `${baseUrl}/#industries`, priority: '0.8', changefreq: 'weekly' },
-      { loc: `${baseUrl}/#contact`, priority: '0.8', changefreq: 'monthly' },
+      { loc: `${baseUrl}/?page=trust-center`, priority: '0.8', changefreq: 'monthly' },
+      { loc: `${baseUrl}/?page=services`, priority: '0.8', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=industries`, priority: '0.8', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=contact`, priority: '0.8', changefreq: 'monthly' },
     ];
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls
-  .map(
-    (u) => `  <url>
-    <loc>${u.loc}</loc>
+  .map((u) => {
+    const arUrl = u.loc.includes('?') ? `${u.loc}&amp;lang=ar` : `${u.loc}?lang=ar`;
+    const escapedLoc = u.loc.replace(/&/g, '&amp;');
+    return `  <url>
+    <loc>${escapedLoc}</loc>
     <lastmod>${lastMod}</lastmod>
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="${u.loc}" />
-    <xhtml:link rel="alternate" hreflang="ar" href="${u.loc}?lang=ar" />
-  </url>`
-  )
+    <xhtml:link rel="alternate" hreflang="en" href="${escapedLoc}" />
+    <xhtml:link rel="alternate" hreflang="ar" href="${arUrl}" />
+  </url>`;
+  })
   .join('\n')}
 </urlset>`;
 
-    res.header('Content-Type', 'application/xml');
+    res.header('Content-Type', 'application/xml; charset=utf-8');
+    res.header('X-Content-Type-Options', 'nosniff');
     res.send(xml);
   });
 

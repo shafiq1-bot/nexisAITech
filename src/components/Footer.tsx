@@ -13,7 +13,8 @@ import {
   Calendar,
   BarChart3,
   ExternalLink,
-  BookOpen
+  BookOpen,
+  Search
 } from 'lucide-react';
 import { Language, PageId } from '../types';
 import { translations } from '../data/translations';
@@ -23,12 +24,14 @@ interface FooterProps {
   currentLanguage: Language;
   onNavigate: (page: PageId, detailId?: string) => void;
   onOpenConsultation: () => void;
+  onOpenGoogleConsoleModal?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   currentLanguage,
   onNavigate,
   onOpenConsultation,
+  onOpenGoogleConsoleModal,
 }) => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -256,6 +259,17 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="space-y-3">
             <h5 className="text-xs font-bold uppercase tracking-wider text-slate-200 font-mono">Executive Tools</h5>
             <ul className="space-y-2 text-xs text-slate-400">
+              {onOpenGoogleConsoleModal && (
+                <li>
+                  <button
+                    onClick={onOpenGoogleConsoleModal}
+                    className="hover:text-amber-300 transition-colors text-amber-400 font-bold flex items-center gap-1.5 cursor-pointer font-mono text-[11px]"
+                  >
+                    <Search className="w-3.5 h-3.5 text-amber-400" />
+                    <span>Google Search & SEO Guide</span>
+                  </button>
+                </li>
+              )}
               <li>
                 <a
                   href="https://scholar.google.com/citations?user=L0j_am8AAAAJ&hl=en"

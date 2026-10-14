@@ -24,6 +24,7 @@ import {
   operatingCadence,
 } from '../data/fractionalCIOData';
 import { executiveLeaderData } from '../data/leadershipData';
+import { FractionalCIOFAQSection } from './FractionalCIOFAQSection';
 
 interface FractionalCIOPageProps {
   onOpenConsultation: (subject?: string) => void;
@@ -238,6 +239,12 @@ export const FractionalCIOPage: React.FC<FractionalCIOPageProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Fractional CIO Executive FAQ & Search Knowledge Base */}
+      <FractionalCIOFAQSection
+        onOpenConsultation={onOpenConsultation}
+        onNavigate={onNavigate}
+      />
 
       {/* Conversion Banner */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 pt-8">

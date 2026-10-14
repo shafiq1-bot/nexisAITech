@@ -50,6 +50,8 @@ import { ResearchPublicationsPage } from './components/ResearchPublicationsPage'
 import { ExecutiveWorkMediaSection } from './components/ExecutiveWorkMediaSection';
 import { InstantProjectScopingModal } from './components/InstantProjectScopingModal';
 import { StickyExecutiveConversionBar } from './components/StickyExecutiveConversionBar';
+import { FractionalCIOFAQSection } from './components/FractionalCIOFAQSection';
+import { GoogleSearchConsoleModal } from './components/GoogleSearchConsoleModal';
 
 export default function App() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
@@ -65,6 +67,7 @@ export default function App() {
   const [scopingSector, setScopingSector] = useState<string | undefined>();
   const [consultationService, setConsultationService] = useState<string | undefined>();
   const [consultationNotes, setConsultationNotes] = useState<string | undefined>();
+  const [googleConsoleModalOpen, setGoogleConsoleModalOpen] = useState(false);
 
   const handleOpenScoping = (sector?: string) => {
     if (sector) setScopingSector(sector);
@@ -332,6 +335,13 @@ export default function App() {
               onOpenBookAudit={() => setBookAuditOpen(true)}
             />
 
+            {/* Fractional CIO Executive FAQ & Search Engine Knowledge Base */}
+            <FractionalCIOFAQSection
+              onOpenConsultation={handleOpenConsultation}
+              onNavigate={handleNavigate}
+              onOpenGoogleConsoleModal={() => setGoogleConsoleModalOpen(true)}
+            />
+
             {/* Executive Direct Contact & Advisory Scheduling */}
             <ContactSection
               currentLanguage={currentLanguage}
@@ -592,6 +602,7 @@ export default function App() {
         currentLanguage={currentLanguage}
         onNavigate={handleNavigate}
         onOpenConsultation={() => handleOpenConsultation()}
+        onOpenGoogleConsoleModal={() => setGoogleConsoleModalOpen(true)}
       />
 
       {/* Modals & Drawers */}
@@ -638,6 +649,12 @@ export default function App() {
         onClose={() => setScopingOpen(false)}
         onNavigate={handleNavigate}
         initialSector={scopingSector}
+      />
+
+      {/* Google Search Ranking & Indexing Console Modal */}
+      <GoogleSearchConsoleModal
+        isOpen={googleConsoleModalOpen}
+        onClose={() => setGoogleConsoleModalOpen(false)}
       />
 
       {/* Sticky High-Converting Executive Conversion Bar */}

@@ -22,8 +22,8 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
     // Comprehensive Page Titles
     const pageTitles: Partial<Record<PageId, string>> = {
-      home: 'Nexis AI | Fractional CIO, CIO Advisory & Enterprise AI Governance',
-      'fractional-cio': 'Fractional CIO Services | Executive Technology Leadership - Shafiq Rahman',
+      home: 'Fractional CIO Services & Executive Advisory | Shafiq Rahman, PMP® (Former State CIO)',
+      'fractional-cio': 'Fractional CIO Services, Costs & Retainers | Shafiq Rahman, PMP®',
       'cio-advisory': 'CIO Advisory & Boardroom Technology Governance | Nexis AI',
       'interim-cio': 'Interim CIO & Technology Executive Transition Leadership | Nexis AI',
       'ai-strategy': 'Enterprise AI Strategy & Portfolio Modernization | Nexis AI',

@@ -59,11 +59,11 @@ export const Hero: React.FC<HeroProps> = ({
               <span>Enterprise AI Governance</span>
             </div>
 
-            {/* Authoritative Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight text-white leading-[1.12]">
-              You May Not Need Another Technology Vendor.<br />
+            {/* Authoritative Headline with Primary Target SEO Keyphrase */}
+            <h1 className="text-3xl sm:text-5xl lg:text-[52px] font-extrabold tracking-tight text-white leading-[1.12]">
+              Fractional CIO & Executive Advisory.<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-300">
-                You Need Executive Stewardship.
+                You May Not Need Another Vendor. You Need Executive Stewardship.
               </span>
             </h1>
 
