@@ -24,6 +24,7 @@ interface HeroProps {
   onOpenAdvisor: () => void;
   onOpenConsultation: () => void;
   onOpenBookAudit?: () => void;
+  onOpenScoping?: (sector?: string) => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
@@ -33,6 +34,7 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenAdvisor,
   onOpenConsultation,
   onOpenBookAudit,
+  onOpenScoping,
 }) => {
   const t = translations[currentLanguage];
   const headshotUrl = useExecutiveHeadshot();
@@ -100,11 +102,59 @@ export const Hero: React.FC<HeroProps> = ({
             Shafiq Rahman helps CEOs, presidents, boards, healthcare leaders, universities, and growing organizations turn technology strategy into measurable operational, clinical, institutional, and business outcomes—without immediately hiring a full-time executive.
           </p>
 
+          {/* Stakeholder Fast-Track Navigator for Immediate Scoping */}
+          <div className="pt-2">
+            <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider mb-2">
+              Select Your Stakeholder Context for Immediate Project Scoping:
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-w-3xl mx-auto">
+              <button
+                onClick={() => onOpenScoping ? onOpenScoping('Healthcare System / AMC') : onNavigate('healthcare-cio-advisory')}
+                className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/60 hover:bg-emerald-950/20 text-left transition-all group cursor-pointer"
+              >
+                <div className="text-[10px] font-mono text-emerald-400 font-bold uppercase">Healthcare & AMC</div>
+                <div className="text-xs font-bold text-white group-hover:text-emerald-300 mt-0.5 truncate">Clinical IT & HIPAA</div>
+              </button>
+              <button
+                onClick={() => onOpenScoping ? onOpenScoping('Higher Education / Research University') : onNavigate('higher-education-cio-advisory')}
+                className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-purple-500/60 hover:bg-purple-950/20 text-left transition-all group cursor-pointer"
+              >
+                <div className="text-[10px] font-mono text-purple-400 font-bold uppercase">Higher Education</div>
+                <div className="text-xs font-bold text-white group-hover:text-purple-300 mt-0.5 truncate">Research & FERPA</div>
+              </button>
+              <button
+                onClick={() => onOpenScoping ? onOpenScoping('State / Regional Public Sector') : onNavigate('government')}
+                className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/60 hover:bg-amber-950/20 text-left transition-all group cursor-pointer"
+              >
+                <div className="text-[10px] font-mono text-amber-400 font-bold uppercase">Public Sector / DOT</div>
+                <div className="text-xs font-bold text-white group-hover:text-amber-300 mt-0.5 truncate">$6M Savings Model</div>
+              </button>
+              <button
+                onClick={() => onOpenScoping ? onOpenScoping('Mid-Market Enterprise / PE Portfolio') : onNavigate('fractional-cio')}
+                className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-blue-500/60 hover:bg-blue-950/20 text-left transition-all group cursor-pointer"
+              >
+                <div className="text-[10px] font-mono text-blue-400 font-bold uppercase">Mid-Market & PE</div>
+                <div className="text-xs font-bold text-white group-hover:text-blue-300 mt-0.5 truncate">30-Day Diagnostic</div>
+              </button>
+            </div>
+          </div>
+
           {/* Action CTAs */}
           <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+            {onOpenScoping && (
+              <button
+                onClick={() => onOpenScoping()}
+                className="px-8 py-4 text-xs sm:text-sm font-extrabold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-xl transition-all shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95 border border-amber-300"
+                id="hero-instant-project-scoping-btn"
+              >
+                <Sparkles className="w-4 h-4 text-slate-950 fill-current" />
+                <span>Scope Your Project (Instant 60s Scoping)</span>
+              </button>
+            )}
+
             <button
               onClick={onOpenConsultation}
-              className="px-8 py-4 text-xs sm:text-sm font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-xl transition-all shadow-xl shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
+              className="px-6 py-4 text-xs sm:text-sm font-bold text-slate-100 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
               id="hero-schedule-conversation-btn"
             >
               <span>Schedule a CIO Advisory Conversation</span>
@@ -113,20 +163,11 @@ export const Hero: React.FC<HeroProps> = ({
 
             <button
               onClick={() => onNavigate('assessment')}
-              className="px-6 py-4 text-xs sm:text-sm font-semibold text-white bg-slate-900 border border-slate-700 hover:bg-slate-800 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              className="px-6 py-4 text-xs sm:text-sm font-semibold text-slate-300 bg-slate-950/80 border border-slate-800 hover:bg-slate-900 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
               id="hero-readiness-assessment-btn"
             >
               <BarChart3 className="w-4 h-4 text-amber-400" />
               <span>Take the CIO Readiness Assessment</span>
-            </button>
-
-            <button
-              onClick={() => onNavigate('fractional-cio')}
-              className="px-6 py-4 text-xs sm:text-sm font-semibold text-blue-300 bg-blue-950/60 border border-blue-800/80 hover:bg-blue-900/80 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
-              id="hero-explore-services-btn"
-            >
-              <span>Explore Fractional CIO Services</span>
-              <ArrowRight className="w-3.5 h-3.5 text-blue-400" />
             </button>
           </div>
 

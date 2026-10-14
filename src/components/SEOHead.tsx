@@ -193,7 +193,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
           description:
             'Strategic Advisor at Ascension / Saint Agnes Healthcare; appointee to the Maryland Governor’s AI Sub-Cabinet; former Maryland Department of Transportation CIO ($250M+ portfolio, 1,500 IT staff across 6 agencies, generating $6M in recurring annual savings); former Director of Enterprise IT at University of Maryland School of Medicine reporting to the Dean; and leader of Meditech-to-Epic clinical transformations.',
           url: 'https://nexisai.us/?page=about',
-          image: 'https://nexisai.us/images/autotech_detroit_shafiq.jpg',
+          image: 'https://nexisai.us/images/shafiq_rahman_headshot.jpg',
           sameAs: [
             'https://www.linkedin.com/in/shafiqr',
             'https://scholar.google.com/citations?user=L0j_am8AAAAJ&hl=en',
@@ -251,6 +251,15 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
+                  name: '30-Day Executive Technology & AI Diagnostic',
+                  description:
+                    'Rapid independent executive diagnostic delivering architecture audit, vendor contract rationalization, and a board-approved 90-day action charter.',
+                },
+              },
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
                   name: 'CIO Advisory & Boardroom Technology Governance',
                   description:
                     'Executive technology counsel for CEOs, boards of directors, and CFOs facing major technology decisions.',
@@ -260,21 +269,46 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Enterprise AI Strategy & Governance',
+                  name: 'Application Portfolio Rationalization & Cost Reduction',
                   description:
-                    'AI readiness evaluation, risk classification, policy formulation, and NIST AI RMF governance.',
+                    'Proven institutional methodology to eliminate software redundancies, renegotiate cloud/vendor contracts, and deliver $1M+ in recurring annual savings.',
                 },
               },
               {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Interim CIO Leadership',
+                  name: 'Enterprise AI Strategy & NIST AI RMF Governance',
+                  description:
+                    'AI readiness evaluation, risk classification, policy formulation, and NIST AI RMF 1.0 defensibility.',
+                },
+              },
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: 'Interim CIO Leadership & Vacancy Transition',
                   description:
                     'Executive technology stewardship during leadership transitions, restructuring, or unforeseen departures.',
                 },
               },
             ],
+          },
+          potentialAction: {
+            '@type': 'ReserveAction',
+            target: {
+              '@type': 'EntryPoint',
+              urlTemplate: 'https://nexisai.us/?page=schedule',
+              inLanguage: 'en-US',
+              actionPlatform: [
+                'http://schema.org/DesktopWebPlatform',
+                'http://schema.org/MobileWebPlatform',
+              ],
+            },
+            result: {
+              '@type': 'Reservation',
+              name: 'Confidential Executive CIO Advisory Briefing',
+            },
           },
         },
         {
@@ -287,6 +321,14 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
               acceptedAnswer: {
                 '@type': 'Answer',
                 text: 'A Fractional CIO serves as your executive technology leader—sitting on your leadership team, reporting to the CEO or Board, directing the technology roadmap, managing budgets, and governing vendors. Unlike consultants who advise from the outside or vendors who sell products, a Fractional CIO has institutional accountability for your technology outcomes.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'How does the 30-Day Executive Technology Diagnostic work?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'The 30-Day Diagnostic is a productized executive evaluation. Over four weeks, Shafiq Rahman conducts stakeholder interviews, audits your architecture and cybersecurity posture, reviews vendor and software contracts for rationalization, and delivers an Executive Brief with a prioritized Now/Next/Later roadmap and 90-day execution charter.',
               },
             },
             {
@@ -311,6 +353,14 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
               acceptedAnswer: {
                 '@type': 'Answer',
                 text: 'The advisory practice specializes in Healthcare Systems & Academic Medicine, Higher Education & Research Universities, State and Regional Public Sector Agencies, and growing mid-market enterprises undergoing digital transformation.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'How does Shafiq Rahman help organizations govern Enterprise AI under the NIST AI RMF?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Shafiq Rahman establishes an executive AI steering committee, maps all internal and third-party AI use cases against the NIST AI Risk Management Framework (Govern, Map, Measure, Manage), enforces data privacy defenses, and provides board-defensible audit trails.',
               },
             },
           ],

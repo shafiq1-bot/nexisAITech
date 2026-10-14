@@ -48,6 +48,8 @@ import { CIOMaturityAssessment } from './components/CIOMaturityAssessment';
 import { AIExecutiveAdvisor } from './components/AIExecutiveAdvisor';
 import { ResearchPublicationsPage } from './components/ResearchPublicationsPage';
 import { ExecutiveWorkMediaSection } from './components/ExecutiveWorkMediaSection';
+import { InstantProjectScopingModal } from './components/InstantProjectScopingModal';
+import { StickyExecutiveConversionBar } from './components/StickyExecutiveConversionBar';
 
 export default function App() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
@@ -55,12 +57,19 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
   const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null);
 
-  // Modals
+  // Modals & Lead Scoping
   const [advisorOpen, setAdvisorOpen] = useState(false);
   const [consultationOpen, setConsultationOpen] = useState(false);
   const [bookAuditOpen, setBookAuditOpen] = useState(false);
+  const [scopingOpen, setScopingOpen] = useState(false);
+  const [scopingSector, setScopingSector] = useState<string | undefined>();
   const [consultationService, setConsultationService] = useState<string | undefined>();
   const [consultationNotes, setConsultationNotes] = useState<string | undefined>();
+
+  const handleOpenScoping = (sector?: string) => {
+    if (sector) setScopingSector(sector);
+    setScopingOpen(true);
+  };
 
   // Google Calendar Modal State
   const [calendarOpen, setCalendarOpen] = useState(false);
@@ -167,6 +176,7 @@ export default function App() {
               onOpenAdvisor={() => handleNavigate('ai-advisor')}
               onOpenConsultation={() => handleOpenConsultation()}
               onOpenBookAudit={() => setBookAuditOpen(true)}
+              onOpenScoping={handleOpenScoping}
             />
             
             {/* Executive Audience Pathways: CEOs, Boards, Healthcare, Higher Ed, CFOs, Interim */}
@@ -620,6 +630,21 @@ export default function App() {
         isOpen={bookAuditOpen}
         onClose={() => setBookAuditOpen(false)}
         currentRegion={currentRegion}
+      />
+
+      {/* Instant Executive Project Scoping Modal (Lead Engine) */}
+      <InstantProjectScopingModal
+        isOpen={scopingOpen}
+        onClose={() => setScopingOpen(false)}
+        onNavigate={handleNavigate}
+        initialSector={scopingSector}
+      />
+
+      {/* Sticky High-Converting Executive Conversion Bar */}
+      <StickyExecutiveConversionBar
+        onOpenScoping={() => handleOpenScoping()}
+        onOpenSchedule={() => handleNavigate('schedule')}
+        onNavigate={handleNavigate}
       />
     </div>
   );
