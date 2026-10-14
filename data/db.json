@@ -1,0 +1,110 @@
+{
+  "consultations": [
+    {
+      "fullName": "Dr. Test Lead",
+      "email": "test@example.com",
+      "phone": "",
+      "companyName": "Regional Health",
+      "jobTitle": "CMIO",
+      "region": "US",
+      "industry": "Healthcare",
+      "serviceInterest": "Fractional CIO Advisory",
+      "estimatedBudget": "$50,000 - $100,000",
+      "message": "",
+      "crmExportTarget": "HubSpot",
+      "id": "NEXIS-CONSULT-4043",
+      "status": "new",
+      "createdAt": "2026-10-14T15:53:43.370Z",
+      "updatedAt": "2026-10-14T15:53:43.370Z"
+    },
+    {
+      "id": "NEXIS-CONSULT-1001",
+      "fullName": "Dr. Sarah Al-Mansoori",
+      "email": "sarah.mansoori@regionalhealth.org",
+      "phone": "+966 50 123 4567",
+      "companyName": "Regional Academic Health System",
+      "jobTitle": "Chief Medical Information Officer",
+      "region": "KSA",
+      "industry": "Healthcare",
+      "serviceInterest": "healthcare-cio-advisory",
+      "estimatedBudget": "$100,000 - $250,000",
+      "message": "Interested in clinical RAG implementation for SMART-on-FHIR EHR workflows with local data residency compliance.",
+      "crmExportTarget": "Salesforce",
+      "status": "in_review",
+      "internalNotes": "Initial briefing assigned to Shafiq Rahman. High priority healthcare CIO advisory inquiry.",
+      "createdAt": "2026-10-12T15:53:43.370Z",
+      "updatedAt": "2026-10-13T15:53:43.370Z"
+    },
+    {
+      "id": "NEXIS-CONSULT-1002",
+      "fullName": "David Miller",
+      "email": "dmiller@universityresearch.edu",
+      "phone": "+1 (410) 555-0192",
+      "companyName": "Mid-Atlantic Research University",
+      "jobTitle": "Director of Research Computing",
+      "region": "US",
+      "industry": "Higher Education",
+      "serviceInterest": "higher-education-cio-advisory",
+      "estimatedBudget": "$250,000 - $500,000",
+      "message": "Need GPU cluster orchestration and HIPAA/FERPA enclaves for institutional research.",
+      "crmExportTarget": "HubSpot",
+      "status": "new",
+      "internalNotes": "Local research institution request. Shafiq Rahman follow-up scheduled.",
+      "createdAt": "2026-10-14T10:53:43.370Z",
+      "updatedAt": "2026-10-14T10:53:43.370Z"
+    }
+  ],
+  "assessments": [
+    {
+      "id": "NEXIS-EVAL-1001",
+      "companyName": "Metropolitan Health Authority",
+      "clientEmail": "t.lead@healthauthority.org",
+      "region": "US",
+      "overallScore": 78,
+      "maturityLevel": "Accelerated",
+      "categoryScores": {
+        "Strategy": 85,
+        "Data": 70,
+        "Security": 80,
+        "Infrastructure": 75,
+        "Governance": 80
+      },
+      "status": "contacted",
+      "internalNotes": "Sent customized 12-domain CIO maturity executive report.",
+      "createdAt": "2026-10-11T15:53:43.370Z",
+      "updatedAt": "2026-10-12T15:53:43.370Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": "MSG-2001",
+      "requestId": "NEXIS-CONSULT-1001",
+      "requestType": "consultation",
+      "sender": "admin",
+      "senderName": "Shafiq Rahman (Managing Principal)",
+      "recipientEmail": "sarah.mansoori@healthsystem.org",
+      "subject": "Re: Nexis AI Executive Consultation Request - Healthcare RAG & FHIR",
+      "content": "Dear Dr. Al-Mansoori,\n\nThank you for reaching out to Nexis Tech Group regarding your SMART-on-FHIR clinical AI initiative in Saudi Arabia.\n\nOur Riyadh architecture team has reviewed your project parameters and prepared an initial sovereign cloud blueprint adhering to NDMO & NCA ECC regulations. We would welcome a 30-minute executive briefing next Tuesday.\n\nBest regards,\nShafiq Rahman\nManaging Principal | Nexis AI",
+      "sentAt": "2026-10-13T15:53:43.370Z",
+      "deliveryStatus": "delivered"
+    }
+  ],
+  "admins": [
+    {
+      "id": "ADM-001",
+      "email": "admin@nexisai.us",
+      "password": "admin123",
+      "fullName": "Nexis Admin Lead",
+      "role": "Executive Principal",
+      "lastLogin": "2026-10-14T15:53:43.370Z"
+    },
+    {
+      "id": "ADM-002",
+      "email": "shafiqs1@gmail.com",
+      "password": "admin123",
+      "fullName": "Shafiq Rahman",
+      "role": "Managing Principal & Former CIO",
+      "lastLogin": "2026-10-14T15:53:43.370Z"
+    }
+  ]
+}

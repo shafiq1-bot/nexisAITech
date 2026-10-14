@@ -6,27 +6,36 @@
     -webkit-tap-highlight-color: transparent;
     text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
   body {
     overflow-x: hidden;
     touch-action: manipulation;
+    background-color: #020617;
+    color: #f8fafc;
+    letter-spacing: -0.01em;
+  }
+
+  /* Monospace fonts for metrics and dates */
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
   }
 }
 
 /* Custom modern scrollbar for clean enterprise look */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #020617;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #1e293b;
-  border-radius: 4px;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -40,4 +49,13 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Subtle luxury ambient glow */
+.ambient-glow-amber {
+  background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+}
+
+.ambient-glow-blue {
+  background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.07) 0%, transparent 70%);
 }

@@ -146,15 +146,21 @@ Primary Executive: Shafiq Rahman, Managing Principal / Former CIO
 
     const urls = [
       { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'daily' },
-      { loc: `${baseUrl}/#trust-center`, priority: '1.0', changefreq: 'weekly' },
-      { loc: `${baseUrl}/#about`, priority: '0.8', changefreq: 'monthly' },
-      { loc: `${baseUrl}/#services`, priority: '0.9', changefreq: 'weekly' },
-      { loc: `${baseUrl}/#industries`, priority: '0.9', changefreq: 'weekly' },
-      { loc: `${baseUrl}/#ai-solutions`, priority: '0.9', changefreq: 'weekly' },
-      { loc: `${baseUrl}/#bd-agents`, priority: '0.9', changefreq: 'weekly' },
-      { loc: `${baseUrl}/#cybersecurity`, priority: '0.9', changefreq: 'weekly' },
-      { loc: `${baseUrl}/#resources`, priority: '0.8', changefreq: 'weekly' },
-      { loc: `${baseUrl}/#assessment`, priority: '0.8', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=about`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=fractional-cio`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=cio-advisory`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=interim-cio`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=healthcare-cio-advisory`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=higher-education-cio-advisory`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=ai-strategy`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=case-studies`, priority: '0.8', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=publications`, priority: '0.8', changefreq: 'monthly' },
+      { loc: `${baseUrl}/?page=schedule`, priority: '0.9', changefreq: 'daily' },
+      { loc: `${baseUrl}/?page=assessment`, priority: '0.8', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=lead-magnets`, priority: '0.8', changefreq: 'weekly' },
+      { loc: `${baseUrl}/#trust-center`, priority: '0.8', changefreq: 'monthly' },
+      { loc: `${baseUrl}/#services`, priority: '0.8', changefreq: 'weekly' },
+      { loc: `${baseUrl}/#industries`, priority: '0.8', changefreq: 'weekly' },
       { loc: `${baseUrl}/#contact`, priority: '0.8', changefreq: 'monthly' },
     ];
 
@@ -252,26 +258,28 @@ Keep your tone executive, trustworthy, concise, and professional.`;
   });
 
   // Lead Capture & CRM Processing Endpoint (Database Persistence)
-  app.post('/api/lead-capture', (req, res) => {
-    const lead = req.body;
+  app.post(['/api/lead-capture', '/api/consultation-booking'], (req, res) => {
+    const lead = req.body || {};
+    const fullName = lead.fullName || lead.name || '';
+    const email = lead.email || '';
 
-    if (!lead || !lead.email || !lead.fullName) {
+    if (!email || !fullName) {
       res.status(400).json({ error: 'Name and email are required.' });
       return;
     }
 
     // Save record to persistent Database
     const record = Database.addConsultation({
-      fullName: lead.fullName,
-      email: lead.email,
+      fullName,
+      email,
       phone: lead.phone || '',
-      companyName: lead.companyName || 'Enterprise Client',
-      jobTitle: lead.jobTitle || 'Executive',
+      companyName: lead.companyName || lead.organization || 'Enterprise Client',
+      jobTitle: lead.jobTitle || lead.title || 'Executive',
       region: lead.region || 'US',
-      industry: lead.industry || 'Healthcare',
-      serviceInterest: lead.serviceInterest || 'ai-transformation',
-      estimatedBudget: lead.estimatedBudget || '$50,000 - $100,000',
-      message: lead.message || '',
+      industry: lead.industry || lead.sector || 'Healthcare',
+      serviceInterest: lead.serviceInterest || 'Fractional CIO Advisory',
+      estimatedBudget: lead.estimatedBudget || lead.organizationBudget || '$50,000 - $100,000',
+      message: lead.message || lead.urgentChallenge || '',
       crmExportTarget: lead.crmExportTarget || 'HubSpot',
     });
 
@@ -283,19 +291,19 @@ Keep your tone executive, trustworthy, concise, and professional.`;
       timestamp: record.createdAt,
       crmProvider: targetCRM,
       contact: {
-        firstname: lead.fullName.split(' ')[0],
-        lastname: lead.fullName.split(' ').slice(1).join(' ') || '',
-        email: lead.email,
+        firstname: fullName.split(' ')[0],
+        lastname: fullName.split(' ').slice(1).join(' ') || '',
+        email: email,
         phone: lead.phone || 'N/A',
-        company: lead.companyName || 'Enterprise Client',
-        jobtitle: lead.jobTitle || 'Executive',
+        company: lead.companyName || lead.organization || 'Enterprise Client',
+        jobtitle: lead.jobTitle || lead.title || 'Executive',
       },
       customFields: {
         region: lead.region || 'US',
-        industry: lead.industry || 'Healthcare',
-        serviceInterest: lead.serviceInterest || 'AI Transformation',
-        budgetTier: lead.estimatedBudget || '$50,000 - $100,000',
-        notes: lead.message || 'Consultation requested via web portal.',
+        industry: lead.industry || lead.sector || 'Healthcare',
+        serviceInterest: lead.serviceInterest || 'Fractional CIO Advisory',
+        budgetTier: lead.estimatedBudget || lead.organizationBudget || '$50,000 - $100,000',
+        notes: lead.message || lead.urgentChallenge || 'Consultation requested via web portal.',
       },
       marketingSequenceTriggered: 'Enterprise AI & Security Consultation Welcome Campaign',
     };
@@ -308,11 +316,11 @@ Keep your tone executive, trustworthy, concise, and professional.`;
       record,
       status: 'Submitted & Saved in Database',
       crmExportPreview: crmPayload,
-      confirmationMessage: `Thank you, ${lead.fullName}. Your request (${record.id}) has been recorded in our database. An Enterprise Technology Advisor from our ${lead.region || 'US'} regional hub will contact you within 4 business hours.`,
+      confirmationMessage: `Thank you, ${fullName}. Your request (${record.id}) has been recorded in our database. An Enterprise Technology Advisor from our ${lead.region || 'US'} regional hub will contact you within 4 business hours.`,
       welcomeSequence: {
         email1: `Sent: Welcome to Nexis Tech Group - Preparing for your Consultation`,
         email2: `Scheduled (Day 2): Executive Guide to Enterprise AI & Zero Trust`,
-        email3: `Scheduled (Day 5): Customized Case Studies for ${lead.industry || 'your industry'}`,
+        email3: `Scheduled (Day 5): Customized Case Studies for ${lead.industry || lead.sector || 'your industry'}`,
       },
     });
   });

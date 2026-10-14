@@ -1,20 +1,18 @@
 import React from 'react';
 import { 
-  ShieldCheck, 
-  BrainCircuit, 
   ArrowRight, 
+  BarChart3, 
   Sparkles, 
-  CheckCircle2, 
-  Building2, 
-  Lock, 
-  Cpu, 
-  BarChart3,
-  Globe2,
+  Calendar, 
+  ExternalLink,
+  ShieldCheck,
+  Building2,
+  Stethoscope,
+  GraduationCap,
   Award
 } from 'lucide-react';
 import { Language, Region, PageId } from '../types';
 import { translations } from '../data/translations';
-import { AIVisualShowcase } from './AIVisualShowcase';
 import { useExecutiveHeadshot } from '../lib/useExecutiveHeadshot';
 
 interface HeroProps {
@@ -36,207 +34,202 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenBookAudit,
   onOpenScoping,
 }) => {
-  const t = translations[currentLanguage];
   const headshotUrl = useExecutiveHeadshot();
 
   return (
-    <section className="relative bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 text-white overflow-hidden pt-10 pb-16 border-b border-slate-800">
-      {/* Visual Background Lighting & Grid Effects */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-25 pointer-events-none" />
+    <section className="relative bg-slate-950 text-white overflow-hidden pt-12 pb-20 border-b border-slate-800/80">
+      {/* Ambient Lighting Accents */}
+      <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Top Badges & Executive Photo */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold uppercase tracking-wider">
-            <Award className="w-3.5 h-3.5 text-amber-400" />
-            <span>Fractional CIO | CIO Advisory | Enterprise AI Governance</span>
+        {/* Main Hero Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          {/* Left Column: Executive Value Proposition */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            
+            {/* Clean Typographic Eyebrow (No Pills) */}
+            <div className="flex items-center gap-2 text-xs font-mono tracking-wider text-amber-400 font-bold uppercase">
+              <span>Fractional CIO</span>
+              <span className="text-slate-600" aria-hidden="true">·</span>
+              <span>CIO Advisory</span>
+              <span className="text-slate-600" aria-hidden="true">·</span>
+              <span>Enterprise AI Governance</span>
+            </div>
+
+            {/* Authoritative Headline */}
+            <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight text-white leading-[1.12]">
+              You May Not Need Another Technology Vendor.<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-300">
+                You Need Executive Stewardship.
+              </span>
+            </h1>
+
+            {/* Sub-deck */}
+            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl">
+              Former State CIO <strong className="text-white font-semibold">Shafiq Rahman, MS, MBA, MCS, PMP®</strong> partners directly with CEOs, presidents, provosts, and board chairs to govern AI, rationalize runaway IT portfolios, and steer mission-critical technology mandates—without the delay or overhead of a full-time search.
+            </p>
+
+            {/* Primary Action Buttons */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              {onOpenScoping && (
+                <button
+                  onClick={() => onOpenScoping()}
+                  className="px-7 py-3.5 text-xs sm:text-sm font-extrabold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-xl transition-all shadow-xl shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer hover:scale-102 active:scale-98"
+                  id="hero-scope-project-primary-btn"
+                >
+                  <Sparkles className="w-4 h-4 text-slate-950 fill-current" />
+                  <span>Scope Your Mandate (Instant 60s)</span>
+                </button>
+              )}
+
+              <button
+                onClick={() => onNavigate('schedule')}
+                className="px-6 py-3.5 text-xs sm:text-sm font-semibold text-slate-100 bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                id="hero-schedule-briefing-btn"
+              >
+                <Calendar className="w-4 h-4 text-amber-400" />
+                <span>Schedule 20-Min Briefing</span>
+              </button>
+
+              <button
+                onClick={() => onNavigate('assessment')}
+                className="px-5 py-3.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer"
+                id="hero-diagnostic-link"
+              >
+                <span>30-Day Diagnostic Overview</span>
+                <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+              </button>
+            </div>
+
+            {/* Institutional Trust Metrics Grid (Clean Unboxed Layout) */}
+            <div className="pt-8 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-6">
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono tracking-tight">$250M+</div>
+                <div className="text-[11px] text-slate-400 mt-0.5 leading-snug">State IT Portfolio Governed across 6 Agencies</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-amber-400 font-mono tracking-tight">$6M</div>
+                <div className="text-[11px] text-slate-400 mt-0.5 leading-snug">Recurring Annual Cost Reductions Delivered</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono tracking-tight">20+ Yrs</div>
+                <div className="text-[11px] text-slate-400 mt-0.5 leading-snug">Healthcare, Higher Ed & Public Sector Leadership</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono tracking-tight">8 Papers</div>
+                <div className="text-[11px] text-slate-400 mt-0.5 leading-snug">Peer-Reviewed Clinical & Cyber Research</div>
+              </div>
+            </div>
+
           </div>
 
-          <a
-            href="https://www.linkedin.com/in/shafiqr/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 bg-slate-900 border border-slate-700 hover:border-blue-500 hover:bg-slate-800 text-blue-400 text-xs font-semibold px-3.5 py-1.5 rounded-full transition-all cursor-pointer shadow-sm group"
-          >
-            <div className="w-8 h-8 rounded-full overflow-hidden border border-blue-400/60 shrink-0 shadow-inner">
-              <img
-                src={headshotUrl}
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {
-                    target.src = '/images/shafiq_rahman_headshot.jpg';
-                  }
-                }}
-                alt="Shafiq Rahman, MS, MBA, MCS, PMP®"
-                className="w-full h-full object-cover object-center"
-              />
-            </div>
-            <span>Shafiq Rahman, MS, MBA, MCS, PMP®</span>
-            <span className="text-[10px] bg-blue-600/30 text-blue-300 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-600 group-hover:text-white transition-colors">LinkedIn</span>
-          </a>
+          {/* Right Column: Executive Profile Card & Institutional Authority */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <div className="w-full max-w-md bg-slate-900/80 border border-slate-800/90 rounded-3xl p-6 sm:p-7 backdrop-blur-xl shadow-2xl space-y-6 relative">
+              
+              {/* Executive Availability Header */}
+              <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
+                <div className="flex items-center gap-2 text-xs font-mono font-semibold text-emerald-400">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Available for Q4 Advisory</span>
+                </div>
+                <span className="text-[11px] font-mono text-slate-400">Owings Mills, MD</span>
+              </div>
 
-          <a
-            href="https://scholar.google.com/citations?user=L0j_am8AAAAJ&hl=en"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 bg-slate-900 border border-slate-700 hover:border-amber-500/50 hover:bg-slate-800 text-slate-300 text-xs font-semibold px-3 py-1.5 rounded-full transition-all cursor-pointer shadow-sm"
-          >
-            <span className="text-amber-400 font-mono text-[11px]">8 Papers</span>
-            <span className="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 px-1.5 py-0.5 rounded font-mono">Google Scholar</span>
-          </a>
+              {/* Portrait & Core Identifiers */}
+              <div className="flex items-center gap-4">
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-amber-500/50 shadow-xl shrink-0 bg-slate-950">
+                  <img
+                    src={headshotUrl}
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {
+                        target.src = '/images/shafiq_rahman_headshot.jpg';
+                      }
+                    }}
+                    alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Former State CIO"
+                    className="w-full h-full object-cover object-center pointer-events-none select-none"
+                  />
+                </div>
+
+                <div className="space-y-1 min-w-0">
+                  <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                    Shafiq Rahman
+                  </h2>
+                  <div className="text-xs font-mono text-amber-400 font-semibold truncate">
+                    MS, MBA, MCS, PMP®
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-snug">
+                    Former State CIO · Healthcare & Higher Ed Technology Executive
+                  </p>
+                  
+                  {/* Verified Links */}
+                  <div className="flex items-center gap-3 pt-1">
+                    <a
+                      href="https://www.linkedin.com/in/shafiqr/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] text-blue-400 hover:text-blue-300 flex items-center gap-1 font-medium transition-colors"
+                    >
+                      <span>LinkedIn Profile</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                    <span className="text-slate-600" aria-hidden="true">·</span>
+                    <a
+                      href="https://scholar.google.com/citations?user=L0j_am8AAAAJ&hl=en"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] text-slate-300 hover:text-white flex items-center gap-1 font-medium transition-colors"
+                    >
+                      <span>Scholar</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Institutional Precedents List */}
+              <div className="space-y-2.5 pt-1">
+                <div className="text-[10px] font-mono uppercase text-slate-400 tracking-wider font-semibold">
+                  Executive Leadership Track Record:
+                </div>
+                
+                <div className="space-y-2 text-xs">
+                  <div className="flex items-start gap-2.5 text-slate-300">
+                    <Building2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <span><strong className="text-white">State CIO:</strong> Maryland Department of Transportation ($250M IT portfolio, 6 agencies).</span>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 text-slate-300">
+                    <Stethoscope className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span><strong className="text-white">Healthcare Advisory:</strong> Ascension / Saint Agnes Healthcare (Meditech-to-Epic conversions, HIPAA).</span>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 text-slate-300">
+                    <GraduationCap className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                    <span><strong className="text-white">Academic Medicine:</strong> Enterprise IT Director, Univ. of Maryland School of Medicine (HPC, Slurm, SIS).</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card Footer Quick Action */}
+              <div className="pt-2">
+                <button
+                  onClick={() => onNavigate('about')}
+                  className="w-full py-2.5 px-4 bg-slate-950 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold rounded-xl border border-slate-800 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  <span>Read Full Executive Biography & Press</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+                </button>
+              </div>
+
+            </div>
+          </div>
+
         </div>
-
-        {/* Hero Headlines */}
-        <div className="text-center max-w-4xl mx-auto space-y-6">
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
-            You May Not Need Another Technology Vendor.<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500">
-              You May Need CIO-Level Leadership.
-            </span>
-          </h1>
-
-          <p className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto">
-            Shafiq Rahman helps CEOs, presidents, boards, healthcare leaders, universities, and growing organizations turn technology strategy into measurable operational, clinical, institutional, and business outcomes—without immediately hiring a full-time executive.
-          </p>
-
-          {/* Stakeholder Fast-Track Navigator for Immediate Scoping */}
-          <div className="pt-2">
-            <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider mb-2">
-              Select Your Stakeholder Context for Immediate Project Scoping:
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-w-3xl mx-auto">
-              <button
-                onClick={() => onOpenScoping ? onOpenScoping('Healthcare System / AMC') : onNavigate('healthcare-cio-advisory')}
-                className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/60 hover:bg-emerald-950/20 text-left transition-all group cursor-pointer"
-              >
-                <div className="text-[10px] font-mono text-emerald-400 font-bold uppercase">Healthcare & AMC</div>
-                <div className="text-xs font-bold text-white group-hover:text-emerald-300 mt-0.5 truncate">Clinical IT & HIPAA</div>
-              </button>
-              <button
-                onClick={() => onOpenScoping ? onOpenScoping('Higher Education / Research University') : onNavigate('higher-education-cio-advisory')}
-                className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-purple-500/60 hover:bg-purple-950/20 text-left transition-all group cursor-pointer"
-              >
-                <div className="text-[10px] font-mono text-purple-400 font-bold uppercase">Higher Education</div>
-                <div className="text-xs font-bold text-white group-hover:text-purple-300 mt-0.5 truncate">Research & FERPA</div>
-              </button>
-              <button
-                onClick={() => onOpenScoping ? onOpenScoping('State / Regional Public Sector') : onNavigate('government')}
-                className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/60 hover:bg-amber-950/20 text-left transition-all group cursor-pointer"
-              >
-                <div className="text-[10px] font-mono text-amber-400 font-bold uppercase">Public Sector / DOT</div>
-                <div className="text-xs font-bold text-white group-hover:text-amber-300 mt-0.5 truncate">$6M Savings Model</div>
-              </button>
-              <button
-                onClick={() => onOpenScoping ? onOpenScoping('Mid-Market Enterprise / PE Portfolio') : onNavigate('fractional-cio')}
-                className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-blue-500/60 hover:bg-blue-950/20 text-left transition-all group cursor-pointer"
-              >
-                <div className="text-[10px] font-mono text-blue-400 font-bold uppercase">Mid-Market & PE</div>
-                <div className="text-xs font-bold text-white group-hover:text-blue-300 mt-0.5 truncate">30-Day Diagnostic</div>
-              </button>
-            </div>
-          </div>
-
-          {/* Action CTAs */}
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
-            {onOpenScoping && (
-              <button
-                onClick={() => onOpenScoping()}
-                className="px-8 py-4 text-xs sm:text-sm font-extrabold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-xl transition-all shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95 border border-amber-300"
-                id="hero-instant-project-scoping-btn"
-              >
-                <Sparkles className="w-4 h-4 text-slate-950 fill-current" />
-                <span>Scope Your Project (Instant 60s Scoping)</span>
-              </button>
-            )}
-
-            <button
-              onClick={onOpenConsultation}
-              className="px-6 py-4 text-xs sm:text-sm font-bold text-slate-100 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
-              id="hero-schedule-conversation-btn"
-            >
-              <span>Schedule a CIO Advisory Conversation</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-
-            <button
-              onClick={() => onNavigate('assessment')}
-              className="px-6 py-4 text-xs sm:text-sm font-semibold text-slate-300 bg-slate-950/80 border border-slate-800 hover:bg-slate-900 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
-              id="hero-readiness-assessment-btn"
-            >
-              <BarChart3 className="w-4 h-4 text-amber-400" />
-              <span>Take the CIO Readiness Assessment</span>
-            </button>
-          </div>
-
-          {/* Verified Credibility Summary (Immediately Below Hero) */}
-          <div className="pt-8 border-t border-slate-800/80 mt-8">
-            <div className="text-[11px] font-mono uppercase text-slate-400 tracking-wider mb-3">
-              Verified Executive Experience & Leadership Credentials:
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
-              <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
-                <div className="text-xs font-bold text-amber-400 font-mono">Former State CIO</div>
-                <div className="text-xs text-white font-semibold mt-0.5">Maryland Dept. of Transportation</div>
-                <div className="text-[11px] text-slate-400 mt-1">$6M recurring savings · Chaired ARB & Governance across 6 agencies.</div>
-              </div>
-
-              <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
-                <div className="text-xs font-bold text-emerald-400 font-mono">Current Strategic Advisor</div>
-                <div className="text-xs text-white font-semibold mt-0.5">Ascension / Saint Agnes</div>
-                <div className="text-[11px] text-slate-400 mt-1">Clinical operations, EHR workflow redesign & rationalization.</div>
-              </div>
-
-              <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
-                <div className="text-xs font-bold text-blue-400 font-mono">Academic Medicine IT</div>
-                <div className="text-xs text-white font-semibold mt-0.5">Univ. of Maryland Medicine</div>
-                <div className="text-[11px] text-slate-400 mt-1">Reported to Dean; led Meditech-to-Epic hospital transformation.</div>
-              </div>
-
-              <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
-                <div className="text-xs font-bold text-purple-400 font-mono">Governor's Appointee</div>
-                <div className="text-xs text-white font-semibold mt-0.5">Maryland AI Sub-Cabinet</div>
-                <div className="text-[11px] text-slate-400 mt-1">Responsible AI governance, privacy & MS, MBA, MCS, PMP®.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Ticker / Stats Bar */}
-        <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6 bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-2xl backdrop-blur-md">
-          <div className="text-center p-4 border-r border-slate-800/80 last:border-none">
-            <div className="text-3xl sm:text-4xl font-extrabold text-blue-400 font-mono tracking-tight">
-              {t.heroStat1Value}
-            </div>
-            <div className="text-xs text-slate-400 mt-1 font-medium">{t.heroStat1Label}</div>
-          </div>
-
-          <div className="text-center p-4 border-r border-slate-800/80 last:border-none">
-            <div className="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">
-              {t.heroStat2Value}
-            </div>
-            <div className="text-xs text-slate-400 mt-1 font-medium">{t.heroStat2Label}</div>
-          </div>
-
-          <div className="text-center p-4 border-r border-slate-800/80 last:border-none">
-            <div className="text-3xl sm:text-4xl font-extrabold text-purple-400 font-mono tracking-tight">
-              {t.heroStat3Value}
-            </div>
-            <div className="text-xs text-slate-400 mt-1 font-medium">{t.heroStat3Label}</div>
-          </div>
-
-          <div className="text-center p-4">
-            <div className="text-3xl sm:text-4xl font-extrabold text-cyan-400 font-mono tracking-tight">
-              {t.heroStat4Value}
-            </div>
-            <div className="text-xs text-slate-400 mt-1 font-medium">{t.heroStat4Label}</div>
-          </div>
-        </div>
-
-        {/* Dynamic AI Executive Visual Showcase */}
-        <AIVisualShowcase onNavigate={onNavigate} onOpenConsultation={onOpenConsultation} />
 
       </div>
     </section>
