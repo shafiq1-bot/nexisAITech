@@ -1,57 +1,61 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Language, Region, PageId } from './types';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { ExecutiveAudiencePaths } from './components/ExecutiveAudiencePaths';
-import { FractionalCIOSection } from './components/FractionalCIOSection';
-import { ExecutiveAdvisorySection } from './components/ExecutiveAdvisorySection';
-import { EnterpriseROIFramework } from './components/EnterpriseROIFramework';
-import { ServicesOverview } from './components/ServicesOverview';
-import { CybersecurityCenter } from './components/CybersecurityCenter';
-import { IndustriesSection } from './components/IndustriesSection';
-import { AISolutionsShowcase } from './components/AISolutionsShowcase';
-import { AIReadinessAssessment } from './components/AIReadinessAssessment';
-import { ResourcesHub } from './components/ResourcesHub';
-import { ContactSection } from './components/ContactSection';
-import { RegionalMarketsSection } from './components/RegionalMarketsSection';
-import { AIAdvisorModal } from './components/AIAdvisorModal';
-import { ConsultationBookingModal } from './components/ConsultationBookingModal';
-import { servicesData } from './data/companyData';
-import { ServiceDetailModal } from './components/ServiceDetailModal';
-import { SEOHead } from './components/SEOHead';
-import { GoogleCalendarModal } from './components/GoogleCalendarModal';
-import { TrustSecurityCenter } from './components/TrustSecurityCenter';
-import { BookAuditModal } from './components/BookAuditModal';
-import { FreeToolsSection } from './components/FreeToolsSection';
-import { ERPModernizationSection } from './components/ERPModernizationSection';
-import { EnterpriseArchitectureSection } from './components/EnterpriseArchitectureSection';
-import { ResearchComputingSection } from './components/ResearchComputingSection';
-import { HardwareInfrastructureSection } from './components/HardwareInfrastructureSection';
-import { GovernmentPracticeSection } from './components/GovernmentPracticeSection';
-
-// Dedicated Executive Advisory & Governance Pages
-import { FractionalCIOPage } from './components/FractionalCIOPage';
-import { CIOAdvisoryPage } from './components/CIOAdvisoryPage';
-import { InterimCIOPage } from './components/InterimCIOPage';
-import { AIStrategyGovernancePage } from './components/AIStrategyGovernancePage';
-import { HealthcareCIOPage } from './components/HealthcareCIOPage';
-import { HigherEducationCIOPage } from './components/HigherEducationCIOPage';
-import { TechnologyGovernancePage } from './components/TechnologyGovernancePage';
-import { DoYouNeedAFractionalCIOPage } from './components/DoYouNeedAFractionalCIOPage';
-import { VerifiedCaseStudiesPage } from './components/VerifiedCaseStudiesPage';
-import { ResourcesLeadMagnetsPage } from './components/ResourcesLeadMagnetsPage';
-import { ExecutiveSchedulePage } from './components/ExecutiveSchedulePage';
-import { ShafiqRahmanAboutPage } from './components/ShafiqRahmanAboutPage';
-import { ExecutiveInsightsPage } from './components/ExecutiveInsightsPage';
-import { CIOMaturityAssessment } from './components/CIOMaturityAssessment';
-import { AIExecutiveAdvisor } from './components/AIExecutiveAdvisor';
-import { ResearchPublicationsPage } from './components/ResearchPublicationsPage';
-import { ExecutiveWorkMediaSection } from './components/ExecutiveWorkMediaSection';
-import { InstantProjectScopingModal } from './components/InstantProjectScopingModal';
-import { StickyExecutiveConversionBar } from './components/StickyExecutiveConversionBar';
 import { FractionalCIOFAQSection } from './components/FractionalCIOFAQSection';
-import { GoogleSearchConsoleModal } from './components/GoogleSearchConsoleModal';
+import { ContactSection } from './components/ContactSection';
+import { StickyExecutiveConversionBar } from './components/StickyExecutiveConversionBar';
+import { SEOHead } from './components/SEOHead';
+import { servicesData } from './data/companyData';
+
+// Code-split heavy interactive sections and secondary landing pages
+const FractionalCIOSection = lazy(() => import('./components/FractionalCIOSection').then(m => ({ default: m.FractionalCIOSection })));
+const ExecutiveAdvisorySection = lazy(() => import('./components/ExecutiveAdvisorySection').then(m => ({ default: m.ExecutiveAdvisorySection })));
+const EnterpriseROIFramework = lazy(() => import('./components/EnterpriseROIFramework').then(m => ({ default: m.EnterpriseROIFramework })));
+const ServicesOverview = lazy(() => import('./components/ServicesOverview').then(m => ({ default: m.ServicesOverview })));
+const CybersecurityCenter = lazy(() => import('./components/CybersecurityCenter').then(m => ({ default: m.CybersecurityCenter })));
+const IndustriesSection = lazy(() => import('./components/IndustriesSection').then(m => ({ default: m.IndustriesSection })));
+const AISolutionsShowcase = lazy(() => import('./components/AISolutionsShowcase').then(m => ({ default: m.AISolutionsShowcase })));
+const AIReadinessAssessment = lazy(() => import('./components/AIReadinessAssessment').then(m => ({ default: m.AIReadinessAssessment })));
+const ResourcesHub = lazy(() => import('./components/ResourcesHub').then(m => ({ default: m.ResourcesHub })));
+const RegionalMarketsSection = lazy(() => import('./components/RegionalMarketsSection').then(m => ({ default: m.RegionalMarketsSection })));
+const FreeToolsSection = lazy(() => import('./components/FreeToolsSection').then(m => ({ default: m.FreeToolsSection })));
+const ERPModernizationSection = lazy(() => import('./components/ERPModernizationSection').then(m => ({ default: m.ERPModernizationSection })));
+const EnterpriseArchitectureSection = lazy(() => import('./components/EnterpriseArchitectureSection').then(m => ({ default: m.EnterpriseArchitectureSection })));
+const ResearchComputingSection = lazy(() => import('./components/ResearchComputingSection').then(m => ({ default: m.ResearchComputingSection })));
+const HardwareInfrastructureSection = lazy(() => import('./components/HardwareInfrastructureSection').then(m => ({ default: m.HardwareInfrastructureSection })));
+const GovernmentPracticeSection = lazy(() => import('./components/GovernmentPracticeSection').then(m => ({ default: m.GovernmentPracticeSection })));
+const TrustSecurityCenter = lazy(() => import('./components/TrustSecurityCenter').then(m => ({ default: m.TrustSecurityCenter })));
+const VerifiedCaseStudiesPage = lazy(() => import('./components/VerifiedCaseStudiesPage').then(m => ({ default: m.VerifiedCaseStudiesPage })));
+const ResearchPublicationsPage = lazy(() => import('./components/ResearchPublicationsPage').then(m => ({ default: m.ResearchPublicationsPage })));
+const ExecutiveWorkMediaSection = lazy(() => import('./components/ExecutiveWorkMediaSection').then(m => ({ default: m.ExecutiveWorkMediaSection })));
+
+// Code-split Modals
+const AIAdvisorModal = lazy(() => import('./components/AIAdvisorModal').then(m => ({ default: m.AIAdvisorModal })));
+const ConsultationBookingModal = lazy(() => import('./components/ConsultationBookingModal').then(m => ({ default: m.ConsultationBookingModal })));
+const ServiceDetailModal = lazy(() => import('./components/ServiceDetailModal').then(m => ({ default: m.ServiceDetailModal })));
+const GoogleCalendarModal = lazy(() => import('./components/GoogleCalendarModal').then(m => ({ default: m.GoogleCalendarModal })));
+const BookAuditModal = lazy(() => import('./components/BookAuditModal').then(m => ({ default: m.BookAuditModal })));
+const InstantProjectScopingModal = lazy(() => import('./components/InstantProjectScopingModal').then(m => ({ default: m.InstantProjectScopingModal })));
+const GoogleSearchConsoleModal = lazy(() => import('./components/GoogleSearchConsoleModal').then(m => ({ default: m.GoogleSearchConsoleModal })));
+
+// Code-split Dedicated Executive Advisory & Governance Pages
+const FractionalCIOPage = lazy(() => import('./components/FractionalCIOPage').then(m => ({ default: m.FractionalCIOPage })));
+const CIOAdvisoryPage = lazy(() => import('./components/CIOAdvisoryPage').then(m => ({ default: m.CIOAdvisoryPage })));
+const InterimCIOPage = lazy(() => import('./components/InterimCIOPage').then(m => ({ default: m.InterimCIOPage })));
+const AIStrategyGovernancePage = lazy(() => import('./components/AIStrategyGovernancePage').then(m => ({ default: m.AIStrategyGovernancePage })));
+const HealthcareCIOPage = lazy(() => import('./components/HealthcareCIOPage').then(m => ({ default: m.HealthcareCIOPage })));
+const HigherEducationCIOPage = lazy(() => import('./components/HigherEducationCIOPage').then(m => ({ default: m.HigherEducationCIOPage })));
+const TechnologyGovernancePage = lazy(() => import('./components/TechnologyGovernancePage').then(m => ({ default: m.TechnologyGovernancePage })));
+const DoYouNeedAFractionalCIOPage = lazy(() => import('./components/DoYouNeedAFractionalCIOPage').then(m => ({ default: m.DoYouNeedAFractionalCIOPage })));
+const ResourcesLeadMagnetsPage = lazy(() => import('./components/ResourcesLeadMagnetsPage').then(m => ({ default: m.ResourcesLeadMagnetsPage })));
+const ExecutiveSchedulePage = lazy(() => import('./components/ExecutiveSchedulePage').then(m => ({ default: m.ExecutiveSchedulePage })));
+const ShafiqRahmanAboutPage = lazy(() => import('./components/ShafiqRahmanAboutPage').then(m => ({ default: m.ShafiqRahmanAboutPage })));
+const ExecutiveInsightsPage = lazy(() => import('./components/ExecutiveInsightsPage').then(m => ({ default: m.ExecutiveInsightsPage })));
+const CIOMaturityAssessment = lazy(() => import('./components/CIOMaturityAssessment').then(m => ({ default: m.CIOMaturityAssessment })));
+const AIExecutiveAdvisor = lazy(() => import('./components/AIExecutiveAdvisor').then(m => ({ default: m.AIExecutiveAdvisor })));
 
 export default function App() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('en');

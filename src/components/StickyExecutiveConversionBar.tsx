@@ -113,6 +113,7 @@ export const StickyExecutiveConversionBar: React.FC<StickyExecutiveConversionBar
                 onClick={() => setIsDismissed(true)}
                 className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
                 title="Dismiss"
+                aria-label="Dismiss executive conversion bar"
               >
                 <X className="w-3.5 h-3.5" />
               </button>

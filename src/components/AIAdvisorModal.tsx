@@ -137,6 +137,7 @@ export const AIAdvisorModal: React.FC<AIAdvisorModalProps> = ({
             onClick={onClose}
             className="p-2 text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-full transition-colors"
             id="close-ai-advisor-modal"
+            aria-label="Close AI advisor modal"
           >
             <X className="w-5 h-5" />
           </button>

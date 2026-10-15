@@ -152,6 +152,7 @@ export const InstantProjectScopingModal: React.FC<InstantProjectScopingModalProp
           <button
             onClick={onClose}
             className="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition-colors cursor-pointer"
+            aria-label="Close scoping tool"
           >
             <X className="w-5 h-5" />
           </button>

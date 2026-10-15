@@ -18,7 +18,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
         ? 'Saudi Arabia (Riyadh Hub)'
         : currentRegion === 'UAE'
         ? 'United Arab Emirates (Dubai Hub)'
-        : 'United States (Owings Mills, MD)';
+        : 'United States (Howard County, MD)';
 
     // Comprehensive Page Titles
     const pageTitles: Partial<Record<PageId, string>> = {
@@ -227,10 +227,8 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
           priceRange: '$$$$',
           address: {
             '@type': 'PostalAddress',
-            streetAddress: '11436 Cronhill Drive',
-            addressLocality: 'Owings Mills',
+            addressLocality: 'Howard County',
             addressRegion: 'MD',
-            postalCode: '21117',
             addressCountry: 'US',
           },
           areaServed: ['United States', 'International'],

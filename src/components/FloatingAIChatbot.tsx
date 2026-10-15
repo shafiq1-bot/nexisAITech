@@ -168,7 +168,7 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           prompt: textToSend,
-          companyContext: 'Nexis AI — Premier Enterprise AI, Former-CIO Executive Advisory, ERP Modernization (SAP/Oracle clean core), and Zero Trust Cybersecurity serving Americas (Owings Mills MD HQ) and Europe (London & Frankfurt). Hotline: (443) 608-5425.',
+          companyContext: 'Nexis AI — Premier Enterprise AI, Former-CIO Executive Advisory, ERP Modernization (SAP/Oracle clean core), and Zero Trust Cybersecurity serving Americas (Howard County MD HQ) and Europe (London & Frankfurt). Hotline: (443) 608-5425.',
         }),
       });
 
@@ -301,6 +301,7 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
                 onClick={() => setIsOpen(false)}
                 className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
                 title="Minimize widget"
+                aria-label="Minimize executive chatbot widget"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -596,7 +597,7 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
                   <span>Americas Headquarters (USA)</span>
                 </div>
                 <div className="text-slate-300 space-y-1.5 pl-6 text-[11px]">
-                  <div>11436 Cronhill Drive, Owings Mills, MD 21117</div>
+                  <div>Howard County, MD</div>
                   <div className="flex items-center gap-3 pt-1">
                     <a
                       href={`tel:${mainUSAPhone.replace(/[^0-9+]/g, '')}`}

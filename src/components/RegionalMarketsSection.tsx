@@ -38,8 +38,8 @@ export const RegionalMarketsSection: React.FC<RegionalMarketsSectionProps> = ({
     US: {
       title: 'Nexis AI — United States Market (Primary HQ)',
       badge: 'Flagship Headquarters & Primary Market',
-      location: 'Owings Mills, MD & Washington D.C. Corridor',
-      address: '11436 Cronhill Drive, Owings Mills, MD 21117',
+      location: 'Howard County, MD & Washington D.C. Corridor',
+      address: 'Howard County, MD',
       phone: '(443) 608-5425',
       smsText: '(443) 608-5425',
       email: 'info@nexisai.us',
@@ -219,7 +219,7 @@ export const RegionalMarketsSection: React.FC<RegionalMarketsSectionProps> = ({
             Tailored AI & Security Solutions for Strategic Global Markets
           </h2>
           <p className="text-base text-slate-300 leading-relaxed">
-            While <strong className="text-white">Nexis AI</strong> operates its flagship headquarters in <strong className="text-blue-400">Owings Mills, Maryland (US)</strong>, we provide localized compliance, sovereign infrastructure, and dedicated regional support across key international hubs.
+            While <strong className="text-white">Nexis AI</strong> operates its flagship headquarters in <strong className="text-blue-400">Howard County, Maryland (US)</strong>, we provide localized compliance, sovereign infrastructure, and dedicated regional support across key international hubs.
           </p>
         </div>
 

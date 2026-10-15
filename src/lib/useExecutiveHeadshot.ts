@@ -1,47 +1,35 @@
-import { useState, useEffect } from 'react';
 import defaultHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
 
-const STORAGE_KEY = 'nexis_custom_headshot_v2';
 const EVENT_NAME = 'nexis_headshot_updated';
 
-export function getExecutiveHeadshotUrl(): string {
-  if (typeof window !== 'undefined') {
-    const custom = localStorage.getItem(STORAGE_KEY);
-    if (custom) return custom;
+// Purge any stale localStorage keys from previous AI image tests or uploads
+if (typeof window !== 'undefined') {
+  try {
+    localStorage.removeItem('nexis_custom_headshot');
+    localStorage.removeItem('nexis_custom_headshot_v2');
+    localStorage.removeItem('nexis_custom_headshot_v3');
+    localStorage.removeItem('shafiq_headshot');
+  } catch (e) {
+    // ignore
   }
-  return defaultHeadshot;
 }
 
-export function setExecutiveHeadshot(urlOrBase64: string) {
-  if (typeof window !== 'undefined') {
-    localStorage.setItem(STORAGE_KEY, urlOrBase64);
-    window.dispatchEvent(new Event(EVENT_NAME));
-  }
+export function getExecutiveHeadshotUrl(): string {
+  return defaultHeadshot || '/images/shafiq_rahman_headshot.jpg';
+}
+
+export function setExecutiveHeadshot(_urlOrBase64: string) {
+  // Headshot is locked to Shafiq Rahman's official portrait
 }
 
 export function resetExecutiveHeadshot() {
   if (typeof window !== 'undefined') {
-    localStorage.removeItem(STORAGE_KEY);
-    window.dispatchEvent(new Event(EVENT_NAME));
+    try {
+      localStorage.removeItem('nexis_custom_headshot_v2');
+    } catch (e) {}
   }
 }
 
-export function useExecutiveHeadshot() {
-  const [headshot, setHeadshot] = useState<string>(() => getExecutiveHeadshotUrl());
-
-  useEffect(() => {
-    const handleUpdate = () => {
-      setHeadshot(getExecutiveHeadshotUrl());
-    };
-
-    window.addEventListener(EVENT_NAME, handleUpdate);
-    window.addEventListener('storage', handleUpdate);
-
-    return () => {
-      window.removeEventListener(EVENT_NAME, handleUpdate);
-      window.removeEventListener('storage', handleUpdate);
-    };
-  }, []);
-
-  return headshot;
+export function useExecutiveHeadshot(): string {
+  return defaultHeadshot || '/images/shafiq_rahman_headshot.jpg';
 }

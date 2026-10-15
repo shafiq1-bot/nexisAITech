@@ -437,7 +437,7 @@ export const EnterpriseROIFramework: React.FC<EnterpriseROIFrameworkProps> = ({
               Serving Fortune 1000 & High-Growth Mid-Market in Americas & Europe
             </h3>
             <p className="text-xs text-slate-300 max-w-2xl">
-              From our US flagship headquarters in Owings Mills, MD (near Washington D.C.) to our European advisory presence in London and Frankfurt, we deliver localized compliance with global engineering precision.
+              From our US flagship headquarters in Howard County, MD (near Washington D.C.) to our European advisory presence in London and Frankfurt, we deliver localized compliance with global engineering precision.
             </p>
           </div>
 

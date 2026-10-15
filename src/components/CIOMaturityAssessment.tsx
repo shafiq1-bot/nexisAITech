@@ -385,67 +385,73 @@ export const CIOMaturityAssessment: React.FC<CIOMaturityAssessmentProps> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-slate-300">Full Name *</label>
+                    <label htmlFor="cio-maturity-fullname" className="text-xs font-semibold text-slate-300">Full Name *</label>
                     <input
+                      id="cio-maturity-fullname"
                       type="text"
                       required
                       placeholder="Jane Doe"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-slate-300">Work Email *</label>
+                    <label htmlFor="cio-maturity-email" className="text-xs font-semibold text-slate-300">Work Email *</label>
                     <input
+                      id="cio-maturity-email"
                       type="email"
                       required
                       placeholder="jdoe@organization.org"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-slate-300">Organization Name *</label>
+                    <label htmlFor="cio-maturity-org" className="text-xs font-semibold text-slate-300">Organization Name *</label>
                     <input
+                      id="cio-maturity-org"
                       type="text"
                       required
                       placeholder="Memorial Health System / State University"
                       value={formData.organization}
                       onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-slate-300">Leadership Title *</label>
+                    <label htmlFor="cio-maturity-title" className="text-xs font-semibold text-slate-300">Leadership Title *</label>
                     <input
+                      id="cio-maturity-title"
                       type="text"
                       required
                       placeholder="CEO, Provost, CFO, Board Chair, VP"
                       value={formData.title}
                       onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-slate-300">Direct Phone (Optional)</label>
+                    <label htmlFor="cio-maturity-phone" className="text-xs font-semibold text-slate-300">Direct Phone (Optional)</label>
                     <input
+                      id="cio-maturity-phone"
                       type="tel"
                       placeholder="(555) 000-0000"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-slate-300">Sector Context</label>
+                    <label htmlFor="cio-maturity-sector" className="text-xs font-semibold text-slate-300">Sector Context</label>
                     <select
+                      id="cio-maturity-sector"
                       value={formData.sector}
                       onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
                       className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400"

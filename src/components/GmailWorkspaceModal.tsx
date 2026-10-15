@@ -41,7 +41,7 @@ export const GmailWorkspaceModal: React.FC<GmailWorkspaceModalProps> = ({ isOpen
   const [selectedAlias, setSelectedAlias] = useState('info@nexisai.us');
   const [subject, setSubject] = useState('Welcome to Nexis AI - Enterprise Inquiry');
   const [body, setBody] = useState(
-    `<p>Dear Executive Team,</p><p>Thank you for reaching out to <strong>Nexis AI</strong>. We have received your request regarding AI Transformation and Zero Trust Architecture.</p><p>Best regards,<br/><strong>Nexis AI Executive Team</strong><br/>Owings Mills HQ: (443) 608-5425</p>`
+    `<p>Dear Executive Team,</p><p>Thank you for reaching out to <strong>Nexis AI</strong>. We have received your request regarding AI Transformation and Zero Trust Architecture.</p><p>Best regards,<br/><strong>Nexis AI Executive Team</strong><br/>Howard County, MD HQ: (443) 608-5425</p>`
   );
   const [sendingEmail, setSendingEmail] = useState(false);
   const [emailSuccess, setEmailSuccess] = useState<string | null>(null);
@@ -161,6 +161,7 @@ export const GmailWorkspaceModal: React.FC<GmailWorkspaceModalProps> = ({ isOpen
           <button
             onClick={onClose}
             className="p-2 text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 rounded-full transition-colors"
+            aria-label="Close Gmail integration modal"
           >
             <X className="w-5 h-5" />
           </button>
@@ -354,7 +355,7 @@ export const GmailWorkspaceModal: React.FC<GmailWorkspaceModalProps> = ({ isOpen
                     onClick={() => {
                       setSubject('Nexis AI | Executive Consultation Confirmation');
                       setBody(
-                        `<p>Dear Executive Client,</p><p>Your consultation with <strong>Nexis AI</strong> (Owings Mills, MD) has been scheduled. Our senior AI & Zero Trust architects look forward to evaluating your infrastructure against NIST 800-53 and HIPAA compliance benchmarks.</p><p>Direct Office Line: (443) 608-5425<br/>Email: info@nexisai.us</p>`
+                        `<p>Dear Executive Client,</p><p>Your consultation with <strong>Nexis AI</strong> (Howard County, MD) has been scheduled. Our senior AI & Zero Trust architects look forward to evaluating your infrastructure against NIST 800-53 and HIPAA compliance benchmarks.</p><p>Direct Office Line: (443) 608-5425<br/>Email: info@nexisai.us</p>`
                       );
                     }}
                     className="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 text-blue-300 border border-slate-700 rounded-lg transition-colors"
@@ -376,7 +377,7 @@ export const GmailWorkspaceModal: React.FC<GmailWorkspaceModalProps> = ({ isOpen
                     onClick={() => {
                       setSubject('Invoice & Statement - Nexis Tech Group Accounts');
                       setBody(
-                        `<p>Attention Accounts Payable,</p><p>Please find attached the statement from <strong>Nexis Tech Group Accounts Division</strong>.</p><p>Email: accounts@nexistechgroup.com<br/>Owings Mills, MD 21117</p>`
+                        `<p>Attention Accounts Payable,</p><p>Please find attached the statement from <strong>Nexis Tech Group Accounts Division</strong>.</p><p>Email: accounts@nexistechgroup.com<br/>Howard County, MD</p>`
                       );
                     }}
                     className="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 text-emerald-300 border border-slate-700 rounded-lg transition-colors"

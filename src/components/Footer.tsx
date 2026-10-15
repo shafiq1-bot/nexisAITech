@@ -74,8 +74,9 @@ export const Footer: React.FC<FooterProps> = ({
                   onChange={(e) => setNewsletterEmail(e.target.value)}
                   placeholder="Enter your executive email..."
                   required
-                  className="bg-slate-900 border border-slate-700 text-slate-100 placeholder-slate-500 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-amber-500 flex-1"
+                  className="bg-slate-900 border border-slate-700 text-slate-100 placeholder-slate-400 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-amber-500 flex-1"
                   id="newsletter-email-input"
+                  aria-label="Executive email address for monthly advisory briefings"
                 />
                 <button
                   type="submit"
@@ -131,7 +132,7 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="pt-2 text-xs space-y-1.5">
               <div className="text-slate-300 font-semibold flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                <span>Headquarters: Owings Mills, Maryland, USA</span>
+                <span>Headquarters: Howard County, Maryland, USA</span>
               </div>
               <div className="text-slate-300 font-mono flex items-center gap-1.5">
                 <Phone className="w-3.5 h-3.5 text-emerald-400" />

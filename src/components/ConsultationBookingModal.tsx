@@ -84,6 +84,7 @@ export const ConsultationBookingModal: React.FC<ConsultationBookingModalProps> =
           onClick={onClose}
           className="absolute top-5 right-5 p-2 text-slate-400 hover:text-white bg-slate-800 rounded-full hover:bg-slate-700 transition-colors"
           id="close-consultation-modal-btn"
+          aria-label="Close consultation modal"
         >
           <X className="w-5 h-5" />
         </button>
@@ -106,27 +107,27 @@ export const ConsultationBookingModal: React.FC<ConsultationBookingModalProps> =
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Full Name *</label>
+                  <label htmlFor="consult-fullname-input" className="block text-xs font-semibold text-slate-300 mb-1">Full Name *</label>
                   <input
                     type="text"
                     required
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     placeholder="Dr. Sarah Al-Mansoori"
-                    className="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-400 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500"
                     id="consult-fullname-input"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Corporate Email *</label>
+                  <label htmlFor="consult-email-input" className="block text-xs font-semibold text-slate-300 mb-1">Corporate Email *</label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="sarah@healthsystem.org"
-                    className="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-400 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500"
                     id="consult-email-input"
                   />
                 </div>
@@ -134,33 +135,36 @@ export const ConsultationBookingModal: React.FC<ConsultationBookingModalProps> =
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Phone Number</label>
+                  <label htmlFor="consult-phone-input" className="block text-xs font-semibold text-slate-300 mb-1">Phone Number</label>
                   <input
+                    id="consult-phone-input"
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+1 (512) 555-0199 or +966 50 123 4567"
-                    className="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-400 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Company / Organization *</label>
+                  <label htmlFor="consult-company-input" className="block text-xs font-semibold text-slate-300 mb-1">Company / Organization *</label>
                   <input
+                    id="consult-company-input"
                     type="text"
                     required
                     value={formData.companyName}
                     onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                     placeholder="Regional University / Hospital System"
-                    className="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-400 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Region Hub *</label>
+                  <label htmlFor="consult-region-select" className="block text-xs font-semibold text-slate-300 mb-1">Region Hub *</label>
                   <select
+                    id="consult-region-select"
                     value={formData.region}
                     onChange={(e) => setFormData({ ...formData, region: e.target.value as Region })}
                     className="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500 cursor-pointer"
@@ -172,8 +176,9 @@ export const ConsultationBookingModal: React.FC<ConsultationBookingModalProps> =
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Sector *</label>
+                  <label htmlFor="consult-industry-select" className="block text-xs font-semibold text-slate-300 mb-1">Sector *</label>
                   <select
+                    id="consult-industry-select"
                     value={formData.industry}
                     onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
                     className="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500 cursor-pointer"
@@ -187,8 +192,9 @@ export const ConsultationBookingModal: React.FC<ConsultationBookingModalProps> =
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Practice Focus</label>
+                  <label htmlFor="consult-service-select" className="block text-xs font-semibold text-slate-300 mb-1">Practice Focus</label>
                   <select
+                    id="consult-service-select"
                     value={formData.serviceInterest}
                     onChange={(e) => setFormData({ ...formData, serviceInterest: e.target.value })}
                     className="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500 cursor-pointer"
@@ -204,13 +210,14 @@ export const ConsultationBookingModal: React.FC<ConsultationBookingModalProps> =
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Project Scope & Requirements</label>
+                <label htmlFor="consult-message-textarea" className="block text-xs font-semibold text-slate-300 mb-1">Project Scope & Requirements</label>
                 <textarea
+                  id="consult-message-textarea"
                   rows={3}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Describe your current technology stack, timeline, or compliance requirements (e.g. HIPAA RAG search, Zero Trust rollout)..."
-                  className="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded-lg p-3 text-xs focus:outline-none focus:border-blue-500"
+                  className="w-full bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-400 rounded-lg p-3 text-xs focus:outline-none focus:border-blue-500"
                 />
               </div>
 

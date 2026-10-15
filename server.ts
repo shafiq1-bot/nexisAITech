@@ -1,4 +1,5 @@
 import express from 'express';
+import compression from 'compression';
 import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
@@ -11,6 +12,9 @@ dotenv.config();
 async function startServer() {
   const app = express();
   const PORT = Number(process.env.PORT) || 3000;
+
+  // High-performance gzip/brotli compression for fast mobile FCP / LCP
+  app.use(compression());
 
   app.use(express.json({ limit: '50mb' }));
   app.use(express.urlencoded({ limit: '50mb', extended: true }));
@@ -69,7 +73,7 @@ async function startServer() {
       status: 'ok',
       service: 'Nexis AI Enterprise Platform API',
       domain: 'nexisai.us',
-      legalEntity: 'Nexis Tech Group LLC (Owings Mills, MD, USA)',
+      legalEntity: 'Nexis Tech Group LLC (Howard County, MD, USA)',
       timestamp: new Date().toISOString(),
       securityStatus: {
         dmarc: 'v=DMARC1; p=quarantine',
@@ -99,7 +103,7 @@ Acknowledgments: https://nexisai.us/#hall-of-fame
 # Domain Verification & Entity Authentication
 Domain: nexisai.us
 Organization: Nexis Tech Group LLC
-Address: 11436 Cronhill Drive, Owings Mills, MD 21117, USA
+Address: Howard County, MD, USA
 Primary Executive: Shafiq Rahman, Managing Principal / Former CIO
 `;
 
@@ -140,11 +144,9 @@ Primary Executive: Shafiq Rahman, Managing Principal / Former CIO
   });
 
   // Dynamic XML Sitemap Endpoint for Search Engine Crawlers (Google Search Console & Bing)
-  app.get('/sitemap.xml', (req, res) => {
-    const rawHost = (req.headers['x-forwarded-host'] as string) || req.get('host') || 'nexisai.us';
-    const host = rawHost.split(',')[0].trim();
-    const proto = (req.headers['x-forwarded-proto'] as string) || (req.secure ? 'https' : 'http') || 'https';
-    const baseUrl = `${proto}://${host}`;
+  app.get(['/sitemap.xml', '/sitemap'], (req, res) => {
+    // Canonical base URL must be HTTPS nexisai.us for Google Search Console verification
+    const baseUrl = 'https://nexisai.us';
     const lastMod = new Date().toISOString().split('T')[0];
 
     // Standard-compliant XML sitemap (Google disallows '#' fragment identifiers in sitemap URLs)
@@ -1027,18 +1029,22 @@ Output MUST be JSON:
   } else {
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath, {
+      maxAge: '1y',
+      immutable: true,
       setHeaders: (res, filePath) => {
         if (filePath.endsWith('.html')) {
-          res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-          res.setHeader('Pragma', 'no-cache');
-          res.setHeader('Expires', '0');
+          res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+        } else if (filePath.match(/\.(jpg|jpeg|png|webp|svg|gif|ico)$/)) {
+          res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+        } else if (filePath.endsWith('.xml') || filePath.endsWith('.txt')) {
+          res.setHeader('Cache-Control', 'public, max-age=3600');
+        } else {
+          res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
         }
       }
     }));
     app.get('*', (req, res) => {
-      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-      res.setHeader('Pragma', 'no-cache');
-      res.setHeader('Expires', '0');
+      res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }

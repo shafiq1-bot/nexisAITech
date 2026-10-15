@@ -43,10 +43,8 @@ export const DeploymentSEOGuide: React.FC<DeploymentSEOGuideProps> = ({ isOpen, 
   "address": [
     {
       "@type": "PostalAddress",
-      "streetAddress": "11436 Cronhill Drive",
-      "addressLocality": "Owings Mills",
+      "addressLocality": "Howard County",
       "addressRegion": "MD",
-      "postalCode": "21117",
       "addressCountry": "US"
     },
     {
@@ -155,6 +153,7 @@ CMD ["node", "dist/server.cjs"]`;
             onClick={onClose}
             className="p-2 text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-full transition-colors"
             id="close-docs-modal-btn"
+            aria-label="Close SEO guide modal"
           >
             <X className="w-5 h-5" />
           </button>

@@ -752,8 +752,8 @@ export const regionalOffices = [
   {
     region: 'US',
     country: 'United States & Americas (Global HQ)',
-    city: 'Owings Mills, MD & Washington D.C.',
-    address: '11436 Cronhill Drive, Owings Mills, MD 21117',
+    city: 'Howard County, MD & Washington D.C.',
+    address: 'Howard County, MD',
     phone: '(443) 608-5425',
     smsText: '(443) 608-5425',
     email: 'info@nexisai.us',

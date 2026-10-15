@@ -96,6 +96,7 @@ export const GoogleSearchConsoleModal: React.FC<GoogleSearchConsoleModalProps> =
           <button
             onClick={onClose}
             className="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition-colors cursor-pointer"
+            aria-label="Close Google Search Console modal"
           >
             <X className="w-5 h-5" />
           </button>

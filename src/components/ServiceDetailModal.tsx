@@ -48,6 +48,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
           onClick={onClose}
           className="absolute top-5 right-5 p-2 text-slate-400 hover:text-white bg-slate-800 rounded-full hover:bg-slate-700 transition-colors"
           id="close-service-modal-btn"
+          aria-label="Close service details modal"
         >
           <X className="w-5 h-5" />
         </button>

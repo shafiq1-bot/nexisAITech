@@ -136,7 +136,7 @@ export const Hero: React.FC<HeroProps> = ({
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   <span>Available for Q4 Advisory</span>
                 </div>
-                <span className="text-[11px] font-mono text-slate-400">Owings Mills, MD</span>
+                <span className="text-[11px] font-mono text-slate-400">Howard County, MD</span>
               </div>
 
               {/* Portrait & Core Identifiers */}
@@ -151,6 +151,11 @@ export const Hero: React.FC<HeroProps> = ({
                       }
                     }}
                     alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Former State CIO"
+                    width={96}
+                    height={96}
+                    fetchPriority="high"
+                    loading="eager"
+                    decoding="async"
                     className="w-full h-full object-cover object-center pointer-events-none select-none"
                   />
                 </div>

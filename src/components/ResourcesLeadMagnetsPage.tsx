@@ -149,6 +149,7 @@ export const ResourcesLeadMagnetsPage: React.FC<ResourcesLeadMagnetsPageProps> =
             <button
               onClick={() => setSelectedMagnet(null)}
               className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 transition-colors"
+              aria-label="Close guide preview modal"
             >
               <X className="w-5 h-5" />
             </button>

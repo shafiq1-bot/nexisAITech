@@ -209,6 +209,7 @@ export const GoogleCalendarModal: React.FC<GoogleCalendarModalProps> = ({
           <button
             onClick={onClose}
             className="p-2 text-slate-400 hover:text-white bg-slate-800 rounded-full hover:bg-slate-700 transition-colors"
+            aria-label="Close Google Calendar modal"
           >
             <X className="w-5 h-5" />
           </button>

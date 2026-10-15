@@ -1176,7 +1176,7 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
                   <div className="font-mono text-purple-400 font-bold">Campaign Contact Information</div>
                   <div className="text-slate-300 text-[11px]">Direct Phone: +1 (443) 608-5425</div>
                   <div className="text-slate-300 text-[11px]">Direct Email: shafiq.rahman@nexisai.us</div>
-                  <div className="text-slate-400 text-[10px]">US HQ: Owings Mills, MD 21117</div>
+                  <div className="text-slate-400 text-[10px]">US HQ: Howard County, MD</div>
                 </div>
               </div>
             </div>

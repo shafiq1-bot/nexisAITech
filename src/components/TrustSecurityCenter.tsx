@@ -82,7 +82,7 @@ Dear Infoblox Threat Intelligence Team,
 We are submitting an urgent domain re-categorization request for:
 - Domain Name: nexisai.us
 - Primary Website: https://nexisai.us
-- Entity Name: Nexis Tech Group LLC (Owings Mills, MD, USA)
+- Entity Name: Nexis Tech Group LLC (Howard County, MD, USA)
 - Business Purpose: Enterprise AI Transformation, Zero Trust Cybersecurity & IT Advisory Services.
 
 REASON FOR REQUEST:
@@ -95,7 +95,7 @@ VERIFIED DOMAIN & SECURITY CREDENTIALS:
    - DMARC Policy: v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@nexisai.us;
    - DKIM: 2048-bit RSA Active
 3. Compliance Frameworks: NIST SP 800-53 Rev 5, SOC 2 Type II Architecture, HIPAA & US CAN-SPAM Act compliant.
-4. Physical Business Headquarters: 11436 Cronhill Drive, Owings Mills, MD 21117, USA. Contact: +1 (443) 608-5425.
+4. Physical Business Headquarters: Howard County, MD, USA. Contact: +1 (443) 608-5425.
 
 Please update your reputation databases to reflect nexisai.us as a trusted "Business / Information Technology" domain and remove any security blocks or false-positive flags.
 
@@ -329,8 +329,7 @@ Contact: ${userEmail || '[Your Contact Email]'}`;
                   <div className="font-mono text-xs font-bold text-blue-400 uppercase">United States Executive Headquarters</div>
                   <div className="text-base font-bold text-white">Nexis Tech Group LLC</div>
                   <div className="space-y-1 text-slate-300">
-                    <div>11436 Cronhill Drive</div>
-                    <div>Owings Mills, Maryland 21117, United States</div>
+                    <div>Howard County, Maryland, United States</div>
                     <div>Executive Phone: +1 (443) 608-5425</div>
                     <div>Executive Email: info@nexisai.us | shafiqs1@gmail.com</div>
                   </div>
@@ -342,7 +341,7 @@ Contact: ${userEmail || '[Your Contact Email]'}`;
                   <div className="space-y-1 text-slate-300">
                     <div>Owner, Chief Information Officer (CIO) & Managing Director</div>
                     <div>20+ Years Enterprise IT & Cybersecurity Transformation</div>
-                    <div>Regional Hubs: Owings Mills, MD (USA) | London (UK) | Frankfurt (DE) | Riyadh (KSA)</div>
+                    <div>Regional Hubs: Howard County, MD (USA) | London (UK) | Frankfurt (DE) | Riyadh (KSA)</div>
                     <div>LinkedIn: https://www.linkedin.com/in/shafiqr</div>
                   </div>
                 </div>
@@ -655,7 +654,7 @@ Policy: https://nexisai.us/#trust-center
 # Entity Authentication
 Domain: nexisai.us
 Organization: Nexis Tech Group LLC
-Address: 11436 Cronhill Drive, Owings Mills, MD 21117, USA
+Address: Howard County, MD, USA
 Primary Executive: Shafiq Rahman, Owner & Chief Information Officer (CIO)`}
             </pre>
           </div>

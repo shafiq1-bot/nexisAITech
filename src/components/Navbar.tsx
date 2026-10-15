@@ -87,7 +87,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
               <button
                 onClick={() => setShowTopAnnouncement(false)}
-                className="text-slate-400 hover:text-white transition-colors cursor-pointer"
+                className="text-slate-400 hover:text-white transition-colors cursor-pointer p-1"
+                aria-label="Dismiss Announcement Banner"
                 title="Dismiss Banner"
               >
                 <X className="w-3.5 h-3.5" />
@@ -104,10 +105,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-start">
             <span className="inline-flex items-center gap-1.5 font-medium text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2.5 py-0.5 rounded-full text-[11px]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              {currentRegion === 'US' ? 'Washington D.C. & Maryland Metro (Owings Mills, MD)' : currentRegion === 'EU' ? 'EU Hubs (London & Frankfurt)' : currentRegion === 'KSA' ? 'KSA Regional Hub (Riyadh)' : 'UAE Regional Hub (Dubai)'}
+              {currentRegion === 'US' ? 'Washington D.C. & Maryland Metro (Howard County, MD)' : currentRegion === 'EU' ? 'EU Hubs (London & Frankfurt)' : currentRegion === 'KSA' ? 'KSA Regional Hub (Riyadh)' : 'UAE Regional Hub (Dubai)'}
             </span>
             <span className="hidden md:inline text-slate-300 text-xs">
-              Direct Executive Office: <a href="tel:+14109347773" className="text-amber-400 hover:underline font-mono font-bold">(410) 934-7773</a> | Confidential Inquiries: <a href="mailto:shafiqs1@gmail.com" className="text-slate-200 hover:text-amber-400 transition-colors font-mono">shafiqs1@gmail.com</a>
+              Direct Executive Office: <a href="tel:+14109347773" className="text-amber-400 hover:underline font-mono font-bold" aria-label="Direct Executive Phone (410) 934-7773">(410) 934-7773</a> | Confidential Inquiries: <a href="mailto:shafiqs1@gmail.com" className="text-slate-200 hover:text-amber-400 transition-colors font-mono" aria-label="Email shafiqs1@gmail.com">shafiqs1@gmail.com</a>
             </span>
           </div>
 
@@ -115,12 +116,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-4">
             {/* Region Selector */}
             <div className="flex items-center gap-1 bg-slate-900 border border-slate-700/80 rounded-md px-2 py-1">
-              <Globe className="w-3.5 h-3.5 text-slate-400" />
+              <Globe className="w-3.5 h-3.5 text-slate-400" aria-hidden="true" />
               <select
                 value={currentRegion}
                 onChange={(e) => onRegionChange(e.target.value as Region)}
                 className="bg-transparent text-slate-200 text-xs font-medium focus:outline-none cursor-pointer"
                 id="region-selector-select"
+                aria-label="Select Geographic Region"
               >
                 <option value="US" className="bg-slate-900 text-slate-200">🇺🇸 United States (Primary Market)</option>
                 <option value="EU" className="bg-slate-900 text-slate-200">🇪🇺 Europe (UK & EU Hubs)</option>
@@ -209,9 +211,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : ''
               }`}
               id="nav-practice-dropdown-btn"
+              aria-haspopup="true"
+              aria-expanded={practiceDropdownOpen}
+              aria-label="Practice Areas dropdown menu"
             >
               <span>Practice Areas</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${practiceDropdownOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${practiceDropdownOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
             </button>
 
             {practiceDropdownOpen && (
@@ -283,9 +288,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : ''
               }`}
               id="nav-proof-dropdown-btn"
+              aria-haspopup="true"
+              aria-expanded={proofDropdownOpen}
+              aria-label="Evidence and Press dropdown menu"
             >
               <span>Evidence & Press</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${proofDropdownOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${proofDropdownOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
             </button>
 
             {proofDropdownOpen && (
