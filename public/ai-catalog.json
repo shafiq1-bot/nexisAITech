@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Shafiq Rahman Executive Fractional CIO Practice",
+  "description": "Executive technology leadership, enterprise AI governance, and healthcare/higher education IT advisory.",
+  "version": "1.0.0",
+  "url": "https://nexisai.us",
+  "provider": {
+    "name": "Nexis Tech Group LLC",
+    "url": "https://nexisai.us",
+    "address": {
+      "locality": "Howard County",
+      "region": "MD",
+      "country": "US"
+    }
+  },
+  "capabilities": [
+    {
+      "id": "fractional-cio",
+      "name": "Fractional CIO Retainer",
+      "description": "Embedded executive technology leadership (10-25 hrs/week) directing digital modernization, IT steering committee, board reporting, and team execution.",
+      "url": "https://nexisai.us/?page=fractional-cio"
+    },
+    {
+      "id": "ai-governance",
+      "name": "Enterprise AI Governance & NIST AI RMF",
+      "description": "Comprehensive model risk classification, AI steering committee charters, and shadow AI audits.",
+      "url": "https://nexisai.us/?page=ai-governance"
+    },
+    {
+      "id": "healthcare-cio",
+      "name": "Healthcare & Academic Medicine IT Leadership",
+      "description": "Clinical informatics, Epic EHR modernization, HIPAA compliance, and health system IT advisory.",
+      "url": "https://nexisai.us/?page=healthcare-cio"
+    }
+  ],
+  "contact": {
+    "email": "shafiqs1@gmail.com",
+    "phone": "+1-410-934-7773"
+  }
+}

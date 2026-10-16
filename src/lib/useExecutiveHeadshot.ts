@@ -1,8 +1,10 @@
-import defaultHeadshot from '../assets/images/shafiq_about_portrait_1790861662502.jpg';
+import { useState, useEffect } from 'react';
+import { SHAFIQ_OFFICIAL_HEADSHOT_DATA_URI } from '../assets/images/shafiqHeadshotBase64';
 
-const EVENT_NAME = 'nexis_headshot_updated';
+const STORAGE_KEY = 'shafiq_verified_user_headshot_v2';
+const UPDATE_EVENT = 'shafiq_headshot_updated';
 
-// Purge any stale localStorage keys from previous AI image tests or uploads
+// Purge any old stale test keys from previous AI experiments
 if (typeof window !== 'undefined') {
   try {
     localStorage.removeItem('nexis_custom_headshot');
@@ -15,21 +17,49 @@ if (typeof window !== 'undefined') {
 }
 
 export function getExecutiveHeadshotUrl(): string {
-  return defaultHeadshot || '/images/shafiq_rahman_headshot.jpg';
+  if (typeof window !== 'undefined') {
+    try {
+      const custom = localStorage.getItem(STORAGE_KEY);
+      if (custom && custom.startsWith('data:image/')) {
+        return custom;
+      }
+    } catch (e) {}
+  }
+  return SHAFIQ_OFFICIAL_HEADSHOT_DATA_URI;
 }
 
-export function setExecutiveHeadshot(_urlOrBase64: string) {
-  // Headshot is locked to Shafiq Rahman's official portrait
+export function setExecutiveHeadshot(dataUriOrUrl: string) {
+  if (typeof window !== 'undefined') {
+    try {
+      localStorage.setItem(STORAGE_KEY, dataUriOrUrl);
+      window.dispatchEvent(new Event(UPDATE_EVENT));
+    } catch (e) {}
+  }
 }
 
 export function resetExecutiveHeadshot() {
   if (typeof window !== 'undefined') {
     try {
-      localStorage.removeItem('nexis_custom_headshot_v2');
+      localStorage.removeItem(STORAGE_KEY);
+      window.dispatchEvent(new Event(UPDATE_EVENT));
     } catch (e) {}
   }
 }
 
 export function useExecutiveHeadshot(): string {
-  return defaultHeadshot || '/images/shafiq_rahman_headshot.jpg';
+  const [headshot, setHeadshot] = useState<string>(() => getExecutiveHeadshotUrl());
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setHeadshot(getExecutiveHeadshotUrl());
+    };
+    window.addEventListener(UPDATE_EVENT, handleUpdate);
+    window.addEventListener('storage', handleUpdate);
+    return () => {
+      window.removeEventListener(UPDATE_EVENT, handleUpdate);
+      window.removeEventListener('storage', handleUpdate);
+    };
+  }, []);
+
+  return headshot;
 }

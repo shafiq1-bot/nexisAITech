@@ -213,10 +213,12 @@ export const FreeToolsSection: React.FC<FreeToolsSectionProps> = ({
 
           {/* Regional Hub Selector */}
           <div className="flex items-center justify-center gap-2 pt-2">
-            <span className="text-xs text-slate-400 font-semibold">Target Region:</span>
+            <label htmlFor="free-tools-region-select" className="text-xs text-slate-300 font-semibold">Target Region:</label>
             <select
+              id="free-tools-region-select"
               value={region}
               onChange={(e) => setRegion(e.target.value as Region)}
+              aria-label="Target Region for hotline"
               className="bg-slate-950 border border-slate-700 text-slate-200 text-xs font-bold rounded-xl px-3 py-1.5 focus:outline-none cursor-pointer"
             >
               <option value="US">🇺🇸 United States (+1 443 608-5425)</option>
@@ -320,8 +322,9 @@ export const FreeToolsSection: React.FC<FreeToolsSectionProps> = ({
               <form onSubmit={handleSendSms} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Your Name / Title</label>
+                    <label htmlFor="free-sms-name" className="block text-xs font-semibold text-slate-300 mb-1">Your Name / Title</label>
                     <input
+                      id="free-sms-name"
                       type="text"
                       value={senderName}
                       onChange={(e) => setSenderName(e.target.value)}
@@ -331,10 +334,11 @@ export const FreeToolsSection: React.FC<FreeToolsSectionProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    <label htmlFor="free-sms-phone" className="block text-xs font-semibold text-slate-300 mb-1">
                       Your Phone Number (For Reply SMS) <span className="text-red-400">*</span>
                     </label>
                     <input
+                      id="free-sms-phone"
                       type="tel"
                       required
                       value={senderPhone}
@@ -346,8 +350,9 @@ export const FreeToolsSection: React.FC<FreeToolsSectionProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Recipient Nexis Hotline</label>
+                  <label htmlFor="free-sms-recipient" className="block text-xs font-semibold text-slate-300 mb-1">Recipient Nexis Hotline</label>
                   <input
+                    id="free-sms-recipient"
                     type="text"
                     readOnly
                     value={`Nexis Tech Group ${region} Hotline: ${recipientPhone}`}
@@ -356,10 +361,11 @@ export const FreeToolsSection: React.FC<FreeToolsSectionProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  <label htmlFor="free-sms-text" className="block text-xs font-semibold text-slate-300 mb-1">
                     Text Message Content <span className="text-red-400">*</span>
                   </label>
                   <textarea
+                    id="free-sms-text"
                     rows={4}
                     required
                     value={smsText}
@@ -434,18 +440,22 @@ export const FreeToolsSection: React.FC<FreeToolsSectionProps> = ({
             <div className="space-y-4 pt-2">
               <div className="grid grid-cols-2 gap-3">
                 <input
+                  id="caller-name-input"
                   type="text"
                   value={callerName}
                   onChange={(e) => setCallerName(e.target.value)}
                   placeholder="Your Name (Optional)"
-                  className="bg-slate-900 border border-slate-800 text-white text-xs rounded-xl px-3 py-2 text-center"
+                  aria-label="Your Name (Optional)"
+                  className="bg-slate-900 border border-slate-800 text-white placeholder-slate-400 text-xs rounded-xl px-3 py-2 text-center"
                 />
                 <input
+                  id="caller-phone-input"
                   type="tel"
                   value={callerPhoneInput}
                   onChange={(e) => setCallerPhoneInput(e.target.value)}
                   placeholder="Your Callback Number"
-                  className="bg-slate-900 border border-slate-800 text-white text-xs rounded-xl px-3 py-2 text-center font-mono"
+                  aria-label="Your Callback Phone Number"
+                  className="bg-slate-900 border border-slate-800 text-white placeholder-slate-400 text-xs rounded-xl px-3 py-2 text-center font-mono"
                 />
               </div>
 
@@ -506,15 +516,17 @@ export const FreeToolsSection: React.FC<FreeToolsSectionProps> = ({
                     <span className="text-blue-400 font-mono font-bold">{(apiQueriesPerMonth).toLocaleString()} queries</span>
                   </div>
                   <input
+                    id="range-api-queries"
                     type="range"
                     min="100000"
                     max="5000000"
                     step="50000"
                     value={apiQueriesPerMonth}
                     onChange={(e) => setApiQueriesPerMonth(Number(e.target.value))}
+                    aria-label="Monthly AI Model API Calls / Queries"
                     className="w-full accent-blue-500 cursor-pointer"
                   />
-                  <div className="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
+                  <div className="flex justify-between text-[10px] text-slate-400 font-mono mt-1">
                     <span>100k queries</span>
                     <span>5M queries</span>
                   </div>
@@ -526,12 +538,14 @@ export const FreeToolsSection: React.FC<FreeToolsSectionProps> = ({
                     <span className="text-purple-400 font-mono font-bold">{teamUsers} seats</span>
                   </div>
                   <input
+                    id="range-team-users"
                     type="range"
                     min="10"
                     max="1000"
                     step="10"
                     value={teamUsers}
                     onChange={(e) => setTeamUsers(Number(e.target.value))}
+                    aria-label="Active Internal Enterprise Users"
                     className="w-full accent-purple-500 cursor-pointer"
                   />
                   <div className="flex justify-between text-[10px] text-slate-500 font-mono mt-1">

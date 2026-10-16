@@ -44,8 +44,8 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ onOpenCons
                     src={headshotUrl}
                     onError={(e) => {
                       const target = e.currentTarget;
-                      if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {
-                        target.src = '/images/shafiq_rahman_headshot.jpg';
+                      if (!target.src.includes('/images/shafiq_headshot_v4.jpg')) {
+                        target.src = '/images/shafiq_headshot_v4.jpg';
                       }
                     }}
                     alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Former State CIO"

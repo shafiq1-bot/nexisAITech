@@ -15,12 +15,13 @@ import {
   Sparkles,
   Quote,
   Globe,
+  Camera,
 } from 'lucide-react';
 import { executiveLeaderData } from '../data/leadershipData';
 import { researchPublications, googleScholarProfile } from '../data/researchPublicationsData';
 import { executiveMediaItems } from '../data/executiveWorkOnlineData';
 import { PageId } from '../types';
-import { useExecutiveHeadshot } from '../lib/useExecutiveHeadshot';
+import { useExecutiveHeadshot, setExecutiveHeadshot } from '../lib/useExecutiveHeadshot';
 
 interface ShafiqRahmanAboutPageProps {
   onOpenConsultation: (subject?: string) => void;
@@ -36,6 +37,19 @@ export const ShafiqRahmanAboutPage: React.FC<ShafiqRahmanAboutPageProps> = ({
   const linkedInUrl = 'https://www.linkedin.com/in/shafiqr/';
   const headshotUrl = useExecutiveHeadshot();
 
+  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === 'string') {
+          setExecutiveHeadshot(reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="bg-slate-950 text-slate-100 min-h-screen pt-24 pb-20 space-y-16">
       
@@ -47,21 +61,37 @@ export const ShafiqRahmanAboutPage: React.FC<ShafiqRahmanAboutPageProps> = ({
             
             {/* Picture Column */}
             <div className="lg:col-span-4 flex flex-col items-center text-center space-y-4">
-              <div className="relative pointer-events-none select-none">
+              <div className="relative">
                 <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-tr from-amber-500 via-blue-600 to-emerald-400 opacity-80 blur-md pointer-events-none"></div>
-                <div className="relative w-52 h-52 sm:w-64 sm:h-64 rounded-3xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-2xl pointer-events-none cursor-default">
+                <div className="relative group/aboutphoto w-52 h-52 sm:w-64 sm:h-64 rounded-3xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-2xl">
                   <img
                     src={headshotUrl}
                     onError={(e) => {
                       const target = e.currentTarget;
-                      if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {
-                        target.src = '/images/shafiq_rahman_headshot.jpg';
+                      if (!target.src.includes('/images/shafiq_headshot_v4.jpg')) {
+                        target.src = '/images/shafiq_headshot_v4.jpg';
                       }
                     }}
                     alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Executive Headshot"
                     loading="eager"
                     decoding="async"
                     className="w-full h-full object-cover object-center pointer-events-none select-none"
+                  />
+                  <label
+                    htmlFor="about-photo-upload-input"
+                    className="absolute inset-0 bg-slate-950/70 opacity-0 group-hover/aboutphoto:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1.5 cursor-pointer text-white text-xs font-bold"
+                    title="Upload Your Official Portrait (SRLinkedin.jpg)"
+                  >
+                    <Camera className="w-6 h-6 text-amber-400" />
+                    <span>Upload Official Photo</span>
+                  </label>
+                  <input
+                    id="about-photo-upload-input"
+                    type="file"
+                    accept="image/*"
+                    onChange={handlePhotoUpload}
+                    className="sr-only"
+                    aria-label="Upload official photo"
                   />
                   <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-2.5 pointer-events-none">
                     <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block">

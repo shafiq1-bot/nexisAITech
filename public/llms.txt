@@ -1,0 +1,24 @@
+# Shafiq Rahman - Fractional CIO & Executive Advisory (Nexis AI)
+
+> Elite Fractional CIO leadership, enterprise AI governance (NIST AI RMF), healthcare IT (Epic EHR / HIPAA), and higher education technology advisory led by former State CIO Shafiq Rahman, MS, MBA, MCS, PMP®.
+
+## Executive Leadership
+- [About Shafiq Rahman](https://nexisai.us/?page=about): Comprehensive background, state CIO governance ($250M portfolio), healthcare leadership (Ascension / Saint Agnes, UMSOM), publications, and verified media.
+- [Fractional CIO Practice](https://nexisai.us/?page=fractional-cio): Retainer structures, strategic alignment, and board technology governance.
+- [CIO Advisory Services](https://nexisai.us/?page=cio-advisory): Executive advisory, IT strategy, application rationalization, and risk audits.
+- [Interim CIO Mandates](https://nexisai.us/?page=interim-cio): Urgent leadership transition and crisis remediation.
+
+## Industry Practices
+- [Healthcare & Clinical IT](https://nexisai.us/?page=healthcare-cio): HIPAA, Epic/Meditech EHR modernization, clinical informatics, and health system AI governance.
+- [Higher Education & Research](https://nexisai.us/?page=higher-ed-cio): Slurm HPC clusters, FERPA, research computing, and academic IT consolidation.
+
+## Governance & Compliance
+- [Enterprise AI Governance](https://nexisai.us/?page=ai-governance): NIST AI RMF compliance, model risk assessment, and sovereign AI deployment.
+- [Zero Trust Cybersecurity](https://nexisai.us/?page=cybersecurity): NIST SP 800-53, SOC 2 Type II, and architectural resilience.
+- [Security Policy (RFC 9116)](https://nexisai.us/.well-known/security.txt): Responsible vulnerability disclosure policy and security contacts.
+
+## Contact & Booking
+- Office: Howard County, MD & Washington D.C. Corridor
+- Telephone: +1-410-934-7773 / (443) 608-5425
+- Email: shafiqs1@gmail.com / info@nexisai.us
+- Schedule Consultation: https://nexisai.us/?page=schedule

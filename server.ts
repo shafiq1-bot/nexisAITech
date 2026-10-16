@@ -1034,8 +1034,8 @@ Output MUST be JSON:
       setHeaders: (res, filePath) => {
         if (filePath.endsWith('.html')) {
           res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
-        } else if (filePath.match(/\.(jpg|jpeg|png|webp|svg|gif|ico)$/)) {
-          res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+        } else if (filePath.match(/\.(jpg|jpeg|png|webp|svg|gif|ico|woff2?|ttf|eot)$/)) {
+          res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
         } else if (filePath.endsWith('.xml') || filePath.endsWith('.txt')) {
           res.setHeader('Cache-Control', 'public, max-age=3600');
         } else {

@@ -9,11 +9,13 @@ import {
   Building2,
   Stethoscope,
   GraduationCap,
-  Award
+  Award,
+  Camera,
+  Upload
 } from 'lucide-react';
 import { Language, Region, PageId } from '../types';
 import { translations } from '../data/translations';
-import { useExecutiveHeadshot } from '../lib/useExecutiveHeadshot';
+import { useExecutiveHeadshot, setExecutiveHeadshot } from '../lib/useExecutiveHeadshot';
 
 interface HeroProps {
   currentLanguage: Language;
@@ -35,6 +37,19 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenScoping,
 }) => {
   const headshotUrl = useExecutiveHeadshot();
+
+  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === 'string') {
+          setExecutiveHeadshot(reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <section className="relative bg-slate-950 text-white overflow-hidden pt-12 pb-20 border-b border-slate-800/80">
@@ -141,13 +156,13 @@ export const Hero: React.FC<HeroProps> = ({
 
               {/* Portrait & Core Identifiers */}
               <div className="flex items-center gap-4">
-                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-amber-500/50 shadow-xl shrink-0 bg-slate-950">
+                <div className="relative group/photo w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-amber-500/50 shadow-xl shrink-0 bg-slate-950">
                   <img
                     src={headshotUrl}
                     onError={(e) => {
                       const target = e.currentTarget;
-                      if (!target.src.includes('/images/shafiq_rahman_headshot.jpg')) {
-                        target.src = '/images/shafiq_rahman_headshot.jpg';
+                      if (!target.src.includes('shafiq_headshot_v4.jpg')) {
+                        target.src = '/images/shafiq_headshot_v4.jpg';
                       }
                     }}
                     alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Former State CIO"
@@ -157,6 +172,22 @@ export const Hero: React.FC<HeroProps> = ({
                     loading="eager"
                     decoding="async"
                     className="w-full h-full object-cover object-center pointer-events-none select-none"
+                  />
+                  <label
+                    htmlFor="executive-photo-upload-input"
+                    className="absolute inset-0 bg-slate-950/70 opacity-0 group-hover/photo:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1 cursor-pointer text-white text-[9px] font-bold"
+                    title="Change Executive Photo (Upload SRLinkedin.jpg)"
+                  >
+                    <Camera className="w-4 h-4 text-amber-400" />
+                    <span>Upload Pic</span>
+                  </label>
+                  <input
+                    id="executive-photo-upload-input"
+                    type="file"
+                    accept="image/*"
+                    onChange={handlePhotoUpload}
+                    className="sr-only"
+                    aria-label="Upload custom executive headshot image"
                   />
                 </div>
 
