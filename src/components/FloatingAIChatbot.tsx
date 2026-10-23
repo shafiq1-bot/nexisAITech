@@ -442,12 +442,14 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
                 </button>
 
                 <input
+                  id="floating-chat-input"
+                  aria-label="Chat inquiry message"
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
                   placeholder={isListening ? 'Listening to voice...' : 'Ask about AI agents, ERP, Zero Trust...'}
-                  className={`flex-1 bg-slate-950 border rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors ${
+                  className={`flex-1 bg-slate-950 border rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition-colors ${
                     isListening ? 'border-red-500/80 ring-1 ring-red-500' : 'border-slate-800'
                   }`}
                 />
@@ -479,8 +481,10 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
 
               <div className="space-y-3 bg-slate-900 p-4 rounded-2xl border border-slate-800">
                 <div>
-                  <label className="block text-[11px] font-mono font-bold text-slate-400 mb-1">Operating Region</label>
+                  <label htmlFor="roi-region-select" className="block text-[11px] font-mono font-bold text-slate-300 mb-1">Operating Region</label>
                   <select
+                    id="roi-region-select"
+                    aria-label="Operating Region"
                     value={roiRegion}
                     onChange={(e: any) => setRoiRegion(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
@@ -492,8 +496,10 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono font-bold text-slate-400 mb-1">Current Core Architecture</label>
+                  <label htmlFor="roi-system-select" className="block text-[11px] font-mono font-bold text-slate-300 mb-1">Current Core Architecture</label>
                   <select
+                    id="roi-system-select"
+                    aria-label="Current Core Architecture"
                     value={roiSystem}
                     onChange={(e) => setRoiSystem(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
@@ -506,8 +512,10 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono font-bold text-slate-400 mb-1">Enterprise Size</label>
+                  <label htmlFor="roi-employees-select" className="block text-[11px] font-mono font-bold text-slate-300 mb-1">Enterprise Size</label>
                   <select
+                    id="roi-employees-select"
+                    aria-label="Enterprise Size"
                     value={roiEmployees}
                     onChange={(e) => setRoiEmployees(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
@@ -520,8 +528,10 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono font-bold text-slate-400 mb-1">Primary Transformation Goal</label>
+                  <label htmlFor="roi-initiative-select" className="block text-[11px] font-mono font-bold text-slate-300 mb-1">Primary Transformation Goal</label>
                   <select
+                    id="roi-initiative-select"
+                    aria-label="Primary Transformation Goal"
                     value={roiInitiative}
                     onChange={(e) => setRoiInitiative(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
@@ -562,6 +572,8 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
 
                   <div className="space-y-2 pt-1">
                     <input
+                      id="roi-visitor-name"
+                      aria-label="Your Name"
                       type="text"
                       placeholder="Your Name (e.g., Alex Morgan)"
                       value={visitorName}
@@ -569,6 +581,8 @@ export const FloatingAIChatbot: React.FC<FloatingAIChatbotProps> = ({
                       className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
                     />
                     <input
+                      id="roi-visitor-email"
+                      aria-label="Executive Work Email"
                       type="email"
                       placeholder="Executive Work Email (e.g., alex@company.com)"
                       value={visitorEmail}

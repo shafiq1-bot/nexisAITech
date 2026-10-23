@@ -136,17 +136,18 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
               <div className="text-slate-300 font-mono flex items-center gap-1.5">
                 <Phone className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Executive Line: <a href="tel:+14109347773" className="text-white hover:text-amber-400 underline font-bold">(410) 934-7773</a></span>
+                <span>Executive Line: <a href="tel:+14109347773" aria-label="Call Executive Office (410) 934-7773" className="text-white hover:text-amber-400 underline font-bold">(410) 934-7773</a></span>
               </div>
               <div className="text-slate-300 font-mono flex items-center gap-1.5">
                 <Mail className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Direct Inquiries: <a href="mailto:shafiqs1@gmail.com" className="text-cyan-300 hover:underline">shafiqs1@gmail.com</a></span>
+                <span>Direct Inquiries: <a href="mailto:shafiqs1@gmail.com" aria-label="Email Shafiq Rahman at shafiqs1@gmail.com" className="text-cyan-300 hover:underline">shafiqs1@gmail.com</a></span>
               </div>
               <div className="pt-1">
                 <a
                   href="https://www.linkedin.com/in/shafiqr"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visit Shafiq Rahman's LinkedIn Profile"
                   className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 underline font-mono"
                 >
                   <span>Connect with Shafiq Rahman on LinkedIn</span>
@@ -169,7 +170,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Col 1: Executive Services */}
           <div className="space-y-3">
-            <h5 className="text-xs font-bold uppercase tracking-wider text-amber-400 font-mono">Executive Services</h5>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-400 font-mono">Executive Services</h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
                 <button onClick={() => onNavigate('fractional-cio')} className="hover:text-amber-400 transition-colors text-slate-200 font-medium">
@@ -211,7 +212,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Col 2: Industry Practices */}
           <div className="space-y-3">
-            <h5 className="text-xs font-bold uppercase tracking-wider text-slate-200 font-mono">Sectors & Practices</h5>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200 font-mono">Sectors & Practices</h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
                 <button onClick={() => onNavigate('healthcare-cio-advisory')} className="hover:text-emerald-400 transition-colors text-slate-200">
@@ -258,7 +259,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Col 3: Tools & Resources */}
           <div className="space-y-3">
-            <h5 className="text-xs font-bold uppercase tracking-wider text-slate-200 font-mono">Executive Tools</h5>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200 font-mono">Executive Tools</h4>
             <ul className="space-y-2 text-xs text-slate-400">
               {onOpenGoogleConsoleModal && (
                 <li>
@@ -324,7 +325,7 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom Copyright & Legal */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
           <p>© {new Date().getFullYear()} Nexis AI. Executive Technology Advisory & Enterprise AI Practice. Led by Shafiq Rahman, MS, MBA, MCS, PMP®. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <button

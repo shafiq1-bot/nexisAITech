@@ -198,7 +198,7 @@ export const BookAuditModal: React.FC<BookAuditModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label htmlFor="book-audit-region" className="block text-xs font-semibold text-slate-700 mb-1">
                     Regional Hub
                   </label>
                   <select
@@ -215,7 +215,7 @@ export const BookAuditModal: React.FC<BookAuditModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label htmlFor="book-audit-scope" className="block text-xs font-semibold text-slate-700 mb-1">
                   Primary Audit Focus Area
                 </label>
                 <select
@@ -232,7 +232,7 @@ export const BookAuditModal: React.FC<BookAuditModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label htmlFor="book-audit-date" className="block text-xs font-semibold text-slate-700 mb-1">
                   Preferred Audit Date
                 </label>
                 <input

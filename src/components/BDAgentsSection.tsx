@@ -751,8 +751,10 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div>
-                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Target Industry</label>
+                  <label htmlFor="bd-target-industry" className="block text-xs font-mono font-bold text-slate-300 mb-2">Target Industry</label>
                   <select
+                    id="bd-target-industry"
+                    aria-label="Target Industry"
                     value={targetIndustry}
                     onChange={(e) => setTargetIndustry(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500"
@@ -767,8 +769,10 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Geographic Region</label>
+                  <label htmlFor="bd-target-region" className="block text-xs font-mono font-bold text-slate-300 mb-2">Geographic Region</label>
                   <select
+                    id="bd-target-region"
+                    aria-label="Geographic Region"
                     value={targetRegion}
                     onChange={(e) => setTargetRegion(e.target.value as Region)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500"
@@ -780,8 +784,10 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Company Headcount</label>
+                  <label htmlFor="bd-company-size" className="block text-xs font-mono font-bold text-slate-300 mb-2">Company Headcount</label>
                   <select
+                    id="bd-company-size"
+                    aria-label="Company Headcount"
                     value={companySize}
                     onChange={(e) => setCompanySize(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500"
@@ -793,8 +799,10 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Core Service Focus</label>
+                  <label htmlFor="bd-service-offer" className="block text-xs font-mono font-bold text-slate-300 mb-2">Core Service Focus</label>
                   <select
+                    id="bd-service-offer"
+                    aria-label="Core Service Focus"
                     value={serviceOffer}
                     onChange={(e) => setServiceOffer(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500"
@@ -907,8 +915,10 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
                 </h3>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Select Target Lead</label>
+                  <label htmlFor="bd-select-lead-email" className="block text-xs font-mono font-bold text-slate-300 mb-2">Select Target Lead</label>
                   <select
+                    id="bd-select-lead-email"
+                    aria-label="Select Target Lead"
                     value={selectedLeadForEmail?.id || ''}
                     onChange={(e) => {
                       const found = leadsList.find((l) => l.id === e.target.value);
@@ -925,8 +935,10 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Campaign Primary Goal</label>
+                  <label htmlFor="bd-campaign-goal" className="block text-xs font-mono font-bold text-slate-300 mb-2">Campaign Primary Goal</label>
                   <select
+                    id="bd-campaign-goal"
+                    aria-label="Campaign Primary Goal"
                     value={campaignGoal}
                     onChange={(e) => setCampaignGoal(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
@@ -939,8 +951,10 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Outreach Tone</label>
+                  <label htmlFor="bd-email-tone" className="block text-xs font-mono font-bold text-slate-300 mb-2">Outreach Tone</label>
                   <select
+                    id="bd-email-tone"
+                    aria-label="Outreach Tone"
                     value={emailTone}
                     onChange={(e) => setEmailTone(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500"
@@ -1093,8 +1107,10 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
                 </h3>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Campaign Format</label>
+                  <label htmlFor="bd-content-type" className="block text-xs font-mono font-bold text-slate-300 mb-2">Campaign Format</label>
                   <select
+                    id="bd-content-type"
+                    aria-label="Campaign Format"
                     value={contentType}
                     onChange={(e) => setContentType(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-purple-500"
@@ -1381,8 +1397,10 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-slate-300 mb-2">Select Target Decision Maker</label>
+                  <label htmlFor="bd-target-lead-phone" className="block text-xs font-mono font-bold text-slate-300 mb-2">Select Target Decision Maker</label>
                   <select
+                    id="bd-target-lead-phone"
+                    aria-label="Select Target Decision Maker"
                     value={selectedLeadForPhone?.id || ''}
                     onChange={(e) => {
                       const found = leadsList.find((l) => l.id === e.target.value);
@@ -1464,17 +1482,22 @@ export const BDAgentsSection: React.FC<BDAgentsSectionProps> = ({
                 <div className="border-t border-slate-800 pt-4 space-y-3">
                   <h4 className="text-xs font-mono font-bold text-slate-300">Log Call Disposition to CRM</h4>
                   <div className="grid grid-cols-2 gap-2">
-                    <select
-                      value={callOutcome}
-                      onChange={(e) => setCallOutcome(e.target.value)}
-                      className="bg-slate-950 border border-slate-800 rounded-xl px-2.5 py-2 text-xs text-white"
-                    >
-                      <option value="Voicemail Left">Voicemail Left</option>
-                      <option value="Executive Connected">Executive Connected</option>
-                      <option value="15-min Advisory Call Booked">15-min Advisory Call Booked</option>
-                      <option value="Follow-up Email Requested">Follow-up Email Requested</option>
-                      <option value="Not Interested / Bad Timing">Not Interested</option>
-                    </select>
+                    <div>
+                      <label htmlFor="bd-call-disposition" className="sr-only">Call Disposition</label>
+                      <select
+                        id="bd-call-disposition"
+                        aria-label="Call Disposition"
+                        value={callOutcome}
+                        onChange={(e) => setCallOutcome(e.target.value)}
+                        className="bg-slate-950 border border-slate-800 rounded-xl px-2.5 py-2 text-xs text-white w-full"
+                      >
+                        <option value="Voicemail Left">Voicemail Left</option>
+                        <option value="Executive Connected">Executive Connected</option>
+                        <option value="15-min Advisory Call Booked">15-min Advisory Call Booked</option>
+                        <option value="Follow-up Email Requested">Follow-up Email Requested</option>
+                        <option value="Not Interested / Bad Timing">Not Interested</option>
+                      </select>
+                    </div>
 
                     <button
                       onClick={handleLogCallResult}

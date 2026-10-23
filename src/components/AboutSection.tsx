@@ -98,6 +98,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                   href="https://www.linkedin.com/in/shafiqr/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Connect with Shafiq Rahman on LinkedIn"
                   className="text-[11px] text-blue-400 hover:text-blue-300 font-semibold inline-flex items-center gap-1 mt-0.5"
                 >
                   <span>Connect on LinkedIn</span>
@@ -106,10 +107,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               </div>
             </div>
 
-            <h4 className="text-lg font-bold text-white flex items-center gap-2">
+            <h3 className="text-lg font-bold text-white flex items-center gap-2">
               <Award className="w-5 h-5 text-blue-400" />
               <span>Practice Leadership Standards</span>
-            </h4>
+            </h3>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-slate-900 p-4 rounded-xl border border-slate-800 text-center">

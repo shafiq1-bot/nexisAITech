@@ -306,10 +306,12 @@ export const GmailWorkspaceModal: React.FC<GmailWorkspaceModalProps> = ({ isOpen
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* From Alias */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    <label htmlFor="gmail-alias-select" className="block text-xs font-semibold text-slate-300 mb-1">
                       From Alias (@nexistechgroup.com)
                     </label>
                     <select
+                      id="gmail-alias-select"
+                      aria-label="From Alias"
                       value={selectedAlias}
                       onChange={(e) => setSelectedAlias(e.target.value)}
                       className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-blue-500"

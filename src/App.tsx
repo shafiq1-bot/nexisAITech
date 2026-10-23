@@ -263,9 +263,9 @@ export default function App() {
                         <span className="text-amber-400 font-bold bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/60">2018 · Cited by 9</span>
                         <span className="text-slate-400">Appl Rad Oncol</span>
                       </div>
-                      <h4 className="text-sm font-bold text-white line-clamp-2">
+                      <h3 className="text-sm font-bold text-white line-clamp-2">
                         The Impact of Cybersecurity in Radiation Oncology: Logistics and Challenges
-                      </h4>
+                      </h3>
                       <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
                         Evaluates attack surfaces on medical devices, linear accelerators, and oncology EMRs, recommending segmented network enclaves and clinical continuity plans.
                       </p>
@@ -285,9 +285,9 @@ export default function App() {
                         <span className="text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/60">2026 · Latest</span>
                         <span className="text-slate-400">Healthcare Tech Letters</span>
                       </div>
-                      <h4 className="text-sm font-bold text-white line-clamp-2">
+                      <h3 className="text-sm font-bold text-white line-clamp-2">
                         E‐Variance: An Application to Assure Clinical Data Integrity and Patient Safety in EMR
-                      </h4>
+                      </h3>
                       <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
                         Custom web-based incident learning application engineered to capture frontline EMR data errors and eliminate latent clinical hazards in hospital workflows.
                       </p>
@@ -307,9 +307,9 @@ export default function App() {
                         <span className="text-blue-400 font-bold bg-blue-950/60 px-2 py-0.5 rounded border border-blue-800/60">2017 · Disaster Recovery</span>
                         <span className="text-slate-400">Medical Physics</span>
                       </div>
-                      <h4 className="text-sm font-bold text-white line-clamp-2">
+                      <h3 className="text-sm font-bold text-white line-clamp-2">
                         A Risk Management Plan Against Cyber-Attacks: 24-Hour Emergency Continuity Plan
-                      </h4>
+                      </h3>
                       <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
                         Pioneering hospital disaster recovery protocol for a 6-site health system with 11 linear accelerators and 5 proton machines during catastrophic cyber compromise.
                       </p>

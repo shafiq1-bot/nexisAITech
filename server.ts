@@ -11,7 +11,9 @@ dotenv.config();
 
 async function startServer() {
   const app = express();
-  const PORT = Number(process.env.PORT) || 3000;
+  const portArgIndex = process.argv.indexOf('--port');
+  const portArg = portArgIndex !== -1 ? Number(process.argv[portArgIndex + 1]) : null;
+  const PORT = Number(process.env.PORT) || portArg || 3000;
 
   // High-performance gzip/brotli compression for fast mobile FCP / LCP
   app.use(compression());
@@ -36,13 +38,13 @@ async function startServer() {
   });
 
   // Security Headers Middleware for Enterprise Trust & Security Scanners
+  // Note: Avoid X-Frame-Options: SAMEORIGIN to allow AI Studio preview iframe embedding
   app.use((req, res, next) => {
     if (req.path.startsWith('/.well-known/acme-challenge/')) {
       return next();
     }
     res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
     res.setHeader('X-Content-Type-Options', 'nosniff');
-    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
     res.setHeader('X-XSS-Protection', '1; mode=block');
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
     res.setHeader('Permissions-Policy', 'camera=(), microphone=(self), geolocation=()');
@@ -1022,7 +1024,11 @@ Output MUST be JSON:
   // Vite development middleware vs production static server
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        allowedHosts: true,
+        host: '0.0.0.0',
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);
@@ -1036,7 +1042,7 @@ Output MUST be JSON:
           res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
         } else if (filePath.match(/\.(jpg|jpeg|png|webp|svg|gif|ico|woff2?|ttf|eot)$/)) {
           res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-        } else if (filePath.endsWith('.xml') || filePath.endsWith('.txt')) {
+        } else if (filePath.endsWith('.xml') || filePath.endsWith('.txt') || filePath.endsWith('.json') || filePath.endsWith('.webmanifest')) {
           res.setHeader('Cache-Control', 'public, max-age=3600');
         } else {
           res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');

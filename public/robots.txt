@@ -28,4 +28,5 @@ User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://nexisai.us/sitemap.xml
+Agentmap: https://nexisai.us/ai-catalog.json
 Host: https://nexisai.us

@@ -273,8 +273,9 @@ export const InstantProjectScopingModal: React.FC<InstantProjectScopingModalProp
                   {/* Timeline Selection */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                     <div>
-                      <label className="text-xs font-semibold text-slate-400 block mb-1.5">Target Engagement Timeline:</label>
+                      <label htmlFor="scoping-timeline" className="text-xs font-semibold text-slate-400 block mb-1.5">Target Engagement Timeline:</label>
                       <select
+                        id="scoping-timeline"
                         value={timeline}
                         onChange={(e) => setTimeline(e.target.value)}
                         className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-amber-500"
@@ -287,8 +288,9 @@ export const InstantProjectScopingModal: React.FC<InstantProjectScopingModalProp
                     </div>
 
                     <div>
-                      <label className="text-xs font-semibold text-slate-400 block mb-1.5">Organizational Budget Scale:</label>
+                      <label htmlFor="scoping-budget" className="text-xs font-semibold text-slate-400 block mb-1.5">Organizational Budget Scale:</label>
                       <select
+                        id="scoping-budget"
                         value={organizationBudget}
                         onChange={(e) => setOrganizationBudget(e.target.value)}
                         className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-amber-500"

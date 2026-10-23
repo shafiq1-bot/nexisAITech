@@ -1,24 +1,27 @@
-# Shafiq Rahman - Fractional CIO & Executive Advisory (Nexis AI)
+# Shafiq Rahman - Fractional CIO & Executive Advisory
 
-> Elite Fractional CIO leadership, enterprise AI governance (NIST AI RMF), healthcare IT (Epic EHR / HIPAA), and higher education technology advisory led by former State CIO Shafiq Rahman, MS, MBA, MCS, PMP®.
+> Executive technology leadership, enterprise AI governance (NIST AI RMF), healthcare IT (Epic EHR / HIPAA), and higher education technology advisory led by former State CIO Shafiq Rahman, MS, MBA, MCS, PMP®.
 
-## Executive Leadership
-- [About Shafiq Rahman](https://nexisai.us/?page=about): Comprehensive background, state CIO governance ($250M portfolio), healthcare leadership (Ascension / Saint Agnes, UMSOM), publications, and verified media.
-- [Fractional CIO Practice](https://nexisai.us/?page=fractional-cio): Retainer structures, strategic alignment, and board technology governance.
-- [CIO Advisory Services](https://nexisai.us/?page=cio-advisory): Executive advisory, IT strategy, application rationalization, and risk audits.
-- [Interim CIO Mandates](https://nexisai.us/?page=interim-cio): Urgent leadership transition and crisis remediation.
+Nexis AI provides elite Fractional CIO, interim executive leadership, and board technology governance based in Howard County, Maryland, serving clients across the United States, Europe, and global regions.
 
-## Industry Practices
-- [Healthcare & Clinical IT](https://nexisai.us/?page=healthcare-cio): HIPAA, Epic/Meditech EHR modernization, clinical informatics, and health system AI governance.
-- [Higher Education & Research](https://nexisai.us/?page=higher-ed-cio): Slurm HPC clusters, FERPA, research computing, and academic IT consolidation.
+## Executive Leadership & Advisory Services
+- [Fractional CIO Advisory Practice](https://nexisai.us/?page=fractional-cio): Retainer structures (10-25 hrs/week), strategic technology roadmaps, IT steering committee leadership, and executive IT alignment.
+- [CIO Advisory & Board Oversight](https://nexisai.us/?page=cio-advisory): Executive advisory, IT strategy, application rationalization, cyber risk audits, and board technology reporting.
+- [Interim CIO Mandates](https://nexisai.us/?page=interim-cio): Urgent leadership transition, stabilization, crisis remediation, and permanent executive search assistance.
+- [About Shafiq Rahman](https://nexisai.us/?page=about): Comprehensive background, state CIO governance ($250M portfolio, MDOT), healthcare leadership (Ascension / Saint Agnes, UMSOM), publications, and verified media.
+- [Do You Need a Fractional CIO Assessment](https://nexisai.us/?page=do-you-need-a-fractional-cio): Interactive evaluation framework for CEOs, boards, and executive leadership teams.
 
-## Governance & Compliance
-- [Enterprise AI Governance](https://nexisai.us/?page=ai-governance): NIST AI RMF compliance, model risk assessment, and sovereign AI deployment.
-- [Zero Trust Cybersecurity](https://nexisai.us/?page=cybersecurity): NIST SP 800-53, SOC 2 Type II, and architectural resilience.
-- [Security Policy (RFC 9116)](https://nexisai.us/.well-known/security.txt): Responsible vulnerability disclosure policy and security contacts.
+## Industry Practices & Clinical IT
+- [Healthcare & Clinical IT Advisory](https://nexisai.us/?page=healthcare-cio-advisory): HIPAA compliance, Epic/Meditech EHR modernization, clinical informatics, and health system AI governance.
+- [Higher Education & Research Computing](https://nexisai.us/?page=higher-education-cio-advisory): Slurm HPC clusters, FERPA compliance, research computing, and academic IT consolidation.
+- [Public Sector & State Agencies](https://nexisai.us/?page=government): State government modernization, legacy remediation, and multi-agency shared services governance.
 
-## Contact & Booking
-- Office: Howard County, MD & Washington D.C. Corridor
-- Telephone: +1-410-934-7773 / (443) 608-5425
-- Email: shafiqs1@gmail.com / info@nexisai.us
-- Schedule Consultation: https://nexisai.us/?page=schedule
+## Governance, Cybersecurity & Architecture
+- [Enterprise AI Governance](https://nexisai.us/?page=ai-governance): NIST AI RMF compliance, model risk classification, AI ethics committee charters, and sovereign AI deployment.
+- [Zero Trust Cybersecurity](https://nexisai.us/?page=cybersecurity): NIST SP 800-53, SOC 2 Type II, HHS OCR guidelines, and architectural cyber resilience.
+- [Enterprise Architecture Modernization](https://nexisai.us/?page=enterprise-architecture): Cloud sovereignty, ERP clean core, and microservices architecture.
+- [Peer-Reviewed Publications & Research](https://nexisai.us/?page=research-publications): 8 peer-reviewed research papers authored by Shafiq Rahman on clinical cybersecurity, EMR data integrity (E-Variance), and emergency continuity.
+
+## Executive Contact & Scheduling
+- [Schedule Executive Strategy Session](https://nexisai.us/?page=schedule): Book a direct consultation or 30-day technology diagnostic with Shafiq Rahman.
+- [Security Policy RFC 9116](https://nexisai.us/.well-known/security.txt): Responsible vulnerability disclosure policy and security contacts.

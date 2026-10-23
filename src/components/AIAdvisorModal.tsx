@@ -148,12 +148,13 @@ export const AIAdvisorModal: React.FC<AIAdvisorModalProps> = ({
           <div className="flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-1.5">
               <Globe className="w-3.5 h-3.5 text-blue-400" />
-              <span className="text-slate-400 font-medium">Target Region:</span>
+              <label htmlFor="advisor-region-select" className="text-slate-300 font-medium cursor-pointer">Target Region:</label>
               <select
                 value={region}
                 onChange={(e) => setRegion(e.target.value as Region)}
                 className="bg-slate-800 border border-slate-700 text-slate-200 rounded px-2 py-1 font-semibold focus:outline-none cursor-pointer"
                 id="advisor-region-select"
+                aria-label="Target Region"
               >
                 <option value="US">🇺🇸 United States</option>
                 <option value="KSA">🇸🇦 Saudi Arabia</option>
@@ -163,12 +164,13 @@ export const AIAdvisorModal: React.FC<AIAdvisorModalProps> = ({
 
             <div className="flex items-center gap-1.5">
               <Building className="w-3.5 h-3.5 text-purple-400" />
-              <span className="text-slate-400 font-medium">Sector Context:</span>
+              <label htmlFor="advisor-industry-select" className="text-slate-300 font-medium cursor-pointer">Sector Context:</label>
               <select
                 value={industry}
                 onChange={(e) => setIndustry(e.target.value)}
                 className="bg-slate-800 border border-slate-700 text-slate-200 rounded px-2 py-1 font-semibold focus:outline-none cursor-pointer"
                 id="advisor-industry-select"
+                aria-label="Sector Context"
               >
                 <option value="Healthcare">Healthcare & EHR</option>
                 <option value="Higher Education">Higher Ed & HPC</option>
@@ -292,12 +294,14 @@ export const AIAdvisorModal: React.FC<AIAdvisorModalProps> = ({
               value={userQuery}
               onChange={(e) => setUserQuery(e.target.value)}
               placeholder={`Ask an enterprise technology question (${industry} in ${region})...`}
-              className="flex-1 bg-slate-900 border border-slate-700 text-slate-100 placeholder-slate-500 rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-purple-500"
+              aria-label={`Ask an enterprise technology question for ${industry} in ${region}`}
+              className="flex-1 bg-slate-900 border border-slate-700 text-slate-100 placeholder-slate-400 rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-purple-500"
               id="advisor-user-input"
             />
             <button
               type="submit"
               disabled={loading || !userQuery.trim()}
+              aria-label="Send enterprise technology inquiry"
               className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-semibold px-5 py-3 rounded-xl text-xs sm:text-sm transition-all shadow-md flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
               id="advisor-send-btn"
             >

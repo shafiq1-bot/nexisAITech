@@ -102,11 +102,13 @@ export const ResourcesHub: React.FC<ResourcesHubProps> = ({
           <div className="relative w-full md:w-72">
             <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
+              id="resources-search-input"
+              aria-label="Search guides, tags, HIPAA"
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search guides, tags, HIPAA..."
-              className="w-full bg-slate-900 border border-slate-700 text-slate-100 placeholder-slate-500 rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-blue-500"
+              className="w-full bg-slate-900 border border-slate-700 text-slate-100 placeholder-slate-400 rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -181,8 +183,10 @@ export const ResourcesHub: React.FC<ResourcesHubProps> = ({
             {!downloadSubmitted ? (
               <form onSubmit={handleDownloadSubmit} className="space-y-3">
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">Corporate Email Address</label>
+                  <label htmlFor="resources-download-email" className="block text-xs font-medium text-slate-300 mb-1">Corporate Email Address</label>
                   <input
+                    id="resources-download-email"
+                    aria-label="Corporate Email Address"
                     type="email"
                     value={emailForDownload}
                     onChange={(e) => setEmailForDownload(e.target.value)}

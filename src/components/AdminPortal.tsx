@@ -589,7 +589,10 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
               <Filter className="w-3.5 h-3.5 text-blue-400" /> Filter By:
             </span>
 
+            <label htmlFor="admin-filter-status" className="sr-only">Filter by Status</label>
             <select
+              id="admin-filter-status"
+              aria-label="Filter by Status"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
               className="bg-slate-950 border border-slate-700 text-slate-200 rounded-lg px-2.5 py-1 text-xs focus:outline-none cursor-pointer"
@@ -602,7 +605,10 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
               <option value="closed">Closed</option>
             </select>
 
+            <label htmlFor="admin-filter-region" className="sr-only">Filter by Region</label>
             <select
+              id="admin-filter-region"
+              aria-label="Filter by Region"
               value={regionFilter}
               onChange={(e) => setRegionFilter(e.target.value)}
               className="bg-slate-950 border border-slate-700 text-slate-200 rounded-lg px-2.5 py-1 text-xs focus:outline-none cursor-pointer"
@@ -813,8 +819,10 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-[11px] font-semibold text-slate-400 mb-1">Request Status</label>
+                      <label htmlFor="admin-edit-status" className="block text-[11px] font-semibold text-slate-400 mb-1">Request Status</label>
                       <select
+                        id="admin-edit-status"
+                        aria-label="Request Status"
                         value={editingStatus}
                         onChange={(e) => setEditingStatus(e.target.value)}
                         className="w-full bg-slate-900 border border-slate-700 text-slate-100 rounded-lg p-2 text-xs focus:outline-none focus:border-blue-500 cursor-pointer font-semibold"

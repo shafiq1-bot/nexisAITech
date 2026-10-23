@@ -512,7 +512,7 @@ export const FreeToolsSection: React.FC<FreeToolsSectionProps> = ({
               <div className="space-y-6">
                 <div>
                   <div className="flex justify-between text-xs font-semibold mb-2">
-                    <span className="text-slate-300">Monthly AI Model API Calls / Queries</span>
+                    <label htmlFor="range-api-queries" className="text-slate-300 cursor-pointer">Monthly AI Model API Calls / Queries</label>
                     <span className="text-blue-400 font-mono font-bold">{(apiQueriesPerMonth).toLocaleString()} queries</span>
                   </div>
                   <input
@@ -534,7 +534,7 @@ export const FreeToolsSection: React.FC<FreeToolsSectionProps> = ({
 
                 <div>
                   <div className="flex justify-between text-xs font-semibold mb-2">
-                    <span className="text-slate-300">Active Internal Enterprise Users</span>
+                    <label htmlFor="range-team-users" className="text-slate-300 cursor-pointer">Active Internal Enterprise Users</label>
                     <span className="text-purple-400 font-mono font-bold">{teamUsers} seats</span>
                   </div>
                   <input

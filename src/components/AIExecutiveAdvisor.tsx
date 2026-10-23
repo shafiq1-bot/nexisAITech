@@ -313,14 +313,17 @@ export const AIExecutiveAdvisor: React.FC<AIExecutiveAdvisorProps> = ({
           className="flex items-center gap-2"
         >
           <input
+            id="executive-advisor-query"
+            aria-label="Ask about Fractional CIO retainers, AI governance, or Shafiq's experience"
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Ask about Fractional CIO retainers, 30-day diagnostics, AI governance, or Shafiq's experience..."
-            className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors"
+            className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-amber-400 transition-colors"
           />
           <button
             type="submit"
+            aria-label="Send inquiry to AI Executive Advisor"
             disabled={!inputValue.trim() || isThinking}
             className="p-3 bg-amber-500 hover:bg-amber-400 disabled:opacity-40 text-slate-950 font-bold rounded-xl transition-all cursor-pointer"
           >

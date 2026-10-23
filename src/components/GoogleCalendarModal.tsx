@@ -342,8 +342,9 @@ export const GoogleCalendarModal: React.FC<GoogleCalendarModalProps> = ({
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-mono text-slate-300 mb-1">Start Date & Time *</label>
+                      <label htmlFor="calendar-start-datetime" className="block text-xs font-mono text-slate-300 mb-1">Start Date & Time *</label>
                       <input
+                        id="calendar-start-datetime"
                         type="datetime-local"
                         required
                         value={startDate}
@@ -352,8 +353,10 @@ export const GoogleCalendarModal: React.FC<GoogleCalendarModalProps> = ({
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-mono text-slate-300 mb-1">Duration</label>
+                      <label htmlFor="calendar-duration-select" className="block text-xs font-mono text-slate-300 mb-1">Duration</label>
                       <select
+                        id="calendar-duration-select"
+                        aria-label="Meeting Duration"
                         value={durationMinutes}
                         onChange={(e) => setDurationMinutes(Number(e.target.value))}
                         className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
@@ -366,8 +369,9 @@ export const GoogleCalendarModal: React.FC<GoogleCalendarModalProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-slate-300 mb-1">Attendee Corporate Email</label>
+                    <label htmlFor="calendar-attendee-email" className="block text-xs font-mono text-slate-300 mb-1">Attendee Corporate Email</label>
                     <input
+                      id="calendar-attendee-email"
                       type="email"
                       value={attendeeEmail}
                       onChange={(e) => setAttendeeEmail(e.target.value)}

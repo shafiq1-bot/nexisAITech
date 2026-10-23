@@ -71,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
               <span className="font-medium text-slate-200 text-xs">
                 Led by <strong className="text-white">Shafiq Rahman, MS, MBA, MCS, PMP®</strong> · Former State CIO (MDOT) · Direct Office:{' '}
-                <a href="tel:+14109347773" className="font-mono text-amber-400 font-bold hover:underline">
+                <a href="tel:+14109347773" aria-label="Call Direct Executive Office at (410) 934-7773" className="font-mono text-amber-400 font-bold hover:underline">
                   (410) 934-7773
                 </a>{' '}
                 · Washington D.C. & Maryland Metro
@@ -117,6 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Region Selector */}
             <div className="flex items-center gap-1 bg-slate-900 border border-slate-700/80 rounded-md px-2 py-1">
               <Globe className="w-3.5 h-3.5 text-slate-400" aria-hidden="true" />
+              <label htmlFor="region-selector-select" className="sr-only">Select Geographic Region</label>
               <select
                 value={currentRegion}
                 onChange={(e) => onRegionChange(e.target.value as Region)}

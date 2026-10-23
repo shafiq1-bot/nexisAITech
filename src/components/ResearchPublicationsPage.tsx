@@ -227,11 +227,13 @@ export const ResearchPublicationsPage: React.FC<ResearchPublicationsPageProps> =
             <div className="relative w-full sm:w-72">
               <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
+                id="search-publications-input"
+                aria-label="Search publications by keyword"
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search publications by keyword..."
-                className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+                className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-500"
               />
             </div>
           </div>
@@ -289,7 +291,7 @@ export const ResearchPublicationsPage: React.FC<ResearchPublicationsPageProps> =
 
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400 font-mono">
                     <div>
-                      <span className="text-slate-500">Authors: </span>
+                      <span className="text-slate-400">Authors: </span>
                       {pub.authors.map((author, aIdx) => (
                         <span
                           key={aIdx}
@@ -306,7 +308,7 @@ export const ResearchPublicationsPage: React.FC<ResearchPublicationsPageProps> =
                     </div>
 
                     <div>
-                      <span className="text-slate-500">Venue: </span>
+                      <span className="text-slate-400">Venue: </span>
                       <span className="text-slate-200 font-semibold">{pub.journal}</span>
                       {pub.volumeIssue && <span>, {pub.volumeIssue}</span>}
                       {pub.pages && <span>, {pub.pages}</span>}
@@ -364,7 +366,7 @@ export const ResearchPublicationsPage: React.FC<ResearchPublicationsPageProps> =
                     </div>
 
                     <div className="flex flex-wrap items-center gap-1.5">
-                      <span className="text-[11px] text-slate-500 font-mono mr-1">Keywords:</span>
+                      <span className="text-[11px] text-slate-400 font-mono mr-1">Keywords:</span>
                       {pub.keywords.map((kw) => (
                         <span
                           key={kw}
