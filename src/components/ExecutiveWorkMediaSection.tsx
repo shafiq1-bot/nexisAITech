@@ -62,7 +62,7 @@ export const ExecutiveWorkMediaSection: React.FC<ExecutiveWorkMediaSectionProps>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-            Documented public sector transformation leadership, appointment to the <strong className="text-white">Maryland Governor’s AI Sub-Cabinet</strong>, national media coverage on <strong className="text-white">Route Fifty</strong>, keynote addresses at <strong className="text-white">GovExec Summits</strong>, fireside chats at <strong className="text-white">AutoTech Detroit</strong>, international executive webinars, and strategic advisory with <strong className="text-white">Ascension / Saint Agnes</strong>.
+            Documented public sector transformation leadership, appointment to the <strong className="text-white">Maryland Governor’s AI Sub-Cabinet</strong>, national media coverage on <strong className="text-white">Route Fifty</strong>, keynote addresses at <strong className="text-white">GovExec Summits</strong>, fireside chats at <strong className="text-white">AutoTech Detroit</strong>, international executive webinars, and strategic advisory with <strong className="text-white">regional healthcare systems / community health systems</strong>.
           </p>
 
           {/* Social Proof Profiles */}

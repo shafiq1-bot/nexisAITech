@@ -119,6 +119,34 @@ export const ExecutiveSchedulePage: React.FC<ExecutiveSchedulePageProps> = ({
         {!isBooked ? (
           <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8">
             
+                        {/* 20-Minute Call Agenda Explainer */}
+            <div className="p-5 rounded-2xl bg-slate-950 border border-amber-500/30 space-y-3">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                <span className="text-xs font-bold text-amber-400 uppercase tracking-wider font-mono flex items-center gap-2">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  What Happens in Our 20-Minute Discovery Call:
+                </span>
+                <span className="text-[11px] text-slate-400 font-mono">Strictly Confidential · No Sales Pitch</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                  <div className="text-[11px] font-bold text-amber-400 font-mono">Minutes 01–10</div>
+                  <div className="font-bold text-white">Your Core Pressure Points</div>
+                  <p className="text-slate-400 text-[11px]">EHR friction, IT budget runaway, shadow AI leakage, or sudden executive transition.</p>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                  <div className="text-[11px] font-bold text-blue-400 font-mono">Minutes 11–15</div>
+                  <div className="font-bold text-white">Peer Benchmark & Scoping</div>
+                  <p className="text-slate-400 text-[11px]">How comparable health systems, higher ed institutions, or mid-market peers solved this.</p>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                  <div className="text-[11px] font-bold text-emerald-400 font-mono">Minutes 16–20</div>
+                  <div className="font-bold text-white">Direct Recommendation</div>
+                  <p className="text-slate-400 text-[11px]">Clear determination: whether the ,500 diagnostic, a fractional retainer, or an alternative is right.</p>
+                </div>
+              </div>
+            </div>
+
             {/* Meeting Type Selector */}
             <div className="space-y-3">
               <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">
@@ -132,8 +160,8 @@ export const ExecutiveSchedulePage: React.FC<ExecutiveSchedulePageProps> = ({
                     badge: 'Popular',
                   },
                   {
-                    type: '30-Day Executive Diagnostic Scoping',
-                    desc: 'Reviewing scope, deliverables (Brief, Priority Portfolio, 90-Day Charter), and timeline.',
+                    type: '30-Day Executive Diagnostic (,500 Fixed-Fee)',
+                    desc: 'Reviewing scope, 3 board deliverables, and 100% retainer credit satisfaction guarantee.',
                     badge: 'Diagnostic',
                   },
                   {

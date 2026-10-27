@@ -2,30 +2,22 @@
   "$schema": "https://agentic-resource-discovery.org/schemas/v1.0/ai-catalog.json",
   "specVersion": "1.0",
   "host": {
-    "displayName": "Nexis AI - Shafiq Rahman Executive Fractional CIO Practice",
+    "displayName": "Nexis AI — 30-Day AI Governance & Pilot Diagnostic",
     "url": "https://nexisai.us"
   },
   "entries": [
     {
-      "identifier": "urn:ai:nexisai.us:tools:fractional-cio-advisory",
-      "type": "application/mcp-server-card+json",
+      "identifier": "urn:ai:nexisai.us:services:hospital-ai-diagnostic",
+      "type": "application/json",
+      "name": "30-Day AI Governance & Pilot Diagnostic",
+      "description": "Fixed-price $6,500 30-day AI governance diagnostic for 100-400 bed community hospitals running Epic or MEDITECH with no full-time CIO in MD, DC, PA, VA.",
       "representativeQueries": [
-        "hire fractional CIO executive for healthcare or enterprise IT",
-        "enterprise AI governance and NIST AI RMF compliance assessment",
-        "clinical informatics and Epic EHR technology modernization",
-        "higher education Slurm HPC cluster and research computing advisory"
+        "hospital AI governance diagnostic 100-400 beds",
+        "community hospital interim CIO AI risk inventory",
+        "Epic and MEDITECH AI pilot risk roadmap Maryland DC PA VA",
+        "Shafiq Rahman Maryland State CIO healthcare AI advisory"
       ],
-      "url": "https://nexisai.us/?page=fractional-cio"
-    },
-    {
-      "identifier": "urn:ai:nexisai.us:tools:cio-maturity-assessment",
-      "type": "application/mcp-server-card+json",
-      "representativeQueries": [
-        "evaluate organizational IT maturity and cyber risk score",
-        "calculate sovereign AI infrastructure ROI and GPU cluster cost savings",
-        "schedule executive technology strategy session with former state CIO"
-      ],
-      "url": "https://nexisai.us/?page=schedule"
+      "url": "https://nexisai.us/#fit-call"
     }
   ]
 }

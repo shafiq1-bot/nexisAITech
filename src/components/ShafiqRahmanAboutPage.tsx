@@ -157,7 +157,7 @@ export const ShafiqRahmanAboutPage: React.FC<ShafiqRahmanAboutPageProps> = ({
               {/* Verified Credentials Pills */}
               <div className="flex flex-wrap gap-2 text-xs font-mono">
                 <span className="bg-slate-950 px-3 py-1 rounded-lg border border-slate-800 text-amber-400 font-bold">
-                  Strategic Advisor (Ascension / St. Agnes)
+                  Strategic Advisor (regional health systems)
                 </span>
                 <span className="bg-slate-950 px-3 py-1 rounded-lg border border-slate-800 text-blue-400">
                   Governor's AI Sub-Cabinet Appointee

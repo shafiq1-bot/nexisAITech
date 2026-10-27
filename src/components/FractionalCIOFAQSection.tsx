@@ -38,17 +38,23 @@ Unlike external management consultants who deliver static PowerPoint decks or ve
     },
     {
       q: 'How much does a Fractional CIO cost compared to hiring a full-time enterprise CIO?',
-      a: `A full-time enterprise CIO commands $350,000 to $550,000 in base executive salary, plus bonuses, equity, and benefits—often exceeding $500,000 to $700,000 in total annual compensation—and typically takes 6 to 9 months to recruit through executive search firms.
+      a: `A full-time enterprise CIO commands $350,000 to $550,000 in base executive salary, plus bonuses and benefits—often exceeding $500,000 to $700,000 in total annual compensation—and typically takes 6 to 9 months to recruit through executive search firms.
 
-A Fractional CIO engagement operates on a predictable, bounded monthly retainer (typically $8,000 to $22,000 per month depending on weekly hours and complexity) or a structured 30-day initial diagnostic. This delivers immediate, day-one C-level leadership at a 60% to 75% total cost reduction, with zero long-term severance exposure.`,
+Our Fractional CIO practice offers transparent, market-grounded options:
+• Signature Entry Point: 30-Day Executive Technology & AI Diagnostic at a fixed fee of $9,500 (100% money-back satisfaction guarantee or credited toward subsequent retainers).
+• Ongoing Retainers: Starting at $6,500/month (Advisory & Board Oversight, ~8–10 hrs/week) to $9,500/month (Active Transformation Lead, ~15–20 hrs/week) up to $14,500/month for embedded mandates.
+• Urgent Interim CIO Mandates: $16,500/month for active vacancies or crisis turnarounds.
+• Executive Day Rate: $2,500/day for board offsites, technical M&A due diligence, or one-day architecture audits.
+
+This delivers immediate, day-one C-level leadership at a 70% to 80% total cost reduction, with zero severance liability and 30-day cancellation flexibility.`,
       tag: 'Pricing & Retainer Models · ROI',
     },
     {
       q: 'What is the difference between a Fractional CIO, an Interim CIO, and a Virtual CIO (vCIO)?',
       a: `While often confused online, these three roles serve distinct operational needs:
 
-1. Fractional CIO: A recurring, ongoing executive partnership (10-25 hrs/week) providing proactive strategic leadership, board reporting, AI governance, and IT steering for organizations that need CIO leadership without a full-time hire.
-2. Interim CIO: A full-capacity, dedicated executive engagement (typically full-time for 3 to 9 months) stepping in immediately during an abrupt vacancy, crisis turnaround, or major restructuring until a permanent CIO is appointed.
+1. Fractional CIO: A recurring, ongoing executive partnership (10–20 hrs/week, $6,500–$14,500/mo) providing proactive strategic leadership, board reporting, AI governance, and IT steering for organizations that need CIO leadership without a full-time hire.
+2. Interim CIO: A dedicated, intensive executive engagement ($16,500/mo, 3 to 9 months) stepping in immediately during an abrupt vacancy, crisis turnaround, or major restructuring until a permanent CIO is appointed.
 3. Virtual CIO (vCIO): Typically an account manager provided by a Managed Service Provider (MSP) to periodically review hardware upgrades and ticket metrics. A Fractional CIO operates at the board and CEO level, independent of hardware or managed service sales.`,
       tag: 'Fractional vs Interim vs vCIO',
     },
@@ -64,21 +70,24 @@ A Fractional CIO engagement operates on a predictable, bounded monthly retainer 
     },
     {
       q: 'How does Shafiq Rahman’s 30-Day Executive Technology & AI Diagnostic work?',
-      a: `The 30-Day Diagnostic is a bounded, four-week sprint designed to establish total visibility before committing to long-term retainers:
-• Week 1 (Stakeholder Discovery): One-on-one confidential interviews with the CEO, CFO, Provost/Deans, Board Chair, and key direct reports to surface latent operational risks.
-• Week 2 (Architecture & Cyber Audit): Independent assessment of core systems, cloud infrastructure, disaster recovery protocols, and shadow AI usage against NIST standards.
-• Week 3 (Vendor & Contract Rationalization): Forensic review of top software, cloud, and outsourcing contracts to identify immediate cost reductions and license eliminations.
-• Week 4 (Board-Ready Brief & Action Charter): Delivery of a concise Executive Brief, a prioritized Now/Next/Later investment roadmap, and an actionable 90-day governance charter.`,
-      tag: '30-Day Bounded Sprint · Deliverables',
+      a: `The 30-Day Diagnostic is a bounded, fixed-fee ($9,500) executive sprint designed to establish total visibility and eliminate tech friction before committing to long-term retainers:
+• Phase 1 (Days 1–5): Mandate & Crisis Inventory — Confidential CEO/Provost/Board alignment and non-disclosure setup.
+• Phase 2 (Days 6–15): Decision System Interviews — 8 to 10 structured 45-min confidential interviews across C-Suite and operational department heads.
+• Phase 3 (Days 16–22): Architecture & Cyber Audit — Independent assessment of core systems, disaster recovery, cloud spend, and shadow AI usage against NIST standards.
+• Phase 4 (Days 23–27): Priority Categorization — Now, Next, Later, Stop matrix uncovering $50K–$250K in immediate software shelfware and duplicate contract eliminations.
+• Phase 5 (Days 28–30): Board-Ready Readout & Action Charter — Delivery of 3 tangible artifacts: a 10–12 page Executive Brief, a Priority Portfolio Map, and an actionable 90-Day Execution Charter.
+
+Backed by our 100% Satisfaction Guarantee: 100% of the fee can be credited toward any ongoing retainer.`,
+      tag: '30-Day Diagnostic ($9,500 Fixed-Fee)',
     },
     {
       q: 'What specific credentials and institutional background does Shafiq Rahman bring?',
-      a: `Shafiq Rahman, MS, MBA, MCS, PMP® brings more than 20 years of consequential technology leadership:
+      a: `Shafiq Rahman, MS, MBA, MCS, PMP® brings over 20 years of verified executive leadership across public sector, academic medicine, and healthcare systems:
 • Former State Chief Information Officer (Maryland Department of Transportation): Governed a $250M+ IT operating and capital portfolio, 1,500 IT staff across 6 state agencies, delivering $6M in recurring annual operational savings through statewide application rationalization (reducing 856 systems to 620).
 • Director of Enterprise IT (University of Maryland School of Medicine): Reported directly to the Dean, directing research computing (Slurm HPC clusters), student information systems, and academic health sciences technology.
-• Healthcare Strategic Advisor (Ascension / Saint Agnes Healthcare): Led clinical informatics migrations, Meditech-to-Epic conversions, and radiation oncology cybersecurity.
+• Healthcare Technology Strategic Advisor (regional health systems): Directed clinical informatics migrations, Meditech-to-Epic conversions, and radiation oncology cybersecurity.
 • Scholar & Author: Appointee to the Maryland Governor's AI Sub-Cabinet, author of 8 peer-reviewed clinical informatics and cybersecurity research papers (Google Scholar), and featured keynote speaker at Route Fifty, GovExec Efficiency Summit, and AutoTech Detroit.`,
-      tag: 'Track Record · $250M+ Governed · $6M Saved',
+      tag: 'Track Record · $250M+ Governed · Former State CIO',
     },
     {
       q: 'How does a Fractional CIO address Enterprise AI and NIST AI RMF governance?',

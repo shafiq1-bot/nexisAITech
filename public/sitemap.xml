@@ -1,140 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nexisai.us/</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=about</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=about" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=about&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=fractional-cio</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=fractional-cio" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=fractional-cio&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=cio-advisory</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=cio-advisory" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=cio-advisory&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=interim-cio</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=interim-cio" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=interim-cio&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=healthcare-cio-advisory</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=healthcare-cio-advisory" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=healthcare-cio-advisory&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=higher-education-cio-advisory</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=higher-education-cio-advisory" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=higher-education-cio-advisory&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=ai-strategy</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=ai-strategy" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=ai-strategy&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=case-studies</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=case-studies" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=case-studies&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=publications</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=publications" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=publications&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=schedule</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=schedule" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=schedule&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=assessment</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=assessment" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=assessment&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=lead-magnets</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=lead-magnets" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=lead-magnets&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=trust-center</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=trust-center" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=trust-center&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=services</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=services" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=services&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=industries</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=industries" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=industries&amp;lang=ar" />
-  </url>
-  <url>
-    <loc>https://nexisai.us/?page=contact</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nexisai.us/?page=contact" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://nexisai.us/?page=contact&amp;lang=ar" />
+    <xhtml:link rel="canonical" href="https://nexisai.us/" />
+    <image:image>
+      <image:loc>https://nexisai.us/profile_circle.png</image:loc>
+      <image:title>Shafiq Rahman, MS, MBA, MCS, PMP® — Founder, Nexis AI &amp; Former Maryland State CIO</image:title>
+      <image:caption>Shafiq Rahman leads the 30-Day AI Governance &amp; Pilot Diagnostic for community hospitals in Maryland, DC, Pennsylvania, and Virginia.</image:caption>
+    </image:image>
   </url>
 </urlset>

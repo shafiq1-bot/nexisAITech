@@ -76,7 +76,7 @@ export const detailedCaseStudies: DetailedCaseStudy[] = [
     title: 'Health System EHR Transformation & Clinical Operations: Meditech-to-Epic & Strategic Advisory',
     category: 'Healthcare Systems',
     context:
-      'Led major clinical technology initiatives including Meditech-to-Epic transformation and hospital integration across affiliated health system environments. Currently serving as Strategic Advisor with Ascension / Saint Agnes Healthcare, addressing clinical operations, workflow redesign, and technology rationalization.',
+      'Led major clinical technology initiatives including Meditech-to-Epic transformation and hospital integration across affiliated health system environments. Currently serving as Strategic Advisor with regional health systems, addressing clinical operations, workflow redesign, and technology rationalization.',
     challenge:
       'Transitioning from legacy hospital systems (Meditech) to modern enterprise EHRs (Epic) often risks clinical disruption, physician burnout, and unrealized investment if treated merely as an IT software deployment rather than an operational transformation.',
     leadershipApproach:
@@ -85,7 +85,7 @@ export const detailedCaseStudies: DetailedCaseStudy[] = [
       'Epic EHR Enterprise Suite & Meditech Legacy Migration',
       'HL7 v2 & FHIR R4 API Interoperability Gateways',
       'Clinical Decision Support & CPOE Workflow Redesign',
-      'Ascension / Saint Agnes Clinical System Integration',
+      'regional healthcare systems / community health systems Clinical System Integration',
       'HHS OCR & HIPAA Security Rule Controls',
     ],
     governance:

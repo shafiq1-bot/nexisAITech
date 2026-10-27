@@ -241,7 +241,7 @@ export const Hero: React.FC<HeroProps> = ({
 
                   <div className="flex items-start gap-2.5 text-slate-300">
                     <Stethoscope className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <span><strong className="text-white">Healthcare Advisory:</strong> Ascension / Saint Agnes Healthcare (Meditech-to-Epic conversions, HIPAA).</span>
+                    <span><strong className="text-white">Healthcare Advisory:</strong> regional health systems (Meditech-to-Epic conversions, HIPAA).</span>
                   </div>
 
                   <div className="flex items-start gap-2.5 text-slate-300">

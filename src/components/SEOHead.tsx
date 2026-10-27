@@ -191,7 +191,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
             '@id': 'https://nexisai.us/#organization',
           },
           description:
-            'Strategic Advisor at Ascension / Saint Agnes Healthcare; appointee to the Maryland Governor’s AI Sub-Cabinet; former Maryland Department of Transportation CIO ($250M+ portfolio, 1,500 IT staff across 6 agencies, generating $6M in recurring annual savings); former Director of Enterprise IT at University of Maryland School of Medicine reporting to the Dean; and leader of Meditech-to-Epic clinical transformations.',
+            'Strategic Advisor at regional health systems; appointee to the Maryland Governor’s AI Sub-Cabinet; former Maryland Department of Transportation CIO ($250M+ portfolio, 1,500 IT staff across 6 agencies, generating $6M in recurring annual savings); former Director of Enterprise IT at University of Maryland School of Medicine reporting to the Dean; and leader of Meditech-to-Epic clinical transformations.',
           url: 'https://nexisai.us/?page=about',
           image: 'https://nexisai.us/images/shafiq_headshot_v4.jpg',
           sameAs: [

@@ -199,7 +199,10 @@ export const ConsultationBookingModal: React.FC<ConsultationBookingModalProps> =
                     onChange={(e) => setFormData({ ...formData, serviceInterest: e.target.value })}
                     className="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500 cursor-pointer"
                   >
-                    <option value="ai-transformation">AI Transformation</option>
+                    <option value="30-day-diagnostic">30-Day Executive Diagnostic (,500 Fixed-Fee)</option>
+                    <option value="fractional-cio-retainer">Fractional CIO Retainer (,500 – 4,500/mo)</option>
+                    <option value="discovery-call">20-Minute Confidential Discovery Call (Free)</option>
+                    <option value="ai-transformation">AI Governance & NIST AI RMF</option>
                     <option value="cybersecurity">Cybersecurity & Zero Trust</option>
                     <option value="healthcare-technology">Healthcare IT & EHR</option>
                     <option value="higher-education-technology">Higher Ed & HPC</option>

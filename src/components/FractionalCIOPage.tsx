@@ -22,6 +22,8 @@ import {
   retainerPackages,
   specializedSprints,
   operatingCadence,
+  discoveryCallAgenda,
+  DIAGNOSTIC_GUARANTEE,
 } from '../data/fractionalCIOData';
 import { executiveLeaderData } from '../data/leadershipData';
 import { FractionalCIOFAQSection } from './FractionalCIOFAQSection';
@@ -225,9 +227,34 @@ export const FractionalCIOPage: React.FC<FractionalCIOPageProps> = ({
             ))}
           </div>
 
+                    {/* 20-Minute Discovery Call Section */}
+          <div className="bg-slate-950 p-6 rounded-2xl border border-amber-500/30 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-amber-400" />
+                <span className="text-sm font-bold text-white uppercase tracking-wider">
+                  What Happens in Our 20-Minute Discovery Call
+                </span>
+              </div>
+              <span className="text-xs text-slate-400 font-mono">Strictly Confidential · No Pitch</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              {discoveryCallAgenda.map((phase, idx) => (
+                <div key={idx} className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5">
+                  <div className="text-[11px] font-mono font-bold text-amber-400">{phase.phase} · {phase.duration}</div>
+                  <div className="font-bold text-white text-sm">{phase.title}</div>
+                  <p className="text-slate-300 text-xs leading-relaxed">{phase.description}</p>
+                </div>
+              ))}
+            </div>
+            <div className="p-3 bg-emerald-950/40 border border-emerald-500/30 rounded-xl text-xs text-emerald-300">
+              <strong>100% Satisfaction & Credit Guarantee:</strong> {DIAGNOSTIC_GUARANTEE}
+            </div>
+          </div>
+
           <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800">
             <div className="text-xs text-slate-400">
-              Every diagnostic ends with named owners, a funded sequence, and an executive roadmap.
+              Every diagnostic carries a 100% guarantee: 100% credited toward an ongoing retainer, .
             </div>
             <button
               onClick={() => onOpenConsultation('Inquire about 30-Day Executive Diagnostic')}

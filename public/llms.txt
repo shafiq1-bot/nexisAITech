@@ -1,27 +1,48 @@
-# Shafiq Rahman - Fractional CIO & Executive Advisory
+# Nexis AI — 30-Day AI Governance & Pilot Diagnostic
 
-> Executive technology leadership, enterprise AI governance (NIST AI RMF), healthcare IT (Epic EHR / HIPAA), and higher education technology advisory led by former State CIO Shafiq Rahman, MS, MBA, MCS, PMP®.
+> Fixed-price, 30-day AI diagnostic for 100–400-bed community hospitals and small health systems in Maryland, DC, Pennsylvania, and Virginia with no full-time CIO.
 
-Nexis AI provides elite Fractional CIO, interim executive leadership, and board technology governance based in Howard County, Maryland, serving clients across the United States, Europe, and global regions.
+## The One Buyer Only
+The CEO, COO, or Board Chair of a 100–400-bed community hospital or small health system in Maryland, DC, Pennsylvania, or Virginia that has NO full-time CIO (or an interim CIO), runs Epic or MEDITECH, and already has AI tools/pilots running without a single governed list of what is in use, who owns it, and what it costs.
 
-## Executive Leadership & Advisory Services
-- [Fractional CIO Advisory Practice](https://nexisai.us/?page=fractional-cio): Retainer structures (10-25 hrs/week), strategic technology roadmaps, IT steering committee leadership, and executive IT alignment.
-- [CIO Advisory & Board Oversight](https://nexisai.us/?page=cio-advisory): Executive advisory, IT strategy, application rationalization, cyber risk audits, and board technology reporting.
-- [Interim CIO Mandates](https://nexisai.us/?page=interim-cio): Urgent leadership transition, stabilization, crisis remediation, and permanent executive search assistance.
-- [About Shafiq Rahman](https://nexisai.us/?page=about): Comprehensive background, state CIO governance ($250M portfolio, MDOT), healthcare leadership (Ascension / Saint Agnes, UMSOM), publications, and verified media.
-- [Do You Need a Fractional CIO Assessment](https://nexisai.us/?page=do-you-need-a-fractional-cio): Interactive evaluation framework for CEOs, boards, and executive leadership teams.
+## The Three Problems Solved
+1. AI pilots are running in different departments with no single inventory.
+2. Nobody can say which pilots are safe to scale, which should be stopped, and who is accountable if one goes wrong.
+3. The board is being asked to approve AI spending without a risk-tiered, costed list.
 
-## Industry Practices & Clinical IT
-- [Healthcare & Clinical IT Advisory](https://nexisai.us/?page=healthcare-cio-advisory): HIPAA compliance, Epic/Meditech EHR modernization, clinical informatics, and health system AI governance.
-- [Higher Education & Research Computing](https://nexisai.us/?page=higher-education-cio-advisory): Slurm HPC clusters, FERPA compliance, research computing, and academic IT consolidation.
-- [Public Sector & State Agencies](https://nexisai.us/?page=government): State government modernization, legacy remediation, and multi-agency shared services governance.
+## The One Offer: 30-Day AI Governance & Pilot Diagnostic
+- Name: "30-Day AI Governance & Pilot Diagnostic"
+- Fixed price: $6,500, one-time (50% on booking, 50% on delivery of findings briefing).
+- Fixed timeframe: 30 calendar days from kickoff.
+- Capacity cap: Maximum 2 diagnostics per month.
+- No retainer required. No implementation included.
+- Delivered directly by Shafiq Rahman, MS, MBA, MCS, PMP® (Former Maryland State CIO). No junior staff, no subcontractors.
 
-## Governance, Cybersecurity & Architecture
-- [Enterprise AI Governance](https://nexisai.us/?page=ai-governance): NIST AI RMF compliance, model risk classification, AI ethics committee charters, and sovereign AI deployment.
-- [Zero Trust Cybersecurity](https://nexisai.us/?page=cybersecurity): NIST SP 800-53, SOC 2 Type II, HHS OCR guidelines, and architectural cyber resilience.
-- [Enterprise Architecture Modernization](https://nexisai.us/?page=enterprise-architecture): Cloud sovereignty, ERP clean core, and microservices architecture.
-- [Peer-Reviewed Publications & Research](https://nexisai.us/?page=research-publications): 8 peer-reviewed research papers authored by Shafiq Rahman on clinical cybersecurity, EMR data integrity (E-Variance), and emergency continuity.
+## Exactly Four Deliverables
+1. AI Use Inventory & Risk Tiers — every AI tool/pilot found, tiered High / Medium / Low risk using NIST AI Risk Management Framework concepts, with owner, data used, and vendor named for each.
+2. Kill / Scale / Fix List — a decision list for every pilot: stop it, scale it, or fix it first, with the reason in one sentence each.
+3. 90-Day Governance Roadmap — who decides, what gets reviewed before purchase or go-live, and the 5 controls to put in place first.
+4. Board One-Pager + 60-Minute Findings Briefing — a one-page summary for the board and a live briefing with the CEO/Board Chair.
 
-## Executive Contact & Scheduling
-- [Schedule Executive Strategy Session](https://nexisai.us/?page=schedule): Book a direct consultation or 30-day technology diagnostic with Shafiq Rahman.
-- [Security Policy RFC 9116](https://nexisai.us/.well-known/security.txt): Responsible vulnerability disclosure policy and security contacts.
+## How It Works (Four Weeks)
+- Week 1: Inventory — Shafiq interviews up to 5 people (CEO/COO, interim CIO/IT lead, CMIO or clinical lead, CISO/security lead, compliance/privacy lead), 45 minutes each, and reviews the AI tool list, vendor contracts, and existing policies the hospital provides.
+- Week 2: Risk Tiering — every item tiered; gaps in ownership, data use, and vendor terms flagged.
+- Week 3: Draft Findings — Kill/Scale/Fix list and 90-day roadmap drafted; one 30-minute check-in with the sponsor.
+- Week 4: Findings Briefing — 60-minute briefing + board one-pager delivered. Engagement ends.
+
+## What the Hospital Must Provide
+- List of AI tools in use (or department contacts).
+- Vendor contracts & terms.
+- Current AI/data policies (if any).
+- Access to the 5 key interviewees.
+- Total executive time required: ~4 hours over 30 days.
+
+## Who Shafiq Is
+Shafiq Rahman, MS, MBA, MCS, PMP®, Former Maryland State CIO. State CIO / Chief Information & Digital Transformation Officer, Maryland Department of Transportation, October 2023–January 2026: led a $250M+ IT enterprise, ~1,500 staff across six agencies; co-authored Maryland's first statewide AI governance policy as a member of the Governor's AI Sub-cabinet; modernized mainframe systems to Microsoft Azure; rationalized ~850 applications to ~620, ~$6M in recurring annual savings. Authored "AI Governance: A Local Government Leader's Guide" (ICMA, March 2024).
+
+## Contact & Fit Call
+- Website: https://nexisai.us/
+- Location: Ellicott City, Howard County, MD
+- Phone: +1 (410) 934-7773
+- Email: info@nexisai.us
+- Fit Call Booking: https://nexisai.us/#fit-call

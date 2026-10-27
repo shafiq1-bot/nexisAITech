@@ -92,21 +92,18 @@ async function startServer() {
     const expiresDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString();
     const securityTxtContent = `# Security Policy for nexisai.us (Nexis Tech Group LLC)
 # Standardized Vulnerability Disclosure as per RFC 9116
-Contact: mailto:security@nexisai.us
-Contact: tel:+1-443-608-5425
+Contact: mailto:info@nexisai.us
+Contact: tel:+1-410-934-7773
 Expires: ${expiresDate}
-Encryption: https://nexisai.us/security-key.asc
-Preferred-Languages: en, ar
 Canonical: https://nexisai.us/.well-known/security.txt
-Policy: https://nexisai.us/#trust-center
-Hiring: https://nexisai.us/#careers
-Acknowledgments: https://nexisai.us/#hall-of-fame
+Preferred-Languages: en
 
 # Domain Verification & Entity Authentication
 Domain: nexisai.us
-Organization: Nexis Tech Group LLC
-Address: Howard County, MD, USA
-Primary Executive: Shafiq Rahman, Managing Principal / Former CIO
+Organization: Nexis AI / Nexis Tech Group LLC
+Address: Ellicott City, Howard County, MD, USA
+Primary Executive: Shafiq Rahman, MS, MBA, MCS, PMP®
+Offer: 30-Day AI Governance & Pilot Diagnostic
 `;
 
     res.header('Content-Type', 'text/plain; charset=utf-8');
@@ -118,27 +115,12 @@ Primary Executive: Shafiq Rahman, Managing Principal / Former CIO
     res.json({
       success: true,
       domain: 'nexisai.us',
-      alternateDomains: ['nexistechgroup.com'],
       verificationState: 'VERIFIED_ENTERPRISE',
-      reputationScore: '98/100',
-      threatIntelStatus: {
-        infobloxStatus: 'WHITELISTED_CLEAN',
-        ciscoUmbrella: 'SAFE_CATEGORIZED_BUSINESS_IT',
-        googleSafeBrowsing: 'CLEAN',
-        paloAltoWildfire: 'PASSED_NO_THREATS',
-        cloudflareTrust: 'SECURE_SSL_ACTIVE',
-      },
-      emailAuthentication: {
-        spfRecord: 'v=spf1 include:_spf.google.com mx ~all',
-        dmarcPolicy: 'v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@nexisai.us;',
-        dkimSignature: '2048-bit RSA Active',
-        caaRecord: '0 issue "letsencrypt.org"; 0 issue "pki.goog";',
-      },
+      reputationScore: '100/100',
       complianceStandards: [
+        'NIST AI Risk Management Framework (NIST AI RMF 1.0)',
         'NIST SP 800-53 Rev 5 High Impact Controls',
-        'SOC 2 Type II Infrastructure Architecture',
-        'HIPAA & SMART-on-FHIR Security Safeguards',
-        'US CAN-SPAM Act & TCPA Compliance for Business Outreach',
+        'HIPAA Security Safeguards',
         'RFC 9116 Vulnerability Disclosure Policy',
       ],
       lastVerified: new Date().toISOString(),
@@ -147,48 +129,23 @@ Primary Executive: Shafiq Rahman, Managing Principal / Former CIO
 
   // Dynamic XML Sitemap Endpoint for Search Engine Crawlers (Google Search Console & Bing)
   app.get(['/sitemap.xml', '/sitemap'], (req, res) => {
-    // Canonical base URL must be HTTPS nexisai.us for Google Search Console verification
-    const baseUrl = 'https://nexisai.us';
     const lastMod = new Date().toISOString().split('T')[0];
-
-    // Standard-compliant XML sitemap (Google disallows '#' fragment identifiers in sitemap URLs)
-    const urls = [
-      { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'daily' },
-      { loc: `${baseUrl}/?page=about`, priority: '0.9', changefreq: 'weekly' },
-      { loc: `${baseUrl}/?page=fractional-cio`, priority: '0.9', changefreq: 'weekly' },
-      { loc: `${baseUrl}/?page=cio-advisory`, priority: '0.9', changefreq: 'weekly' },
-      { loc: `${baseUrl}/?page=interim-cio`, priority: '0.9', changefreq: 'weekly' },
-      { loc: `${baseUrl}/?page=healthcare-cio-advisory`, priority: '0.9', changefreq: 'weekly' },
-      { loc: `${baseUrl}/?page=higher-education-cio-advisory`, priority: '0.9', changefreq: 'weekly' },
-      { loc: `${baseUrl}/?page=ai-strategy`, priority: '0.9', changefreq: 'weekly' },
-      { loc: `${baseUrl}/?page=case-studies`, priority: '0.8', changefreq: 'weekly' },
-      { loc: `${baseUrl}/?page=publications`, priority: '0.8', changefreq: 'monthly' },
-      { loc: `${baseUrl}/?page=schedule`, priority: '0.9', changefreq: 'daily' },
-      { loc: `${baseUrl}/?page=assessment`, priority: '0.8', changefreq: 'weekly' },
-      { loc: `${baseUrl}/?page=lead-magnets`, priority: '0.8', changefreq: 'weekly' },
-      { loc: `${baseUrl}/?page=trust-center`, priority: '0.8', changefreq: 'monthly' },
-      { loc: `${baseUrl}/?page=services`, priority: '0.8', changefreq: 'weekly' },
-      { loc: `${baseUrl}/?page=industries`, priority: '0.8', changefreq: 'weekly' },
-      { loc: `${baseUrl}/?page=contact`, priority: '0.8', changefreq: 'monthly' },
-    ];
-
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${urls
-  .map((u) => {
-    const arUrl = u.loc.includes('?') ? `${u.loc}&amp;lang=ar` : `${u.loc}?lang=ar`;
-    const escapedLoc = u.loc.replace(/&/g, '&amp;');
-    return `  <url>
-    <loc>${escapedLoc}</loc>
+  <url>
+    <loc>https://nexisai.us/</loc>
     <lastmod>${lastMod}</lastmod>
-    <changefreq>${u.changefreq}</changefreq>
-    <priority>${u.priority}</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="${escapedLoc}" />
-    <xhtml:link rel="alternate" hreflang="ar" href="${arUrl}" />
-  </url>`;
-  })
-  .join('\n')}
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="canonical" href="https://nexisai.us/" />
+    <image:image>
+      <image:loc>https://nexisai.us/profile_circle.png</image:loc>
+      <image:title>Shafiq Rahman, MS, MBA, MCS, PMP® — Founder, Nexis AI</image:title>
+      <image:caption>Shafiq Rahman leads the 30-Day AI Governance &amp; Pilot Diagnostic for community hospitals in Maryland, DC, Pennsylvania, and Virginia.</image:caption>
+    </image:image>
+  </url>
 </urlset>`;
 
     res.header('Content-Type', 'application/xml; charset=utf-8');
@@ -202,7 +159,32 @@ ${urls
 Allow: /
 Disallow: /api/
 
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://nexisai.us/sitemap.xml
+Agentmap: https://nexisai.us/ai-catalog.json
 Host: https://nexisai.us`;
 
     res.header('Content-Type', 'text/plain');
