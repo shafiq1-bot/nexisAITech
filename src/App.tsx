@@ -95,6 +95,34 @@ export default function App() {
   const [activeDeliverablePreview, setActiveDeliverablePreview] = useState<number>(0);
   const [previewFilter, setPreviewFilter] = useState<'all' | 'high' | 'medium' | 'scale'>('all');
   const [activeTimelineWeek, setActiveTimelineWeek] = useState<number>(1);
+  const [bookingMethod, setBookingMethod] = useState<'calendar' | 'form'>('calendar');
+
+  // Initialize Cal.com inline embed for 30min slot
+  useEffect(() => {
+    const initCal = () => {
+      const Cal = (window as any).Cal;
+      if (Cal && Cal.ns && Cal.ns["30min"]) {
+        try {
+          Cal.ns["30min"]("inline", {
+            elementOrSelector: "#my-cal-inline-30min",
+            config: { layout: "month_view", useSlotsViewOnSmallScreen: "true" },
+            calLink: "shafiq-rahman-gxhxcu/30min",
+          });
+          Cal.ns["30min"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+        } catch (e) {
+          console.warn("Cal.com inline init error:", e);
+        }
+      }
+    };
+
+    initCal();
+    const t1 = setTimeout(initCal, 500);
+    const t2 = setTimeout(initCal, 1500);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, []);
 
   // Interactive Diagnostic Scope Estimator State
   const [calcBeds, setCalcBeds] = useState<'100-199' | '200-299' | '300-400'>('200-299');
@@ -169,6 +197,7 @@ export default function App() {
       target_element: '#fit-call',
     });
     if (prefillNotes) {
+      setBookingMethod('form');
       setFormData((prev) => ({
         ...prev,
         beds: calcBeds === '100-199' ? '100–199' : calcBeds === '200-299' ? '200–299' : '300–400',
@@ -1320,11 +1349,11 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 10: FINAL CTA & LEAD CAPTURE FORM */}
+        {/* SECTION 10: BOOK A 30-MINUTE FIT CALL (CAL.COM EMBED + REQUEST FORM) */}
         <section
           id="fit-call"
           aria-labelledby="lead-capture-heading"
-          className="px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto scroll-mt-24"
+          className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto scroll-mt-24"
         >
           <div className={`border-2 rounded-3xl p-6 sm:p-10 shadow-lg space-y-6 transition-colors ${isDark ? 'bg-slate-900 border-slate-700' : 'bg-slate-50 border-theme-primary'}`}>
             <div className="text-center space-y-2">
@@ -1342,222 +1371,285 @@ export default function App() {
               </p>
             </div>
 
-            {isSubmitted ? (
-              <div className={`border-2 rounded-2xl p-6 sm:p-8 text-center space-y-4 ${isDark ? 'bg-emerald-950/40 border-emerald-500 text-emerald-200' : 'bg-emerald-50 border-emerald-500 text-emerald-950'}`}>
-                <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto" />
-                <h3 className="text-xl font-bold">
-                  Thank you — Shafiq will reply within 2 business days to schedule a 30-minute fit call.
-                </h3>
-                <p className="text-sm max-w-md mx-auto">
-                  If you need immediate assistance or have urgent board inquiries, you may also reach out directly:
-                </p>
-                <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm font-semibold">
-                  <a
-                    href="tel:+14109347773"
-                    onClick={() => handlePhoneClick('confirmation_screen')}
-                    className="flex items-center gap-1.5 hover:underline"
-                  >
-                    <Phone className="w-4 h-4 text-theme-accent" />
-                    <span>+1 (410) 934-7773</span>
-                  </a>
-                  <a
-                    href="mailto:info@nexisai.us"
-                    onClick={() => handleEmailClick('confirmation_screen')}
-                    className="flex items-center gap-1.5 hover:underline"
-                  >
-                    <Mail className="w-4 h-4 text-theme-accent" />
-                    <span>info@nexisai.us</span>
-                  </a>
-                </div>
+            {/* Booking Mode Selector */}
+            <div className="flex items-center justify-center gap-1.5 p-1 bg-slate-200/80 dark:bg-slate-800 rounded-xl max-w-xs sm:max-w-sm mx-auto text-xs font-semibold">
+              <button
+                type="button"
+                onClick={() => {
+                  setBookingMethod('calendar');
+                  trackEvent('booking_mode_switch', { mode: 'calendar' });
+                }}
+                className={`flex-1 py-2 px-3 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+                  bookingMethod === 'calendar'
+                    ? 'bg-white dark:bg-slate-700 text-theme-primary dark:text-white shadow-xs font-bold'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                <Calendar className="w-3.5 h-3.5 text-theme-accent" />
+                <span>Schedule Online</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setBookingMethod('form');
+                  trackEvent('booking_mode_switch', { mode: 'form' });
+                }}
+                className={`flex-1 py-2 px-3 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+                  bookingMethod === 'form'
+                    ? 'bg-white dark:bg-slate-700 text-theme-primary dark:text-white shadow-xs font-bold'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                <Mail className="w-3.5 h-3.5 text-theme-accent" />
+                <span>Request Form</span>
+              </button>
+            </div>
+
+            {/* Option A: Cal.com Inline Scheduler */}
+            <div style={{ display: bookingMethod === 'calendar' ? 'block' : 'none' }} className="space-y-4">
+              <div className={`rounded-2xl border p-2 sm:p-4 overflow-hidden transition-colors ${isDark ? 'bg-slate-800/80 border-slate-700' : 'bg-white border-slate-200'}`}>
+                <div
+                  id="my-cal-inline-30min"
+                  style={{ width: '100%', height: '100%', minHeight: '680px', overflow: 'scroll' }}
+                />
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label
-                      htmlFor="form-name"
-                      className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
-                    >
-                      Your Name *
-                    </label>
-                    <input
-                      id="form-name"
-                      name="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Jane Doe"
-                      className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
-                    />
-                  </div>
+              <p className="text-center text-xs text-slate-500">
+                Direct 30-minute fit call with Shafiq Rahman. Instant meeting confirmation sent to your email.
+              </p>
+            </div>
 
-                  <div>
-                    <label
-                      htmlFor="form-org"
-                      className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
-                    >
-                      Hospital / Organization *
-                    </label>
-                    <input
-                      id="form-org"
-                      name="organization"
-                      type="text"
-                      required
-                      value={formData.organization}
-                      onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                      placeholder="Community Health System"
-                      className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label
-                      htmlFor="form-role"
-                      className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
-                    >
-                      Your Role *
-                    </label>
-                    <select
-                      id="form-role"
-                      name="role"
-                      value={formData.role}
-                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                      className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
-                    >
-                      <option value="CEO">Chief Executive Officer (CEO)</option>
-                      <option value="COO">Chief Operating Officer (COO)</option>
-                      <option value="Board Chair">Board Chair / Trustee</option>
-                      <option value="Interim CIO">Interim CIO / IT Lead</option>
-                      <option value="CMIO">CMIO / Clinical Lead</option>
-                      <option value="CFO">CFO / Executive Leadership</option>
-                      <option value="Other">Other Hospital Leader</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="form-email"
-                      className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
-                    >
-                      Work Email *
-                    </label>
-                    <input
-                      id="form-email"
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="jdoe@hospital.org"
-                      className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label
-                      htmlFor="form-beds"
-                      className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
-                    >
-                      Bed Size *
-                    </label>
-                    <select
-                      id="form-beds"
-                      name="beds"
-                      value={formData.beds}
-                      onChange={(e) => setFormData({ ...formData, beds: e.target.value })}
-                      className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
-                    >
-                      <option value="100–199">100–199 beds</option>
-                      <option value="200–299">200–299 beds</option>
-                      <option value="300–400">300–400 beds</option>
-                      <option value="Other">Other / Regional Health System</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="form-ehr"
-                      className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
-                    >
-                      Primary EHR *
-                    </label>
-                    <select
-                      id="form-ehr"
-                      name="ehr"
-                      value={formData.ehr}
-                      onChange={(e) => setFormData({ ...formData, ehr: e.target.value })}
-                      className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
-                    >
-                      <option value="Epic">Epic</option>
-                      <option value="MEDITECH">MEDITECH</option>
-                      <option value="Both">Both (Migration / Mixed)</option>
-                      <option value="Other">Other EHR Platform</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="form-tools"
-                    className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
-                  >
-                    AI Tools / Pilots Currently Running (optional)
-                  </label>
-                  <input
-                    id="form-tools"
-                    name="aiToolsRunning"
-                    type="text"
-                    value={formData.aiToolsRunning}
-                    onChange={(e) => setFormData({ ...formData, aiToolsRunning: e.target.value })}
-                    placeholder="e.g., Ambient clinical notes, Radiology triage, RevCycle denial predictor..."
-                    className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="form-notes"
-                    className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
-                  >
-                    Anything else Shafiq should know? (optional)
-                  </label>
-                  <textarea
-                    id="form-notes"
-                    name="anythingElse"
-                    rows={3}
-                    value={formData.anythingElse}
-                    onChange={(e) => setFormData({ ...formData, anythingElse: e.target.value })}
-                    placeholder="Any specific upcoming board meetings or active vendor renewals..."
-                    className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
-                  />
-                </div>
-
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-3.5 px-6 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-extrabold rounded-xl text-sm transition-all shadow-md cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
-                  >
-                    {isSubmitting ? (
-                      <span>Submitting request...</span>
-                    ) : (
-                      <>
-                        <span>Submit — Book a 30-minute fit call</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
-                  <p className="text-center text-xs text-slate-500 mt-2">
-                    Shafiq will reply within 2 business days to schedule. Direct confidential review.
+            {/* Option B: Direct Fit-Call Request Form */}
+            <div style={{ display: bookingMethod === 'form' ? 'block' : 'none' }}>
+              {isSubmitted ? (
+                <div className={`border-2 rounded-2xl p-6 sm:p-8 text-center space-y-4 ${isDark ? 'bg-emerald-950/40 border-emerald-500 text-emerald-200' : 'bg-emerald-50 border-emerald-500 text-emerald-950'}`}>
+                  <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto" />
+                  <h3 className="text-xl font-bold">
+                    Thank you — Shafiq will reply within 2 business days to schedule a 30-minute fit call.
+                  </h3>
+                  <p className="text-sm max-w-md mx-auto">
+                    If you prefer to pick an immediate time slot on the calendar:
                   </p>
+                  <button
+                    type="button"
+                    onClick={() => setBookingMethod('calendar')}
+                    className="px-4 py-2 bg-theme-accent text-theme-accent-contrast font-bold text-xs rounded-xl shadow cursor-pointer"
+                  >
+                    Open Live Cal.com Scheduler
+                  </button>
                 </div>
-              </form>
-            )}
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="form-name"
+                        className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
+                      >
+                        Your Name *
+                      </label>
+                      <input
+                        id="form-name"
+                        name="name"
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="Jane Doe"
+                        className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="form-org"
+                        className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
+                      >
+                        Hospital / Organization *
+                      </label>
+                      <input
+                        id="form-org"
+                        name="organization"
+                        type="text"
+                        required
+                        value={formData.organization}
+                        onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
+                        placeholder="Community Health System"
+                        className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="form-role"
+                        className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
+                      >
+                        Your Role *
+                      </label>
+                      <select
+                        id="form-role"
+                        name="role"
+                        value={formData.role}
+                        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                        className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
+                      >
+                        <option value="CEO">Chief Executive Officer (CEO)</option>
+                        <option value="COO">Chief Operating Officer (COO)</option>
+                        <option value="Board Chair">Board Chair / Trustee</option>
+                        <option value="Interim CIO">Interim CIO / IT Lead</option>
+                        <option value="CMIO">CMIO / Clinical Lead</option>
+                        <option value="CFO">CFO / Executive Leadership</option>
+                        <option value="Other">Other Hospital Leader</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="form-email"
+                        className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
+                      >
+                        Work Email *
+                      </label>
+                      <input
+                        id="form-email"
+                        name="email"
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="jdoe@hospital.org"
+                        className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="form-beds"
+                        className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
+                      >
+                        Bed Size *
+                      </label>
+                      <select
+                        id="form-beds"
+                        name="beds"
+                        value={formData.beds}
+                        onChange={(e) => setFormData({ ...formData, beds: e.target.value })}
+                        className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
+                      >
+                        <option value="100–199">100–199 beds</option>
+                        <option value="200–299">200–299 beds</option>
+                        <option value="300–400">300–400 beds</option>
+                        <option value="Other">Other / Regional Health System</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="form-ehr"
+                        className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
+                      >
+                        Primary EHR *
+                      </label>
+                      <select
+                        id="form-ehr"
+                        name="ehr"
+                        value={formData.ehr}
+                        onChange={(e) => setFormData({ ...formData, ehr: e.target.value })}
+                        className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
+                      >
+                        <option value="Epic">Epic</option>
+                        <option value="MEDITECH">MEDITECH</option>
+                        <option value="Both">Both (Migration / Mixed)</option>
+                        <option value="Other">Other EHR Platform</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="form-tools"
+                      className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
+                    >
+                      AI Tools / Pilots Currently Running (optional)
+                    </label>
+                    <input
+                      id="form-tools"
+                      name="aiToolsRunning"
+                      type="text"
+                      value={formData.aiToolsRunning}
+                      onChange={(e) => setFormData({ ...formData, aiToolsRunning: e.target.value })}
+                      placeholder="e.g., Ambient clinical notes, Radiology triage, RevCycle denial predictor..."
+                      className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="form-notes"
+                      className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
+                    >
+                      Anything else Shafiq should know? (optional)
+                    </label>
+                    <textarea
+                      id="form-notes"
+                      name="anythingElse"
+                      rows={3}
+                      value={formData.anythingElse}
+                      onChange={(e) => setFormData({ ...formData, anythingElse: e.target.value })}
+                      placeholder="Any specific upcoming board meetings or active vendor renewals..."
+                      className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
+                    />
+                  </div>
+
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-3.5 px-6 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-extrabold rounded-xl text-sm transition-all shadow-md cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
+                    >
+                      {isSubmitting ? (
+                        <span>Submitting request...</span>
+                      ) : (
+                        <>
+                          <span>Submit Request — Shafiq replies within 2 business days</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                    <p className="text-center text-xs text-slate-500 mt-2">
+                      Direct confidential review. Or switch above to pick a calendar time slot immediately.
+                    </p>
+                  </div>
+                </form>
+              )}
+            </div>
+
+            {/* Direct Contact Links */}
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-400">
+              <span>Prefer to reach out directly?</span>
+              <div className="flex items-center gap-4 font-semibold text-theme-primary dark:text-slate-200">
+                <a
+                  href="tel:+14109347773"
+                  onClick={() => handlePhoneClick('fit_call_footer')}
+                  className="flex items-center gap-1 hover:underline"
+                >
+                  <Phone className="w-3.5 h-3.5 text-theme-accent" />
+                  <span>+1 (410) 934-7773</span>
+                </a>
+                <span>·</span>
+                <a
+                  href="mailto:info@nexisai.us"
+                  onClick={() => handleEmailClick('fit_call_footer')}
+                  className="flex items-center gap-1 hover:underline"
+                >
+                  <Mail className="w-3.5 h-3.5 text-theme-accent" />
+                  <span>info@nexisai.us</span>
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 

@@ -8,6 +8,7 @@
     <!-- Critical Preconnect & Headshot Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://app.cal.com" />
     <link rel="preload" as="image" href="/profile_circle.png" fetchpriority="high" type="image/png" />
     
     <!-- Non-render-blocking Google Fonts -->
@@ -286,6 +287,12 @@
   </head>
   <body class="bg-white text-slate-900 font-sans antialiased selection:bg-[#0F2A44] selection:text-white">
     <div id="root"></div>
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; const s = d.createElement("script"); s.src = A; s.async = true; d.head.appendChild(s); cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", "30min", {origin:"https://app.cal.com"});
+      Cal.config = Cal.config || {};
+      Cal.config.forwardQueryParams = true;
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
