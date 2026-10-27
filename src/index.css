@@ -1,6 +1,45 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --theme-header: #0F2A44;
+    --theme-header-border: #1b3d61;
+    --theme-accent: #F59E0B;
+    --theme-accent-hover: #D97706;
+    --theme-accent-text: #0F2A44;
+    --theme-primary-dark: #0F2A44;
+    --theme-primary-light: #16385a;
+    --theme-primary-subtle: #ebf1f7;
+    --theme-glow: rgba(245, 158, 11, 0.12);
+    --theme-subtle-border: rgba(15, 42, 68, 0.15);
+  }
+
+  .theme-teal {
+    --theme-header: #0A2429;
+    --theme-header-border: #153c45;
+    --theme-accent: #14B8A6;
+    --theme-accent-hover: #0D9488;
+    --theme-accent-text: #0A2429;
+    --theme-primary-dark: #0A2429;
+    --theme-primary-light: #12373f;
+    --theme-primary-subtle: #e6f7f6;
+    --theme-glow: rgba(20, 184, 166, 0.14);
+    --theme-subtle-border: rgba(10, 36, 41, 0.15);
+  }
+
+  .theme-cobalt {
+    --theme-header: #091C36;
+    --theme-header-border: #15345d;
+    --theme-accent: #38BDF8;
+    --theme-accent-hover: #0284C7;
+    --theme-accent-text: #091C36;
+    --theme-primary-dark: #091C36;
+    --theme-primary-light: #142f54;
+    --theme-primary-subtle: #e8f4fd;
+    --theme-glow: rgba(56, 189, 248, 0.14);
+    --theme-subtle-border: rgba(9, 28, 54, 0.15);
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
@@ -12,12 +51,9 @@
   body {
     overflow-x: hidden;
     touch-action: manipulation;
-    background-color: #020617;
-    color: #f8fafc;
     letter-spacing: -0.01em;
   }
 
-  /* Monospace fonts for metrics and dates */
   .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }
@@ -30,16 +66,34 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #cbd5e1;
   border-radius: 9999px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.dark ::-webkit-scrollbar-thumb {
   background: #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Executive subtle grid background */
+.executive-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 42, 68, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 42, 68, 0.04) 1px, transparent 1px);
+}
+
+.dark .executive-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
 }
 
 /* Hide scrollbar for clean horizontal tab bars */
@@ -51,11 +105,46 @@
   scrollbar-width: none;
 }
 
-/* Subtle luxury ambient glow */
-.ambient-glow-amber {
-  background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+/* Theme utility bindings */
+.bg-theme-header {
+  background-color: var(--theme-header);
+}
+.border-theme-header {
+  border-color: var(--theme-header-border);
+}
+.bg-theme-accent {
+  background-color: var(--theme-accent);
+}
+.text-theme-accent {
+  color: var(--theme-accent);
+}
+.text-theme-accent-contrast {
+  color: var(--theme-accent-text);
+}
+.bg-theme-dark {
+  background-color: var(--theme-primary-dark);
+}
+.bg-theme-surface {
+  background-color: var(--theme-primary-light);
+}
+.bg-theme-subtle {
+  background-color: var(--theme-primary-subtle);
+}
+.border-theme-subtle {
+  border-color: var(--theme-subtle-border);
+}
+.text-theme-primary {
+  color: var(--theme-primary-dark);
 }
 
-.ambient-glow-blue {
-  background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.07) 0%, transparent 70%);
+/* Print optimizations for Board Checklist */
+@media print {
+  header, footer, #fit-call, .no-print {
+    display: none !important;
+  }
+  #board-checklist {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
 }

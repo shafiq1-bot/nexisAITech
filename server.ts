@@ -153,6 +153,17 @@ Offer: 30-Day AI Governance & Pilot Diagnostic
     res.send(xml);
   });
 
+  // Bing Webmaster Tools Site Verification XML
+  app.get(['/BingSiteAuth.xml', '/BingSiteAuth_0f2d06c8.xml', '/bingsiteauth.xml'], (req, res) => {
+    const bingAuth = `<?xml version="1.0"?>
+<users>
+	<user>EE569EC6F475008FA2DAE49111742272</user>
+</users>`;
+    res.header('Content-Type', 'application/xml; charset=utf-8');
+    res.header('X-Content-Type-Options', 'nosniff');
+    res.send(bingAuth);
+  });
+
   // Search Engine Crawlers Instruction Endpoint (robots.txt)
   app.get('/robots.txt', (req, res) => {
     const robots = `User-agent: *
