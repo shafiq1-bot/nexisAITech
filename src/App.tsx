@@ -13,6 +13,8 @@ import {
   Layers,
   FileText,
   Calendar,
+  Printer,
+  CheckSquare,
 } from 'lucide-react';
 
 declare global {
@@ -790,7 +792,116 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 8: FAQ */}
+        {/* SECTION 8: EXECUTIVE ARTIFACT — 5-POINT AI GOVERNANCE CHECKLIST FOR COMMUNITY HOSPITAL BOARDS */}
+        <section
+          id="board-checklist"
+          aria-labelledby="checklist-heading"
+          className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-6"
+        >
+          <div className="bg-slate-50 border border-slate-300 rounded-3xl p-6 sm:p-10 shadow-sm space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-5">
+              <div>
+                <span className="text-xs font-mono font-bold uppercase text-[#0F2A44] bg-white border border-slate-300 px-3 py-1 rounded-full">
+                  Executive Resource · Board Governance
+                </span>
+                <h2
+                  id="checklist-heading"
+                  className="text-2xl sm:text-3xl font-extrabold text-[#0F2A44] mt-2"
+                >
+                  5-Point AI Governance Checklist for Community Hospital Boards
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
+                  A defensible evaluation framework for CEOs, COOs, and Trustees of 100–400-bed hospitals before authorizing departmental AI tools or capital budgets.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  trackEvent('artifact_action', { action: 'print_checklist', artifact: 'hospital_board_ai_checklist' });
+                  window.print();
+                }}
+                className="shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-300 hover:border-slate-400 text-[#0F2A44] rounded-xl text-xs font-bold shadow-xs hover:bg-slate-100 transition-colors cursor-pointer"
+                aria-label="Print or Save Checklist as PDF"
+              >
+                <Printer className="w-3.5 h-3.5 text-[#0F2A44]" />
+                <span>Print / Save PDF</span>
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                {
+                  number: '01',
+                  title: 'Comprehensive Departmental AI Inventory & Executive Sponsor',
+                  detail: 'Does the hospital maintain a unified register of every AI tool and pilot in active use across clinical departments (Nursing, Radiology, ED) and administrative units, with a named department chair or executive accountable for each?',
+                  control: 'Control: Zero uninventoried software. Every tool has a documented clinical or administrative sponsor.',
+                },
+                {
+                  number: '02',
+                  title: 'HIPAA PHI Boundary Enforcement & Executed BAA',
+                  detail: 'Has legal or compliance verified that an executed Business Associate Agreement (BAA) is in place for every third-party AI system, and that consumer AI tools without enterprise BAA boundaries are blocked from accessing patient data?',
+                  control: 'Control: Signed BAA required. Model training on hospital patient PHI strictly prohibited in contract terms.',
+                },
+                {
+                  number: '03',
+                  title: 'NIST AI RMF Risk Tiering (High / Medium / Low)',
+                  detail: 'Is every AI system classified under established risk frameworks (e.g., NIST AI Risk Management Framework 1.0) evaluating clinical reliance, patient safety impacts, algorithmic bias, and EHR data exchange boundaries?',
+                  control: 'Control: Clinical diagnostic reliance classified as High Risk; ambient transcription with clinician sign-off as Medium Risk.',
+                },
+                {
+                  number: '04',
+                  title: 'Defensible Decision Triage (Kill / Scale / Fix)',
+                  detail: 'Does hospital leadership have a formal triage mechanism to stop unapproved consumer AI subscriptions, mandate bias or security remediation before expansion, and scale only compliant, high-yield tools?',
+                  control: 'Control: Clear action verdict for every pilot before contract renewal or departmental budget expansion.',
+                },
+                {
+                  number: '05',
+                  title: 'Pre-Purchase Intake Gate for Board Budget Authorizations',
+                  detail: 'Is there a mandatory policy ensuring that no departmental AI software purchase request reaches the board for financial approval without prior risk tiering and architectural validation?',
+                  control: 'Control: Risk-tiered one-pager accompanying every AI-related capital or operational expenditure request.',
+                },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white border border-slate-200 rounded-2xl p-5 space-y-2 hover:border-slate-300 transition-colors shadow-2xs"
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="font-mono text-xs font-bold text-amber-500 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded shrink-0 mt-0.5">
+                      {item.number}
+                    </span>
+                    <div className="space-y-1">
+                      <h3 className="text-sm sm:text-base font-bold text-[#0F2A44] leading-snug">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        {item.detail}
+                      </p>
+                      <div className="pt-1.5 flex items-center gap-1.5 text-xs font-semibold text-emerald-800">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <span>{item.control}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="p-4 bg-white border border-slate-200 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="text-xs text-slate-600">
+                Need an independent assessment of your hospital’s AI pilots against this checklist?
+              </div>
+              <button
+                type="button"
+                onClick={() => scrollToForm('checklist_cta')}
+                className="w-full sm:w-auto px-4 py-2 bg-[#0F2A44] hover:bg-[#16385a] text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
+              >
+                Book a 30-minute fit call
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 9: FAQ */}
         <section
           aria-labelledby="faq-heading"
           className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8"
