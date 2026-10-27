@@ -1,48 +1,52 @@
 # Nexis AI — 30-Day AI Governance & Pilot Diagnostic
 
-> Fixed-price, 30-day AI diagnostic for 100–400-bed community hospitals and small health systems in Maryland, DC, Pennsylvania, and Virginia with no full-time CIO.
+> Plain-text summary for AI agents and search engines.
 
-## The One Buyer Only
-The CEO, COO, or Board Chair of a 100–400-bed community hospital or small health system in Maryland, DC, Pennsylvania, or Virginia that has NO full-time CIO (or an interim CIO), runs Epic or MEDITECH, and already has AI tools/pilots running without a single governed list of what is in use, who owns it, and what it costs.
+## Overview
+Nexis AI is an executive healthcare technology advisory firm based in Ellicott City, Maryland, founded by Shafiq Rahman, MS, MBA, MCS, PMP® (Former Maryland State CIO). Nexis AI offers a single, fixed-price engagement: the "30-Day AI Governance & Pilot Diagnostic."
 
-## The Three Problems Solved
-1. AI pilots are running in different departments with no single inventory.
-2. Nobody can say which pilots are safe to scale, which should be stopped, and who is accountable if one goes wrong.
-3. The board is being asked to approve AI spending without a risk-tiered, costed list.
+## Who Nexis AI Serves (Target Buyer)
+Nexis AI serves exclusively:
+- The CEO, COO, or Board Chair of a 100–400-bed community hospital or small health system.
+- Geography: Maryland, District of Columbia, Pennsylvania, and Virginia.
+- Operating environment: Hospitals that have NO full-time CIO (or operate with an interim CIO or IT director) and run Epic or MEDITECH as their electronic health record (EHR) platform.
+- Situation: The hospital already has department-level AI tools or vendor pilots running without a single governed inventory of what is in use, who owns it, and what it costs.
 
-## The One Offer: 30-Day AI Governance & Pilot Diagnostic
-- Name: "30-Day AI Governance & Pilot Diagnostic"
-- Fixed price: $6,500, one-time (50% on booking, 50% on delivery of findings briefing).
-- Fixed timeframe: 30 calendar days from kickoff.
-- Capacity cap: Maximum 2 diagnostics per month.
-- No retainer required. No implementation included.
-- Delivered directly by Shafiq Rahman, MS, MBA, MCS, PMP® (Former Maryland State CIO). No junior staff, no subcontractors.
+## The Three Core Problems Solved
+1. Departmental AI Sprawl: AI pilots are running in different departments with no single inventory.
+2. Unclear Accountability & Risk: Nobody can say which pilots are safe to scale, which should be stopped, and who is accountable if one goes wrong.
+3. Unanchored Board Spending: The board is being asked to approve AI spending without a risk-tiered, costed list.
 
-## Exactly Four Deliverables
+## The Offer: 30-Day AI Governance & Pilot Diagnostic
+- Engagement Name: 30-Day AI Governance & Pilot Diagnostic
+- Fixed Price: $6,500 USD, one-time fee.
+- Payment Terms: 50% due on booking, 50% due on delivery of the findings briefing.
+- Duration: Fixed 30 calendar days from kickoff to final readout.
+- Capacity Cap: Maximum 2 diagnostics per month.
+- Execution: Shafiq Rahman conducts the work personally. No junior staff, no subcontractors.
+- Exclusions: No retainer required. No hands-on software development or vendor implementation included.
+
+## The Four Deliverables
 1. AI Use Inventory & Risk Tiers — every AI tool/pilot found, tiered High / Medium / Low risk using NIST AI Risk Management Framework concepts, with owner, data used, and vendor named for each.
 2. Kill / Scale / Fix List — a decision list for every pilot: stop it, scale it, or fix it first, with the reason in one sentence each.
 3. 90-Day Governance Roadmap — who decides, what gets reviewed before purchase or go-live, and the 5 controls to put in place first.
 4. Board One-Pager + 60-Minute Findings Briefing — a one-page summary for the board and a live briefing with the CEO/Board Chair.
 
-## How It Works (Four Weeks)
+## Engagement Timeline (Four Weeks)
 - Week 1: Inventory — Shafiq interviews up to 5 people (CEO/COO, interim CIO/IT lead, CMIO or clinical lead, CISO/security lead, compliance/privacy lead), 45 minutes each, and reviews the AI tool list, vendor contracts, and existing policies the hospital provides.
-- Week 2: Risk Tiering — every item tiered; gaps in ownership, data use, and vendor terms flagged.
+- Week 2: Risk Tiering — Every item tiered; gaps in ownership, data use, and vendor terms flagged.
 - Week 3: Draft Findings — Kill/Scale/Fix list and 90-day roadmap drafted; one 30-minute check-in with the sponsor.
 - Week 4: Findings Briefing — 60-minute briefing + board one-pager delivered. Engagement ends.
 
 ## What the Hospital Must Provide
-- List of AI tools in use (or department contacts).
-- Vendor contracts & terms.
-- Current AI/data policies (if any).
-- Access to the 5 key interviewees.
-- Total executive time required: ~4 hours over 30 days.
+- List of AI tools in use, vendor contracts, current AI/data policies (if any), and access to the 5 interviewees. Total executive time asked: about 4 hours over 30 days.
 
-## Who Shafiq Is
-Shafiq Rahman, MS, MBA, MCS, PMP®, Former Maryland State CIO. State CIO / Chief Information & Digital Transformation Officer, Maryland Department of Transportation, October 2023–January 2026: led a $250M+ IT enterprise, ~1,500 staff across six agencies; co-authored Maryland's first statewide AI governance policy as a member of the Governor's AI Sub-cabinet; modernized mainframe systems to Microsoft Azure; rationalized ~850 applications to ~620, ~$6M in recurring annual savings. Authored "AI Governance: A Local Government Leader's Guide" (ICMA, March 2024).
+## Leadership Biography
+Shafiq Rahman, MS, MBA, MCS, PMP®, Former Maryland State CIO. State CIO / Chief Information & Digital Transformation Officer, Maryland Department of Transportation, October 2023–January 2026: led a $250M+ IT enterprise, ~1,500 staff across six agencies; co-authored Maryland's first statewide AI governance policy as a member of the Governor's AI Sub-cabinet; modernized mainframe systems to Microsoft Azure; rationalized ~850 applications to ~620, ~$6M in recurring annual savings. Director of Enterprise IT, University of Maryland School of Medicine, October 2014–October 2023: led the MEDITECH-to-Epic migration and clinical data interoperability across seven hospitals under HIPAA/HITECH. Founder & Principal, Nexis AI, March 2026–present. Author of "AI Governance: A Local Government Leader's Guide" (ICMA, March 2024).
 
-## Contact & Fit Call
+## Contact & Links
 - Website: https://nexisai.us/
-- Location: Ellicott City, Howard County, MD
-- Phone: +1 (410) 934-7773
+- LinkedIn: https://www.linkedin.com/in/shafiq-rahman-maryland/
+- Location: Ellicott City, Howard County, MD, USA
 - Email: info@nexisai.us
-- Fit Call Booking: https://nexisai.us/#fit-call
+- Phone: +1 (410) 934-7773

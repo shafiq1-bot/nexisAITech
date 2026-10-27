@@ -379,7 +379,7 @@ export const CIOMaturityAssessment: React.FC<CIOMaturityAssessmentProps> = ({
                 <div className="space-y-1">
                   <h4 className="text-lg font-bold text-white">Receive Your Complete 15-Page Executive Diagnostic Report</h4>
                   <p className="text-xs text-slate-400">
-                    We will send a detailed PDF breakdown with prioritized board slides and schedule an optional 20-minute executive briefing with Shafiq Rahman.
+                    We will send a detailed PDF breakdown with prioritized board slides and schedule an optional 30-minute executive briefing with Shafiq Rahman.
                   </p>
                 </div>
 

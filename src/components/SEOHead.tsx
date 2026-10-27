@@ -86,7 +86,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       'executive-work': 'National media coverage, Route Fifty in-depth features, GovExec Summit keynotes, AutoTech Detroit fireside chats, and LinkedIn articles by Shafiq Rahman.',
       resources: 'Download executive decision guides, CEO checklists, CIO assessment tools, and AI governance frameworks for leadership teams.',
       insights: 'In-depth executive articles on fractional CIO leadership, AI governance, health system technology, and enterprise architecture by Shafiq Rahman.',
-      schedule: 'Book a confidential 20-minute executive introduction or 45-minute advisory scoping conversation with Shafiq Rahman, MS, MBA, MCS, PMP®.',
+      schedule: 'Book a confidential 30-minute executive introduction or 45-minute advisory scoping conversation with Shafiq Rahman, MS, MBA, MCS, PMP®.',
       about: 'Executive biography of Shafiq Rahman, MS, MBA, MCS, PMP®: 20+ years of technology leadership across state government, academic health systems, and enterprise IT.',
       leadership: 'Credentials, education, and career leadership of Shafiq Rahman, former CIO of MDOT and IT executive at University of Maryland, Baltimore.',
       markets: 'Serving organizations across the United States with primary offices in Maryland, and international advisory hubs for global engagements.',

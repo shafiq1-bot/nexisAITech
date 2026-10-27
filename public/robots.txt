@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-# Explicitly invite modern search engine and AI discovery crawlers
+# Explicit permissions for search engines and AI discovery crawlers
 User-agent: Googlebot
 Allow: /
 
@@ -15,10 +15,10 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-User-agent: Slurp
+User-agent: GPTBot
 Allow: /
 
-User-agent: GPTBot
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ClaudeBot
@@ -27,13 +27,10 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Google-Extended
-Allow: /
-
 User-agent: CCBot
 Allow: /
 
-User-agent: Amazonbot
+User-agent: Meta-ExternalAgent
 Allow: /
 
 Sitemap: https://nexisai.us/sitemap.xml

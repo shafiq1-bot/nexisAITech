@@ -96,7 +96,7 @@ Backed by our 100% Satisfaction Guarantee: 100% of the fee can be credited towar
     },
     {
       q: 'How quickly can we begin an engagement with Shafiq Rahman?',
-      a: `Engagements typically launch within 5 to 10 business days following an introductory 20-minute consultation and standard mutual non-disclosure agreement (NDA). Because Shafiq operates independently with proven institutional playbooks, there is zero onboarding latency or bureaucracy.`,
+      a: `Engagements typically launch within 5 to 10 business days following an introductory 30-minute consultation and standard mutual non-disclosure agreement (NDA). Because Shafiq operates independently with proven institutional playbooks, there is zero onboarding latency or bureaucracy.`,
       tag: 'Fast Deployment · 5-10 Days',
     },
   ];
@@ -189,7 +189,7 @@ Backed by our 100% Satisfaction Guarantee: 100% of the fee can be credited towar
               Have an active CIO vacancy, crisis turnaround, or AI governance priority?
             </h3>
             <p className="text-xs text-slate-300 max-w-xl">
-              Connect directly with Shafiq Rahman for a confidential 20-minute briefing. Every discussion is protected under mutual non-disclosure.
+              Connect directly with Shafiq Rahman for a confidential 30-minute briefing. Every discussion is protected under mutual non-disclosure.
             </p>
           </div>
 

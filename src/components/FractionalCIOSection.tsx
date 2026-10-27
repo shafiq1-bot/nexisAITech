@@ -680,7 +680,7 @@ export const FractionalCIOSection: React.FC<FractionalCIOSectionProps> = ({
             Facing a Leadership Gap, Stalled Modernization, or AI Pressure?
           </h3>
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
-            Speak directly with Shafiq Rahman in a confidential 20-minute introductory conversation to see if the 30-day executive diagnostic is the right first step.
+            Speak directly with Shafiq Rahman in a confidential 30-minute introductory conversation to see if the 30-day executive diagnostic is the right first step.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button

@@ -151,7 +151,7 @@ export const HigherEducationCIOPage: React.FC<HigherEducationCIOPageProps> = ({
           Facing an ERP Modernization, Research Computing Gap, or CIO Search?
         </h3>
         <p className="text-slate-300 text-sm max-w-xl mx-auto">
-          Schedule a 20-minute executive conversation with Shafiq Rahman to discuss fractional CIO leadership or an academic technology diagnostic.
+          Schedule a 30-minute executive conversation with Shafiq Rahman to discuss fractional CIO leadership or an academic technology diagnostic.
         </p>
         <button
           onClick={() => onOpenConsultation('University Leadership Consultation with Shafiq Rahman')}

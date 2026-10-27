@@ -279,7 +279,7 @@ export const FractionalCIOPage: React.FC<FractionalCIOPageProps> = ({
           Ready to Bring Experienced CIO Leadership to Your Organization?
         </h3>
         <p className="text-slate-300 text-sm max-w-xl mx-auto">
-          Speak directly with Shafiq Rahman in a confidential 20-minute introductory conversation.
+          Speak directly with Shafiq Rahman in a confidential 30-minute introductory conversation.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <button

@@ -171,7 +171,7 @@ export const HealthcareCIOPage: React.FC<HealthcareCIOPageProps> = ({
           Navigating an EHR Transition, Clinical AI, or Cyber Audit?
         </h3>
         <p className="text-slate-300 text-sm max-w-xl mx-auto">
-          Connect directly with Shafiq Rahman for a 20-minute introductory conversation regarding your health system’s technology priorities.
+          Connect directly with Shafiq Rahman for a 30-minute introductory conversation regarding your health system’s technology priorities.
         </p>
         <button
           onClick={() => onOpenConsultation('Healthcare Executive Consultation with Shafiq Rahman')}

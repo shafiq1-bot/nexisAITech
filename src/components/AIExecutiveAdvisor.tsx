@@ -115,7 +115,7 @@ export const AIExecutiveAdvisor: React.FC<AIExecutiveAdvisorProps> = ({
       ) {
         intentCategory = 'High Intent';
         qualificationReason = 'Inquiry indicates immediate executive leadership need, CIO vacancy, or diagnostic requirement.';
-        recommendedStep = 'Schedule an introductory 20-minute executive briefing with Shafiq Rahman.';
+        recommendedStep = 'Schedule an introductory 30-minute executive briefing with Shafiq Rahman.';
       } else if (
         queryLower.includes('health') ||
         queryLower.includes('epic') ||
@@ -138,7 +138,7 @@ export const AIExecutiveAdvisor: React.FC<AIExecutiveAdvisorProps> = ({
         suggestedPrompts:
           intentCategory === 'High Intent'
             ? [
-                'Schedule 20-minute conversation with Shafiq',
+                'Schedule 30-minute conversation with Shafiq',
                 'What are the deliverables of the 30-day diagnostic?',
                 'How are retainer fees structured?',
               ]
@@ -163,7 +163,7 @@ export const AIExecutiveAdvisor: React.FC<AIExecutiveAdvisorProps> = ({
       const fallbackMsg: Message = {
         id: `ai-${Date.now()}`,
         sender: 'ai',
-        text: "Shafiq Rahman helps healthcare, higher education, and public-sector leaders turn technology risk and AI ambition into an executable portfolio without the cost or delay of a full-time CIO search. \n\nFor specific questions regarding your organization’s mandate, I recommend arranging a confidential 20-minute conversation directly with Shafiq.",
+        text: "Shafiq Rahman helps healthcare, higher education, and public-sector leaders turn technology risk and AI ambition into an executable portfolio without the cost or delay of a full-time CIO search. \n\nFor specific questions regarding your organization’s mandate, I recommend arranging a confidential 30-minute conversation directly with Shafiq.",
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       setMessages((prev) => [...prev, fallbackMsg]);

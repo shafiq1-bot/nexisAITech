@@ -10,6 +10,9 @@ import {
   Building2,
   ChevronDown,
   ExternalLink,
+  Layers,
+  FileText,
+  Calendar,
 } from 'lucide-react';
 
 declare global {
@@ -45,12 +48,12 @@ export default function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [activeDeliverablePreview, setActiveDeliverablePreview] = useState<number>(0);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Track digital marketing lead generation event
     trackEvent('generate_lead', {
       service_name: '30-Day AI Governance & Pilot Diagnostic',
       value: 6500,
@@ -84,7 +87,6 @@ export default function App() {
       setIsSubmitted(true);
     } catch (err) {
       console.error(err);
-      // Still show confirmation gracefully for user peace of mind
       setIsSubmitted(true);
     } finally {
       setIsSubmitting(false);
@@ -127,27 +129,65 @@ export default function App() {
     });
   };
 
+  const deliverableDetails = [
+    {
+      title: '1. AI Use Inventory & Risk Tiers',
+      includes: 'Every AI tool/pilot found, tiered High / Medium / Low risk using NIST AI Risk Management Framework concepts, with owner, data used, and vendor named for each.',
+      decision: 'Complete institutional visibility into what is running and what patient/clinical data is exposed.',
+      sampleTitle: 'Sample Deliverable Excerpt: NIST AI RMF Risk Tiering',
+      sampleRows: [
+        { name: 'Ambient Clinical Scribe (ED pilot)', owner: 'Chief Medical Officer', data: 'Audio PHI / Clinical Notes', vendor: 'Nuance / Vendor BAA', tier: 'High Risk', verdict: 'Fix BAA & Data Retention' },
+        { name: 'Radiology Triage Algorithm', owner: 'Radiology Chair', data: 'DICOM CT Scans', vendor: 'Imaging AI Vendor', tier: 'High Risk', verdict: 'Scale (FDA Cleared, Validated)' },
+        { name: 'Revenue Cycle Denial Predictor', owner: 'VP Finance', data: 'De-identified Claims Data', vendor: 'FinTech Health Inc', tier: 'Medium Risk', verdict: 'Scale with monitoring' },
+      ],
+    },
+    {
+      title: '2. Kill / Scale / Fix List',
+      includes: 'A decision list for every pilot: stop it, scale it, or fix it first, with the reason in one sentence each.',
+      decision: 'Immediate executive action: terminates risky shelfware and clears compliant pilots to expand safely.',
+      sampleTitle: 'Sample Deliverable Excerpt: Actionable 1-Sentence Decisions',
+      sampleRows: [
+        { name: 'Unvetted Departmental LLM Chatbot', owner: 'Nursing Operations', data: 'Policy Documents / Staff Queries', vendor: 'Consumer AI Subscription', tier: 'High Risk', verdict: 'KILL: Consumer terms allow training on internal workflows without BAA.' },
+        { name: 'Clinical Documentation Assistant', owner: 'Internal Medicine Lead', data: 'EHR Ambulatory Notes', vendor: 'Epic App Orchard Partner', tier: 'Medium Risk', verdict: 'SCALE: Strong clinician adoption, verified SOC 2 Type II, and active BAA in place.' },
+        { name: 'Predictive Discharge Tool', owner: 'Case Management', data: 'Inpatient Census & ADT Feed', vendor: 'Analytics Startup', tier: 'High Risk', verdict: 'FIX: Missing bias validation across patient demographics; pause live clinical use until audited.' },
+      ],
+    },
+    {
+      title: '3. 90-Day Governance Roadmap',
+      includes: 'Who decides, what gets reviewed before purchase or go-live, and the 5 controls to put in place first.',
+      decision: 'A repeatable intake gate preventing unvetted departmental software from entering the hospital.',
+      sampleTitle: 'Sample Deliverable Excerpt: 5 Core Governance Controls',
+      sampleRows: [
+        { name: 'Control 1: Pre-Purchase Intake Gate', owner: 'Interim CIO & Compliance', data: 'Vendor Architecture', vendor: 'All new AI software', tier: 'Mandatory', verdict: 'Zero AI software procurement without documented risk tier and signed BAA.' },
+        { name: 'Control 2: Patient PHI Boundary Check', owner: 'CISO / Privacy Officer', data: 'Protected Health Info', vendor: 'Cloud AI APIs', tier: 'Mandatory', verdict: 'Prohibit consumer AI tools from accessing clinical networks and patient identifiers.' },
+        { name: 'Control 3: Executive Sponsor Registry', owner: 'CMIO / Clinical Lead', data: 'Clinical & Admin AI', vendor: 'All active pilots', tier: 'Mandatory', verdict: 'Every AI pilot must have a named department chair accountable for outputs.' },
+      ],
+    },
+    {
+      title: '4. Board One-Pager + 60-Minute Findings Briefing',
+      includes: 'A one-page summary for the board and a live briefing with the CEO/Board Chair.',
+      decision: 'Equips the CEO, COO, and Board with defensible oversight for regulatory, audit, and fiduciary review.',
+      sampleTitle: 'Sample Deliverable Excerpt: Executive Board Readout',
+      sampleRows: [
+        { name: 'Total Departmental AI Pilots Identified', owner: 'Hospital Enterprise', data: '6 Departments', vendor: '8 Vendors', tier: 'Executive Metric', verdict: 'Full inventory established across ED, Radiology, Nursing, Finance, and IT.' },
+        { name: 'Actionable Triage Distribution', owner: 'Executive Committee', data: 'Governance Review', vendor: 'Enterprise-wide', tier: 'Executive Metric', verdict: '2 Pilots Approved to Scale · 4 Pilots Require Immediate Fixes · 2 Shadow Tools Terminated.' },
+        { name: 'Fiduciary & Regulatory Defensibility', owner: 'Board of Directors', data: 'NIST AI RMF 1.0', vendor: 'Nexis AI Readout', tier: 'Board Ready', verdict: 'Equips Board Governance Committee with clear oversight without requiring a full-time CIO.' },
+      ],
+    },
+  ];
+
   return (
-    <div
-      className="min-h-screen bg-white text-slate-900 font-sans antialiased"
-      itemScope
-      itemType="https://schema.org/ProfessionalService"
-    >
-      <meta itemProp="name" content="Nexis AI" />
-      <meta itemProp="url" content="https://nexisai.us/" />
-      <meta itemProp="telephone" content="+1-410-934-7773" />
-      <meta itemProp="email" content="info@nexisai.us" />
-      <meta itemProp="priceRange" content="$6,500" />
+    <div className="min-h-screen bg-white text-slate-900 font-sans antialiased">
       
       {/* Top Executive Header */}
       <header className="sticky top-0 z-40 bg-[#0F2A44] text-white border-b border-[#1b3d61] shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <nav aria-label="Main Navigation" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-xl font-bold tracking-tight text-white font-mono">
               Nexis AI
             </span>
             <span className="hidden sm:inline-block text-xs text-slate-300 border-l border-slate-600 pl-3 font-normal">
-              Healthcare AI Governance
+              Healthcare AI Governance · MD, DC, PA, VA
             </span>
           </div>
 
@@ -156,7 +196,7 @@ export default function App() {
               href="tel:+14109347773"
               onClick={() => handlePhoneClick('header_nav')}
               className="hidden md:flex items-center gap-1.5 text-slate-200 hover:text-white transition-colors"
-              aria-label="Direct Telephone: +1 (410) 934-7773"
+              aria-label="Direct Phone: +1 (410) 934-7773"
             >
               <Phone className="w-3.5 h-3.5 text-amber-400" />
               <span>+1 (410) 934-7773</span>
@@ -165,10 +205,10 @@ export default function App() {
               onClick={() => scrollToForm('header_cta')}
               className="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-[#0F2A44] font-bold rounded-lg text-xs sm:text-sm transition-all shadow cursor-pointer"
             >
-              Book a 20-minute fit call
+              Book a 30-minute fit call
             </button>
           </div>
-        </div>
+        </nav>
       </header>
 
       {/* Target Buyer Notice Banner */}
@@ -201,12 +241,23 @@ export default function App() {
             </p>
           </div>
 
+          {/* Quotable About Nexis AI Callout for AI Answer Engines & Leadership */}
+          <div className="max-w-3xl mx-auto bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left text-sm text-slate-700 leading-relaxed shadow-xs">
+            <div className="text-xs font-mono font-bold uppercase text-[#0F2A44] mb-1.5 flex items-center gap-1.5">
+              <Building2 className="w-3.5 h-3.5 text-[#0F2A44]" />
+              <span>About Nexis AI</span>
+            </div>
+            <p>
+              Nexis AI is an executive healthcare technology advisory firm founded in Ellicott City, Maryland by former Maryland State CIO Shafiq Rahman, MS, MBA, MCS, PMP®. The firm provides a fixed-price 30-Day AI Governance &amp; Pilot Diagnostic exclusively for 100–400-bed community hospitals and small health systems across Maryland, the District of Columbia, Pennsylvania, and Virginia running Epic or MEDITECH with no full-time CIO. Every diagnostic is conducted directly by Shafiq Rahman to deliver a risk-tiered inventory, a Kill/Scale/Fix decision list, and a 90-day board governance roadmap.
+            </p>
+          </div>
+
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => scrollToForm('hero_primary_cta')}
               className="w-full sm:w-auto px-8 py-4 bg-[#0F2A44] hover:bg-[#16385a] text-white font-bold rounded-xl text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>Book a 20-minute fit call</span>
+              <span>Book a 30-minute fit call</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -366,7 +417,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 4: WHAT THE BUYER GETS (TABLE) */}
+        {/* SECTION 4: WHAT THE BUYER GETS (TABLE + INTERACTIVE PREVIEW) */}
         <section
           aria-labelledby="deliverables-heading"
           className="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8"
@@ -386,6 +437,7 @@ export default function App() {
             </p>
           </div>
 
+          {/* Deliverables Table */}
           <div className="overflow-x-auto border border-slate-200 rounded-2xl shadow-sm">
             <table className="w-full text-left border-collapse">
               <thead>
@@ -396,55 +448,91 @@ export default function App() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200 text-sm">
-                <tr className="hover:bg-slate-50 transition-colors">
-                  <td className="p-4 sm:p-5 font-bold text-[#0F2A44] align-top">
-                    1. AI Use Inventory &amp; Risk Tiers
-                  </td>
-                  <td className="p-4 sm:p-5 text-slate-700 leading-relaxed align-top">
-                    Every AI tool/pilot found, tiered High / Medium / Low risk using NIST AI Risk Management Framework concepts, with owner, data used, and vendor named for each.
-                  </td>
-                  <td className="p-4 sm:p-5 text-slate-600 align-top">
-                    Complete institutional visibility into what is running and what patient/clinical data is exposed.
-                  </td>
-                </tr>
-
-                <tr className="hover:bg-slate-50 transition-colors">
-                  <td className="p-4 sm:p-5 font-bold text-[#0F2A44] align-top">
-                    2. Kill / Scale / Fix List
-                  </td>
-                  <td className="p-4 sm:p-5 text-slate-700 leading-relaxed align-top">
-                    A decision list for every pilot: stop it, scale it, or fix it first, with the reason in one sentence each.
-                  </td>
-                  <td className="p-4 sm:p-5 text-slate-600 align-top">
-                    Immediate executive action: terminates risky shelfware and clears compliant pilots to expand safely.
-                  </td>
-                </tr>
-
-                <tr className="hover:bg-slate-50 transition-colors">
-                  <td className="p-4 sm:p-5 font-bold text-[#0F2A44] align-top">
-                    3. 90-Day Governance Roadmap
-                  </td>
-                  <td className="p-4 sm:p-5 text-slate-700 leading-relaxed align-top">
-                    Who decides, what gets reviewed before purchase or go-live, and the 5 controls to put in place first.
-                  </td>
-                  <td className="p-4 sm:p-5 text-slate-600 align-top">
-                    A repeatable intake gate preventing unvetted departmental software from entering the hospital.
-                  </td>
-                </tr>
-
-                <tr className="hover:bg-slate-50 transition-colors">
-                  <td className="p-4 sm:p-5 font-bold text-[#0F2A44] align-top">
-                    4. Board One-Pager + 60-Minute Findings Briefing
-                  </td>
-                  <td className="p-4 sm:p-5 text-slate-700 leading-relaxed align-top">
-                    A one-page summary for the board and a live briefing with the CEO/Board Chair.
-                  </td>
-                  <td className="p-4 sm:p-5 text-slate-600 align-top">
-                    Equips the CEO, COO, and Board with defensible oversight for regulatory, audit, and fiduciary review.
-                  </td>
-                </tr>
+                {deliverableDetails.map((item, idx) => (
+                  <tr
+                    key={idx}
+                    onClick={() => setActiveDeliverablePreview(idx)}
+                    className={`transition-colors cursor-pointer ${
+                      activeDeliverablePreview === idx ? 'bg-amber-50/60' : 'hover:bg-slate-50'
+                    }`}
+                  >
+                    <td className="p-4 sm:p-5 font-bold text-[#0F2A44] align-top">
+                      <div className="flex items-center gap-2">
+                        <span>{item.title}</span>
+                        {activeDeliverablePreview === idx && (
+                          <span className="text-[10px] font-mono bg-[#0F2A44] text-white px-1.5 py-0.5 rounded uppercase">
+                            Previewing
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="p-4 sm:p-5 text-slate-700 leading-relaxed align-top">
+                      {item.includes}
+                    </td>
+                    <td className="p-4 sm:p-5 text-slate-600 align-top">
+                      {item.decision}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Dynamic Interactive Sample Preview Card */}
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-xs">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-4">
+              <div className="flex items-center gap-2">
+                <FileText className="w-5 h-5 text-[#0F2A44]" />
+                <h3 className="text-base font-bold text-[#0F2A44]">
+                  {deliverableDetails[activeDeliverablePreview].sampleTitle}
+                </h3>
+              </div>
+              <div className="flex gap-2">
+                {[0, 1, 2, 3].map((tabIdx) => (
+                  <button
+                    key={tabIdx}
+                    onClick={() => setActiveDeliverablePreview(tabIdx)}
+                    className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
+                      activeDeliverablePreview === tabIdx
+                        ? 'bg-[#0F2A44] text-white'
+                        : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    Item {tabIdx + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs text-left border-collapse">
+                <thead>
+                  <tr className="bg-slate-200/70 text-slate-800 font-mono uppercase text-[11px]">
+                    <th className="p-2.5">Pilot / System</th>
+                    <th className="p-2.5">Sponsor / Owner</th>
+                    <th className="p-2.5">Data Scope</th>
+                    <th className="p-2.5">Vendor Status</th>
+                    <th className="p-2.5">Risk Tier / Metric</th>
+                    <th className="p-2.5">Diagnostic Finding</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 bg-white">
+                  {deliverableDetails[activeDeliverablePreview].sampleRows.map((row, rIdx) => (
+                    <tr key={rIdx} className="hover:bg-slate-50">
+                      <td className="p-2.5 font-bold text-[#0F2A44]">{row.name}</td>
+                      <td className="p-2.5 text-slate-700">{row.owner}</td>
+                      <td className="p-2.5 text-slate-600 font-mono text-[11px]">{row.data}</td>
+                      <td className="p-2.5 text-slate-600">{row.vendor}</td>
+                      <td className="p-2.5 font-semibold text-slate-900">{row.tier}</td>
+                      <td className="p-2.5 text-slate-700 font-medium">{row.verdict}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[11px] text-slate-500 italic pt-1">
+              * Illustrative format delivered directly to the CEO, COO, and Board in the diagnostic readout package.
+            </p>
           </div>
         </section>
 
@@ -543,7 +631,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 6: PRICE */}
+        {/* SECTION 6: PRICE & OFFER */}
         <section
           aria-labelledby="pricing-heading"
           className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
@@ -617,7 +705,7 @@ export default function App() {
                 onClick={() => scrollToForm('pricing_card_cta')}
                 className="w-full sm:w-auto px-6 py-3 bg-amber-400 hover:bg-amber-300 text-[#0F2A44] font-bold rounded-xl text-xs sm:text-sm transition-all shadow cursor-pointer"
               >
-                Book a 20-minute fit call
+                Book a 30-minute fit call
               </button>
             </div>
           </div>
@@ -627,9 +715,6 @@ export default function App() {
         <section
           aria-labelledby="bio-heading"
           className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8"
-          itemProp="founder"
-          itemScope
-          itemType="https://schema.org/Person"
         >
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-mono font-bold uppercase text-[#0F2A44] bg-slate-100 px-3 py-1 rounded-full">
@@ -648,13 +733,12 @@ export default function App() {
               <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-4 border-[#0F2A44] mx-auto shadow-md">
                 <img
                   src="/profile_circle.png"
-                  alt="Shafiq Rahman, MS, MBA, MCS, PMP® - Founder of Nexis AI"
+                  alt="Shafiq Rahman, MS, MBA, MCS, PMP, Founder of Nexis AI, former Maryland State CIO"
                   width="176"
                   height="176"
-                  itemProp="image"
                   className="w-full h-full object-cover object-center pointer-events-none select-none"
-                  loading="eager"
-                  fetchPriority="high"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="text-xs text-slate-500 font-mono">Ellicott City, MD</div>
@@ -662,7 +746,7 @@ export default function App() {
 
             <div className="space-y-4 text-sm text-slate-700 leading-relaxed">
               <p>
-                <strong itemProp="name">Shafiq Rahman, MS, MBA, MCS, PMP®, Former Maryland State CIO.</strong>
+                <strong>Shafiq Rahman, MS, MBA, MCS, PMP®, Former Maryland State CIO.</strong>
               </p>
 
               <p>
@@ -688,7 +772,7 @@ export default function App() {
                   onClick={() => trackEvent('outbound_click', { resource: 'icma_guide' })}
                   className="text-[#0F2A44] font-semibold hover:underline inline-flex items-center gap-1"
                 >
-                  <span>ICMA Guide</span>
+                  <span>AI Governance: A Local Government Leader's Guide (ICMA)</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
                 <a
@@ -698,7 +782,7 @@ export default function App() {
                   onClick={() => trackEvent('outbound_click', { resource: 'linkedin_profile' })}
                   className="text-[#0F2A44] font-semibold hover:underline inline-flex items-center gap-1"
                 >
-                  <span>LinkedIn Profile</span>
+                  <span>Shafiq Rahman on LinkedIn</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
@@ -788,7 +872,7 @@ export default function App() {
                 id="lead-capture-heading"
                 className="text-2xl sm:text-3xl font-extrabold text-[#0F2A44]"
               >
-                Book a 20-minute fit call
+                Book a 30-minute fit call
               </h2>
               <p className="text-sm text-slate-600 max-w-lg mx-auto">
                 Discuss your hospital's situation directly with Shafiq Rahman. No sales pressure, no junior teams.
@@ -799,7 +883,7 @@ export default function App() {
               <div className="bg-emerald-50 border-2 border-emerald-500 rounded-2xl p-6 sm:p-8 text-center space-y-4">
                 <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
                 <h3 className="text-xl font-bold text-emerald-950">
-                  Thank you — Shafiq will reply within 2 business days to schedule a 20-minute fit call.
+                  Thank you — Shafiq will reply within 2 business days to schedule a 30-minute fit call.
                 </h3>
                 <p className="text-sm text-slate-700 max-w-md mx-auto">
                   If you need immediate assistance or have urgent board inquiries, you may also reach out directly:
@@ -841,7 +925,7 @@ export default function App() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Jane Doe"
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#0F2A44]"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0F2A44] focus:border-[#0F2A44]"
                     />
                   </div>
 
@@ -860,7 +944,7 @@ export default function App() {
                       value={formData.organization}
                       onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                       placeholder="Community Health System"
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#0F2A44]"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0F2A44] focus:border-[#0F2A44]"
                     />
                   </div>
                 </div>
@@ -878,7 +962,7 @@ export default function App() {
                       name="role"
                       value={formData.role}
                       onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#0F2A44] cursor-pointer"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0F2A44] focus:border-[#0F2A44] cursor-pointer"
                     >
                       <option value="CEO">CEO</option>
                       <option value="COO">COO</option>
@@ -902,7 +986,7 @@ export default function App() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="jdoe@hospital.org"
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#0F2A44]"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0F2A44] focus:border-[#0F2A44]"
                     />
                   </div>
                 </div>
@@ -920,7 +1004,7 @@ export default function App() {
                       name="beds"
                       value={formData.beds}
                       onChange={(e) => setFormData({ ...formData, beds: e.target.value })}
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#0F2A44] cursor-pointer"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0F2A44] focus:border-[#0F2A44] cursor-pointer"
                     >
                       <option value="Under 100">Under 100</option>
                       <option value="100–400">100–400</option>
@@ -940,7 +1024,7 @@ export default function App() {
                       name="ehr"
                       value={formData.ehr}
                       onChange={(e) => setFormData({ ...formData, ehr: e.target.value })}
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#0F2A44] cursor-pointer"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0F2A44] focus:border-[#0F2A44] cursor-pointer"
                     >
                       <option value="Epic">Epic</option>
                       <option value="MEDITECH">MEDITECH</option>
@@ -963,7 +1047,7 @@ export default function App() {
                     value={formData.aiToolsRunning}
                     onChange={(e) => setFormData({ ...formData, aiToolsRunning: e.target.value })}
                     placeholder="e.g. Ambient clinical notes in ED, imaging triage pilot, coding assistance..."
-                    className="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm text-slate-900 focus:outline-none focus:border-[#0F2A44]"
+                    className="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0F2A44] focus:border-[#0F2A44]"
                   />
                 </div>
 
@@ -981,7 +1065,7 @@ export default function App() {
                     value={formData.anythingElse}
                     onChange={(e) => setFormData({ ...formData, anythingElse: e.target.value })}
                     placeholder="Upcoming board meetings, interim leadership timing, specific vendor concerns..."
-                    className="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm text-slate-900 focus:outline-none focus:border-[#0F2A44]"
+                    className="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0F2A44] focus:border-[#0F2A44]"
                   />
                 </div>
 
@@ -994,7 +1078,7 @@ export default function App() {
                     <span>Submitting Request...</span>
                   ) : (
                     <>
-                      <span>Book a 20-minute fit call</span>
+                      <span>Book a 30-minute fit call</span>
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
@@ -1014,9 +1098,9 @@ export default function App() {
       <footer className="bg-[#0F2A44] text-white border-t border-[#1b3d61] py-10 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-300">
           <div>
-            &copy; Nexis AI, Ellicott City, MD
+            Nexis AI, Ellicott City, MD
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <a
               href="mailto:info@nexisai.us"
               onClick={() => handleEmailClick('footer_link')}
@@ -1031,6 +1115,17 @@ export default function App() {
               className="hover:text-white transition-colors"
             >
               +1 (410) 934-7773
+            </a>
+            <span>•</span>
+            <a
+              href="https://www.linkedin.com/in/shafiq-rahman-maryland/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('outbound_click', { resource: 'footer_linkedin' })}
+              className="hover:text-white transition-colors underline inline-flex items-center gap-1"
+            >
+              <span>Shafiq Rahman on LinkedIn</span>
+              <ExternalLink className="w-3 h-3" />
             </a>
           </div>
         </div>
