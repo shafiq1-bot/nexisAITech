@@ -482,6 +482,66 @@ export default function App() {
           </div>
         </section>
 
+        {/* FOR YOU / NOT FOR YOU */}
+        <section
+          aria-labelledby="fit-criteria-heading"
+          className="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* For you if */}
+            <div className={`p-6 sm:p-8 rounded-3xl border transition-colors space-y-4 ${isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                <h2 id="fit-criteria-heading" className="text-lg font-bold text-theme-primary dark:text-white">
+                  For you if:
+                </h2>
+              </div>
+              <ul className="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                <li className="flex items-start gap-2.5">
+                  <span className="text-emerald-500 font-bold shrink-0 mt-0.5">•</span>
+                  <span>You are the CEO, COO, or Board Chair of a 100–400-bed community hospital in MD, DC, PA, or VA.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-emerald-500 font-bold shrink-0 mt-0.5">•</span>
+                  <span>You have no full-time CIO, or an interim one.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-emerald-500 font-bold shrink-0 mt-0.5">•</span>
+                  <span>AI tools are already in use somewhere in the building.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-emerald-500 font-bold shrink-0 mt-0.5">•</span>
+                  <span>The board is being asked to approve AI spending it cannot see clearly.</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Not for you if */}
+            <div className={`p-6 sm:p-8 rounded-3xl border transition-colors space-y-4 ${isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+              <div className="flex items-center gap-2">
+                <XCircle className="w-5 h-5 text-rose-500 shrink-0" />
+                <h2 className="text-lg font-bold text-theme-primary dark:text-white">
+                  Not for you if:
+                </h2>
+              </div>
+              <ul className="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                <li className="flex items-start gap-2.5">
+                  <span className="text-rose-500 font-bold shrink-0 mt-0.5">•</span>
+                  <span>You already have a full-time CIO and a governed AI programme.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-rose-500 font-bold shrink-0 mt-0.5">•</span>
+                  <span>You are a vendor selling an AI tool.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-rose-500 font-bold shrink-0 mt-0.5">•</span>
+                  <span>You want implementation done for you — this engagement ends at the findings briefing.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* SECTION 2: DYNAMIC HOSPITAL AI RISK & SCOPE ESTIMATOR */}
         <section
           id="risk-calculator"
@@ -988,6 +1048,9 @@ export default function App() {
                 <div className="text-3xl sm:text-4xl font-black text-theme-accent font-mono">
                   $6,500
                 </div>
+                <div className="text-xs text-amber-300 font-medium mt-1">
+                  Now booking: November 2026 — maximum 2 diagnostics per month.
+                </div>
                 <div className="text-xs text-slate-300 font-mono mt-0.5">
                   One-time fixed fee
                 </div>
@@ -1032,16 +1095,21 @@ export default function App() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="text-sm font-semibold text-slate-200">
-                Fixed price. Fixed 30 days. No surprise fees.
+            <div className="pt-4 border-t border-white/10 space-y-3">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="text-sm font-semibold text-slate-200">
+                  Fixed price. Fixed 30 days. No surprise fees.
+                </div>
+                <button
+                  onClick={() => scrollToForm('pricing_card_cta')}
+                  className="w-full sm:w-auto px-6 py-3 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow cursor-pointer"
+                >
+                  Book a 30-minute fit call
+                </button>
               </div>
-              <button
-                onClick={() => scrollToForm('pricing_card_cta')}
-                className="w-full sm:w-auto px-6 py-3 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow cursor-pointer"
-              >
-                Book a 30-minute fit call
-              </button>
+              <p className="text-xs text-slate-300 leading-relaxed border-t border-white/10 pt-3">
+                On time, or the second half is waived. The findings briefing is delivered within 30 calendar days of kickoff. If it runs more than 5 business days past day 30 for reasons within Nexis AI's control, the final 50% payment is waived — and the diagnostic is still delivered in full. Delays caused by interview scheduling or document access extend the window day for day.
+              </p>
             </div>
           </div>
         </section>
@@ -1097,7 +1165,7 @@ export default function App() {
                   <strong>Founder &amp; Principal</strong>, Nexis AI, March 2026–present. Focuses exclusively on AI governance diagnostics for community healthcare systems.
                 </p>
                 <p>
-                  <strong>Education &amp; Credentials:</strong> MS in Cybersecurity &amp; MBA from University of Maryland Global Campus; Master of Computer Science from Al-Khair University; PMP® certified. Author of <em>"AI Governance: A Local Government Leader's Guide"</em> (ICMA, March 2024).
+                  <strong>Education &amp; Credentials:</strong> MS in Management Information Systems, University of Maryland Global Campus (2021); MBA (2008) and Master of Computer Science (2001), Al-Khair University; PMP® certified. Author of <em>"AI Governance: A Local Government Leader's Guide"</em> (ICMA, March 2024).
                 </p>
               </div>
 
@@ -1267,6 +1335,11 @@ export default function App() {
               ))}
             </div>
 
+            {/* Board Checklist PDF Line */}
+            <div className={`p-4 rounded-xl border text-xs sm:text-sm text-center sm:text-left transition-colors ${isDark ? 'bg-slate-800/60 border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-700'}`}>
+              Want the checklist as a one-page PDF for your next board meeting? Email <a href="mailto:info@nexisai.us?subject=Board%20checklist" onClick={() => handleEmailClick('board_checklist_pdf')} className="text-theme-primary dark:text-theme-accent font-semibold underline">info@nexisai.us</a> with subject 'Board checklist' and Shafiq will send it.
+            </div>
+
             <div className={`p-4 border rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 ${isDark ? 'bg-slate-800/80 border-slate-700' : 'bg-white border-slate-200'}`}>
               <div className="text-xs text-slate-600 dark:text-slate-300">
                 Need an independent assessment of your hospital’s AI pilots against this checklist?
@@ -1282,74 +1355,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 9: FAQ */}
-        <section
-          aria-labelledby="faq-heading"
-          className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8"
-        >
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-mono font-bold uppercase text-theme-primary dark:text-slate-300">
-              Common Inquiries
-            </span>
-            <h2
-              id="faq-heading"
-              className="text-2xl sm:text-3xl font-extrabold text-theme-primary dark:text-white"
-            >
-              Frequently Asked Questions
-            </h2>
-          </div>
-
-          <div className="space-y-3">
-            {[
-              {
-                q: 'Do we need a full-time CIO first?',
-                a: 'No — that is the point. This diagnostic is built specifically for community hospitals and health systems operating with an interim CIO, IT director, or no full-time technology executive. It gives leadership and the board fast clarity without having to recruit a full-time executive first.',
-              },
-              {
-                q: 'Will this slow down our clinicians?',
-                a: 'No — it gives them a clear yes/no list. Clinicians and department heads get rapid certainty on which tools are approved to use, which need data protection fixes first, and which should not be used, eliminating friction and compliance confusion.',
-              },
-              {
-                q: 'Do you implement the fixes?',
-                a: 'No — the diagnostic ends with the 60-minute findings briefing and board one-pager. Implementation is a separate decision for your hospital leadership and internal teams.',
-              },
-              {
-                q: 'What if we find no AI in use?',
-                a: 'Then the inventory and the purchase/go-live controls are still delivered, and the price does not change. Your hospital receives the 5 baseline governance controls and pre-purchase evaluation framework so you are fully prepared when departmental requests arise.',
-              },
-              {
-                q: 'Who does the work?',
-                a: 'Shafiq himself. Every interview, document review, risk evaluation, and briefing is conducted personally by Shafiq Rahman. There are no junior analysts, outsourced contractors, or delegated teams.',
-              },
-            ].map((faq, idx) => (
-              <div
-                key={idx}
-                className={`border rounded-xl overflow-hidden shadow-2xs transition-colors ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'}`}
-              >
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(idx, faq.q)}
-                  className={`w-full p-5 text-left font-bold flex items-center justify-between gap-4 transition-colors cursor-pointer text-sm sm:text-base ${isDark ? 'text-white hover:bg-slate-800' : 'text-slate-900 hover:bg-slate-50'}`}
-                  aria-expanded={openFaq === idx}
-                >
-                  <span>{faq.q}</span>
-                  <ChevronDown
-                    className={`w-4 h-4 text-slate-500 shrink-0 transition-transform ${
-                      openFaq === idx ? 'rotate-180 text-theme-accent' : ''
-                    }`}
-                  />
-                </button>
-                {openFaq === idx && (
-                  <div className={`p-5 pt-0 text-sm leading-relaxed border-t ${isDark ? 'border-slate-800 text-slate-300' : 'border-slate-100 text-slate-600'}`}>
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* SECTION 10: BOOK A 30-MINUTE FIT CALL (CAL.COM EMBED + REQUEST FORM) */}
+        {/* SECTION 9: BOOK A 30-MINUTE FIT CALL (CAL.COM EMBED + REQUEST FORM) */}
         <section
           id="fit-call"
           aria-labelledby="lead-capture-heading"
@@ -1369,6 +1375,27 @@ export default function App() {
               <p className={`text-sm max-w-lg mx-auto ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
                 Discuss your hospital's situation directly with Shafiq Rahman. No sales pressure, no junior teams.
               </p>
+            </div>
+
+            {/* What happens on the fit call */}
+            <div className={`p-5 rounded-2xl border max-w-xl mx-auto space-y-3 text-left transition-colors ${isDark ? 'bg-slate-800/80 border-slate-700' : 'bg-white border-slate-200'}`}>
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-theme-primary dark:text-theme-accent">
+                What happens on the fit call:
+              </h3>
+              <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+                <li className="flex items-start gap-2.5">
+                  <span className="text-theme-accent font-bold mt-0.5">•</span>
+                  <span>You describe the pilots you know about, in plain terms.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-theme-accent font-bold mt-0.5">•</span>
+                  <span>Shafiq tells you honestly whether the diagnostic fits — including when it does not.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-theme-accent font-bold mt-0.5">•</span>
+                  <span>If it fits, you agree a kickoff week; 50% is due on booking.</span>
+                </li>
+              </ul>
             </div>
 
             {/* Booking Mode Selector */}
@@ -1650,6 +1677,73 @@ export default function App() {
                 </a>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* SECTION 10: FAQ */}
+        <section
+          aria-labelledby="faq-heading"
+          className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8"
+        >
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="text-xs font-mono font-bold uppercase text-theme-primary dark:text-slate-300">
+              Common Inquiries
+            </span>
+            <h2
+              id="faq-heading"
+              className="text-2xl sm:text-3xl font-extrabold text-theme-primary dark:text-white"
+            >
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <div className="space-y-3">
+            {[
+              {
+                q: 'Do we need a full-time CIO first?',
+                a: 'No — that is the point. This diagnostic is built specifically for community hospitals and health systems operating with an interim CIO, IT director, or no full-time technology executive. It gives leadership and the board fast clarity without having to recruit a full-time executive first.',
+              },
+              {
+                q: 'Will this slow down our clinicians?',
+                a: 'No — it gives them a clear yes/no list. Clinicians and department heads get rapid certainty on which tools are approved to use, which need data protection fixes first, and which should not be used, eliminating friction and compliance confusion.',
+              },
+              {
+                q: 'Do you implement the fixes?',
+                a: 'No — the diagnostic ends with the 60-minute findings briefing and board one-pager. Implementation is a separate decision for your hospital leadership and internal teams.',
+              },
+              {
+                q: 'What if we find no AI in use?',
+                a: 'Then the inventory and the purchase/go-live controls are still delivered, and the price does not change. Your hospital receives the 5 baseline governance controls and pre-purchase evaluation framework so you are fully prepared when departmental requests arise.',
+              },
+              {
+                q: 'Who does the work?',
+                a: 'Shafiq himself. Every interview, document review, risk evaluation, and briefing is conducted personally by Shafiq Rahman. There are no junior analysts, outsourced contractors, or delegated teams.',
+              },
+            ].map((faq, idx) => (
+              <div
+                key={idx}
+                className={`border rounded-xl overflow-hidden shadow-2xs transition-colors ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'}`}
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleFaq(idx, faq.q)}
+                  className={`w-full p-5 text-left font-bold flex items-center justify-between gap-4 transition-colors cursor-pointer text-sm sm:text-base ${isDark ? 'text-white hover:bg-slate-800' : 'text-slate-900 hover:bg-slate-50'}`}
+                  aria-expanded={openFaq === idx}
+                >
+                  <span>{faq.q}</span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-slate-500 shrink-0 transition-transform ${
+                      openFaq === idx ? 'rotate-180 text-theme-accent' : ''
+                    }`}
+                  />
+                </button>
+                {openFaq === idx && (
+                  <div className={`p-5 pt-0 text-sm leading-relaxed border-t ${isDark ? 'border-slate-800 text-slate-300' : 'border-slate-100 text-slate-600'}`}>
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </section>
 

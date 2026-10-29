@@ -241,7 +241,7 @@ export const FractionalCIOPage: React.FC<FractionalCIOPageProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
               {discoveryCallAgenda.map((phase, idx) => (
                 <div key={idx} className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5">
-                  <div className="text-[11px] font-mono font-bold text-amber-400">{phase.phase} · {phase.duration}</div>
+                  <div className="text-[11px] font-mono font-bold text-amber-400">{phase.phase}</div>
                   <div className="font-bold text-white text-sm">{phase.title}</div>
                   <p className="text-slate-300 text-xs leading-relaxed">{phase.description}</p>
                 </div>

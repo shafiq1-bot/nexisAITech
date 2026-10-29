@@ -1,6 +1,23 @@
 {
   "consultations": [
     {
+      "fullName": "Test Lead",
+      "email": "test@hospital.org",
+      "phone": "",
+      "companyName": "Test Health System",
+      "jobTitle": "Chief Executive Officer (CEO)",
+      "region": "US",
+      "industry": "Healthcare",
+      "serviceInterest": "30-Day AI Governance & Pilot Diagnostic ($6,500)",
+      "estimatedBudget": "$50,000 - $100,000",
+      "message": "Test fit-call submission",
+      "crmExportTarget": "HubSpot",
+      "id": "NEXIS-CONSULT-2259",
+      "status": "new",
+      "createdAt": "2026-10-29T18:13:49.518Z",
+      "updatedAt": "2026-10-29T18:13:49.518Z"
+    },
+    {
       "fullName": "Dr. Test Lead",
       "email": "test@example.com",
       "phone": "",
