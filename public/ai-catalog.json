@@ -18,6 +18,19 @@
         "Shafiq Rahman Maryland State CIO healthcare AI advisory"
       ],
       "url": "https://nexisai.us/#fit-call"
+    },
+    {
+      "identifier": "urn:ai:nexisai.us:services:higher-education-advisory",
+      "type": "application/json",
+      "name": "Higher Education & Academic Medical Center Technology Advisory",
+      "description": "Executive technology advisory for University Presidents, Provosts, Deans, and Interim CIOs covering institutional AI policies, research computing Slurm GPU enclaves, campus SIS/ERP modernization, and FERPA/grant compliance.",
+      "representativeQueries": [
+        "higher education AI governance policy university provost",
+        "academic medical center IT advisory Shafiq Rahman",
+        "research computing Slurm GPU cluster governance higher ed",
+        "university interim CIO advisory Maryland DC PA VA"
+      ],
+      "url": "https://nexisai.us/#higher-education"
     }
   ]
 }

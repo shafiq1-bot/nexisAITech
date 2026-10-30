@@ -18,6 +18,9 @@ import {
   Moon,
   Palette,
   SlidersHorizontal,
+  GraduationCap,
+  BookOpen,
+  Cpu,
 } from 'lucide-react';
 
 declare global {
@@ -383,6 +386,14 @@ export default function App() {
             </button>
 
             <a
+              href="#higher-education"
+              className="hidden md:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors"
+            >
+              <GraduationCap className="w-3.5 h-3.5 text-theme-accent" />
+              <span>Higher Ed Practice</span>
+            </a>
+
+            <a
               href="tel:+14109347773"
               onClick={() => handlePhoneClick('header_nav')}
               className="hidden lg:flex items-center gap-1.5 text-slate-200 hover:text-white transition-colors"
@@ -404,7 +415,7 @@ export default function App() {
 
       {/* Target Buyer Notice Banner */}
       <div className={`border-b text-xs text-center font-medium py-2 px-4 transition-colors ${isDark ? 'bg-slate-900 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'}`}>
-        <span className="font-semibold text-theme-primary dark:text-slate-100">Exclusively for Hospital Leadership:</span> CEOs, COOs, and Board Chairs of 100–400-bed community hospitals in MD, DC, PA, &amp; VA with no full-time CIO.
+        <span className="font-semibold text-theme-primary dark:text-slate-100">Executive Leadership Focus:</span> Community hospital executives (100–400 beds, MD/DC/PA/VA) with no full-time CIO, plus University Provosts, Deans &amp; Academic Medical Centers (<a href="#higher-education" className="underline font-semibold hover:opacity-80">Higher Ed Practice</a>).
       </div>
 
       <main className="space-y-20 pb-20 executive-grid-pattern">
@@ -1196,7 +1207,127 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 8: EXECUTIVE ARTIFACT — 5-POINT AI GOVERNANCE CHECKLIST FOR COMMUNITY HOSPITAL BOARDS */}
+        {/* SECTION 8: HIGHER EDUCATION & ACADEMIC MEDICINE ADVISORY */}
+        <section
+          id="higher-education"
+          aria-labelledby="higher-ed-heading"
+          className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8 scroll-mt-24"
+        >
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="text-xs font-mono font-bold uppercase text-theme-primary dark:text-slate-300 flex items-center justify-center gap-1.5">
+              <GraduationCap className="w-4 h-4 text-theme-accent" />
+              <span>Practice Extension · Higher Education &amp; Academic Medicine</span>
+            </span>
+            <h2
+              id="higher-ed-heading"
+              className="text-2xl sm:text-3xl font-extrabold text-theme-primary dark:text-white"
+            >
+              Higher Education &amp; Academic Medical Center Advisory
+            </h2>
+            <p className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+              Executive technology stewardship for University Presidents, Provosts, Deans, CFOs, and Interim CIOs balancing faculty research freedom, student AI policy, high-performance GPU clusters, and institutional compliance.
+            </p>
+          </div>
+
+          <div className={`border rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 transition-colors ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+            {/* Academic Credibility Highlight */}
+            <div className={`p-4 sm:p-5 rounded-2xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${isDark ? 'bg-slate-800/80 border-slate-700' : 'bg-white border-slate-200'}`}>
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono font-bold uppercase text-theme-accent tracking-wider">
+                  Grounding &amp; Leadership Context
+                </span>
+                <h3 className="text-sm sm:text-base font-bold text-theme-primary dark:text-white">
+                  University of Maryland School of Medicine (2014–2023)
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+                  Shafiq Rahman served 9 years as Director of Enterprise IT, reporting to the Dean and supporting ~3,000 faculty, ~3,000 staff, 1,300+ students, residents, and fellows across 25 academic departments, bridging university campus systems with seven affiliated teaching hospitals.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => scrollToForm('higher_ed_hero_cta', 'Higher Education & Academic Medicine Advisory inquiry')}
+                className="shrink-0 px-4 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast rounded-xl text-xs font-bold transition-opacity cursor-pointer shadow-sm"
+              >
+                Book 30-min fit call
+              </button>
+            </div>
+
+            {/* 4 Core Focus Areas */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className={`p-5 rounded-2xl border space-y-2 transition-colors ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-lg bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent">
+                    <BookOpen className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-sm font-bold text-theme-primary dark:text-white">
+                    Institutional AI Governance &amp; Academic Policy
+                  </h4>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Developing pragmatic institutional guidelines that balance faculty research freedom, student AI usage guidelines (academic integrity), and enterprise data boundaries.
+                </p>
+              </div>
+
+              <div className={`p-5 rounded-2xl border space-y-2 transition-colors ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-lg bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent">
+                    <Cpu className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-sm font-bold text-theme-primary dark:text-white">
+                    Research Computing &amp; GPU Enclaves
+                  </h4>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Architecting compliant, high-performance computing clusters (Slurm, multi-node GPUs) and secure research enclaves that attract top researchers without shadow IT sprawl.
+                </p>
+              </div>
+
+              <div className={`p-5 rounded-2xl border space-y-2 transition-colors ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-lg bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent">
+                    <Building2 className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-sm font-bold text-theme-primary dark:text-white">
+                    Academic Health Center &amp; Clinical Systems Integration
+                  </h4>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Unifying identities, network boundaries, and clinical EHR data flows (Epic/MEDITECH) between university academic health science faculties and teaching hospital networks.
+                </p>
+              </div>
+
+              <div className={`p-5 rounded-2xl border space-y-2 transition-colors ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-lg bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-sm font-bold text-theme-primary dark:text-white">
+                    FERPA, HIPAA &amp; Federal Grant Compliance
+                  </h4>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Safeguarding student education records under FERPA, clinical trials under HIPAA, and federal research grants under NIST SP 800-171 and CMMC standards.
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom Note */}
+            <div className={`p-4 rounded-xl border text-xs text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-3 ${isDark ? 'bg-slate-800/60 border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-700'}`}>
+              <div>
+                <strong>Are you a Provost, Dean, VP of IT, or Interim CIO?</strong> Discuss your academic technology priorities or AI governance directly with Shafiq Rahman.
+              </div>
+              <button
+                type="button"
+                onClick={() => scrollToForm('higher_ed_bottom_cta', 'Higher Education Advisory: Academic AI / Research Computing / Systems Integration')}
+                className="shrink-0 text-theme-primary dark:text-theme-accent font-bold underline hover:opacity-90 cursor-pointer"
+              >
+                Schedule 30-min fit call →
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 9: EXECUTIVE ARTIFACT — 5-POINT AI GOVERNANCE CHECKLIST FOR COMMUNITY HOSPITAL BOARDS */}
         <section
           id="board-checklist"
           aria-labelledby="checklist-heading"
@@ -1527,7 +1658,9 @@ export default function App() {
                         <option value="Interim CIO">Interim CIO / IT Lead</option>
                         <option value="CMIO">CMIO / Clinical Lead</option>
                         <option value="CFO">CFO / Executive Leadership</option>
-                        <option value="Other">Other Hospital Leader</option>
+                        <option value="University Provost / Dean / President">University Provost / Dean / President</option>
+                        <option value="Higher Ed CIO / VP IT">Higher Ed CIO / VP of IT</option>
+                        <option value="Other">Other Healthcare / Higher Ed Leader</option>
                       </select>
                     </div>
 
@@ -1557,7 +1690,7 @@ export default function App() {
                         htmlFor="form-beds"
                         className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
                       >
-                        Bed Size *
+                        Organization Size / Beds *
                       </label>
                       <select
                         id="form-beds"
@@ -1569,6 +1702,7 @@ export default function App() {
                         <option value="100–199">100–199 beds</option>
                         <option value="200–299">200–299 beds</option>
                         <option value="300–400">300–400 beds</option>
+                        <option value="University / Academic Medical Center">University / Academic Medical Center / Health Sciences</option>
                         <option value="Other">Other / Regional Health System</option>
                       </select>
                     </div>
@@ -1578,7 +1712,7 @@ export default function App() {
                         htmlFor="form-ehr"
                         className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
                       >
-                        Primary EHR *
+                        Primary Clinical EHR or Campus ERP *
                       </label>
                       <select
                         id="form-ehr"
@@ -1590,7 +1724,8 @@ export default function App() {
                         <option value="Epic">Epic</option>
                         <option value="MEDITECH">MEDITECH</option>
                         <option value="Both">Both (Migration / Mixed)</option>
-                        <option value="Other">Other EHR Platform</option>
+                        <option value="Campus SIS / ERP">Campus SIS / ERP (Workday, Banner, PeopleSoft)</option>
+                        <option value="Other">Other EHR or ERP Platform</option>
                       </select>
                     </div>
                   </div>

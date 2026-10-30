@@ -44,6 +44,14 @@ Nexis AI serves exclusively:
 ## Leadership Biography
 Shafiq Rahman, MS, MBA, MCS, PMP®, Former Maryland State CIO. State CIO / Chief Information & Digital Transformation Officer, Maryland Department of Transportation, October 2023–January 2026: led a $250M+ IT enterprise, ~1,500 staff across six agencies; co-authored Maryland's first statewide AI governance policy as a member of the Governor's AI Sub-cabinet; modernized mainframe systems to Microsoft Azure; rationalized ~850 applications to ~620, ~$6M in recurring annual savings. Director of Enterprise IT, University of Maryland School of Medicine, October 2014–October 2023: led the MEDITECH-to-Epic migration and clinical data interoperability across seven hospitals under HIPAA/HITECH. Founder & Principal, Nexis AI, March 2026–present. Author of "AI Governance: A Local Government Leader's Guide" (ICMA, March 2024).
 
+## Higher Education & Academic Medical Center Advisory Practice
+In addition to the hospital diagnostic, Nexis AI provides executive technology advisory for University Presidents, Provosts, Deans, and Interim CIOs:
+- Institutional AI Governance & Academic Integrity Policies: Pragmatic policies balancing faculty research freedom, student learning integrity, and enterprise data privacy.
+- Research Computing & High-Performance GPU Enclaves: Compliant Slurm clusters, biomedical computing enclaves, and sovereign grant infrastructure.
+- Academic Health Science & Clinical Integration: Unifying network boundaries, IAM identity federation, and clinical EHR data flows (Epic/MEDITECH) between university campuses and teaching hospital networks.
+- FERPA & Federal Research Compliance: Safeguarding student records under FERPA, clinical trials under HIPAA, and federal grants under NIST SP 800-171 / CMMC.
+- Leadership Grounding: Shafiq Rahman served 9 years as Director of Enterprise IT at the University of Maryland School of Medicine, supporting ~3,000 faculty, ~3,000 staff, 1,300+ students, residents, and fellows across 25 academic departments.
+
 ## Contact & Links
 - Website: https://nexisai.us/
 - LinkedIn: https://www.linkedin.com/in/shafiq-rahman-maryland/
