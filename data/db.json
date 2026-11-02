@@ -73,6 +73,39 @@
   ],
   "assessments": [
     {
+      "companyName": "Howard County Health & Public Works",
+      "clientEmail": "jsmith@howardcountymd.gov",
+      "region": "US",
+      "overallScore": 67,
+      "maturityLevel": "4 to 6 Checked: Moderate Risk — Gaps in vendor governance or legacy infrastructure exist.",
+      "categoryScores": {
+        "healthcare": 2,
+        "publicSector": 2,
+        "coreInfrastructure": 2
+      },
+      "answers": {
+        "evaluator": "Jordan Smith",
+        "evaluatorTitle": "Deputy Director of IT",
+        "phone": "+1 (410) 555-0199",
+        "evaluationDate": "2026-11-02",
+        "selectedChecks": [
+          "EHR Interoperability: Clinical data flows seamlessly across systems without manual entry.",
+          "HIPAA Security: Data at rest/motion encrypted; BAAs updated annually.",
+          "NIST Compliance: Security controls mapped directly to NIST framework.",
+          "Public Data Compliance: Automated archival and e-discovery for FOIA compliance.",
+          "Cyber Insurance Readiness: MFA enforced company-wide; immutable backups online.",
+          "Disaster Recovery (BC/DR): Recovery plan tested against simulated ransomware attacks."
+        ],
+        "rawScore": 6,
+        "maxScore": 9,
+        "actionRequested": "Executive review / 15-minute diagnostic session requested via assessment"
+      },
+      "id": "NEXIS-EVAL-4723",
+      "status": "new",
+      "createdAt": "2026-11-02T18:04:29.604Z",
+      "updatedAt": "2026-11-02T18:04:29.604Z"
+    },
+    {
       "id": "NEXIS-EVAL-1001",
       "companyName": "Metropolitan Health Authority",
       "clientEmail": "t.lead@healthauthority.org",

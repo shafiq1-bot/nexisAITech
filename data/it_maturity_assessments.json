@@ -1,0 +1,33 @@
+[
+  {
+    "id": "NEXIS-EVAL-4723",
+    "organization": "Howard County Health & Public Works",
+    "evaluator": "Jordan Smith",
+    "title": "Deputy Director of IT",
+    "email": "jsmith@howardcountymd.gov",
+    "phone": "+1 (410) 555-0199",
+    "date": "2026-11-02",
+    "score": 6,
+    "maxScore": 9,
+    "interpretation": "4 to 6 Checked: Moderate Risk — Gaps in vendor governance or legacy infrastructure exist.",
+    "selectedChecks": [
+      "EHR Interoperability: Clinical data flows seamlessly across systems without manual entry.",
+      "HIPAA Security: Data at rest/motion encrypted; BAAs updated annually.",
+      "NIST Compliance: Security controls mapped directly to NIST framework.",
+      "Public Data Compliance: Automated archival and e-discovery for FOIA compliance.",
+      "Cyber Insurance Readiness: MFA enforced company-wide; immutable backups online.",
+      "Disaster Recovery (BC/DR): Recovery plan tested against simulated ransomware attacks."
+    ],
+    "categoryBreakdown": {
+      "healthcare": 2,
+      "publicSector": 2,
+      "coreInfrastructure": 2
+    },
+    "submittedAt": "2026-11-02T18:04:29.604Z",
+    "emailDeliveredTo": [
+      "shafiqs1@gmail.com",
+      "info@nexisai.us"
+    ],
+    "status": "received"
+  }
+]

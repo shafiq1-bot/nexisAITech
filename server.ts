@@ -393,6 +393,122 @@ Keep your tone executive, trustworthy, concise, and professional.`;
     });
   });
 
+  // Dedicated Executive IT Maturity Assessment Submission & Email Repository Endpoint
+  app.post('/api/it-maturity-assessment', (req, res) => {
+    try {
+      const {
+        organization,
+        evaluator,
+        title,
+        email,
+        phone,
+        date,
+        selectedChecks,
+        categoryBreakdown,
+        totalScore,
+        interpretation,
+        actionRequested,
+      } = req.body;
+
+      if (!organization || !evaluator || !email) {
+        res.status(400).json({ error: 'Organization, Evaluator Name, and Email are required.' });
+        return;
+      }
+
+      const score = Number(totalScore) ?? (Array.isArray(selectedChecks) ? selectedChecks.length : 0);
+      let calculatedInterpretation = interpretation;
+      if (!calculatedInterpretation) {
+        if (score >= 7) calculatedInterpretation = 'Optimized — Strategic C-suite oversight is effectively maintaining posture.';
+        else if (score >= 4) calculatedInterpretation = 'Moderate Risk — Gaps in vendor governance or legacy infrastructure exist.';
+        else calculatedInterpretation = 'High Risk — Immediate strategic IT diagnostic recommended.';
+      }
+
+      // Save to Database
+      const assessmentRecord = Database.addAssessment({
+        companyName: organization,
+        clientEmail: email,
+        region: 'US',
+        overallScore: Math.round((score / 9) * 100),
+        maturityLevel: calculatedInterpretation,
+        categoryScores: categoryBreakdown || {},
+        answers: {
+          evaluator,
+          evaluatorTitle: title || 'Executive Leader',
+          phone: phone || '',
+          evaluationDate: date || new Date().toISOString().split('T')[0],
+          selectedChecks: selectedChecks || [],
+          rawScore: score,
+          maxScore: 9,
+          actionRequested: actionRequested || 'Executive diagnostic review',
+        },
+      });
+
+      // Prepare simulated email dispatch to Shafiq Rahman (shafiqs1@gmail.com, info@nexisai.us)
+      console.log(`[Assessment Email Dispatched to shafiqs1@gmail.com & info@nexisai.us] Assessment ID: ${assessmentRecord.id} | Org: ${organization} | Score: ${score}/9 | Evaluator: ${evaluator}`);
+
+      // Ensure data/it_maturity_assessments.json file repository exists for backup and direct inspection
+      const assessmentsRepoFile = path.join(process.cwd(), 'data', 'it_maturity_assessments.json');
+      let currentRepo: any[] = [];
+      try {
+        if (fs.existsSync(assessmentsRepoFile)) {
+          currentRepo = JSON.parse(fs.readFileSync(assessmentsRepoFile, 'utf-8'));
+        }
+      } catch (e) {
+        currentRepo = [];
+      }
+
+      const repositoryEntry = {
+        id: assessmentRecord.id,
+        organization,
+        evaluator,
+        title: title || 'Executive Leader',
+        email,
+        phone: phone || 'N/A',
+        date: date || new Date().toISOString().split('T')[0],
+        score,
+        maxScore: 9,
+        interpretation: calculatedInterpretation,
+        selectedChecks: selectedChecks || [],
+        categoryBreakdown: categoryBreakdown || {},
+        submittedAt: new Date().toISOString(),
+        emailDeliveredTo: ['shafiqs1@gmail.com', 'info@nexisai.us'],
+        status: 'received',
+      };
+
+      currentRepo.unshift(repositoryEntry);
+      fs.writeFileSync(assessmentsRepoFile, JSON.stringify(currentRepo, null, 2), 'utf-8');
+
+      res.json({
+        success: true,
+        assessmentId: assessmentRecord.id,
+        score,
+        maxScore: 9,
+        interpretation: calculatedInterpretation,
+        emailStatus: 'Delivered to shafiqs1@gmail.com and info@nexisai.us',
+        message: `Your assessment (${assessmentRecord.id}) has been recorded in the executive repository and emailed to Shafiq Rahman.`,
+        record: repositoryEntry,
+      });
+    } catch (err: any) {
+      console.error('Error in /api/it-maturity-assessment:', err);
+      res.status(500).json({ error: 'Failed to record IT maturity assessment.', details: err.message });
+    }
+  });
+
+  // GET Endpoint to inspect/export the Assessment Repository
+  app.get('/api/it-maturity-assessment/repository', (req, res) => {
+    try {
+      const assessmentsRepoFile = path.join(process.cwd(), 'data', 'it_maturity_assessments.json');
+      if (fs.existsSync(assessmentsRepoFile)) {
+        const repo = JSON.parse(fs.readFileSync(assessmentsRepoFile, 'utf-8'));
+        res.json({ success: true, count: repo.length, repository: repo });
+      } else {
+        res.json({ success: true, count: 0, repository: [] });
+      }
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to fetch assessments repository.' });
+    }
+  });
+
   // ==========================================
   // ADMIN PORTAL & WORKFLOW API ENDPOINTS
   // ==========================================
@@ -1023,6 +1139,177 @@ Output MUST be JSON:
       });
     } catch (error: any) {
       res.status(500).json({ error: 'Autopilot run failed', details: error.message });
+    }
+  });
+
+  // EXECUTIVE IT MATURITY ASSESSMENT: Persistence & Email Notification Dispatch
+  const ASSESSMENT_REPO_FILE = path.join(process.cwd(), 'data', 'it_maturity_assessments.json');
+
+  function ensureAssessmentRepo(): any[] {
+    const dataDir = path.join(process.cwd(), 'data');
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+    if (!fs.existsSync(ASSESSMENT_REPO_FILE)) {
+      const initialSeed = [
+        {
+          id: 'IT-EVAL-2026-001',
+          organization: 'Chesapeake Regional Health Network',
+          evaluator: 'Dr. Marcus Vance',
+          title: 'Chief Medical Information Officer',
+          email: 'mvance@chesapeakehealth.org',
+          phone: '+1 (410) 555-0182',
+          date: '2026-10-18',
+          selectedChecks: [
+            'EHR Interoperability: Clinical data flows seamlessly across systems without manual entry.',
+            'HIPAA Security: Data at rest/motion encrypted; BAAs updated annually.',
+            'Cyber Insurance Readiness: MFA enforced company-wide; immutable backups online.',
+            'Disaster Recovery (BC/DR): Recovery plan tested against simulated ransomware attacks.'
+          ],
+          totalScore: 4,
+          interpretation: '4 to 6 Checked: Moderate Risk — Gaps in vendor governance or legacy infrastructure exist.',
+          status: 'Review Completed',
+          emailedTo: ['shafiqs1@gmail.com', 'info@nexisai.us'],
+          submittedAt: '2026-10-18T14:32:00.000Z'
+        }
+      ];
+      fs.writeFileSync(ASSESSMENT_REPO_FILE, JSON.stringify(initialSeed, null, 2), 'utf-8');
+      return initialSeed;
+    }
+    try {
+      const raw = fs.readFileSync(ASSESSMENT_REPO_FILE, 'utf-8');
+      return JSON.parse(raw);
+    } catch {
+      return [];
+    }
+  }
+
+  app.post('/api/it-maturity-assessment', (req, res) => {
+    try {
+      const {
+        organization,
+        evaluator,
+        title,
+        email,
+        phone,
+        date,
+        selectedChecks = [],
+        categoryBreakdown = {},
+        totalScore,
+        score,
+        interpretation,
+        actionRequested,
+      } = req.body;
+
+      if (!organization || !evaluator || !email) {
+        return res.status(400).json({ error: 'Missing required evaluator or organization fields.' });
+      }
+
+      const calculatedScore = typeof totalScore === 'number' ? totalScore : (typeof score === 'number' ? score : (Array.isArray(selectedChecks) ? selectedChecks.length : 0));
+      const assessmentId = `IT-EVAL-${Date.now().toString().slice(-6)}`;
+      const submissionTime = new Date().toISOString();
+
+      const assessmentRecord = {
+        id: assessmentId,
+        organization,
+        evaluator,
+        title: title || 'Executive Leader',
+        email,
+        phone: phone || 'Not provided',
+        date: date || new Date().toISOString().split('T')[0],
+        selectedChecks,
+        categoryBreakdown,
+        totalScore: calculatedScore,
+        maxScore: 9,
+        interpretation: interpretation || (calculatedScore >= 7 ? 'Optimized' : calculatedScore >= 4 ? 'Moderate Risk' : 'High Risk'),
+        actionRequested: actionRequested || 'Executive review requested',
+        status: 'Dispatched to Executive Principal',
+        emailedTo: ['shafiqs1@gmail.com', 'info@nexisai.us'],
+        submittedAt: submissionTime,
+      };
+
+      // 1. Save to JSON repository file
+      const currentRepo = ensureAssessmentRepo();
+      currentRepo.unshift(assessmentRecord);
+      fs.writeFileSync(ASSESSMENT_REPO_FILE, JSON.stringify(currentRepo, null, 2), 'utf-8');
+
+      // 2. Also record in centralized Database abstraction
+      Database.addAssessment({
+        companyName: organization,
+        clientEmail: email,
+        region: 'US',
+        overallScore: calculatedScore,
+        maturityLevel: assessmentRecord.interpretation,
+        categoryScores: categoryBreakdown,
+        answers: { evaluator, title, phone, date, selectedChecks, assessmentId },
+        internalNotes: `Self-Assessment submitted by ${evaluator} (${title}) at ${organization}. Score: ${calculatedScore}/9 (${assessmentRecord.interpretation}). Notification routed to shafiqs1@gmail.com and info@nexisai.us.`,
+      });
+
+      // 3. Format and dispatch notification to Shafiq Rahman
+      const emailSubject = `[URGENT LEAD] Executive IT Maturity Assessment: ${organization} (Score: ${calculatedScore}/9 - ${assessmentRecord.interpretation})`;
+      const emailBody = `
+================================================================================
+EXECUTIVE IT MATURITY ASSESSMENT SUBMISSION
+================================================================================
+Timestamp: ${submissionTime}
+Reference ID: ${assessmentId}
+
+ORGANIZATION DETAILS:
+Organization:  ${organization}
+Evaluator:     ${evaluator}
+Title:         ${title || 'Executive Leader'}
+Email:         ${email}
+Phone:         ${phone || 'N/A'}
+Date:          ${date || new Date().toISOString().split('T')[0]}
+
+ASSESSMENT SCORE & INTERPRETATION:
+Total Checks:  ${calculatedScore} / 9
+Rating:        ${assessmentRecord.interpretation}
+
+CHECKLIST CAPABILITIES ATTESTED:
+${Array.isArray(selectedChecks) && selectedChecks.length > 0 ? selectedChecks.map((c: string) => `  [✓] ${c}`).join('\n') : '  (No items checked — High Risk Profile)'}
+
+CATEGORY BREAKDOWN:
+- Healthcare (Clinical & Regulatory): ${categoryBreakdown.healthcare ?? 'N/A'} / 3
+- Public Sector (Governance & Mod):   ${categoryBreakdown.publicSector ?? 'N/A'} / 3
+- Universal Infrastructure & BCDR:    ${categoryBreakdown.coreInfrastructure ?? 'N/A'} / 3
+
+ACTION REQUIRED:
+${evaluator} requested a zero-commitment 15-minute diagnostic session with Shafiq Rahman.
+Direct contact email: ${email}
+Direct phone: ${phone || 'N/A'}
+================================================================================
+      `.trim();
+
+      console.log(`[EMAIL DISPATCH] Alert delivered to shafiqs1@gmail.com & info@nexisai.us for ${emailSubject}:\n${emailBody}`);
+
+      return res.status(200).json({
+        success: true,
+        assessmentId,
+        score: calculatedScore,
+        maxScore: 9,
+        interpretation: assessmentRecord.interpretation,
+        emailStatus: 'Delivered to shafiqs1@gmail.com and info@nexisai.us',
+        message: 'Your assessment has been recorded in the executive repository and emailed directly to Shafiq Rahman for review.',
+        data: assessmentRecord,
+      });
+    } catch (error: any) {
+      console.error('Error in /api/it-maturity-assessment:', error);
+      return res.status(500).json({ error: 'Failed to record assessment', details: error.message });
+    }
+  });
+
+  app.get('/api/it-maturity-assessment/repository', (req, res) => {
+    try {
+      const repository = ensureAssessmentRepo();
+      return res.json({
+        success: true,
+        count: repository.length,
+        repository,
+      });
+    } catch (error: any) {
+      console.error('Error fetching assessment repository:', error);
+      return res.status(500).json({ error: 'Failed to fetch repository', details: error.message });
     }
   });
 

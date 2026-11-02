@@ -21,7 +21,12 @@ import {
   GraduationCap,
   BookOpen,
   Cpu,
+  Briefcase,
+  Landmark,
+  Activity,
+  FileCheck2,
 } from 'lucide-react';
+import { ExecutiveITMaturityAssessment } from './components/ExecutiveITMaturityAssessment';
 
 declare global {
   interface Window {
@@ -386,17 +391,33 @@ export default function App() {
             </button>
 
             <a
-              href="#higher-education"
+              href="#two-practices"
               className="hidden md:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors"
             >
-              <GraduationCap className="w-3.5 h-3.5 text-theme-accent" />
-              <span>Higher Ed Practice</span>
+              <Briefcase className="w-3.5 h-3.5 text-theme-accent" />
+              <span>Practices</span>
+            </a>
+
+            <a
+              href="#public-sector"
+              className="hidden lg:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors"
+            >
+              <Landmark className="w-3.5 h-3.5 text-theme-accent" />
+              <span>Public Sector</span>
+            </a>
+
+            <a
+              href="#it-maturity-assessment"
+              className="hidden lg:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors"
+            >
+              <Layers className="w-3.5 h-3.5 text-theme-accent" />
+              <span>Assessment</span>
             </a>
 
             <a
               href="tel:+14109347773"
               onClick={() => handlePhoneClick('header_nav')}
-              className="hidden lg:flex items-center gap-1.5 text-slate-200 hover:text-white transition-colors"
+              className="hidden xl:flex items-center gap-1.5 text-slate-200 hover:text-white transition-colors"
               aria-label="Direct Phone: +1 (410) 934-7773"
             >
               <Phone className="w-3.5 h-3.5 text-theme-accent" />
@@ -415,7 +436,7 @@ export default function App() {
 
       {/* Target Buyer Notice Banner */}
       <div className={`border-b text-xs text-center font-medium py-2 px-4 transition-colors ${isDark ? 'bg-slate-900 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'}`}>
-        <span className="font-semibold text-theme-primary dark:text-slate-100">Executive Leadership Focus:</span> Community hospital executives (100–400 beds, MD/DC/PA/VA) with no full-time CIO, plus University Provosts, Deans &amp; Academic Medical Centers (<a href="#higher-education" className="underline font-semibold hover:opacity-80">Higher Ed Practice</a>).
+        <span className="font-semibold text-theme-primary dark:text-slate-100">Executive Leadership Focus:</span> Community hospital leaders (100–400 beds, MD/DC/PA/VA) with no full-time CIO for the $6,500 Diagnostic; Health System Administrators &amp; Public Sector Agency Directors for <a href="#two-practices" className="underline font-semibold hover:opacity-80">Fractional CIO Advisory</a>.
       </div>
 
       <main className="space-y-20 pb-20 executive-grid-pattern">
@@ -549,6 +570,27 @@ export default function App() {
                   <span>You want implementation done for you — this engagement ends at the findings briefing.</span>
                 </li>
               </ul>
+            </div>
+          </div>
+
+          {/* Practice Eligibility & Boundary Clarification */}
+          <div className={`mt-6 p-5 rounded-2xl border transition-colors text-xs leading-relaxed ${isDark ? 'bg-slate-900/60 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-700'}`}>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="space-y-1">
+                <span className="font-mono uppercase font-bold text-theme-primary dark:text-theme-accent">
+                  Who We Serve — Diagnostic vs. Advisory Eligibility:
+                </span>
+                <p>
+                  <strong>The 30-Day Diagnostic ($6,500)</strong> is calibrated strictly for 100–400-bed community hospitals in MD, DC, PA, and VA operating with no full-time CIO on Epic or MEDITECH.
+                  Health system administrators, VPs of Operations, CMOs, and larger regional health systems (e.g., WellSpan, Penn State Health, Tower Health, UPMC) engage via tailored <strong>Healthcare Fractional CIO Advisory</strong> scopes. State, county, and municipal leaders engage via the <strong>Public Sector Modernization Practice</strong>.
+                </p>
+              </div>
+              <a
+                href="#two-practices"
+                className="shrink-0 text-theme-primary dark:text-theme-accent font-bold underline hover:opacity-80"
+              >
+                View Two Practices →
+              </a>
             </div>
           </div>
         </section>
@@ -939,6 +981,111 @@ export default function App() {
           </div>
         </section>
 
+        {/* SECTION 4B: TWO PRACTICES, ONE ENTRY POINT */}
+        <section
+          id="two-practices"
+          aria-labelledby="two-practices-heading"
+          className="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8 scroll-mt-24"
+        >
+          <div className="text-center max-w-3xl mx-auto space-y-2">
+            <span className="text-xs font-mono font-bold uppercase text-theme-primary dark:text-slate-300 flex items-center justify-center gap-1.5">
+              <Briefcase className="w-4 h-4 text-theme-accent" />
+              <span>Executive Practice Structure</span>
+            </span>
+            <h2
+              id="two-practices-heading"
+              className="text-2xl sm:text-3xl font-extrabold text-theme-primary dark:text-white"
+            >
+              Two practices, one entry point
+            </h2>
+            <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+              Diagnostic first, then advisory if the buyer asks or is invited. That preserves our single-offer clarity while making ongoing executive advisory available when needed.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Practice 1: Healthcare Practice */}
+            <div className={`p-6 sm:p-8 rounded-3xl border transition-colors space-y-5 flex flex-col justify-between ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono font-bold uppercase px-3 py-1 rounded-full bg-theme-primary text-white">
+                    Healthcare Practice
+                  </span>
+                  <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold">
+                    Diagnostic Entry: $6,500
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-theme-primary dark:text-white">
+                  Community Hospitals &amp; Health Systems
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Begins with the fixed-fee 30-Day AI Governance &amp; Pilot Diagnostic ($6,500) for 100–400-bed hospitals. If leadership requests ongoing fractional CIO stewardship, EHR interface stabilization, or clinical IT oversight, it transitions seamlessly into an invited advisory mandate.
+                </p>
+                <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                    <span><strong>Diagnostic:</strong> AI inventory, risk tiering, Kill/Scale/Fix list, board one-pager.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                    <span><strong>Advisory (by invite):</strong> Interim CIO, Epic/MEDITECH interface stability, HIPAA compliance.</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <a href="#fit-call" className="text-xs font-bold text-theme-primary dark:text-theme-accent hover:underline">
+                  Book Hospital Fit Call →
+                </a>
+                <a href="#healthcare-fractional-cio" className="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
+                  View Fractional Scope
+                </a>
+              </div>
+            </div>
+
+            {/* Practice 2: Public Sector Practice */}
+            <div className={`p-6 sm:p-8 rounded-3xl border transition-colors space-y-5 flex flex-col justify-between ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono font-bold uppercase px-3 py-1 rounded-full bg-slate-800 text-amber-300">
+                    Public Sector Practice
+                  </span>
+                  <span className="text-xs font-mono text-amber-500 font-bold">
+                    Scoped by Fit Call
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-theme-primary dark:text-white">
+                  State, County &amp; Municipal Agencies
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Grounded in former State CIO leadership. Designed for Agency Directors, City/County Managers, and Public Sector IT Directors retiring fragile legacy mainframes, meeting NIST mandates, and curbing software vendor bloat.
+                </p>
+                <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+                    <span><strong>Diagnostic Assessment:</strong> Legacy migration roadmap, NIST SP 800-53 audit, vendor review.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+                    <span><strong>Advisory:</strong> Executive counsel, cloud governance, FOIA/CJIS data compliance.</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <a href="#public-sector" className="text-xs font-bold text-theme-primary dark:text-theme-accent hover:underline">
+                  Explore Public Sector Practice →
+                </a>
+                <button
+                  type="button"
+                  onClick={() => scrollToForm('two_practices_public_cta', 'Public Sector Modernization Fit Call')}
+                  className="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 cursor-pointer"
+                >
+                  Schedule Fit Call
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* SECTION 5: HOW IT WORKS (INTERACTIVE 4-WEEK STEPPER) */}
         <section
           aria-labelledby="timeline-heading"
@@ -988,7 +1135,7 @@ export default function App() {
                   week: 4,
                   days: 'Days 22–30',
                   title: 'Findings Briefing',
-                  summary: '60-minute briefing + board one-pager delivered. Engagement ends. A retainer is offered only if the buyer asks — do not sell it on this page.',
+                  summary: '60-minute briefing + board one-pager delivered. Diagnostic engagement concludes cleanly. Ongoing fractional CIO leadership is available as a separate post-diagnostic scope if the hospital invites it.',
                   milestone: 'Board one-pager delivered · 60-min live briefing',
                 },
               ].map((step) => (
@@ -1124,6 +1271,286 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        {/* SECTION 6B: HEALTHCARE FRACTIONAL CIO LEADERSHIP */}
+        <section
+          id="healthcare-fractional-cio"
+          aria-labelledby="fractional-cio-heading"
+          className="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8 scroll-mt-24"
+        >
+          <div className="text-center max-w-3xl mx-auto space-y-2">
+            <span className="text-xs font-mono font-bold uppercase text-theme-primary dark:text-slate-300 flex items-center justify-center gap-1.5">
+              <Activity className="w-4 h-4 text-theme-accent" />
+              <span>Post-Diagnostic Leadership Mandate</span>
+            </span>
+            <h2
+              id="fractional-cio-heading"
+              className="text-2xl sm:text-3xl font-extrabold text-theme-primary dark:text-white"
+            >
+              Healthcare Fractional &amp; Interim CIO Leadership
+            </h2>
+            <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+              Available following the 30-Day Diagnostic, or for hospital leadership that has already inventoried its systems and requires interim executive technology stewardship — not as a replacement for the diagnostic.
+            </p>
+          </div>
+
+          <div className={`border rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 transition-colors ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+            <div className={`p-4 sm:p-5 rounded-2xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${isDark ? 'bg-slate-800/80 border-slate-700' : 'bg-white border-slate-200'}`}>
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono font-bold uppercase text-theme-accent tracking-wider">
+                  Post-Diagnostic Stewardship
+                </span>
+                <h3 className="text-sm sm:text-base font-bold text-theme-primary dark:text-white">
+                  Why Fractional CIO Follows the Diagnostic
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+                  We believe hospitals should never hire interim executives on open-ended hourly retainers without first knowing their exact software inventory, risk tiers, and interface debt. The 30-Day Diagnostic delivers that baseline; fractional leadership executes the prioritized roadmap.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => scrollToForm('fractional_cio_top_cta', 'Healthcare Fractional CIO Leadership inquiry')}
+                className="shrink-0 px-4 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast rounded-xl text-xs font-bold transition-opacity cursor-pointer shadow-sm"
+              >
+                Book 30-min fit call
+              </button>
+            </div>
+
+            {/* 5 Core Pillars */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className={`p-5 rounded-2xl border space-y-2 transition-colors ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-lg bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent">
+                    <Activity className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-sm font-bold text-theme-primary dark:text-white">
+                    EHR Maintenance &amp; Interface Stability
+                  </h4>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Active oversight of Epic and MEDITECH core configurations, HL7/FHIR interface engines, laboratory feeds, and third-party clinical platforms to eliminate integration debt.
+                </p>
+              </div>
+
+              <div className={`p-5 rounded-2xl border space-y-2 transition-colors ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-lg bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-sm font-bold text-theme-primary dark:text-white">
+                    HIPAA Security &amp; BAA Enforcement
+                  </h4>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Rigorous verification that all patient data in transit and at rest remains encrypted, Business Associate Agreements are updated annually, and AI tools do not train on hospital PHI.
+                </p>
+              </div>
+
+              <div className={`p-5 rounded-2xl border space-y-2 transition-colors ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-lg bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent">
+                    <Clock className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-sm font-bold text-theme-primary dark:text-white">
+                    Clinical System Uptime &amp; High Availability
+                  </h4>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Ensuring high-availability architecture across emergency departments, intensive care, radiology PACS, and pharmacy dispensing systems to prevent clinician disruption.
+                </p>
+              </div>
+
+              <div className={`p-5 rounded-2xl border space-y-2 transition-colors ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-lg bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent">
+                    <FileCheck2 className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-sm font-bold text-theme-primary dark:text-white">
+                    Vendor SLA &amp; Contract Cost Audits
+                  </h4>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Auditing recurring technology subscriptions, eliminating unused shelfware licenses, and aggressively negotiating renewal terms to protect hospital operating margins.
+                </p>
+              </div>
+
+              <div className={`p-5 rounded-2xl border space-y-2 transition-colors ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-lg bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-sm font-bold text-theme-primary dark:text-white">
+                    Cybersecurity &amp; Cyber Insurance Posture
+                  </h4>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Enforcing company-wide multi-factor authentication (MFA), immutable isolated backups, and simulated ransomware business continuity drills to keep insurance premiums in check.
+                </p>
+              </div>
+
+              <div className={`p-5 rounded-2xl border space-y-2 flex flex-col justify-between transition-colors ${isDark ? 'bg-slate-800/80 border-slate-700' : 'bg-slate-100 border-slate-300'}`}>
+                <div className="space-y-1">
+                  <span className="text-[10px] font-mono font-bold uppercase text-theme-accent">
+                    Engagement Structure
+                  </span>
+                  <h4 className="text-sm font-bold text-theme-primary dark:text-white">
+                    Predictable Monthly Milestone Scope
+                  </h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Zero speculative retainers. Scoped with exact monthly deliverable milestones and regular executive briefings for the CEO and Board.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => scrollToForm('fractional_cio_card_cta', 'Healthcare Fractional CIO Leadership')}
+                  className="w-full mt-2 py-2 px-3 bg-theme-header text-white dark:bg-slate-800 text-xs font-bold rounded-lg hover:opacity-90 transition-opacity cursor-pointer text-center"
+                >
+                  Discuss Fractional Mandate →
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 6C: PUBLIC SECTOR & GOVERNMENT MODERNIZATION PRACTICE */}
+        <section
+          id="public-sector"
+          aria-labelledby="public-sector-heading"
+          className="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8 scroll-mt-24"
+        >
+          <div className="text-center max-w-3xl mx-auto space-y-2">
+            <span className="text-xs font-mono font-bold uppercase text-theme-primary dark:text-slate-300 flex items-center justify-center gap-1.5">
+              <Landmark className="w-4 h-4 text-theme-accent" />
+              <span>State &amp; Local Government Practice</span>
+            </span>
+            <h2
+              id="public-sector-heading"
+              className="text-2xl sm:text-3xl font-extrabold text-theme-primary dark:text-white"
+            >
+              Public Sector &amp; Government IT Modernization
+            </h2>
+            <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+              Executive technology counsel for Agency Directors, City/County Managers, Public Sector CIOs, and Procurement Officers navigating legacy mainframe migration, NIST frameworks, and software contract transparency.
+            </p>
+          </div>
+
+          <div className={`border rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 transition-colors ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+            {/* Grounding Callout */}
+            <div className={`p-5 rounded-2xl border space-y-2 ${isDark ? 'bg-slate-800/80 border-slate-700' : 'bg-white border-slate-200'}`}>
+              <span className="text-[11px] font-mono font-bold uppercase text-theme-accent tracking-wider">
+                State CIO Grounding &amp; Enterprise Track Record
+              </span>
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                Led by <strong>Shafiq Rahman, MS, MBA, MCS, PMP®</strong>. As State CIO &amp; Chief Information &amp; Digital Transformation Officer at the <strong>Maryland Department of Transportation</strong> (Oct 2023–Jan 2026), Shafiq led a $250M+ IT budget, ~1,500 staff across six agencies, co-authored Maryland’s first statewide AI governance policy on the Governor’s AI Sub-cabinet, modernized mainframe infrastructure to Microsoft Azure cloud, and rationalized ~850 applications to ~620, producing ~$6M in recurring annual taxpayer savings.
+              </p>
+            </div>
+
+            {/* Three Core Public Sector Problems */}
+            <div className="space-y-3">
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-theme-primary dark:text-theme-accent">
+                Three Core Public Sector Challenges Solved:
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div className={`p-4 rounded-xl border space-y-2 ${isDark ? 'bg-slate-800/40 border-slate-700' : 'bg-white border-slate-200'}`}>
+                  <div className="font-bold text-theme-primary dark:text-white text-sm">
+                    1. Fragile Legacy Systems &amp; Technical Debt
+                  </div>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Decades-old COBOL mainframes, unmaintained custom applications, and aging on-premise data centers that pose continuous outage and security risks to public services.
+                  </p>
+                </div>
+
+                <div className={`p-4 rounded-xl border space-y-2 ${isDark ? 'bg-slate-800/40 border-slate-700' : 'bg-white border-slate-200'}`}>
+                  <div className="font-bold text-theme-primary dark:text-white text-sm">
+                    2. NIST Framework &amp; Public Data Compliance
+                  </div>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Escalating legislative audit scrutiny, meeting NIST SP 800-53 / CSF baselines, isolating CJIS/PII citizen records, and managing automated FOIA e-discovery retention.
+                  </p>
+                </div>
+
+                <div className={`p-4 rounded-xl border space-y-2 ${isDark ? 'bg-slate-800/40 border-slate-700' : 'bg-white border-slate-200'}`}>
+                  <div className="font-bold text-theme-primary dark:text-white text-sm">
+                    3. Budget Transparency &amp; Vendor Overspend
+                  </div>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Unchecked multi-year software maintenance escalators, redundant vendor subscriptions, and vendor lock-in that drain public sector operational budgets.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* What Public Sector Leaders Get */}
+            <div className={`p-5 rounded-2xl border space-y-4 ${isDark ? 'bg-slate-800/40 border-slate-700' : 'bg-white border-slate-200'}`}>
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-theme-primary dark:text-theme-accent">
+                Public Sector Advisory Deliverables:
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                <div className="space-y-1">
+                  <div className="font-bold text-theme-primary dark:text-white flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                    <span>Legacy Migration Roadmap</span>
+                  </div>
+                  <p className="text-slate-600 dark:text-slate-300">
+                    A realistic 12–24 month phased transition plan from legacy architectures to secure cloud with zero interruption to citizen services.
+                  </p>
+                </div>
+                <div className="space-y-1">
+                  <div className="font-bold text-theme-primary dark:text-white flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                    <span>NIST &amp; Data Security Audit</span>
+                  </div>
+                  <p className="text-slate-600 dark:text-slate-300">
+                    Direct mapping of controls against NIST frameworks, state cyber compliance standards, and automated FOIA archiving guidelines.
+                  </p>
+                </div>
+                <div className="space-y-1">
+                  <div className="font-bold text-theme-primary dark:text-white flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                    <span>Vendor Contract Review</span>
+                  </div>
+                  <p className="text-slate-600 dark:text-slate-300">
+                    Rigorous audit of enterprise software licensing to eliminate shelfware, curb auto-escalators, and identify recurring taxpayer savings.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Public Sector Pricing & Fit Call CTA */}
+            <div className={`p-5 rounded-2xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
+              <div className="space-y-1">
+                <div className="text-xs font-mono font-bold uppercase text-amber-600 dark:text-amber-400">
+                  Engagement Terms
+                </div>
+                <div className="text-sm font-bold text-theme-primary dark:text-white">
+                  Scoped Transparently After an Initial Fit Call
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-400">
+                  Custom scoped based on agency systems complexity, procurement requirements, and strategic goals. No arbitrary price tags.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => scrollToForm('public_sector_fit_cta', 'Public Sector Modernization Fit Call with Shafiq Rahman')}
+                className="shrink-0 px-5 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow cursor-pointer"
+              >
+                Book 30-minute public sector fit call
+              </button>
+            </div>
+
+            {/* Municipal Checklist Lead Magnet */}
+            <div className={`p-4 rounded-xl border text-xs sm:text-sm text-center sm:text-left transition-colors ${isDark ? 'bg-slate-800/60 border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-700'}`}>
+              Want the <strong>Municipal IT Governance &amp; Cybersecurity Checklist</strong> as a one-page PDF for your next council or commission meeting? Email <a href="mailto:info@nexisai.us?subject=Municipal%20checklist" onClick={() => handleEmailClick('municipal_checklist_pdf')} className="text-theme-primary dark:text-theme-accent font-semibold underline">info@nexisai.us</a> with subject 'Municipal checklist' and Shafiq will send it.
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 6D: EXECUTIVE IT MATURITY ASSESSMENT */}
+        <ExecutiveITMaturityAssessment
+          isDark={isDark}
+          onScheduleCall={(notes) => scrollToForm('it_maturity_assessment_cta', notes)}
+        />
 
         {/* SECTION 7: ABOUT SHAFIQ */}
         <section
@@ -1655,12 +2082,14 @@ export default function App() {
                         <option value="CEO">Chief Executive Officer (CEO)</option>
                         <option value="COO">Chief Operating Officer (COO)</option>
                         <option value="Board Chair">Board Chair / Trustee</option>
-                        <option value="Interim CIO">Interim CIO / IT Lead</option>
-                        <option value="CMIO">CMIO / Clinical Lead</option>
-                        <option value="CFO">CFO / Executive Leadership</option>
+                        <option value="Agency Director">Agency Director / Commissioner (Public Sector)</option>
+                        <option value="City / County Manager">City / County Manager (Local Gov)</option>
+                        <option value="Interim CIO">Interim CIO / IT Director (Healthcare or Public Sector)</option>
+                        <option value="CMIO">CMIO / Clinical Informatics Lead</option>
+                        <option value="CFO">CFO / Chief Financial Officer</option>
                         <option value="University Provost / Dean / President">University Provost / Dean / President</option>
                         <option value="Higher Ed CIO / VP IT">Higher Ed CIO / VP of IT</option>
-                        <option value="Other">Other Healthcare / Higher Ed Leader</option>
+                        <option value="Other">Other Executive / Healthcare / Public Sector Leader</option>
                       </select>
                     </div>
 
@@ -1678,7 +2107,7 @@ export default function App() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="jdoe@hospital.org"
+                        placeholder="jdoe@hospital.org or jdoe@agency.gov"
                         className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
                       />
                     </div>
@@ -1690,7 +2119,7 @@ export default function App() {
                         htmlFor="form-beds"
                         className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
                       >
-                        Organization Size / Beds *
+                        Organization Size / Beds / Scope *
                       </label>
                       <select
                         id="form-beds"
@@ -1699,11 +2128,14 @@ export default function App() {
                         onChange={(e) => setFormData({ ...formData, beds: e.target.value })}
                         className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
                       >
-                        <option value="100–199">100–199 beds</option>
-                        <option value="200–299">200–299 beds</option>
-                        <option value="300–400">300–400 beds</option>
-                        <option value="University / Academic Medical Center">University / Academic Medical Center / Health Sciences</option>
-                        <option value="Other">Other / Regional Health System</option>
+                        <option value="100–199">100–199 beds (Community Hospital)</option>
+                        <option value="200–299">200–299 beds (Community Hospital)</option>
+                        <option value="300–400">300–400 beds (Community Hospital)</option>
+                        <option value="Regional Health System / AMC">Regional Health System / Academic Medical Center</option>
+                        <option value="State Agency / Authority">State Agency / Transportation / Authority</option>
+                        <option value="City / County Government">City / County Government Jurisdiction</option>
+                        <option value="University / Higher Ed Campus">University / Higher Education Campus</option>
+                        <option value="Other">Other / Special District</option>
                       </select>
                     </div>
 
@@ -1712,7 +2144,7 @@ export default function App() {
                         htmlFor="form-ehr"
                         className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
                       >
-                        Primary Clinical EHR or Campus ERP *
+                        Primary EHR, ERP, or Core Systems *
                       </label>
                       <select
                         id="form-ehr"
@@ -1723,7 +2155,9 @@ export default function App() {
                       >
                         <option value="Epic">Epic</option>
                         <option value="MEDITECH">MEDITECH</option>
+                        <option value="Oracle Health / Cerner">Oracle Health / Cerner</option>
                         <option value="Both">Both (Migration / Mixed)</option>
+                        <option value="Public Sector Core / Legacy">Government Core (CGI, Tyler, SAP, Oracle Cloud, Mainframe)</option>
                         <option value="Campus SIS / ERP">Campus SIS / ERP (Workday, Banner, PeopleSoft)</option>
                         <option value="Other">Other EHR or ERP Platform</option>
                       </select>
@@ -1743,7 +2177,7 @@ export default function App() {
                       type="text"
                       value={formData.aiToolsRunning}
                       onChange={(e) => setFormData({ ...formData, aiToolsRunning: e.target.value })}
-                      placeholder="e.g., Ambient clinical notes, Radiology triage, RevCycle denial predictor..."
+                      placeholder="e.g., Ambient clinical notes, Radiology triage, RevCycle denial predictor, Citizen chatbots..."
                       className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
                     />
                   </div>
@@ -1761,7 +2195,7 @@ export default function App() {
                       rows={3}
                       value={formData.anythingElse}
                       onChange={(e) => setFormData({ ...formData, anythingElse: e.target.value })}
-                      placeholder="Any specific upcoming board meetings or active vendor renewals..."
+                      placeholder="Any specific upcoming board meetings, council briefings, or active vendor renewals..."
                       className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
                     />
                   </div>
@@ -1839,12 +2273,20 @@ export default function App() {
                 a: 'No — that is the point. This diagnostic is built specifically for community hospitals and health systems operating with an interim CIO, IT director, or no full-time technology executive. It gives leadership and the board fast clarity without having to recruit a full-time executive first.',
               },
               {
-                q: 'Will this slow down our clinicians?',
-                a: 'No — it gives them a clear yes/no list. Clinicians and department heads get rapid certainty on which tools are approved to use, which need data protection fixes first, and which should not be used, eliminating friction and compliance confusion.',
+                q: 'Do you offer ongoing Fractional CIO work?',
+                a: 'Yes. While the entry point for hospitals is typically the 30-day diagnostic (and a fit call for public sector agencies), leadership frequently invites Shafiq to serve as interim or Fractional CIO post-findings. In this capacity, he governs EHR/clinical interface remediations, audits vendor contracts, oversees cyber insurance posture, and manages ongoing NIST/HIPAA compliance. This is scoped on a dedicated monthly advisory agreement.',
               },
               {
                 q: 'Do you implement the fixes?',
-                a: 'No — the diagnostic ends with the 60-minute findings briefing and board one-pager. Implementation is a separate decision for your hospital leadership and internal teams.',
+                a: 'The diagnostic itself ends with the 60-minute findings briefing and board one-pager — there are no hidden or surprise ongoing fees. We do not do junior developer coding. However, if hospital leadership or agency directors invite ongoing executive stewardship, Shafiq can steward your internal staff and vendors through remediation under a separate Fractional CIO or advisory scope.',
+              },
+              {
+                q: 'Do you work outside MD/DC/PA/VA, or with larger systems?',
+                a: 'The fixed-price $6,500 30-day diagnostic is specifically tailored for 100–400 bed community hospitals across MD, DC, PA, and VA. For larger regional health networks (e.g. WellSpan, Penn State Health, UPMC) or public sector government agencies outside these states, fractional CIO advisory, EHR interface audits, and public sector modernization engagements are evaluated and scoped individually on a fit call.',
+              },
+              {
+                q: 'Will this slow down our clinicians?',
+                a: 'No — it gives them a clear yes/no list. Clinicians and department heads get rapid certainty on which tools are approved to use, which need data protection fixes first, and which should not be used, eliminating friction and compliance confusion.',
               },
               {
                 q: 'What if we find no AI in use?',
