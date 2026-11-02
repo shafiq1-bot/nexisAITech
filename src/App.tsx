@@ -46,22 +46,26 @@ const trackEvent = (eventName: string, params: Record<string, any> = {}) => {
   }
 };
 
-type ThemePalette = 'navy' | 'teal' | 'cobalt';
+type ThemePalette = 'cyan' | 'cobalt' | 'emerald' | 'amber';
 
 export default function App() {
   // Dynamic Theme and Dark/Light Mode state
   const [theme, setTheme] = useState<ThemePalette>(() => {
     if (typeof window !== 'undefined') {
-      return (localStorage.getItem('nexis_theme_palette') as ThemePalette) || 'navy';
+      const stored = localStorage.getItem('nexis_theme_palette');
+      if (stored === 'cyan' || stored === 'cobalt' || stored === 'emerald' || stored === 'amber') {
+        return stored;
+      }
     }
-    return 'navy';
+    return 'cyan';
   });
 
   const [isDark, setIsDark] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('nexis_dark_mode') === 'true';
+      const stored = localStorage.getItem('nexis_dark_mode');
+      if (stored !== null) return stored === 'true';
     }
-    return false;
+    return true; // Default to sleek executive dark mode for high-impact AI aesthetic
   });
 
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
@@ -73,9 +77,11 @@ export default function App() {
       localStorage.setItem('nexis_dark_mode', String(isDark));
       
       const root = document.documentElement;
-      root.classList.remove('theme-teal', 'theme-cobalt');
-      if (theme === 'teal') root.classList.add('theme-teal');
+      root.classList.remove('theme-cyan', 'theme-cobalt', 'theme-emerald', 'theme-amber', 'theme-teal');
+      if (theme === 'cyan') root.classList.add('theme-cyan');
       if (theme === 'cobalt') root.classList.add('theme-cobalt');
+      if (theme === 'emerald') root.classList.add('theme-emerald');
+      if (theme === 'amber') root.classList.add('theme-amber');
 
       if (isDark) {
         root.classList.add('dark');
@@ -137,6 +143,55 @@ export default function App() {
   const [calcEhr, setCalcEhr] = useState<'Epic' | 'MEDITECH'>('Epic');
   const [calcPilots, setCalcPilots] = useState<'1-3' | '4-7' | '8+'>('4-7');
   const [calcCioStatus, setCalcCioStatus] = useState<'No full-time CIO' | 'Interim CIO' | 'IT Director'>('No full-time CIO');
+
+  // Executive Service Selection Modal State
+  const [selectedProductModal, setSelectedProductModal] = useState<string | null>(null);
+  const [modalFormData, setModalFormData] = useState({
+    fullName: '',
+    organization: '',
+    email: '',
+    phone: '',
+    notes: '',
+  });
+  const [isModalSubmitting, setIsModalSubmitting] = useState(false);
+  const [modalSuccessMessage, setModalSuccessMessage] = useState('');
+
+  const openProductModal = (productName: string) => {
+    trackEvent('product_modal_open', { product: productName });
+    setSelectedProductModal(productName);
+    setModalSuccessMessage('');
+  };
+
+  const closeProductModal = () => {
+    setSelectedProductModal(null);
+    setModalSuccessMessage('');
+  };
+
+  const handleModalSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsModalSubmitting(true);
+    try {
+      await fetch('/api/it-maturity-assessment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          organization: modalFormData.organization || 'Inquiring Enterprise',
+          evaluator: modalFormData.fullName || 'Executive Leader',
+          title: 'Executive Leader',
+          email: modalFormData.email,
+          phone: modalFormData.phone,
+          date: new Date().toISOString().split('T')[0],
+          selectedChecks: [`Service Inquired: ${selectedProductModal}`],
+          actionRequested: `Direct inquiry for ${selectedProductModal}: ${modalFormData.notes || 'No extra notes'}`,
+        }),
+      });
+      setModalSuccessMessage('Thank you! Shafiq Rahman has received your inquiry directly and will respond within 1 business day.');
+    } catch {
+      setModalSuccessMessage('Thank you! Your inquiry has been registered. You can also pick a calendar slot directly below.');
+    } finally {
+      setIsModalSubmitting(false);
+    }
+  };
 
   // Interactive Board Checklist Checked State
   const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({
@@ -311,10 +366,11 @@ export default function App() {
       <header className="sticky top-0 z-40 bg-theme-header text-white border-b border-theme-header shadow-sm transition-colors duration-200">
         <nav aria-label="Main Navigation" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="text-xl font-bold tracking-tight text-white font-mono">
+            <span className="text-xl font-bold tracking-tight text-white font-mono flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-theme-accent shadow-[0_0_8px_var(--theme-accent)]"></span>
               Nexis AI
             </span>
-            <span className="hidden sm:inline-block text-xs text-slate-300 border-l border-slate-600 pl-3 font-normal">
+            <span className="hidden sm:inline-block text-xs text-slate-300 border-l border-slate-700/80 pl-3 font-normal tracking-wide">
               Healthcare AI Governance · MD, DC, PA, VA
             </span>
           </div>
@@ -325,51 +381,64 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white transition-colors cursor-pointer text-xs"
-                title="Select Theme Color Scheme"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 border border-white/10 text-slate-200 hover:text-white transition-all cursor-pointer text-xs font-medium"
+                title="Select Executive Theme Palette"
                 aria-expanded={isThemeMenuOpen}
               >
-                <Palette className="w-3.5 h-3.5" />
-                <span className="hidden md:inline capitalize">{theme} Theme</span>
+                <Palette className="w-3.5 h-3.5 text-theme-accent" />
+                <span className="hidden md:inline capitalize">{theme} AI Theme</span>
+                <ChevronDown className="w-3 h-3 opacity-70" />
               </button>
 
               {isThemeMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 rounded-xl shadow-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-2 z-50 text-xs text-slate-800 dark:text-slate-200">
-                  <div className="font-bold text-[11px] uppercase tracking-wider text-slate-400 px-2 py-1">
-                    Color Schemes
+                <div className="absolute right-0 mt-2 w-52 rounded-xl shadow-2xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 p-2 z-50 text-xs text-slate-200">
+                  <div className="font-mono font-bold text-[10px] uppercase tracking-wider text-slate-400 px-2 py-1 flex items-center justify-between">
+                    <span>Executive AI Palettes</span>
+                    <span className="text-[9px] text-theme-accent">2026 Fleet</span>
                   </div>
                   <button
                     type="button"
-                    onClick={() => { setTheme('navy'); setIsThemeMenuOpen(false); trackEvent('theme_change', { theme: 'navy' }); }}
-                    className={`w-full text-left px-2 py-1.5 rounded-lg flex items-center justify-between cursor-pointer ${theme === 'navy' ? 'bg-slate-100 dark:bg-slate-800 font-bold' : 'hover:bg-slate-50 dark:hover:bg-slate-800'}`}
+                    onClick={() => { setTheme('cyan'); setIsThemeMenuOpen(false); trackEvent('theme_change', { theme: 'cyan' }); }}
+                    className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between cursor-pointer transition-colors ${theme === 'cyan' ? 'bg-cyan-950/60 text-cyan-200 font-bold border border-cyan-800/50' : 'hover:bg-slate-800 text-slate-300'}`}
                   >
                     <span className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#0F2A44] border border-amber-400"></span>
-                      Executive Navy
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#06B6D4] shadow-[0_0_8px_#06B6D4]"></span>
+                      Quantum Cyan
                     </span>
-                    {theme === 'navy' && <span className="text-amber-500 font-bold">✓</span>}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => { setTheme('teal'); setIsThemeMenuOpen(false); trackEvent('theme_change', { theme: 'teal' }); }}
-                    className={`w-full text-left px-2 py-1.5 rounded-lg flex items-center justify-between cursor-pointer ${theme === 'teal' ? 'bg-slate-100 dark:bg-slate-800 font-bold' : 'hover:bg-slate-50 dark:hover:bg-slate-800'}`}
-                  >
-                    <span className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#0A2429] border border-teal-400"></span>
-                      Clinical Teal
-                    </span>
-                    {theme === 'teal' && <span className="text-teal-400 font-bold">✓</span>}
+                    {theme === 'cyan' && <span className="text-cyan-400 font-bold">✓</span>}
                   </button>
                   <button
                     type="button"
                     onClick={() => { setTheme('cobalt'); setIsThemeMenuOpen(false); trackEvent('theme_change', { theme: 'cobalt' }); }}
-                    className={`w-full text-left px-2 py-1.5 rounded-lg flex items-center justify-between cursor-pointer ${theme === 'cobalt' ? 'bg-slate-100 dark:bg-slate-800 font-bold' : 'hover:bg-slate-50 dark:hover:bg-slate-800'}`}
+                    className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between cursor-pointer transition-colors ${theme === 'cobalt' ? 'bg-blue-950/60 text-blue-200 font-bold border border-blue-800/50' : 'hover:bg-slate-800 text-slate-300'}`}
                   >
                     <span className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#091C36] border border-sky-400"></span>
-                      Cobalt Sapphire
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#3B82F6] shadow-[0_0_8px_#3B82F6]"></span>
+                      Hyper Cobalt
                     </span>
                     {theme === 'cobalt' && <span className="text-sky-400 font-bold">✓</span>}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => { setTheme('emerald'); setIsThemeMenuOpen(false); trackEvent('theme_change', { theme: 'emerald' }); }}
+                    className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between cursor-pointer transition-colors ${theme === 'emerald' ? 'bg-emerald-950/60 text-emerald-200 font-bold border border-emerald-800/50' : 'hover:bg-slate-800 text-slate-300'}`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] shadow-[0_0_8px_#10B981]"></span>
+                      Sovereign Emerald
+                    </span>
+                    {theme === 'emerald' && <span className="text-emerald-400 font-bold">✓</span>}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => { setTheme('amber'); setIsThemeMenuOpen(false); trackEvent('theme_change', { theme: 'amber' }); }}
+                    className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between cursor-pointer transition-colors ${theme === 'amber' ? 'bg-amber-950/60 text-amber-200 font-bold border border-amber-800/50' : 'hover:bg-slate-800 text-slate-300'}`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B] shadow-[0_0_8px_#F59E0B]"></span>
+                      Executive Titanium
+                    </span>
+                    {theme === 'amber' && <span className="text-amber-400 font-bold">✓</span>}
                   </button>
                 </div>
               )}
@@ -383,11 +452,12 @@ export default function App() {
                 setIsDark(nextDark);
                 trackEvent('mode_toggle', { isDark: nextDark });
               }}
-              className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white transition-colors cursor-pointer"
+              className="p-1.5 px-2 rounded-lg bg-white/10 hover:bg-white/15 border border-white/10 text-slate-200 hover:text-white transition-all cursor-pointer flex items-center gap-1.5"
               title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
               aria-label="Toggle dark mode"
             >
               {isDark ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-slate-200" />}
+              <span className="hidden xl:inline text-xs font-mono">{isDark ? 'Dark' : 'Light'}</span>
             </button>
 
             <a
@@ -426,37 +496,50 @@ export default function App() {
 
             <button
               onClick={() => scrollToForm('header_cta')}
-              className="px-3.5 py-1.5 sm:px-4 sm:py-2 bg-theme-accent hover:opacity-90 text-theme-accent-contrast font-bold rounded-lg text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+              className="px-3.5 py-1.5 sm:px-4 sm:py-2 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-lg text-xs sm:text-sm transition-all shadow-md cursor-pointer flex items-center gap-1.5"
             >
-              Book 30-min call
+              <span>Book 30-min call</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </nav>
       </header>
 
       {/* Target Buyer Notice Banner */}
-      <div className={`border-b text-xs text-center font-medium py-2 px-4 transition-colors ${isDark ? 'bg-slate-900 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'}`}>
-        <span className="font-semibold text-theme-primary dark:text-slate-100">Executive Leadership Focus:</span> Community hospital leaders (100–400 beds, MD/DC/PA/VA) with no full-time CIO for the $6,500 Diagnostic; Health System Administrators &amp; Public Sector Agency Directors for <a href="#two-practices" className="underline font-semibold hover:opacity-80">Fractional CIO Advisory</a>.
+      <div className={`border-b text-xs text-center font-medium py-2 px-4 transition-colors ${isDark ? 'bg-slate-950/90 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'}`}>
+        <span className="font-semibold text-theme-accent">Executive Leadership Focus:</span> Community hospital leaders (100–400 beds, MD/DC/PA/VA) with no full-time CIO for the $6,500 Diagnostic; Health System Administrators &amp; Public Sector Agency Directors for <a href="#two-practices" className="underline font-semibold hover:opacity-80">Fractional CIO Advisory</a>.
       </div>
 
-      <main className="space-y-20 pb-20 executive-grid-pattern">
+      <main className="space-y-20 pb-20 executive-grid-pattern relative overflow-hidden">
+        {/* Ambient AI Ray Backdrop */}
+        <div className="ai-ambient-layer" aria-hidden="true" />
         
         {/* SECTION 1: HERO */}
         <section
           aria-labelledby="hero-heading"
-          className="pt-12 sm:pt-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center space-y-8"
+          className="pt-12 sm:pt-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center space-y-8 relative z-10"
         >
-          <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border border-theme-subtle text-xs font-semibold tracking-wide text-theme-primary dark:text-slate-200 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xs">
-              <ShieldCheck className="w-4 h-4 text-theme-accent" />
+          <div className="space-y-5">
+            {/* Live Availability & Instrument Pill */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-theme-subtle text-xs font-mono font-medium tracking-wide text-theme-primary dark:text-cyan-300 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
               <span>30-Day AI Governance &amp; Pilot Diagnostic</span>
+              <span className="text-slate-400 dark:text-slate-600">·</span>
+              <span className="text-slate-700 dark:text-slate-300">Max 2 / Month</span>
             </div>
 
             <h1
               id="hero-heading"
-              className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15] text-theme-primary dark:text-white"
+              className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12] text-slate-900 dark:text-white"
             >
-              Know every AI pilot in your hospital — and which ones to stop, scale, or fix. In 30 days.
+              Know every AI pilot in your hospital —{' '}
+              <span className="bg-gradient-to-r from-theme-accent via-sky-400 to-indigo-300 bg-clip-text text-transparent">
+                and which ones to stop, scale, or fix.
+              </span>{' '}
+              In 30 days.
             </h1>
 
             <p className={`text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed font-normal ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
@@ -465,9 +548,9 @@ export default function App() {
           </div>
 
           {/* Quotable About Nexis AI Callout for AI Answer Engines & Leadership */}
-          <div className={`max-w-3xl mx-auto border rounded-2xl p-5 text-left text-sm leading-relaxed shadow-xs transition-colors ${isDark ? 'bg-slate-900/90 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-700'}`}>
-            <div className="text-xs font-mono font-bold uppercase mb-1.5 flex items-center gap-1.5 text-theme-primary dark:text-slate-200">
-              <Building2 className="w-3.5 h-3.5 text-theme-accent" />
+          <div className={`max-w-3xl mx-auto border rounded-2xl p-6 text-left text-sm leading-relaxed shadow-sm transition-all glow-on-hover ${isDark ? 'bg-slate-900/80 backdrop-blur-md border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-700'}`}>
+            <div className="text-xs font-mono font-bold uppercase mb-2 flex items-center gap-1.5 text-theme-accent">
+              <Building2 className="w-3.5 h-3.5" />
               <span>About Nexis AI</span>
             </div>
             <p>
@@ -478,7 +561,7 @@ export default function App() {
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs font-medium">
             <button
               onClick={() => scrollToForm('hero_primary_cta')}
-              className="w-full sm:w-auto px-6 py-3 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-sm transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-7 py-3.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-sm transition-all shadow-lg hover:shadow-cyan-500/20 cursor-pointer flex items-center justify-center gap-2"
             >
               <span>Book a 30-minute fit call</span>
               <ArrowRight className="w-4 h-4" />
@@ -486,7 +569,7 @@ export default function App() {
 
             <a
               href="#risk-calculator"
-              className={`w-full sm:w-auto px-5 py-3 border rounded-xl text-sm transition-colors cursor-pointer flex items-center justify-center gap-2 ${isDark ? 'border-slate-700 hover:bg-slate-800 text-slate-200' : 'border-slate-300 hover:bg-slate-100 text-slate-800'}`}
+              className={`w-full sm:w-auto px-6 py-3.5 border rounded-xl text-sm font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${isDark ? 'border-slate-700 hover:border-slate-500 bg-slate-900/60 hover:bg-slate-800 text-slate-200' : 'border-slate-300 hover:bg-slate-100 text-slate-800'}`}
             >
               <SlidersHorizontal className="w-4 h-4 text-theme-accent" />
               <span>Estimate Hospital AI Scope</span>
@@ -494,22 +577,34 @@ export default function App() {
           </div>
 
           {/* Key Facts Metric Ribbon */}
-          <div className={`pt-6 border-t grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left text-xs ${isDark ? 'border-slate-800 text-slate-400' : 'border-slate-200 text-slate-500'}`}>
-            <div>
-              <span className="block font-mono text-sm sm:text-base font-bold text-theme-primary dark:text-slate-100">$6,500 USD</span>
-              <span className="text-[11px]">Fixed One-Time Fee</span>
+          <div className={`pt-6 border-t grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left text-xs ${isDark ? 'border-slate-800/80 text-slate-400' : 'border-slate-200 text-slate-500'}`}>
+            <div className="p-3 rounded-xl border border-transparent dark:hover:border-slate-800 transition-colors">
+              <span className="block font-mono text-sm sm:text-base font-extrabold text-theme-accent font-mono">$6,500 USD</span>
+              <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Fixed One-Time Fee</span>
             </div>
-            <div>
-              <span className="block font-mono text-sm sm:text-base font-bold text-theme-primary dark:text-slate-100">30 Calendar Days</span>
-              <span className="text-[11px]">Kickoff to Final Readout</span>
+            <div className="p-3 rounded-xl border border-transparent dark:hover:border-slate-800 transition-colors">
+              <span className="block font-mono text-sm sm:text-base font-extrabold text-slate-900 dark:text-slate-100">30 Calendar Days</span>
+              <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Kickoff to Final Readout</span>
             </div>
-            <div>
-              <span className="block font-mono text-sm sm:text-base font-bold text-theme-primary dark:text-slate-100">Max 2 / Month</span>
-              <span className="text-[11px]">Strict Capacity Cap</span>
+            <div className="p-3 rounded-xl border border-transparent dark:hover:border-slate-800 transition-colors">
+              <span className="block font-mono text-sm sm:text-base font-extrabold text-slate-900 dark:text-slate-100">Max 2 / Month</span>
+              <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Strict Capacity Cap</span>
             </div>
-            <div>
-              <span className="block font-mono text-sm sm:text-base font-bold text-theme-primary dark:text-slate-100">Shafiq Rahman</span>
-              <span className="text-[11px]">Former Maryland State CIO</span>
+            <div className="p-3 rounded-xl border border-transparent dark:hover:border-slate-800 transition-colors">
+              <span className="block font-mono text-sm sm:text-base font-extrabold text-slate-900 dark:text-slate-100">Shafiq Rahman</span>
+              <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Former Maryland State CIO</span>
+            </div>
+          </div>
+        </section>
+
+        {/* EXECUTIVE TRUST & BENCHMARK BAR */}
+        <section aria-label="Executive Benchmarks" className="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          <div className={`p-4 rounded-2xl border transition-all ${isDark ? 'ai-glass-panel border-white/10 text-slate-300' : 'bg-slate-100/90 border-slate-200 text-slate-700 shadow-xs'}`}>
+            <div className="flex flex-wrap justify-around items-center gap-4 text-xs font-mono font-medium tracking-wide text-center">
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0" /> $20M–$250M Operating Scale &amp; 100–400 Beds Focus</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0" /> HIPAA &amp; NIST AI RMF Alignment</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0" /> 30-Day Time-To-Value Guaranteed</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0" /> $6,500 Fixed-Fee Transparency</span>
             </div>
           </div>
         </section>
@@ -1189,27 +1284,35 @@ export default function App() {
           aria-labelledby="pricing-heading"
           className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
         >
-          <div className="bg-theme-header text-white rounded-3xl p-8 sm:p-12 space-y-8 shadow-xl transition-colors">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
+          <div className="relative rounded-3xl p-8 sm:p-12 space-y-8 shadow-2xl transition-all border border-white/10 bg-gradient-to-b from-[#091122] via-[#070D1B] to-[#040812] text-white overflow-hidden glow-on-hover">
+            {/* Subtle Aurora Ambient Radial */}
+            <div className="absolute -top-32 -right-32 w-96 h-96 bg-theme-accent/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
               <div>
-                <span className="text-xs font-mono uppercase bg-theme-accent text-theme-accent-contrast px-2.5 py-1 rounded font-extrabold">
+                <span className="text-[11px] font-mono uppercase bg-theme-accent text-theme-accent-contrast px-3 py-1 rounded-md font-extrabold tracking-wider">
                   The Offer
                 </span>
                 <h2
                   id="pricing-heading"
-                  className="text-2xl sm:text-4xl font-extrabold text-white mt-2"
+                  className="text-2xl sm:text-4xl font-extrabold text-white mt-3 tracking-tight"
                 >
                   30-Day AI Governance &amp; Pilot Diagnostic
                 </h2>
               </div>
               <div className="text-left sm:text-right">
-                <div className="text-3xl sm:text-4xl font-black text-theme-accent font-mono">
+                <div className="text-4xl sm:text-5xl font-black text-theme-accent font-mono tracking-tight drop-shadow-[0_0_16px_var(--theme-glow)]">
                   $6,500
                 </div>
-                <div className="text-xs text-amber-300 font-medium mt-1">
-                  Now booking: November 2026 — maximum 2 diagnostics per month.
+                <div className="text-xs text-amber-300 dark:text-cyan-300 font-medium mt-1.5 flex items-center gap-1.5 sm:justify-end">
+                  <span className="relative flex h-2 w-2 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span>Now booking: November 2026 — maximum 2 diagnostics per month.</span>
                 </div>
-                <div className="text-xs text-slate-300 font-mono mt-0.5">
+                <div className="text-xs text-slate-400 font-mono mt-0.5">
                   One-time fixed fee
                 </div>
               </div>
@@ -1402,11 +1505,118 @@ export default function App() {
                 </div>
                 <button
                   type="button"
-                  onClick={() => scrollToForm('fractional_cio_card_cta', 'Healthcare Fractional CIO Leadership')}
-                  className="w-full mt-2 py-2 px-3 bg-theme-header text-white dark:bg-slate-800 text-xs font-bold rounded-lg hover:opacity-90 transition-opacity cursor-pointer text-center"
+                  onClick={() => openProductModal('Healthcare Fractional CIO Leadership')}
+                  className="w-full mt-2 py-2 px-3 bg-theme-accent text-theme-accent-contrast text-xs font-bold rounded-lg hover:opacity-90 transition-opacity cursor-pointer text-center"
                 >
                   Discuss Fractional Mandate →
                 </button>
+              </div>
+            </div>
+
+            {/* Recurring Fractional CIO Retainer Architecture */}
+            <div className="pt-8 border-t border-slate-200 dark:border-slate-800 space-y-6">
+              <div className="text-center max-w-2xl mx-auto space-y-1">
+                <span className="text-[11px] font-mono font-bold uppercase text-theme-accent tracking-wider">
+                  Recurring Executive Advisory Scopes
+                </span>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-theme-primary dark:text-white">
+                  Fractional CIO Retainer Architecture
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Select the tier of executive technology leadership aligned with your hospital or agency's complexity, compliance needs, and modernization roadmap.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+                {/* Tier 1 */}
+                <div className={`p-6 rounded-2xl border transition-all flex flex-col justify-between ${isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-white border-slate-200 shadow-xs'}`}>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">Tier 1</span>
+                      <span className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400">~10–15 hrs/mo</span>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-theme-primary dark:text-white">Strategic Advisor</h4>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">High-level C-suite steering for health systems with active IT operational managers.</p>
+                    </div>
+                    <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800 pt-3">
+                      <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" /><span>Semi-monthly executive briefings</span></li>
+                      <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" /><span>IT Steering Committee leadership</span></li>
+                      <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" /><span>Quarterly technology strategy update</span></li>
+                      <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" /><span>Vendor SLA &amp; pricing governance</span></li>
+                    </ul>
+                  </div>
+                  <div className="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
+                    <button
+                      type="button"
+                      onClick={() => openProductModal('Tier 1: Strategic Technology Advisor')}
+                      className="w-full py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-white dark:bg-slate-800 text-xs font-bold rounded-xl transition-all cursor-pointer text-center"
+                    >
+                      Inquire About Advisor Tier →
+                    </button>
+                  </div>
+                </div>
+
+                {/* Tier 2 (Highlighted) */}
+                <div className={`p-6 rounded-2xl border-2 border-theme-accent relative transition-all flex flex-col justify-between shadow-xl ${isDark ? 'bg-slate-900/90' : 'bg-slate-900 text-white'}`}>
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-theme-accent text-theme-accent-contrast text-[10px] font-mono font-extrabold uppercase tracking-widest px-3 py-0.5 rounded-full shadow-md">
+                    Most Requested
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-theme-accent">Tier 2</span>
+                      <span className="text-xs font-mono font-bold text-theme-accent">1–2 Days / Week</span>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-white">Fractional Executive CIO</h4>
+                      <p className="text-xs text-slate-300 mt-1">Active executive technology leadership without full-time C-suite overhead.</p>
+                    </div>
+                    <ul className="space-y-2 text-xs text-slate-200 border-t border-white/10 pt-3">
+                      <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" /><span>Direct IT staff guidance &amp; management</span></li>
+                      <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" /><span>EHR / ERP / Cloud modernization lead</span></li>
+                      <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" /><span>CAPEX / OPEX budget &amp; vendor contract audit</span></li>
+                      <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" /><span>Direct board and executive committee seat</span></li>
+                    </ul>
+                  </div>
+                  <div className="pt-4 mt-4 border-t border-white/10">
+                    <button
+                      type="button"
+                      onClick={() => openProductModal('Tier 2: Fractional Executive CIO')}
+                      className="w-full py-2.5 px-4 bg-theme-accent hover:opacity-95 text-theme-accent-contrast text-xs font-extrabold rounded-xl transition-all cursor-pointer text-center shadow-md"
+                    >
+                      Engage Fractional CIO →
+                    </button>
+                  </div>
+                </div>
+
+                {/* Tier 3 */}
+                <div className={`p-6 rounded-2xl border transition-all flex flex-col justify-between ${isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-white border-slate-200 shadow-xs'}`}>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">Tier 3</span>
+                      <span className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400">Dedicated Mandate</span>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-theme-primary dark:text-white">Interim Transformation Lead</h4>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">High-intensity executive stewardship for major overhauls and turnarounds.</p>
+                    </div>
+                    <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800 pt-3">
+                      <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" /><span>Dedicated engagement (up to 2.5 days/week)</span></li>
+                      <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" /><span>Legacy mainframe / EHR cloud migration</span></li>
+                      <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" /><span>Zero Trust &amp; enterprise AI implementation</span></li>
+                      <li className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" /><span>Accelerated 3–9 month turnaround milestones</span></li>
+                    </ul>
+                  </div>
+                  <div className="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
+                    <button
+                      type="button"
+                      onClick={() => openProductModal('Tier 3: Interim Transformation Lead')}
+                      className="w-full py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-white dark:bg-slate-800 text-xs font-bold rounded-xl transition-all cursor-pointer text-center"
+                    >
+                      Request Transformation Mandate →
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -2399,6 +2609,185 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Executive Service Selection & Inquiry Modal */}
+      {selectedProductModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 bg-slate-950/75 backdrop-blur-md flex items-center justify-center p-4 z-50 animate-in fade-in duration-200"
+          onClick={closeProductModal}
+        >
+          <div
+            className={`relative w-full max-w-md rounded-2xl p-6 sm:p-8 border shadow-2xl transition-all ${
+              isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-200 text-slate-900'
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={closeProductModal}
+              className="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+              aria-label="Close Modal"
+            >
+              <XCircle className="w-5 h-5" />
+            </button>
+
+            <div className="space-y-1 mb-5">
+              <span className="text-[11px] font-mono font-bold uppercase text-theme-accent tracking-wider">
+                Executive Engagement Inquiry
+              </span>
+              <h3 className="text-xl font-bold tracking-tight">
+                {selectedProductModal}
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                Direct confidential review by Shafiq Rahman, former Maryland State CIO.
+              </p>
+            </div>
+
+            {modalSuccessMessage ? (
+              <div className="space-y-4 py-4 text-center">
+                <div className="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-500 mx-auto flex items-center justify-center">
+                  <CheckCircle2 className="w-6 h-6" />
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-base font-bold">Inquiry Dispatched</h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-300">
+                    {modalSuccessMessage}
+                  </p>
+                </div>
+                <div className="pt-2 flex flex-col gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      closeProductModal();
+                      scrollToForm('modal_success_booking');
+                    }}
+                    className="w-full py-2.5 px-4 bg-theme-accent hover:opacity-95 text-theme-accent-contrast text-xs font-bold rounded-xl transition-all cursor-pointer shadow"
+                  >
+                    Select Calendar Slot (Optional) →
+                  </button>
+                  <button
+                    type="button"
+                    onClick={closeProductModal}
+                    className="w-full py-2 px-4 border border-slate-700 text-slate-300 text-xs font-medium rounded-xl hover:bg-slate-800 transition-colors"
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleModalSubmit} className="space-y-4 text-xs">
+                <div>
+                  <label htmlFor="modal-name" className="block font-mono font-bold uppercase mb-1 text-slate-700 dark:text-slate-300">
+                    Your Name *
+                  </label>
+                  <input
+                    id="modal-name"
+                    type="text"
+                    required
+                    value={modalFormData.fullName}
+                    onChange={(e) => setModalFormData({ ...modalFormData, fullName: e.target.value })}
+                    placeholder="Full Name"
+                    className={`w-full px-3 py-2 rounded-xl border focus:outline-none focus:ring-2 focus:ring-theme-accent ${
+                      isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
+                    }`}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="modal-org" className="block font-mono font-bold uppercase mb-1 text-slate-700 dark:text-slate-300">
+                    Hospital or Agency Name *
+                  </label>
+                  <input
+                    id="modal-org"
+                    type="text"
+                    required
+                    value={modalFormData.organization}
+                    onChange={(e) => setModalFormData({ ...modalFormData, organization: e.target.value })}
+                    placeholder="Hospital / Agency Name"
+                    className={`w-full px-3 py-2 rounded-xl border focus:outline-none focus:ring-2 focus:ring-theme-accent ${
+                      isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
+                    }`}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="modal-email" className="block font-mono font-bold uppercase mb-1 text-slate-700 dark:text-slate-300">
+                    Work Email *
+                  </label>
+                  <input
+                    id="modal-email"
+                    type="email"
+                    required
+                    value={modalFormData.email}
+                    onChange={(e) => setModalFormData({ ...modalFormData, email: e.target.value })}
+                    placeholder="jdoe@hospital.org"
+                    className={`w-full px-3 py-2 rounded-xl border focus:outline-none focus:ring-2 focus:ring-theme-accent ${
+                      isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
+                    }`}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="modal-phone" className="block font-mono font-bold uppercase mb-1 text-slate-700 dark:text-slate-300">
+                    Direct Phone (optional)
+                  </label>
+                  <input
+                    id="modal-phone"
+                    type="tel"
+                    value={modalFormData.phone}
+                    onChange={(e) => setModalFormData({ ...modalFormData, phone: e.target.value })}
+                    placeholder="+1 (410) 555-0199"
+                    className={`w-full px-3 py-2 rounded-xl border focus:outline-none focus:ring-2 focus:ring-theme-accent ${
+                      isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
+                    }`}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="modal-notes" className="block font-mono font-bold uppercase mb-1 text-slate-700 dark:text-slate-300">
+                    Specific Priorities / Questions (optional)
+                  </label>
+                  <textarea
+                    id="modal-notes"
+                    rows={2}
+                    value={modalFormData.notes}
+                    onChange={(e) => setModalFormData({ ...modalFormData, notes: e.target.value })}
+                    placeholder="Key systems involved, upcoming renewals, or desired timeline..."
+                    className={`w-full px-3 py-2 rounded-xl border focus:outline-none focus:ring-2 focus:ring-theme-accent ${
+                      isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
+                    }`}
+                  />
+                </div>
+
+                <div className="pt-2 space-y-2">
+                  <button
+                    type="submit"
+                    disabled={isModalSubmitting}
+                    className="w-full py-3 px-4 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow-md cursor-pointer disabled:opacity-50"
+                  >
+                    {isModalSubmitting ? 'Dispatching to Shafiq...' : 'Submit Inquiry — Direct Review'}
+                  </button>
+                  <div className="text-center">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const product = selectedProductModal;
+                        closeProductModal();
+                        scrollToForm('modal_switch_to_calendar', `Inquiring about ${product}`);
+                      }}
+                      className="text-[11px] text-slate-400 hover:text-white underline cursor-pointer"
+                    >
+                      Or pick a 30-min slot on the live calendar directly
+                    </button>
+                  </div>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
 
     </div>
   );

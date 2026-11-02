@@ -282,14 +282,19 @@ export const ExecutiveITMaturityAssessment: React.FC<ExecutiveITMaturityAssessme
       </div>
 
       <div
-        className={`border-2 rounded-3xl p-6 sm:p-10 shadow-lg space-y-8 transition-colors ${
-          isDark ? 'bg-slate-900 border-slate-700' : 'bg-white border-theme-primary/30'
+        className={`relative rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 transition-all overflow-hidden ${
+          isDark ? 'ai-glass-panel border border-white/10 glow-on-hover' : 'bg-white border border-slate-200 shadow-md'
         }`}
       >
+        {/* Subtle Ambient Radial Highlight */}
+        <div className="absolute -top-24 -right-24 w-80 h-80 bg-theme-accent/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+
         {/* Terminal Header Bar */}
-        <div className={`p-4 rounded-2xl border font-mono text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 ${isDark ? 'bg-slate-950 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'}`}>
+        <div className={`relative z-10 p-4 rounded-2xl border font-mono text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 ${isDark ? 'bg-slate-950/80 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'}`}>
           <div className="space-y-0.5">
-            <div className="font-bold uppercase tracking-wider text-theme-primary dark:text-theme-accent">
+            <div className="font-bold uppercase tracking-wider text-theme-accent flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-theme-accent shadow-[0_0_8px_var(--theme-accent)]"></span>
               Self-Administered Diagnostic Worksheet
             </div>
             <div className="text-[11px] text-slate-500 dark:text-slate-400">
@@ -554,7 +559,7 @@ export const ExecutiveITMaturityAssessment: React.FC<ExecutiveITMaturityAssessme
                   Real-Time Rubric Score
                 </span>
                 <div className="flex items-baseline gap-2 mt-1">
-                  <span className="text-3xl sm:text-4xl font-mono font-extrabold text-theme-primary dark:text-white">
+                  <span className="text-3xl sm:text-4xl font-mono font-extrabold text-theme-accent dark:text-white drop-shadow-[0_0_12px_var(--theme-glow)]">
                     {checkedCount} / 9
                   </span>
                   <span className="text-xs font-semibold text-slate-500">
@@ -564,10 +569,24 @@ export const ExecutiveITMaturityAssessment: React.FC<ExecutiveITMaturityAssessme
               </div>
 
               <div className="flex items-center gap-2">
-                <span className={`px-3 py-1.5 rounded-xl border text-xs font-bold font-mono uppercase flex items-center gap-1.5 ${interpretation.badgeColor}`}>
+                <span className={`px-3 py-1.5 rounded-xl border text-xs font-bold font-mono uppercase flex items-center gap-1.5 shadow-sm ${interpretation.badgeColor}`}>
                   <interpretation.icon className="w-4 h-4" />
                   <span>{interpretation.level}</span>
                 </span>
+              </div>
+            </div>
+
+            {/* Rubric Progress Meter */}
+            <div className="space-y-1">
+              <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                <span>Verification Maturity Index</span>
+                <span>{Math.round((checkedCount / 9) * 100)}%</span>
+              </div>
+              <div className="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
+                <div
+                  className="bg-gradient-to-r from-theme-accent to-emerald-400 h-2 rounded-full transition-all duration-500 ease-out shadow-[0_0_8px_var(--theme-glow)]"
+                  style={{ width: `${(checkedCount / 9) * 100}%` }}
+                />
               </div>
             </div>
 
