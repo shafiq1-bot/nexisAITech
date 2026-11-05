@@ -170,6 +170,12 @@ export default function App() {
   const handleModalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsModalSubmitting(true);
+    trackEvent('generate_lead', {
+      lead_source: 'service_inquiry_modal',
+      service_name: selectedProductModal || 'General Executive Advisory',
+      organization: modalFormData.organization || 'Inquiring Enterprise',
+      email: modalFormData.email,
+    });
     try {
       await fetch('/api/it-maturity-assessment', {
         method: 'POST',

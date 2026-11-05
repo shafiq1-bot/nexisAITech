@@ -196,6 +196,19 @@ export const ExecutiveITMaturityAssessment: React.FC<ExecutiveITMaturityAssessme
       coreInfrastructure: ASSESSMENT_ITEMS.filter((i) => i.category === 'core' && checkedIds[i.id]).length,
     };
 
+    if (typeof window !== 'undefined') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'generate_lead',
+        lead_source: 'executive_it_maturity_assessment',
+        score: checkedCount,
+        max_score: 9,
+        tier: interpretation.summary,
+        organization,
+        evaluator,
+      });
+    }
+
     try {
       const response = await fetch('/api/it-maturity-assessment', {
         method: 'POST',

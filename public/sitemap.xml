@@ -4,14 +4,68 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nexisai.us/</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="canonical" href="https://nexisai.us/" />
     <image:image>
       <image:loc>https://nexisai.us/profile_circle.png</image:loc>
       <image:title>Shafiq Rahman, MS, MBA, MCS, PMP® — Founder, Nexis AI &amp; Former Maryland State CIO</image:title>
-      <image:caption>Shafiq Rahman leads the 30-Day AI Governance &amp; Pilot Diagnostic for community hospitals in Maryland, DC, Pennsylvania, and Virginia.</image:caption>
+      <image:caption>Shafiq Rahman leads the 30-Day AI Governance &amp; Pilot Diagnostic ($6,500) and Healthcare Fractional CIO advisory for community hospitals in MD, DC, PA, and VA.</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#two-practices</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#healthcare-fractional-cio</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#public-sector</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#higher-ed</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#it-maturity-assessment</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#board-checklist</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#about-shafiq</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#faq</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#fit-call</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>
