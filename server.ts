@@ -143,8 +143,14 @@ Offer: 30-Day AI Governance & Pilot Diagnostic
     <image:image>
       <image:loc>https://nexisai.us/profile_circle.png</image:loc>
       <image:title>Shafiq Rahman, MS, MBA, MCS, PMP® — Founder, Nexis AI</image:title>
-      <image:caption>Shafiq Rahman leads the 30-Day AI Governance &amp; Pilot Diagnostic for community hospitals in Maryland, DC, Pennsylvania, and Virginia.</image:caption>
+      <image:caption>Shafiq Rahman leads the 30-Day AI Governance &amp; Pilot Diagnostic, Fractional CIO Advisory, Managed Helpdesk, 24x7 SOC, and Infrastructure Services nationwide across the United States.</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#managed-services</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>`;
 

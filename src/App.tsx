@@ -25,6 +25,9 @@ import {
   Landmark,
   Activity,
   FileCheck2,
+  Headphones,
+  ShieldAlert,
+  Server,
 } from 'lucide-react';
 import { ExecutiveITMaturityAssessment } from './components/ExecutiveITMaturityAssessment';
 
@@ -99,6 +102,7 @@ export default function App() {
     email: '',
     beds: '100–400',
     ehr: 'Epic',
+    serviceInterest: '30-Day AI Governance & Pilot Diagnostic ($6,500)',
     aiToolsRunning: '',
     anythingElse: '',
   });
@@ -110,6 +114,7 @@ export default function App() {
   const [previewFilter, setPreviewFilter] = useState<'all' | 'high' | 'medium' | 'scale'>('all');
   const [activeTimelineWeek, setActiveTimelineWeek] = useState<number>(1);
   const [bookingMethod, setBookingMethod] = useState<'calendar' | 'form'>('calendar');
+  const [activeManagedService, setActiveManagedService] = useState<'all' | 'helpdesk' | 'soc' | 'infrastructure'>('all');
 
   // Initialize Cal.com inline embed for 30min slot
   useEffect(() => {
@@ -222,8 +227,8 @@ export default function App() {
     setIsSubmitting(true);
 
     trackEvent('generate_lead', {
-      service_name: '30-Day AI Governance & Pilot Diagnostic',
-      value: 6500,
+      service_name: formData.serviceInterest || '30-Day AI Governance & Pilot Diagnostic',
+      value: formData.serviceInterest.includes('Diagnostic') ? 6500 : undefined,
       currency: 'USD',
       hospital_beds: formData.beds,
       ehr_system: formData.ehr,
@@ -242,8 +247,8 @@ export default function App() {
           email: formData.email,
           hospitalBeds: formData.beds,
           ehrSystem: formData.ehr,
-          serviceInterest: '30-Day AI Governance & Pilot Diagnostic ($6,500)',
-          message: `Beds: ${formData.beds} | EHR: ${formData.ehr} | AI Tools Running: ${formData.aiToolsRunning || 'Not specified'} | Notes: ${formData.anythingElse || 'None'}`,
+          serviceInterest: formData.serviceInterest || '30-Day AI Governance & Pilot Diagnostic ($6,500)',
+          message: `Service: ${formData.serviceInterest} | Beds/Scope: ${formData.beds} | EHR/ERP: ${formData.ehr} | AI Tools Running: ${formData.aiToolsRunning || 'Not specified'} | Notes: ${formData.anythingElse || 'None'}`,
         }),
       });
 
@@ -377,7 +382,7 @@ export default function App() {
               Nexis AI
             </span>
             <span className="hidden sm:inline-block text-xs text-slate-300 border-l border-slate-700/80 pl-3 font-normal tracking-wide">
-              Healthcare AI Governance · MD, DC, PA, VA
+              AI Governance &amp; Executive IT · Nationwide US
             </span>
           </div>
 
@@ -468,7 +473,7 @@ export default function App() {
 
             <a
               href="#two-practices"
-              className="hidden md:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors"
+              className="hidden md:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors whitespace-nowrap shrink-0"
             >
               <Briefcase className="w-3.5 h-3.5 text-theme-accent" />
               <span>Practices</span>
@@ -476,15 +481,23 @@ export default function App() {
 
             <a
               href="#public-sector"
-              className="hidden lg:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors"
+              className="hidden lg:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors whitespace-nowrap shrink-0"
             >
               <Landmark className="w-3.5 h-3.5 text-theme-accent" />
               <span>Public Sector</span>
             </a>
 
             <a
+              href="#managed-services"
+              className="hidden md:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors whitespace-nowrap shrink-0"
+            >
+              <Server className="w-3.5 h-3.5 text-theme-accent" />
+              <span>Services</span>
+            </a>
+
+            <a
               href="#it-maturity-assessment"
-              className="hidden lg:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors"
+              className="hidden lg:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors whitespace-nowrap shrink-0"
             >
               <Layers className="w-3.5 h-3.5 text-theme-accent" />
               <span>Assessment</span>
@@ -513,7 +526,7 @@ export default function App() {
 
       {/* Target Buyer Notice Banner */}
       <div className={`border-b text-xs text-center font-medium py-2 px-4 transition-colors ${isDark ? 'bg-slate-950/90 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'}`}>
-        <span className="font-semibold text-theme-accent">Executive Leadership Focus:</span> Community hospital leaders (100–400 beds, MD/DC/PA/VA) with no full-time CIO for the $6,500 Diagnostic; Health System Administrators &amp; Public Sector Agency Directors for <a href="#two-practices" className="underline font-semibold hover:opacity-80">Fractional CIO Advisory</a>.
+        <span className="font-semibold text-theme-accent">Nationwide Executive Focus:</span> Community hospital leaders (100–400 beds, US nationwide) with no full-time CIO for the $6,500 Diagnostic; Health Systems, Higher Ed &amp; Public Sector agencies nationwide for <a href="#two-practices" className="underline font-semibold hover:opacity-80">Fractional CIO Advisory</a> &amp; <a href="#managed-services" className="underline font-semibold hover:opacity-80">Managed Services</a>.
       </div>
 
       <main className="space-y-20 pb-20 executive-grid-pattern relative overflow-hidden">
@@ -560,7 +573,7 @@ export default function App() {
               <span>About Nexis AI</span>
             </div>
             <p>
-              Nexis AI is an executive healthcare technology advisory firm based in Ellicott City, Maryland, founded by Shafiq Rahman, MS, MBA, MCS, PMP® (former Maryland State CIO). Nexis AI offers a single engagement: the 30-Day AI Governance &amp; Pilot Diagnostic, a fixed-price ($6,500) review for community hospital leadership across Maryland, DC, Pennsylvania, and Virginia.
+              Nexis AI is an executive technology advisory and managed IT operations firm based in Ellicott City, Maryland, founded by Shafiq Rahman, MS, MBA, MCS, PMP® (former Maryland State CIO). Serving organizations nationwide across the United States, Nexis AI offers the fixed-price 30-Day AI Governance &amp; Pilot Diagnostic ($6,500) for community hospitals, alongside Fractional CIO leadership, Public Sector &amp; Higher Education modernization, Managed Helpdesk, 24x7 SOC, and Infrastructure Services.
             </p>
           </div>
 
@@ -632,7 +645,7 @@ export default function App() {
               <ul className="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                 <li className="flex items-start gap-2.5">
                   <span className="text-emerald-500 font-bold shrink-0 mt-0.5">•</span>
-                  <span>You are the CEO, COO, or Board Chair of a 100–400-bed community hospital in MD, DC, PA, or VA.</span>
+                  <span>You are the CEO, COO, or Board Chair of a 100–400-bed community hospital anywhere in the United States.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-emerald-500 font-bold shrink-0 mt-0.5">•</span>
@@ -682,8 +695,8 @@ export default function App() {
                   Who We Serve — Diagnostic vs. Advisory Eligibility:
                 </span>
                 <p>
-                  <strong>The 30-Day Diagnostic ($6,500)</strong> is calibrated strictly for 100–400-bed community hospitals in MD, DC, PA, and VA operating with no full-time CIO on Epic or MEDITECH.
-                  Health system administrators, VPs of Operations, CMOs, and larger regional health systems (e.g., WellSpan, Penn State Health, Tower Health, UPMC) engage via tailored <strong>Healthcare Fractional CIO Advisory</strong> scopes. State, county, and municipal leaders engage via the <strong>Public Sector Modernization Practice</strong>.
+                  <strong>The 30-Day Diagnostic ($6,500)</strong> is calibrated for 100–400-bed community hospitals nationwide operating with no full-time CIO on Epic or MEDITECH.
+                  Health system administrators, VPs of Operations, CMOs, and multi-hospital networks across the United States engage via tailored <strong>Healthcare Fractional CIO Advisory</strong>, <strong>Managed Helpdesk</strong>, <strong>24x7 SOC</strong>, and <strong>Infrastructure Services</strong>. State, county, municipal, and higher education leaders nationwide engage via our <strong>Public Sector &amp; Higher Education Practices</strong>.
                 </p>
               </div>
               <a
@@ -1762,6 +1775,232 @@ export default function App() {
           </div>
         </section>
 
+        {/* SECTION 6C-BIS: MANAGED HELPDESK, 24x7 SOC & INFRASTRUCTURE SERVICES */}
+        <section
+          id="managed-services"
+          aria-labelledby="managed-services-heading"
+          className="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8 scroll-mt-24"
+        >
+          <div className="text-center max-w-3xl mx-auto space-y-2">
+            <span className="text-xs font-mono font-bold uppercase text-theme-primary dark:text-slate-300 flex items-center justify-center gap-1.5">
+              <Server className="w-4 h-4 text-theme-accent" />
+              <span>Enterprise Operations &amp; Security</span>
+            </span>
+            <h2
+              id="managed-services-heading"
+              className="text-2xl sm:text-3xl font-extrabold text-theme-primary dark:text-white"
+            >
+              Managed Helpdesk, 24x7 SOC &amp; Infrastructure Services
+            </h2>
+            <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+              Operational technology support, continuous security monitoring, and resilient hybrid cloud and network engineering for hospitals, public sector agencies, and higher education institutions.
+            </p>
+          </div>
+
+          <div className={`border rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 transition-colors ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+            {/* Interactive Service Scope Filter Tabs */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono font-bold uppercase text-theme-accent tracking-wider">
+                  Nexis AI Core Operational Capabilities
+                </span>
+                <p className="text-xs text-slate-600 dark:text-slate-400">
+                  Available alongside Fractional CIO advisory or as dedicated operational coverage for resource-constrained IT teams.
+                </p>
+              </div>
+              <div className={`inline-flex flex-wrap items-center gap-1 p-1 rounded-xl border ${isDark ? 'bg-slate-950/80 border-slate-800' : 'bg-white border-slate-200'}`}>
+                {(
+                  [
+                    { id: 'all', label: 'All Services' },
+                    { id: 'helpdesk', label: 'Helpdesk' },
+                    { id: 'soc', label: '24x7 SOC' },
+                    { id: 'infrastructure', label: 'Infrastructure' },
+                  ] as const
+                ).map((tab) => (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => {
+                      setActiveManagedService(tab.id);
+                      trackEvent('managed_service_filter', { filter: tab.id });
+                    }}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
+                      activeManagedService === tab.id
+                        ? 'bg-theme-accent text-theme-accent-contrast font-bold shadow-xs'
+                        : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Service Cards Grid */}
+            <div className={`grid gap-6 ${activeManagedService === 'all' ? 'grid-cols-1 lg:grid-cols-3' : 'grid-cols-1 max-w-3xl mx-auto'}`}>
+              {/* 01. Helpdesk */}
+              {(activeManagedService === 'all' || activeManagedService === 'helpdesk') && (
+                <div className={`p-6 rounded-2xl border transition-all flex flex-col justify-between space-y-5 ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+                      <span className="font-bold text-theme-accent">01. Service Desk</span>
+                      <span>Tier 1–3 Support</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="p-2.5 rounded-xl bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent shrink-0">
+                        <Headphones className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-lg font-bold text-theme-primary dark:text-white">
+                        Managed Helpdesk Services
+                      </h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      Responsive multi-channel technical support built for clinical shifts, agency staff, and campus end-users without expanding full-time payroll.
+                    </p>
+                    <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-200 dark:border-slate-700/70 pt-3">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
+                        <span>Clinical EHR, workstation &amp; identity (MFA/SSO) ticket triage</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
+                        <span>Structured escalation runbooks to EHR/app specialists</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
+                        <span>Monthly ticket trend analytics &amp; root-cause elimination</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="pt-4 border-t border-slate-200 dark:border-slate-700/70">
+                    <button
+                      type="button"
+                      onClick={() => openProductModal('Managed Helpdesk Services')}
+                      className="w-full py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition-all cursor-pointer text-center whitespace-nowrap"
+                    >
+                      Request Helpdesk Scope →
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* 02. 24x7 SOC */}
+              {(activeManagedService === 'all' || activeManagedService === 'soc') && (
+                <div className={`p-6 rounded-2xl border-2 border-theme-accent transition-all flex flex-col justify-between space-y-5 shadow-lg ${isDark ? 'bg-slate-900/90' : 'bg-slate-900 text-white'}`}>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between text-xs font-mono text-theme-accent">
+                      <span className="font-bold">02. Cyber Defense</span>
+                      <span>24x7x365 Coverage</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="p-2.5 rounded-xl bg-white/10 text-theme-accent shrink-0">
+                        <ShieldAlert className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-lg font-bold text-white">
+                        24x7 Security Operations Center (SOC)
+                      </h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      Continuous threat detection, telemetry monitoring, and incident containment aligned with HIPAA, NIST SP 800-53, and cyber insurance requirements.
+                    </p>
+                    <ul className="space-y-2 text-xs text-slate-200 border-t border-white/10 pt-3">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
+                        <span>24x7 SIEM log correlation, EDR telemetry &amp; anomaly response</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
+                        <span>Rapid ransomware isolation &amp; endpoint containment</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
+                        <span>Continuous vulnerability scanning &amp; board compliance reporting</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="pt-4 border-t border-white/10">
+                    <button
+                      type="button"
+                      onClick={() => openProductModal('24x7 Security Operations Center (SOC)')}
+                      className="w-full py-2.5 px-4 bg-theme-accent hover:opacity-95 text-theme-accent-contrast text-xs font-extrabold rounded-xl transition-all cursor-pointer text-center shadow-md whitespace-nowrap"
+                    >
+                      Inquire About 24x7 SOC →
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* 03. Infrastructure Services */}
+              {(activeManagedService === 'all' || activeManagedService === 'infrastructure') && (
+                <div className={`p-6 rounded-2xl border transition-all flex flex-col justify-between space-y-5 ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+                      <span className="font-bold text-theme-accent">03. Core Systems</span>
+                      <span>Hybrid &amp; Cloud</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="p-2.5 rounded-xl bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent shrink-0">
+                        <Server className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-lg font-bold text-theme-primary dark:text-white">
+                        Infrastructure Services
+                      </h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      Architecture, administration, and resilience engineering across cloud environments, clinical networks, and legacy modernization workloads.
+                    </p>
+                    <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-200 dark:border-slate-700/70 pt-3">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
+                        <span>Microsoft Azure, hybrid cloud &amp; virtualization administration</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
+                        <span>IoMT medical device VLAN segmentation &amp; firewall governance</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
+                        <span>Immutable backup verification, patching &amp; BC/DR failover testing</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="pt-4 border-t border-slate-200 dark:border-slate-700/70">
+                    <button
+                      type="button"
+                      onClick={() => openProductModal('Enterprise Infrastructure Services')}
+                      className="w-full py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition-all cursor-pointer text-center whitespace-nowrap"
+                    >
+                      Request Infrastructure Scope →
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Combined Managed Operations Callout */}
+            <div className={`p-5 rounded-2xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${isDark ? 'bg-slate-800/80 border-slate-700' : 'bg-white border-slate-200'}`}>
+              <div className="space-y-1">
+                <div className="text-xs font-mono font-bold uppercase text-theme-accent">
+                  Tailored Operational Coverage
+                </div>
+                <div className="text-sm font-bold text-theme-primary dark:text-white">
+                  Bundle Helpdesk, 24x7 SOC &amp; Infrastructure Services — or Start with an Assessment
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-400">
+                  Every operational scope is benchmarked against your existing staff, ticketing load, and security posture on a 30-minute fit call.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => scrollToForm('managed_services_cta', 'Interested in Nexis AI Managed Services: Helpdesk, 24x7 SOC, and/or Infrastructure Services')}
+                className="shrink-0 px-5 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow cursor-pointer whitespace-nowrap"
+              >
+                Book 30-min services fit call
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* SECTION 6D: EXECUTIVE IT MATURITY ASSESSMENT */}
         <ExecutiveITMaturityAssessment
           isDark={isDark}
@@ -2382,6 +2621,31 @@ export default function App() {
 
                   <div>
                     <label
+                      htmlFor="form-service"
+                      className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
+                    >
+                      Primary Service of Interest *
+                    </label>
+                    <select
+                      id="form-service"
+                      name="serviceInterest"
+                      value={formData.serviceInterest}
+                      onChange={(e) => setFormData({ ...formData, serviceInterest: e.target.value })}
+                      className={`w-full border rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
+                    >
+                      <option value="30-Day AI Governance & Pilot Diagnostic ($6,500)">30-Day AI Governance &amp; Pilot Diagnostic ($6,500)</option>
+                      <option value="Healthcare Fractional CIO Leadership">Healthcare Fractional CIO Leadership</option>
+                      <option value="Public Sector IT Modernization">Public Sector &amp; Government IT Modernization</option>
+                      <option value="Higher Education & Academic Medicine Advisory">Higher Education &amp; Academic Medicine Advisory</option>
+                      <option value="Managed Helpdesk Services">Managed Helpdesk Services</option>
+                      <option value="24x7 Security Operations Center (SOC)">24x7 Security Operations Center (SOC)</option>
+                      <option value="Enterprise Infrastructure Services">Enterprise Infrastructure Services</option>
+                      <option value="Bundled Managed Operations (Helpdesk + 24x7 SOC + Infrastructure)">Bundled Managed Operations (Helpdesk + 24x7 SOC + Infrastructure)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
                       htmlFor="form-tools"
                       className="block text-xs font-bold uppercase tracking-wide mb-1 text-slate-800 dark:text-slate-200"
                     >
@@ -2497,8 +2761,8 @@ export default function App() {
                 a: 'The diagnostic itself ends with the 60-minute findings briefing and board one-pager — there are no hidden or surprise ongoing fees. We do not do junior developer coding. However, if hospital leadership or agency directors invite ongoing executive stewardship, Shafiq can steward your internal staff and vendors through remediation under a separate Fractional CIO or advisory scope.',
               },
               {
-                q: 'Do you work outside MD/DC/PA/VA, or with larger systems?',
-                a: 'The fixed-price $6,500 30-day diagnostic is specifically tailored for 100–400 bed community hospitals across MD, DC, PA, and VA. For larger regional health networks (e.g. WellSpan, Penn State Health, UPMC) or public sector government agencies outside these states, fractional CIO advisory, EHR interface audits, and public sector modernization engagements are evaluated and scoped individually on a fit call.',
+                q: 'Do you serve hospitals and organizations nationwide, or larger health systems?',
+                a: 'Yes. Nexis AI serves clients nationwide across the United States. The fixed-price $6,500 30-day diagnostic is calibrated for 100–400 bed community hospitals anywhere in the U.S. Larger multi-hospital health systems, state and local government agencies, and universities nationwide engage via custom-scoped Fractional CIO advisory, Managed Helpdesk, 24x7 SOC, and Infrastructure Services.',
               },
               {
                 q: 'Will this slow down our clinicians?',
@@ -2511,6 +2775,10 @@ export default function App() {
               {
                 q: 'Who does the work?',
                 a: 'Shafiq himself. Every interview, document review, risk evaluation, and briefing is conducted personally by Shafiq Rahman. There are no junior analysts, outsourced contractors, or delegated teams.',
+              },
+              {
+                q: 'Do you provide Managed Helpdesk, 24x7 SOC, and Infrastructure Services?',
+                a: 'Yes. In addition to executive AI governance and Fractional CIO leadership, Nexis AI provides Managed Helpdesk Services (Tier 1–3 clinical and administrative support), 24x7 Security Operations Center (SOC) monitoring and incident containment, and Enterprise Infrastructure Services covering Microsoft Azure, hybrid cloud, IoMT network segmentation, and immutable backups.',
               },
             ].map((faq, idx) => (
               <div
@@ -2552,7 +2820,7 @@ export default function App() {
                 Healthcare AI Governance Advisory · Founded by Shafiq Rahman, Former Maryland State CIO
               </p>
               <p className="text-xs text-slate-400">
-                Ellicott City, Howard County, MD 21042 · Serving MD, DC, PA, VA
+                Ellicott City, Howard County, MD 21042 · Serving Healthcare, Public Sector &amp; Higher Education Nationwide
               </p>
             </div>
 

@@ -1,15 +1,15 @@
-# Nexis AI — Executive Healthcare & Public Sector Technology Advisory
+# Nexis AI — National Executive Technology Advisory, 24x7 SOC & Managed IT Services
 
 > Plain-text reference manual for AI search agents, language models (ChatGPT, Perplexity, Claude, Google Gemini), and executive researchers.
 > Canonical URL: https://nexisai.us/
 
 ## Overview
-Nexis AI is an executive technology advisory firm based in Ellicott City, Howard County, Maryland, founded by Shafiq Rahman, MS, MBA, MCS, PMP® (Former Maryland State CIO). Nexis AI provides board-level technology governance, fractional CIO leadership, and a signature fixed-price diagnostic for community hospitals, health systems, higher education institutions, and public sector agencies.
+Nexis AI is an executive technology advisory and managed IT operations firm headquartered in Ellicott City, Howard County, Maryland, serving clients nationwide across the United States. Founded by Shafiq Rahman, MS, MBA, MCS, PMP® (Former Maryland State CIO), Nexis AI provides board-level AI governance, Fractional CIO leadership, Managed Helpdesk, 24x7 Security Operations Center (SOC), and Enterprise Infrastructure Services for community hospitals, health systems, higher education institutions, and public sector agencies nationwide.
 
 ---
 
 ## 1. Flagship Offer: 30-Day Hospital AI Governance & Pilot Diagnostic
-- **Target Buyer**: CEO, COO, or Board Chair of 100–400-bed community hospitals and small health systems in Maryland, District of Columbia, Pennsylvania, and Virginia.
+- **Target Buyer**: CEO, COO, or Board Chair of 100–400-bed community hospitals and health systems nationwide across the United States.
 - **Operating Context**: Hospitals operating with NO full-time CIO (or an interim CIO / IT director), running Epic or MEDITECH as their EHR platform, where departmental AI tools or vendor pilots are already in use.
 - **Fixed Price**: $6,500 USD one-time fee.
 - **Payment Structure**: 50% due on booking ($3,250), 50% due on delivery of the findings briefing ($3,250).
@@ -27,9 +27,9 @@ Nexis AI is an executive technology advisory firm based in Ellicott City, Howard
 
 ---
 
-## 2. Who It Is For / Not For
+## 2. Who It Is For / Not For (30-Day Diagnostic)
 ### For you if:
-- You are the CEO, COO, or Board Chair of a 100–400-bed community hospital in MD, DC, PA, or VA.
+- You are the CEO, COO, or Board Chair of a 100–400-bed community hospital anywhere in the United States.
 - You have no full-time CIO, or an interim one.
 - AI tools are already in use somewhere in the building.
 - The board is being asked to approve AI spending it cannot see clearly.
@@ -50,11 +50,23 @@ Nexis AI is an executive technology advisory firm based in Ellicott City, Howard
 
 ---
 
-## 4. Executive Practices
-Nexis AI operates two strategic leadership practices:
+## 4. Managed Helpdesk, 24x7 SOC & Infrastructure Services (Nationwide)
+Nexis AI provides dedicated operational technology and security services nationwide across the United States:
+1. **Managed Helpdesk Services**:
+   - Tier 1–3 multi-channel technical support built for 24/7 clinical shifts, public sector agencies, and campus operations.
+   - EHR, endpoint, workstation, and identity (MFA/SSO) ticket triage with structured escalation runbooks and monthly root-cause analytics.
+2. **24x7 Security Operations Center (SOC)**:
+   - Continuous 24x7x365 threat detection, SIEM log correlation, and EDR telemetry monitoring.
+   - Rapid ransomware isolation, endpoint containment, vulnerability scanning, and board-ready HIPAA / NIST SP 800-53 compliance reporting.
+3. **Enterprise Infrastructure Services**:
+   - Microsoft Azure, hybrid cloud, and virtualization administration.
+   - IoMT medical device VLAN segmentation, firewall governance, immutable backup verification, patch automation, and BC/DR failover testing.
 
+---
+
+## 5. Executive Practices (Nationwide)
 ### Practice 1: Healthcare Fractional CIO & Clinical Technology Leadership
-- **Focus**: Board-level executive technology oversight for community hospitals, health systems, and specialty clinics.
+- **Focus**: Board-level executive technology oversight for community hospitals, health systems, and specialty clinics nationwide.
 - **Core Areas**:
   - EHR Interoperability: Ensuring clinical data flows across Epic, MEDITECH, and departmental systems without manual friction.
   - HIPAA Security & BAA Architecture: Verifying data at rest and in motion is encrypted, with annual Business Associate Agreement reviews.
@@ -64,10 +76,10 @@ Nexis AI operates two strategic leadership practices:
 
 ### Practice 2: Public Sector & Higher Education IT Modernization
 - **Public Sector Focus**:
-  - NIST Framework Alignment: Mapping agency security controls directly to the NIST Cybersecurity and NIST AI RMF standards.
+  - NIST Framework Alignment: Mapping agency security controls directly to NIST Cybersecurity and NIST AI RMF standards.
   - Legacy Mainframe & Cloud Migration: 12-24 month roadmaps for migrating mission-critical legacy tech to modern cloud environments.
   - Public Records & FOIA Compliance: Automated archival and e-discovery systems.
-  - Multi-Agency Rationalization: Consolidating redundant enterprise applications to reduce recurring state/county expenditures.
+  - Multi-Agency Rationalization: Consolidating redundant enterprise applications to reduce recurring public expenditures.
 - **Higher Education Focus**:
   - Institutional AI Policies: Pragmatic guidelines balancing faculty research freedom, student learning integrity, and enterprise privacy.
   - Research Computing & Slurm GPU Enclaves: Compliant high-performance infrastructure for computational grants.
@@ -76,7 +88,7 @@ Nexis AI operates two strategic leadership practices:
 
 ---
 
-## 5. Executive IT Maturity Assessment (Interactive Rubric)
+## 6. Executive IT Maturity Assessment (Interactive Rubric)
 A 5-minute self-assessment tool evaluating 9 enterprise capabilities:
 1. EHR Interoperability (Clinical data flows seamlessly without manual entry)
 2. HIPAA Security (Data encrypted at rest/motion; BAAs updated annually)
@@ -95,7 +107,7 @@ A 5-minute self-assessment tool evaluating 9 enterprise capabilities:
 
 ---
 
-## 6. Leadership Biography & Verified Credentials
+## 7. Leadership Biography & Verified Credentials
 - **Executive**: Shafiq Rahman, MS, MBA, MCS, PMP®
 - **Title**: Founder & Principal, Nexis AI; Former Maryland State CIO
 - **Education (Verified)**:
@@ -108,11 +120,12 @@ A 5-minute self-assessment tool evaluating 9 enterprise capabilities:
 
 ---
 
-## 7. Contact & Official Information
+## 8. Contact & Official Information
 - Canonical Website: https://nexisai.us/
+- Service Geography: Nationwide across the United States
+- Headquarters: Ellicott City, Howard County, MD 21042, USA
 - Primary Inquiries Email: info@nexisai.us
 - Personal Direct Email: shafiqs1@gmail.com
 - Telephone: +1 (410) 934-7773
-- Location: Ellicott City, Howard County, MD 21042, USA
 - Scheduling (30-Minute Fit Call): https://app.cal.com/shafiq-rahman-gxhxcu/30min
 - LinkedIn: https://www.linkedin.com/in/shafiq-rahman-maryland/
