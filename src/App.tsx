@@ -418,8 +418,16 @@ export default function App() {
       {/* Top Executive Header with Portfolio Navigation */}
       <header className="sticky top-0 z-40 bg-theme-header text-white border-b border-theme-header shadow-sm transition-colors duration-200">
         <nav aria-label="Main Navigation" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-          <a href="#diagnostic" className="text-xl font-bold tracking-tight text-white font-mono whitespace-nowrap shrink-0">
-            Nexis AI
+          <a href="#diagnostic" className="inline-flex items-center gap-2.5 text-xl font-bold tracking-tight text-white font-mono whitespace-nowrap shrink-0">
+            <img
+              src="/favicon.svg"
+              alt="Nexis AI logo"
+              width={28}
+              height={28}
+              referrerPolicy="no-referrer"
+              className="w-7 h-7 rounded-lg shrink-0 shadow-xs"
+            />
+            <span>Nexis AI</span>
           </a>
 
           {/* Primary Single-Line Portfolio Links */}
@@ -3467,7 +3475,17 @@ export default function App() {
         <div className="max-w-5xl mx-auto space-y-8">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-white/10 pb-8">
             <div className="space-y-1">
-              <span className="text-xl font-bold font-mono text-white">Nexis AI, LLC</span>
+              <div className="inline-flex items-center gap-2.5">
+                <img
+                  src="/favicon.svg"
+                  alt="Nexis AI logo"
+                  width={26}
+                  height={26}
+                  referrerPolicy="no-referrer"
+                  className="w-6.5 h-6.5 rounded-md shrink-0"
+                />
+                <span className="text-xl font-bold font-mono text-white">Nexis AI, LLC</span>
+              </div>
               <p className="text-xs text-slate-300">
                 AI Governance, Fractional CIO &amp; Managed IT Services · Founded by Shafiq Rahman, Former Maryland State CIO
               </p>

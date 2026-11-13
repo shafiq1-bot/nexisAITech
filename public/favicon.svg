@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Nexis AI logo">
+  <defs>
+    <linearGradient id="nexis-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F2A44" />
+      <stop offset="100%" stop-color="#081828" />
+    </linearGradient>
+    <linearGradient id="nexis-bridge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="50%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+  </defs>
+  <!-- Chrome Tab & App Icon Badge -->
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#nexis-bg)" stroke="#1E3A5F" stroke-width="2" />
+  <!-- Bold Folded Ribbon "N" Monogram (Readable at 16px-32px Chrome tabs) -->
+  <!-- Left Vertical Pillar -->
+  <path d="M15 49V15h9.5v34H15z" fill="#FFFFFF" />
+  <!-- Right Vertical Pillar -->
+  <path d="M39.5 49V15H49v34h-9.5z" fill="#FFFFFF" />
+  <!-- Neural Cyan Diagonal Nexus Bridge -->
+  <path d="M15 15h9.5L49 49h-9.5L15 15z" fill="url(#nexis-bridge)" />
+  <!-- Ribbon Fold Highlights -->
+  <path d="M15 15h9.5v9.5L15 15z" fill="#7DD3FC" opacity="0.55" />
+  <path d="M39.5 39.5L49 49h-9.5v-9.5z" fill="#0369A1" opacity="0.45" />
+</svg>
