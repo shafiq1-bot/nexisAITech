@@ -75,22 +75,22 @@ async function startServer() {
       status: 'ok',
       service: 'Nexis AI Enterprise Platform API',
       domain: 'nexisai.us',
-      legalEntity: 'Nexis Tech Group LLC (Howard County, MD, USA)',
+      legalEntity: 'Nexis AI, LLC (Ellicott City, Howard County, MD 21042)',
       timestamp: new Date().toISOString(),
       securityStatus: {
         dmarc: 'v=DMARC1; p=quarantine',
         spf: 'v=spf1 include:_spf.google.com mx ~all',
         securityTxtRFC9116: 'Active',
-        certifications: ['SOC 2 Type II Architecture', 'NIST 800-53 Rev 5', 'HIPAA Compliant', 'ISO 27001'],
+        frameworks: ['NIST AI RMF 1.0', 'NIST SP 800-53', 'HIPAA / HITECH'],
       },
-      region: 'Global (US Primary HQ, KSA, UAE)',
+      region: 'United States Nationwide',
     });
   });
 
   // RFC 9116 Security Vulnerability Disclosure Endpoint (security.txt)
   app.get(['/.well-known/security.txt', '/security.txt'], (req, res) => {
     const expiresDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString();
-    const securityTxtContent = `# Security Policy for nexisai.us (Nexis Tech Group LLC)
+    const securityTxtContent = `# Security Policy for nexisai.us (Nexis AI, LLC)
 # Standardized Vulnerability Disclosure as per RFC 9116
 Contact: mailto:info@nexisai.us
 Contact: tel:+1-410-934-7773
@@ -100,8 +100,8 @@ Preferred-Languages: en
 
 # Domain Verification & Entity Authentication
 Domain: nexisai.us
-Organization: Nexis AI / Nexis Tech Group LLC
-Address: Ellicott City, Howard County, MD, USA
+Organization: Nexis AI, LLC
+Address: Ellicott City, Howard County, MD 21042, USA
 Primary Executive: Shafiq Rahman, MS, MBA, MCS, PMP®
 Offer: 30-Day AI Governance & Pilot Diagnostic
 `;
@@ -147,7 +147,67 @@ Offer: 30-Day AI Governance & Pilot Diagnostic
     </image:image>
   </url>
   <url>
+    <loc>https://nexisai.us/#diagnostic</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#fractional-cio</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://nexisai.us/#managed-services</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#managed-helpdesk</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#soc</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#infrastructure</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#managed-ai-governance</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#public-sector</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#higher-ed</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#about</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#contact</loc>
     <lastmod>${lastMod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -1035,7 +1095,7 @@ Write an executive Google Voice cold-call / warm-call telephone script and objec
 Decision Maker: ${prospect?.decisionMaker?.fullName || 'Prospect Executive'} (${prospect?.decisionMaker?.title || 'CIO'}) at ${prospect?.companyName || 'Enterprise'}
 Industry: ${prospect?.industry || 'Healthcare & AI'}
 Pain Points: ${prospect?.painPoints?.join(', ') || 'AI compliance, Zero Trust Security'}
-Goal: ${targetGoal || 'Schedule 15-minute Executive Advisory Briefing with Former CIO Shafiq Rahman'}
+Goal: ${targetGoal || 'Schedule 30-minute fit call with Former State CIO Shafiq Rahman'}
 Caller: ${callerName || 'Shafiq Rahman'}, ${callerTitle || 'Executive Advisory Principal'}
 
 Output MUST be JSON:
@@ -1281,7 +1341,7 @@ CATEGORY BREAKDOWN:
 - Universal Infrastructure & BCDR:    ${categoryBreakdown.coreInfrastructure ?? 'N/A'} / 3
 
 ACTION REQUIRED:
-${evaluator} requested a zero-commitment 15-minute diagnostic session with Shafiq Rahman.
+${evaluator} requested a 30-minute diagnostic fit call with Shafiq Rahman.
 Direct contact email: ${email}
 Direct phone: ${phone || 'N/A'}
 ================================================================================

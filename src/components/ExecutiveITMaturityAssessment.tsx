@@ -663,7 +663,7 @@ export const ExecutiveITMaturityAssessment: React.FC<ExecutiveITMaturityAssessme
                   onClick={() => onScheduleCall(`Assessment Score: ${checkedCount}/9 (${interpretation.level}) for ${organization}`)}
                   className="w-full sm:w-auto px-6 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow cursor-pointer flex items-center justify-center gap-2"
                 >
-                  <span>Schedule 15-Minute Diagnostic Session</span>
+                  <span>Book a 30-minute fit call</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <button
@@ -685,7 +685,7 @@ export const ExecutiveITMaturityAssessment: React.FC<ExecutiveITMaturityAssessme
                   onClick={() => onScheduleCall(`Assessment Score: ${checkedCount}/9 (${interpretation.level})`)}
                   className="text-theme-primary dark:text-theme-accent font-bold underline cursor-pointer"
                 >
-                  Schedule a 15-minute diagnostic session with Shafiq
+                  Book a 30-minute fit call with Shafiq
                 </button>
               </div>
 

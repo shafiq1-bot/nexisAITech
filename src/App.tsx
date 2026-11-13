@@ -28,8 +28,13 @@ import {
   Headphones,
   ShieldAlert,
   Server,
+  Menu,
+  X,
+  MapPin,
 } from 'lucide-react';
 import { ExecutiveITMaturityAssessment } from './components/ExecutiveITMaturityAssessment';
+
+const CAL_BOOKING_BASE_URL = 'https://cal.com/shafiq-rahman-gxhxcu/30min';
 
 declare global {
   interface Window {
@@ -72,6 +77,41 @@ export default function App() {
   });
 
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Digital Marketing & Outreach Attribution State (UTM parameters)
+  const [utmParams, setUtmParams] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const search = new URLSearchParams(window.location.search);
+      const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'ref'];
+      const captured: Record<string, string> = {};
+      keys.forEach((k) => {
+        const val = search.get(k);
+        if (val) captured[k] = val;
+      });
+      if (Object.keys(captured).length > 0) {
+        sessionStorage.setItem('nexis_utm_attribution', JSON.stringify(captured));
+        setUtmParams(captured);
+        trackEvent('campaign_landing', captured);
+      } else {
+        try {
+          const saved = sessionStorage.getItem('nexis_utm_attribution');
+          if (saved) setUtmParams(JSON.parse(saved));
+        } catch {
+          // ignore storage error
+        }
+      }
+    }
+  }, []);
+
+  const getCalUrl = (sourceTag?: string) => {
+    const params = new URLSearchParams(utmParams);
+    if (sourceTag) params.set('utm_content', sourceTag);
+    const qs = params.toString();
+    return qs ? `${CAL_BOOKING_BASE_URL}?${qs}` : CAL_BOOKING_BASE_URL;
+  };
 
   // Sync theme changes with DOM and localStorage
   useEffect(() => {
@@ -234,9 +274,11 @@ export default function App() {
       ehr_system: formData.ehr,
       executive_role: formData.role,
       lead_source: 'fit_call_form',
+      ...utmParams,
     });
 
     try {
+      const utmSummary = Object.keys(utmParams).length > 0 ? ` | Attribution: ${JSON.stringify(utmParams)}` : '';
       const response = await fetch('/api/lead-capture', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -248,7 +290,7 @@ export default function App() {
           hospitalBeds: formData.beds,
           ehrSystem: formData.ehr,
           serviceInterest: formData.serviceInterest || '30-Day AI Governance & Pilot Diagnostic ($6,500)',
-          message: `Service: ${formData.serviceInterest} | Beds/Scope: ${formData.beds} | EHR/ERP: ${formData.ehr} | AI Tools Running: ${formData.aiToolsRunning || 'Not specified'} | Notes: ${formData.anythingElse || 'None'}`,
+          message: `Service: ${formData.serviceInterest} | Beds/Scope: ${formData.beds} | EHR/ERP: ${formData.ehr} | AI Tools Running: ${formData.aiToolsRunning || 'Not specified'} | Notes: ${formData.anythingElse || 'None'}${utmSummary}`,
         }),
       });
 
@@ -332,7 +374,7 @@ export default function App() {
       sampleTitle: 'Sample Deliverable Excerpt: Executive Decision Matrix',
       sampleRows: [
         { name: 'Unvetted Departmental LLM Chatbot', owner: 'Nursing Operations', data: 'Policy Documents / Staff Queries', vendor: 'Consumer AI Subscription', tier: 'High Risk', verdict: 'KILL: Consumer terms allow training on internal workflows without BAA.' },
-        { name: 'Clinical Documentation Assistant', owner: 'Internal Medicine Lead', data: 'EHR Ambulatory Notes', vendor: 'Epic App Orchard Partner', tier: 'Medium Risk', verdict: 'SCALE: Strong clinician adoption, verified SOC 2 Type II, and active BAA in place.' },
+        { name: 'Clinical Documentation Assistant', owner: 'Internal Medicine Lead', data: 'EHR Ambulatory Notes', vendor: 'Epic App Orchard Partner', tier: 'Medium Risk', verdict: 'SCALE: Strong clinician adoption, clinical validation, and active BAA in place.' },
         { name: 'Predictive Discharge Tool', owner: 'Case Management', data: 'Inpatient Census & ADT Feed', vendor: 'Analytics Startup', tier: 'High Risk', verdict: 'FIX: Missing bias validation across patient demographics; pause live clinical use until audited.' },
       ],
     },
@@ -373,39 +415,44 @@ export default function App() {
   return (
     <div className={`min-h-screen transition-colors duration-200 ${isDark ? 'bg-[#060D15] text-slate-100' : 'bg-white text-slate-900'} font-sans antialiased`}>
       
-      {/* Top Executive Header with Dynamic Theme Switcher */}
+      {/* Top Executive Header with Portfolio Navigation */}
       <header className="sticky top-0 z-40 bg-theme-header text-white border-b border-theme-header shadow-sm transition-colors duration-200">
-        <nav aria-label="Main Navigation" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-xl font-bold tracking-tight text-white font-mono flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-theme-accent shadow-[0_0_8px_var(--theme-accent)]"></span>
-              Nexis AI
-            </span>
-            <span className="hidden sm:inline-block text-xs text-slate-300 border-l border-slate-700/80 pl-3 font-normal tracking-wide">
-              AI Governance &amp; Executive IT · Nationwide US
-            </span>
+        <nav aria-label="Main Navigation" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+          <a href="#diagnostic" className="text-xl font-bold tracking-tight text-white font-mono whitespace-nowrap shrink-0">
+            Nexis AI
+          </a>
+
+          {/* Primary Single-Line Portfolio Links */}
+          <div className="hidden xl:flex items-center gap-5 text-xs font-medium text-slate-300">
+            <a href="#diagnostic" className="hover:text-white transition-colors whitespace-nowrap shrink-0">Diagnostic</a>
+            <a href="#fractional-cio" className="hover:text-white transition-colors whitespace-nowrap shrink-0">Fractional CIO</a>
+            <a href="#managed-services" className="hover:text-white transition-colors whitespace-nowrap shrink-0">Managed Services</a>
+            <a href="#managed-ai-governance" className="hover:text-white transition-colors whitespace-nowrap shrink-0">Managed AI Governance</a>
+            <a href="#public-sector" className="hover:text-white transition-colors whitespace-nowrap shrink-0">Public Sector</a>
+            <a href="#higher-ed" className="hover:text-white transition-colors whitespace-nowrap shrink-0">Higher Education</a>
+            <a href="#about" className="hover:text-white transition-colors whitespace-nowrap shrink-0">About</a>
+            <a href="#contact" className="hover:text-white transition-colors whitespace-nowrap shrink-0">Contact</a>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm">
+          <div className="flex items-center gap-2 text-xs shrink-0">
             {/* Theme Palette & Dark Mode Picker */}
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 border border-white/10 text-slate-200 hover:text-white transition-all cursor-pointer text-xs font-medium"
+                className="inline-flex items-center gap-1 p-2 rounded-lg bg-white/10 hover:bg-white/15 border border-white/10 text-slate-200 hover:text-white transition-all cursor-pointer"
                 title="Select Executive Theme Palette"
+                aria-label="Select Theme Palette"
                 aria-expanded={isThemeMenuOpen}
               >
                 <Palette className="w-3.5 h-3.5 text-theme-accent" />
-                <span className="hidden md:inline capitalize">{theme} AI Theme</span>
                 <ChevronDown className="w-3 h-3 opacity-70" />
               </button>
 
               {isThemeMenuOpen && (
                 <div className="absolute right-0 mt-2 w-52 rounded-xl shadow-2xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 p-2 z-50 text-xs text-slate-200">
-                  <div className="font-mono font-bold text-[10px] uppercase tracking-wider text-slate-400 px-2 py-1 flex items-center justify-between">
-                    <span>Executive AI Palettes</span>
-                    <span className="text-[9px] text-theme-accent">2026 Fleet</span>
+                  <div className="font-mono font-bold text-[10px] uppercase tracking-wider text-slate-400 px-2 py-1">
+                    Color Palettes
                   </div>
                   <button
                     type="button"
@@ -413,8 +460,8 @@ export default function App() {
                     className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between cursor-pointer transition-colors ${theme === 'cyan' ? 'bg-cyan-950/60 text-cyan-200 font-bold border border-cyan-800/50' : 'hover:bg-slate-800 text-slate-300'}`}
                   >
                     <span className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#06B6D4] shadow-[0_0_8px_#06B6D4]"></span>
-                      Quantum Cyan
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#06B6D4]"></span>
+                      Neural Cyan
                     </span>
                     {theme === 'cyan' && <span className="text-cyan-400 font-bold">✓</span>}
                   </button>
@@ -424,7 +471,7 @@ export default function App() {
                     className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between cursor-pointer transition-colors ${theme === 'cobalt' ? 'bg-blue-950/60 text-blue-200 font-bold border border-blue-800/50' : 'hover:bg-slate-800 text-slate-300'}`}
                   >
                     <span className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#3B82F6] shadow-[0_0_8px_#3B82F6]"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#3B82F6]"></span>
                       Hyper Cobalt
                     </span>
                     {theme === 'cobalt' && <span className="text-sky-400 font-bold">✓</span>}
@@ -435,7 +482,7 @@ export default function App() {
                     className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between cursor-pointer transition-colors ${theme === 'emerald' ? 'bg-emerald-950/60 text-emerald-200 font-bold border border-emerald-800/50' : 'hover:bg-slate-800 text-slate-300'}`}
                   >
                     <span className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] shadow-[0_0_8px_#10B981]"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]"></span>
                       Sovereign Emerald
                     </span>
                     {theme === 'emerald' && <span className="text-emerald-400 font-bold">✓</span>}
@@ -446,7 +493,7 @@ export default function App() {
                     className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between cursor-pointer transition-colors ${theme === 'amber' ? 'bg-amber-950/60 text-amber-200 font-bold border border-amber-800/50' : 'hover:bg-slate-800 text-slate-300'}`}
                   >
                     <span className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B] shadow-[0_0_8px_#F59E0B]"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]"></span>
                       Executive Titanium
                     </span>
                     {theme === 'amber' && <span className="text-amber-400 font-bold">✓</span>}
@@ -463,91 +510,73 @@ export default function App() {
                 setIsDark(nextDark);
                 trackEvent('mode_toggle', { isDark: nextDark });
               }}
-              className="p-1.5 px-2 rounded-lg bg-white/10 hover:bg-white/15 border border-white/10 text-slate-200 hover:text-white transition-all cursor-pointer flex items-center gap-1.5"
+              className="p-2 rounded-lg bg-white/10 hover:bg-white/15 border border-white/10 text-slate-200 hover:text-white transition-all cursor-pointer"
               title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
               aria-label="Toggle dark mode"
             >
-              {isDark ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-slate-200" />}
-              <span className="hidden xl:inline text-xs font-mono">{isDark ? 'Dark' : 'Light'}</span>
+              {isDark ? <Sun className="w-3.5 h-3.5 text-amber-300" /> : <Moon className="w-3.5 h-3.5 text-slate-200" />}
             </button>
 
             <a
-              href="#two-practices"
-              className="hidden md:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors whitespace-nowrap shrink-0"
+              href={getCalUrl('header_nav')}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('cal_booking_click', { location: 'header_nav', ...utmParams })}
+              className="px-3.5 py-2 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-lg text-xs transition-all shadow-md flex items-center gap-1.5 whitespace-nowrap shrink-0"
             >
-              <Briefcase className="w-3.5 h-3.5 text-theme-accent" />
-              <span>Practices</span>
-            </a>
-
-            <a
-              href="#public-sector"
-              className="hidden lg:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors whitespace-nowrap shrink-0"
-            >
-              <Landmark className="w-3.5 h-3.5 text-theme-accent" />
-              <span>Public Sector</span>
-            </a>
-
-            <a
-              href="#managed-services"
-              className="hidden md:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors whitespace-nowrap shrink-0"
-            >
-              <Server className="w-3.5 h-3.5 text-theme-accent" />
-              <span>Services</span>
-            </a>
-
-            <a
-              href="#it-maturity-assessment"
-              className="hidden lg:inline-flex items-center gap-1 text-xs text-slate-300 hover:text-white transition-colors whitespace-nowrap shrink-0"
-            >
-              <Layers className="w-3.5 h-3.5 text-theme-accent" />
-              <span>Assessment</span>
-            </a>
-
-            <a
-              href="tel:+14109347773"
-              onClick={() => handlePhoneClick('header_nav')}
-              className="hidden xl:flex items-center gap-1.5 text-slate-200 hover:text-white transition-colors"
-              aria-label="Direct Phone: +1 (410) 934-7773"
-            >
-              <Phone className="w-3.5 h-3.5 text-theme-accent" />
-              <span>+1 (410) 934-7773</span>
-            </a>
-
-            <button
-              onClick={() => scrollToForm('header_cta')}
-              className="px-3.5 py-1.5 sm:px-4 sm:py-2 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-lg text-xs sm:text-sm transition-all shadow-md cursor-pointer flex items-center gap-1.5"
-            >
-              <span>Book 30-min call</span>
+              <span>Book a fit call</span>
               <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="xl:hidden p-2 rounded-lg bg-white/10 hover:bg-white/15 border border-white/10 text-slate-200 hover:text-white cursor-pointer"
+              aria-label="Toggle navigation menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </nav>
-      </header>
 
-      {/* Target Buyer Notice Banner */}
-      <div className={`border-b text-xs text-center font-medium py-2 px-4 transition-colors ${isDark ? 'bg-slate-950/90 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'}`}>
-        <span className="font-semibold text-theme-accent">Nationwide Executive Focus:</span> Community hospital leaders (100–400 beds, US nationwide) with no full-time CIO for the $6,500 Diagnostic; Health Systems, Higher Ed &amp; Public Sector agencies nationwide for <a href="#two-practices" className="underline font-semibold hover:opacity-80">Fractional CIO Advisory</a> &amp; <a href="#managed-services" className="underline font-semibold hover:opacity-80">Managed Services</a>.
-      </div>
+        {/* Responsive Mobile / Tablet Navigation Drawer */}
+        {isMobileMenuOpen && (
+          <div className="xl:hidden border-t border-white/10 bg-theme-header px-4 py-4 space-y-2 text-xs font-medium text-slate-200">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <a href="#diagnostic" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-lg hover:bg-white/10">Diagnostic</a>
+              <a href="#fractional-cio" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-lg hover:bg-white/10">Fractional CIO</a>
+              <a href="#managed-services" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-lg hover:bg-white/10">Managed Services</a>
+              <a href="#managed-ai-governance" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-lg hover:bg-white/10">Managed AI Governance</a>
+              <a href="#public-sector" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-lg hover:bg-white/10">Public Sector</a>
+              <a href="#higher-ed" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-lg hover:bg-white/10">Higher Education</a>
+              <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-lg hover:bg-white/10">About</a>
+              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-lg hover:bg-white/10">Contact</a>
+            </div>
+          </div>
+        )}
+      </header>
 
       <main className="space-y-20 pb-20 executive-grid-pattern relative overflow-hidden">
         {/* Ambient AI Ray Backdrop */}
         <div className="ai-ambient-layer" aria-hidden="true" />
         
-        {/* SECTION 1: HERO */}
+        {/* SECTION 1: HERO (FLAGSHIP DIAGNOSTIC) */}
         <section
+          id="diagnostic"
           aria-labelledby="hero-heading"
-          className="pt-12 sm:pt-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center space-y-8 relative z-10"
+          className="pt-12 sm:pt-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center space-y-8 relative z-10 scroll-mt-24"
         >
           <div className="space-y-5">
-            {/* Live Availability & Instrument Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-theme-subtle text-xs font-mono font-medium tracking-wide text-theme-primary dark:text-cyan-300 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-xs">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span>30-Day AI Governance &amp; Pilot Diagnostic</span>
-              <span className="text-slate-400 dark:text-slate-600">·</span>
-              <span className="text-slate-700 dark:text-slate-300">Max 2 / Month</span>
+            <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
+              <span className="text-theme-accent font-semibold">30-Day AI Governance &amp; Pilot Diagnostic</span>
+              <span aria-hidden="true">·</span>
+              <span>$6,500 Fixed Fee</span>
+              <span aria-hidden="true">·</span>
+              <span>Max 2 / Month</span>
+              <span aria-hidden="true">·</span>
+              <span>United States Nationwide</span>
             </div>
 
             <h1
@@ -566,52 +595,287 @@ export default function App() {
             </p>
           </div>
 
-          {/* Quotable About Nexis AI Callout for AI Answer Engines & Leadership */}
+          {/* Quotable About Nexis AI Callout */}
           <div className={`max-w-3xl mx-auto border rounded-2xl p-6 text-left text-sm leading-relaxed shadow-sm transition-all glow-on-hover ${isDark ? 'bg-slate-900/80 backdrop-blur-md border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-700'}`}>
             <div className="text-xs font-mono font-bold uppercase mb-2 flex items-center gap-1.5 text-theme-accent">
               <Building2 className="w-3.5 h-3.5" />
-              <span>About Nexis AI</span>
+              <span>About Nexis AI, LLC</span>
             </div>
             <p>
-              Nexis AI is an executive technology advisory and managed IT operations firm based in Ellicott City, Maryland, founded by Shafiq Rahman, MS, MBA, MCS, PMP® (former Maryland State CIO). Serving organizations nationwide across the United States, Nexis AI offers the fixed-price 30-Day AI Governance &amp; Pilot Diagnostic ($6,500) for community hospitals, alongside Fractional CIO leadership, Public Sector &amp; Higher Education modernization, Managed Helpdesk, 24x7 SOC, and Infrastructure Services.
+              Nexis AI, LLC is an executive technology advisory and managed IT operations firm based in Ellicott City, Maryland, founded by Shafiq Rahman, MS, MBA, MCS, PMP (former Maryland State CIO, October 2023–January 2026). Serving organizations nationwide across the United States, Nexis AI anchors engagements with the fixed-price 30-Day AI Governance &amp; Pilot Diagnostic ($6,500) alongside Fractional CIO leadership, Managed Helpdesk, 24x7 SOC, Infrastructure Services, and Managed AI Governance.
             </p>
           </div>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs font-medium">
-            <button
-              onClick={() => scrollToForm('hero_primary_cta')}
-              className="w-full sm:w-auto px-7 py-3.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-sm transition-all shadow-lg hover:shadow-cyan-500/20 cursor-pointer flex items-center justify-center gap-2"
+            <a
+              href={getCalUrl('hero_primary_cta')}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('cal_booking_click', { location: 'hero_primary_cta', ...utmParams })}
+              className="w-full sm:w-auto px-7 py-3.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-sm transition-all shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
             >
               <span>Book a 30-minute fit call</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
+
+            <a
+              href="mailto:info@nexisai.us?subject=30-Day%20AI%20Governance%20Diagnostic%20Inquiry"
+              onClick={() => handleEmailClick('hero_secondary_email')}
+              className={`w-full sm:w-auto px-6 py-3.5 border rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 whitespace-nowrap ${isDark ? 'border-slate-700 hover:border-slate-500 bg-slate-900/60 hover:bg-slate-800 text-slate-200' : 'border-slate-300 hover:bg-slate-100 text-slate-800'}`}
+            >
+              <Mail className="w-4 h-4 text-theme-accent" />
+              <span>Email info@nexisai.us</span>
+            </a>
 
             <a
               href="#risk-calculator"
-              className={`w-full sm:w-auto px-6 py-3.5 border rounded-xl text-sm font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${isDark ? 'border-slate-700 hover:border-slate-500 bg-slate-900/60 hover:bg-slate-800 text-slate-200' : 'border-slate-300 hover:bg-slate-100 text-slate-800'}`}
+              className={`w-full sm:w-auto px-5 py-3.5 border rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 whitespace-nowrap ${isDark ? 'border-slate-800 hover:border-slate-600 text-slate-300 hover:text-white' : 'border-slate-200 hover:bg-slate-100 text-slate-700'}`}
             >
               <SlidersHorizontal className="w-4 h-4 text-theme-accent" />
-              <span>Estimate Hospital AI Scope</span>
+              <span>Scope Estimator</span>
             </a>
           </div>
+
+          {/* Portfolio Strip directly under Hero CTA */}
+          <p className={`max-w-4xl mx-auto text-xs sm:text-sm leading-relaxed py-3 px-4 rounded-xl border ${isDark ? 'bg-slate-900/70 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-700'}`}>
+            Not just a diagnostic — Nexis AI also provides{' '}
+            <a href="#fractional-cio" className="text-theme-accent font-semibold underline hover:opacity-80">Fractional CIO leadership</a>,{' '}
+            <a href="#managed-helpdesk" className="text-theme-accent font-semibold underline hover:opacity-80">Managed Helpdesk</a>,{' '}
+            <a href="#soc" className="text-theme-accent font-semibold underline hover:opacity-80">24x7 SOC</a>,{' '}
+            <a href="#infrastructure" className="text-theme-accent font-semibold underline hover:opacity-80">Infrastructure Services</a>, and{' '}
+            <a href="#managed-ai-governance" className="text-theme-accent font-semibold underline hover:opacity-80">Managed AI Governance</a>.
+          </p>
 
           {/* Key Facts Metric Ribbon */}
           <div className={`pt-6 border-t grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left text-xs ${isDark ? 'border-slate-800/80 text-slate-400' : 'border-slate-200 text-slate-500'}`}>
             <div className="p-3 rounded-xl border border-transparent dark:hover:border-slate-800 transition-colors">
-              <span className="block font-mono text-sm sm:text-base font-extrabold text-theme-accent font-mono">$6,500 USD</span>
-              <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Fixed One-Time Fee</span>
+              <span className="block font-mono text-sm sm:text-base font-extrabold text-theme-accent tabular-nums">$6,500 USD</span>
+              <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Fixed One-Time Diagnostic Fee</span>
             </div>
             <div className="p-3 rounded-xl border border-transparent dark:hover:border-slate-800 transition-colors">
-              <span className="block font-mono text-sm sm:text-base font-extrabold text-slate-900 dark:text-slate-100">30 Calendar Days</span>
+              <span className="block font-mono text-sm sm:text-base font-extrabold text-slate-900 dark:text-slate-100 tabular-nums">30 Calendar Days</span>
               <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Kickoff to Final Readout</span>
             </div>
             <div className="p-3 rounded-xl border border-transparent dark:hover:border-slate-800 transition-colors">
-              <span className="block font-mono text-sm sm:text-base font-extrabold text-slate-900 dark:text-slate-100">Max 2 / Month</span>
-              <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Strict Capacity Cap</span>
+              <span className="block font-mono text-sm sm:text-base font-extrabold text-slate-900 dark:text-slate-100 tabular-nums">Max 2 / Month</span>
+              <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Personal Executive Delivery</span>
             </div>
             <div className="p-3 rounded-xl border border-transparent dark:hover:border-slate-800 transition-colors">
               <span className="block font-mono text-sm sm:text-base font-extrabold text-slate-900 dark:text-slate-100">Shafiq Rahman</span>
               <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Former Maryland State CIO</span>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 1B: SERVICES AT A GLANCE HUB */}
+        <section
+          id="services-hub"
+          aria-labelledby="services-hub-heading"
+          className="px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-8 scroll-mt-24"
+        >
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="max-w-2xl space-y-2">
+              <span className="text-xs font-mono font-bold uppercase text-theme-accent tracking-wider">
+                Portfolio Overview
+              </span>
+              <h2
+                id="services-hub-heading"
+                className="text-2xl sm:text-3xl font-extrabold text-theme-primary dark:text-white"
+              >
+                Services at a glance
+              </h2>
+              <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                Start with the fixed-price diagnostic or engage Nexis AI directly for executive leadership, managed IT operations, and continuous AI governance nationwide.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <a
+                href={getCalUrl('services_hub_cta')}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent('cal_booking_click', { location: 'services_hub', ...utmParams })}
+                className="px-4 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast text-xs font-bold rounded-xl transition-opacity whitespace-nowrap"
+              >
+                Book a 30-minute fit call
+              </a>
+              <a
+                href="mailto:info@nexisai.us?subject=Nexis%20AI%20Services%20Inquiry"
+                onClick={() => handleEmailClick('services_hub')}
+                className={`px-4 py-2.5 border text-xs font-semibold rounded-xl transition-colors whitespace-nowrap ${isDark ? 'border-slate-700 text-slate-200 hover:bg-slate-800' : 'border-slate-300 text-slate-700 hover:bg-slate-100'}`}
+              >
+                Email info@nexisai.us
+              </a>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+            {/* Card 1: Diagnostic (Flagship Emphasized) */}
+            <div className="p-6 rounded-2xl border-2 border-theme-accent bg-slate-900 text-white shadow-xl flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <span className="text-theme-accent font-bold uppercase tracking-wider">Flagship Entry Offer</span>
+                  <span className="text-slate-300">Max 2 / month</span>
+                </div>
+                <div className="flex items-baseline justify-between gap-2">
+                  <h3 className="text-lg font-bold text-white">30-Day AI Governance &amp; Pilot Diagnostic</h3>
+                  <span className="text-xl font-extrabold font-mono text-theme-accent tabular-nums shrink-0">$6,500</span>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <strong>What you get:</strong> Complete AI tool inventory, NIST AI RMF risk tiers, Kill/Scale/Fix decision list, 90-day roadmap, and a Board One-Pager + 60-minute briefing in 30 calendar days.
+                </p>
+                <p className="text-xs text-slate-400">
+                  <strong>For:</strong> 100–400-bed community hospitals nationwide with no full-time CIO running Epic or MEDITECH.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-white/10">
+                <a
+                  href="#offer-diagnostic"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-theme-accent hover:underline"
+                >
+                  <span>Learn more</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Card 2: Fractional CIO */}
+            <div className={`p-6 rounded-2xl border flex flex-col justify-between space-y-4 transition-colors ${isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-white border-slate-200'}`}>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+                  <span className="font-bold text-theme-accent uppercase tracking-wider">Executive Leadership</span>
+                  <span>3 Tiers</span>
+                </div>
+                <h3 className="text-lg font-bold text-theme-primary dark:text-white">
+                  Fractional &amp; Interim CIO Leadership
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <strong>What you get:</strong> Board-level technology steering, EHR optimization, vendor contract audits, and IT transformation leadership from 10–15 hrs/mo up to 2.5 days/week.
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <strong>For:</strong> Community hospitals, health systems, state/local agencies, and higher education institutions nationwide.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-200 dark:border-slate-800">
+                <a
+                  href="#fractional-cio"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-theme-primary dark:text-theme-accent hover:underline"
+                >
+                  <span>Learn more</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Card 3: Managed Helpdesk */}
+            <div className={`p-6 rounded-2xl border flex flex-col justify-between space-y-4 transition-colors ${isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-white border-slate-200'}`}>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+                  <span className="font-bold text-theme-accent uppercase tracking-wider">Managed Operations</span>
+                  <span>Tier 1–3</span>
+                </div>
+                <h3 className="text-lg font-bold text-theme-primary dark:text-white">
+                  Managed Helpdesk (Tier 1–3)
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <strong>What you get:</strong> Multi-channel clinical EHR, workstation, and MFA/SSO ticket triage with structured escalation runbooks and monthly root-cause analytics.
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <strong>For:</strong> Clinical shifts, state/county agency staff, and campus end-users nationwide.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-200 dark:border-slate-800">
+                <a
+                  href="#managed-helpdesk"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-theme-primary dark:text-theme-accent hover:underline"
+                >
+                  <span>Learn more</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Card 4: 24x7 SOC */}
+            <div className={`p-6 rounded-2xl border flex flex-col justify-between space-y-4 transition-colors ${isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-white border-slate-200'}`}>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+                  <span className="font-bold text-theme-accent uppercase tracking-wider">Cyber Defense</span>
+                  <span>24x7 Monitoring</span>
+                </div>
+                <h3 className="text-lg font-bold text-theme-primary dark:text-white">
+                  24x7 SOC — Cyber Defense
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <strong>What you get:</strong> Continuous SIEM log correlation, EDR telemetry monitoring, rapid ransomware containment, and HIPAA / NIST SP 800-53 compliance reporting.
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <strong>For:</strong> Healthcare, public sector, and higher education organizations needing continuous threat protection.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-200 dark:border-slate-800">
+                <a
+                  href="#soc"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-theme-primary dark:text-theme-accent hover:underline"
+                >
+                  <span>Learn more</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Card 5: Infrastructure Services */}
+            <div className={`p-6 rounded-2xl border flex flex-col justify-between space-y-4 transition-colors ${isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-white border-slate-200'}`}>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+                  <span className="font-bold text-theme-accent uppercase tracking-wider">Core Engineering</span>
+                  <span>Hybrid &amp; Cloud</span>
+                </div>
+                <h3 className="text-lg font-bold text-theme-primary dark:text-white">
+                  Infrastructure Services
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <strong>What you get:</strong> Microsoft Azure and hybrid cloud administration, IoMT medical device VLAN segmentation, immutable backups, patching, and BC/DR failover testing.
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <strong>For:</strong> Hospitals, municipalities, and universities modernizing core servers, networks, and medical device security.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-200 dark:border-slate-800">
+                <a
+                  href="#infrastructure"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-theme-primary dark:text-theme-accent hover:underline"
+                >
+                  <span>Learn more</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Card 6: Managed AI Governance (New) */}
+            <div className={`p-6 rounded-2xl border flex flex-col justify-between space-y-4 transition-colors ${isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-white border-slate-200'}`}>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <span className="font-bold text-theme-accent uppercase tracking-wider">Ongoing Retainer</span>
+                  <span className="font-bold text-emerald-500 uppercase">New</span>
+                </div>
+                <h3 className="text-lg font-bold text-theme-primary dark:text-white">
+                  Managed AI Governance
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <strong>What you get:</strong> Ongoing policy administration, new-tool intake reviews, risk assessments, staff training, compliance evidence, and quarterly board reporting.
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <strong>For:</strong> Organizations continuing governance after the diagnostic. Scoped after the diagnostic or a fit call.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-200 dark:border-slate-800">
+                <a
+                  href="#managed-ai-governance"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-theme-primary dark:text-theme-accent hover:underline"
+                >
+                  <span>Learn more</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -681,7 +945,10 @@ export default function App() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-rose-500 font-bold shrink-0 mt-0.5">•</span>
-                  <span>You want implementation done for you — this engagement ends at the findings briefing.</span>
+                  <span>
+                    You want implementation done for you — the diagnostic ends at the findings briefing, but implementation and ongoing operation are available through our managed services (see{' '}
+                    <a href="#managed-services" className="text-theme-accent underline font-semibold">Managed Services</a>).
+                  </span>
                 </li>
               </ul>
             </div>
@@ -732,7 +999,7 @@ export default function App() {
                 </p>
               </div>
               <div className="shrink-0 text-xs font-mono px-3 py-1.5 rounded-lg border border-theme-subtle bg-white dark:bg-slate-800 text-theme-primary dark:text-slate-200">
-                MD · DC · PA · VA
+                Nationwide · All US States
               </div>
             </div>
 
@@ -1300,8 +1567,9 @@ export default function App() {
 
         {/* SECTION 6: PRICE & OFFER */}
         <section
+          id="offer-diagnostic"
           aria-labelledby="pricing-heading"
-          className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
+          className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto scroll-mt-24"
         >
           <div className="relative rounded-3xl p-8 sm:p-12 space-y-8 shadow-2xl transition-all border border-white/10 bg-gradient-to-b from-[#091122] via-[#070D1B] to-[#040812] text-white overflow-hidden glow-on-hover">
             {/* Subtle Aurora Ambient Radial */}
@@ -1311,7 +1579,7 @@ export default function App() {
             <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
               <div>
                 <span className="text-[11px] font-mono uppercase bg-theme-accent text-theme-accent-contrast px-3 py-1 rounded-md font-extrabold tracking-wider">
-                  The Offer
+                  The Flagship Entry Offer
                 </span>
                 <h2
                   id="pricing-heading"
@@ -1321,15 +1589,11 @@ export default function App() {
                 </h2>
               </div>
               <div className="text-left sm:text-right">
-                <div className="text-4xl sm:text-5xl font-black text-theme-accent font-mono tracking-tight drop-shadow-[0_0_16px_var(--theme-glow)]">
+                <div className="text-4xl sm:text-5xl font-black text-theme-accent font-mono tracking-tight tabular-nums drop-shadow-[0_0_16px_var(--theme-glow)]">
                   $6,500
                 </div>
-                <div className="text-xs text-amber-300 dark:text-cyan-300 font-medium mt-1.5 flex items-center gap-1.5 sm:justify-end">
-                  <span className="relative flex h-2 w-2 shrink-0">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  <span>Now booking: November 2026 — maximum 2 diagnostics per month.</span>
+                <div className="text-xs text-amber-300 dark:text-cyan-300 font-medium mt-1.5">
+                  <span>Now booking — maximum 2 diagnostics per month</span>
                 </div>
                 <div className="text-xs text-slate-400 font-mono mt-0.5">
                   One-time fixed fee
@@ -1353,7 +1617,7 @@ export default function App() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <span><strong>No retainer required.</strong> No implementation included.</span>
+                    <span><strong>No retainer required.</strong> Ongoing governance &amp; operations available separately if invited.</span>
                   </li>
                 </ul>
               </div>
@@ -1369,7 +1633,9 @@ export default function App() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <span><strong>Shafiq does the work himself</strong> — no subcontractors, no junior team.</span>
+                    <span>
+                      <strong>The diagnostic is done personally by Shafiq Rahman</strong> — every interview, document review, risk evaluation, and briefing. Managed services are delivered by the Nexis AI team together with vetted subcontractor partners, under his direction.
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -1380,12 +1646,24 @@ export default function App() {
                 <div className="text-sm font-semibold text-slate-200">
                   Fixed price. Fixed 30 days. No surprise fees.
                 </div>
-                <button
-                  onClick={() => scrollToForm('pricing_card_cta')}
-                  className="w-full sm:w-auto px-6 py-3 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow cursor-pointer"
-                >
-                  Book a 30-minute fit call
-                </button>
+                <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+                  <a
+                    href={getCalUrl('pricing_card_cta')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackEvent('cal_booking_click', { location: 'pricing_card_cta', ...utmParams })}
+                    className="w-full sm:w-auto px-6 py-3 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow text-center whitespace-nowrap"
+                  >
+                    Book a 30-minute fit call
+                  </a>
+                  <a
+                    href="mailto:info@nexisai.us?subject=30-Day%20AI%20Governance%20Diagnostic"
+                    onClick={() => handleEmailClick('pricing_card_email')}
+                    className="w-full sm:w-auto px-4 py-3 border border-white/20 hover:bg-white/10 text-white font-semibold rounded-xl text-xs text-center whitespace-nowrap transition-colors"
+                  >
+                    Email info@nexisai.us
+                  </a>
+                </div>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed border-t border-white/10 pt-3">
                 On time, or the second half is waived. The findings briefing is delivered within 30 calendar days of kickoff. If it runs more than 5 business days past day 30 for reasons within Nexis AI's control, the final 50% payment is waived — and the diagnostic is still delivered in full. Delays caused by interview scheduling or document access extend the window day for day.
@@ -1396,10 +1674,11 @@ export default function App() {
 
         {/* SECTION 6B: HEALTHCARE FRACTIONAL CIO LEADERSHIP */}
         <section
-          id="healthcare-fractional-cio"
+          id="fractional-cio"
           aria-labelledby="fractional-cio-heading"
           className="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8 scroll-mt-24"
         >
+          <span id="healthcare-fractional-cio" className="scroll-mt-24" aria-hidden="true" />
           <div className="text-center max-w-3xl mx-auto space-y-2">
             <span className="text-xs font-mono font-bold uppercase text-theme-primary dark:text-slate-300 flex items-center justify-center gap-1.5">
               <Activity className="w-4 h-4 text-theme-accent" />
@@ -1429,13 +1708,24 @@ export default function App() {
                   We believe hospitals should never hire interim executives on open-ended hourly retainers without first knowing their exact software inventory, risk tiers, and interface debt. The 30-Day Diagnostic delivers that baseline; fractional leadership executes the prioritized roadmap.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => scrollToForm('fractional_cio_top_cta', 'Healthcare Fractional CIO Leadership inquiry')}
-                className="shrink-0 px-4 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast rounded-xl text-xs font-bold transition-opacity cursor-pointer shadow-sm"
-              >
-                Book 30-min fit call
-              </button>
+              <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+                <a
+                  href={getCalUrl('fractional_cio_top_cta')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('cal_booking_click', { location: 'fractional_cio_top_cta', ...utmParams })}
+                  className="px-4 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast rounded-xl text-xs font-bold transition-opacity shadow-sm whitespace-nowrap"
+                >
+                  Book a 30-minute fit call
+                </a>
+                <a
+                  href="mailto:info@nexisai.us?subject=Fractional%20CIO%20Leadership"
+                  onClick={() => handleEmailClick('fractional_cio')}
+                  className="px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-xl text-xs font-semibold text-theme-primary dark:text-theme-accent hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors whitespace-nowrap"
+                >
+                  Email info@nexisai.us
+                </a>
+              </div>
             </div>
 
             {/* 5 Core Pillars */}
@@ -1759,13 +2049,24 @@ export default function App() {
                 </p>
               </div>
 
-              <button
-                type="button"
-                onClick={() => scrollToForm('public_sector_fit_cta', 'Public Sector Modernization Fit Call with Shafiq Rahman')}
-                className="shrink-0 px-5 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow cursor-pointer"
-              >
-                Book 30-minute public sector fit call
-              </button>
+              <div className="flex flex-wrap items-center gap-3 shrink-0">
+                <a
+                  href={getCalUrl('public_sector_fit_cta')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('cal_booking_click', { location: 'public_sector_fit_cta', ...utmParams })}
+                  className="px-5 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow whitespace-nowrap"
+                >
+                  Book a 30-minute fit call
+                </a>
+                <a
+                  href="mailto:info@nexisai.us?subject=Public%20Sector%20IT%20Modernization"
+                  onClick={() => handleEmailClick('public_sector')}
+                  className="text-xs font-semibold text-theme-primary dark:text-theme-accent underline whitespace-nowrap"
+                >
+                  Email info@nexisai.us
+                </a>
+              </div>
             </div>
 
             {/* Municipal Checklist Lead Magnet */}
@@ -1775,7 +2076,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 6C-BIS: MANAGED HELPDESK, 24x7 SOC & INFRASTRUCTURE SERVICES */}
+        {/* SECTION 6C-BIS: MANAGED SERVICES (HELPDESK, 24x7 SOC & INFRASTRUCTURE SERVICES) */}
         <section
           id="managed-services"
           aria-labelledby="managed-services-heading"
@@ -1790,28 +2091,28 @@ export default function App() {
               id="managed-services-heading"
               className="text-2xl sm:text-3xl font-extrabold text-theme-primary dark:text-white"
             >
-              Managed Helpdesk, 24x7 SOC &amp; Infrastructure Services
+              Managed Services: Helpdesk, 24x7 SOC &amp; Infrastructure Services
             </h2>
             <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-              Operational technology support, continuous security monitoring, and resilient hybrid cloud and network engineering for hospitals, public sector agencies, and higher education institutions.
+              End-to-end operational IT support, continuous cyber defense, and resilient hybrid cloud/network administration for healthcare, public sector, and higher education organizations nationwide.
             </p>
           </div>
 
           <div className={`border rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 transition-colors ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
-            {/* Interactive Service Scope Filter Tabs */}
+            {/* Delivery Model & Interactive Filter Bar */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
-              <div className="space-y-1">
+              <div className="space-y-1 max-w-2xl">
                 <span className="text-[11px] font-mono font-bold uppercase text-theme-accent tracking-wider">
-                  Nexis AI Core Operational Capabilities
+                  Delivery Model
                 </span>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Available alongside Fractional CIO advisory or as dedicated operational coverage for resource-constrained IT teams.
+                <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                  Managed services are delivered by Nexis AI's in-house team together with vetted subcontractor partners, under Shafiq Rahman's direction.
                 </p>
               </div>
-              <div className={`inline-flex flex-wrap items-center gap-1 p-1 rounded-xl border ${isDark ? 'bg-slate-950/80 border-slate-800' : 'bg-white border-slate-200'}`}>
+              <div className={`inline-flex flex-wrap items-center gap-1 p-1 rounded-xl border shrink-0 ${isDark ? 'bg-slate-950/80 border-slate-800' : 'bg-white border-slate-200'}`}>
                 {(
                   [
-                    { id: 'all', label: 'All Services' },
+                    { id: 'all', label: 'All 3 Pillars' },
                     { id: 'helpdesk', label: 'Helpdesk' },
                     { id: 'soc', label: '24x7 SOC' },
                     { id: 'infrastructure', label: 'Infrastructure' },
@@ -1836,26 +2137,29 @@ export default function App() {
               </div>
             </div>
 
-            {/* Service Cards Grid */}
+            {/* Three Dedicated Service Sub-Sections with Outreach Anchors */}
             <div className={`grid gap-6 ${activeManagedService === 'all' ? 'grid-cols-1 lg:grid-cols-3' : 'grid-cols-1 max-w-3xl mx-auto'}`}>
-              {/* 01. Helpdesk */}
+              {/* Sub-section 01: Managed Helpdesk (#managed-helpdesk) */}
               {(activeManagedService === 'all' || activeManagedService === 'helpdesk') && (
-                <div className={`p-6 rounded-2xl border transition-all flex flex-col justify-between space-y-5 ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <article
+                  id="managed-helpdesk"
+                  className={`p-6 rounded-2xl border transition-all flex flex-col justify-between space-y-5 scroll-mt-24 ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}
+                >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
-                      <span className="font-bold text-theme-accent">01. Service Desk</span>
-                      <span>Tier 1–3 Support</span>
+                      <span className="font-bold text-theme-accent">01. Managed Helpdesk</span>
+                      <span>Tier 1–3</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="p-2.5 rounded-xl bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent shrink-0">
                         <Headphones className="w-5 h-5" />
                       </div>
                       <h3 className="text-lg font-bold text-theme-primary dark:text-white">
-                        Managed Helpdesk Services
+                        Managed Helpdesk (Tier 1–3)
                       </h3>
                     </div>
                     <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                      Responsive multi-channel technical support built for clinical shifts, agency staff, and campus end-users without expanding full-time payroll.
+                      Multi-channel technical support for clinical shifts, agency staff, and campus end-users nationwide.
                     </p>
                     <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-200 dark:border-slate-700/70 pt-3">
                       <li className="flex items-start gap-2">
@@ -1871,33 +2175,39 @@ export default function App() {
                         <span>Monthly ticket trend analytics &amp; root-cause elimination</span>
                       </li>
                     </ul>
+                    <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400 pt-1">
+                      Scoped after a fit call · Response-time targets are set in the service agreement.
+                    </p>
                   </div>
                   <div className="pt-4 border-t border-slate-200 dark:border-slate-700/70">
                     <button
                       type="button"
-                      onClick={() => openProductModal('Managed Helpdesk Services')}
+                      onClick={() => openProductModal('Managed Helpdesk (Tier 1–3)')}
                       className="w-full py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition-all cursor-pointer text-center whitespace-nowrap"
                     >
                       Request Helpdesk Scope →
                     </button>
                   </div>
-                </div>
+                </article>
               )}
 
-              {/* 02. 24x7 SOC */}
+              {/* Sub-section 02: 24x7 SOC (#soc) */}
               {(activeManagedService === 'all' || activeManagedService === 'soc') && (
-                <div className={`p-6 rounded-2xl border-2 border-theme-accent transition-all flex flex-col justify-between space-y-5 shadow-lg ${isDark ? 'bg-slate-900/90' : 'bg-slate-900 text-white'}`}>
+                <article
+                  id="soc"
+                  className={`p-6 rounded-2xl border-2 border-theme-accent transition-all flex flex-col justify-between space-y-5 shadow-lg scroll-mt-24 ${isDark ? 'bg-slate-900/90' : 'bg-slate-900 text-white'}`}
+                >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-xs font-mono text-theme-accent">
-                      <span className="font-bold">02. Cyber Defense</span>
-                      <span>24x7x365 Coverage</span>
+                      <span className="font-bold">02. 24x7 SOC</span>
+                      <span>Cyber Defense</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="p-2.5 rounded-xl bg-white/10 text-theme-accent shrink-0">
                         <ShieldAlert className="w-5 h-5" />
                       </div>
                       <h3 className="text-lg font-bold text-white">
-                        24x7 Security Operations Center (SOC)
+                        24x7 SOC — Cyber Defense
                       </h3>
                     </div>
                     <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -1917,25 +2227,31 @@ export default function App() {
                         <span>Continuous vulnerability scanning &amp; board compliance reporting</span>
                       </li>
                     </ul>
+                    <p className="text-[11px] font-mono text-slate-400 pt-1">
+                      Scoped after a fit call · Response-time targets are set in the service agreement.
+                    </p>
                   </div>
                   <div className="pt-4 border-t border-white/10">
                     <button
                       type="button"
-                      onClick={() => openProductModal('24x7 Security Operations Center (SOC)')}
+                      onClick={() => openProductModal('24x7 SOC — Cyber Defense')}
                       className="w-full py-2.5 px-4 bg-theme-accent hover:opacity-95 text-theme-accent-contrast text-xs font-extrabold rounded-xl transition-all cursor-pointer text-center shadow-md whitespace-nowrap"
                     >
                       Inquire About 24x7 SOC →
                     </button>
                   </div>
-                </div>
+                </article>
               )}
 
-              {/* 03. Infrastructure Services */}
+              {/* Sub-section 03: Infrastructure Services (#infrastructure) */}
               {(activeManagedService === 'all' || activeManagedService === 'infrastructure') && (
-                <div className={`p-6 rounded-2xl border transition-all flex flex-col justify-between space-y-5 ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <article
+                  id="infrastructure"
+                  className={`p-6 rounded-2xl border transition-all flex flex-col justify-between space-y-5 scroll-mt-24 ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}
+                >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
-                      <span className="font-bold text-theme-accent">03. Core Systems</span>
+                      <span className="font-bold text-theme-accent">03. Infrastructure</span>
                       <span>Hybrid &amp; Cloud</span>
                     </div>
                     <div className="flex items-center gap-3">
@@ -1947,7 +2263,7 @@ export default function App() {
                       </h3>
                     </div>
                     <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                      Architecture, administration, and resilience engineering across cloud environments, clinical networks, and legacy modernization workloads.
+                      Resilient cloud, network, and core server architecture supporting clinical, agency, and research workloads.
                     </p>
                     <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-200 dark:border-slate-700/70 pt-3">
                       <li className="flex items-start gap-2">
@@ -1963,40 +2279,193 @@ export default function App() {
                         <span>Immutable backup verification, patching &amp; BC/DR failover testing</span>
                       </li>
                     </ul>
+                    <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400 pt-1">
+                      Scoped after a fit call · Response-time targets are set in the service agreement.
+                    </p>
                   </div>
                   <div className="pt-4 border-t border-slate-200 dark:border-slate-700/70">
                     <button
                       type="button"
-                      onClick={() => openProductModal('Enterprise Infrastructure Services')}
+                      onClick={() => openProductModal('Infrastructure Services')}
                       className="w-full py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition-all cursor-pointer text-center whitespace-nowrap"
                     >
                       Request Infrastructure Scope →
                     </button>
                   </div>
-                </div>
+                </article>
               )}
             </div>
 
-            {/* Combined Managed Operations Callout */}
+            {/* 4-Step Managed Services Engagement Model */}
+            <div className={`p-6 rounded-2xl border space-y-4 ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-theme-accent">
+                  Managed Services Engagement Model (4 Steps)
+                </h3>
+                <span className="text-xs text-slate-500 dark:text-slate-400">
+                  Response-time targets are set in the service agreement.
+                </span>
+                {/* [TO CONFIRM]: Confirmed SLA response-time targets go here once finalized */}
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                <div className={`p-4 rounded-xl border space-y-1.5 ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                  <div className="font-mono font-bold text-theme-accent">Step 01</div>
+                  <div className="font-bold text-theme-primary dark:text-white text-sm">30-minute fit call</div>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Align on current pain points, staffing gaps, compliance drivers, and priorities directly with Shafiq Rahman.
+                  </p>
+                </div>
+                <div className={`p-4 rounded-xl border space-y-1.5 ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                  <div className="font-mono font-bold text-theme-accent">Step 02</div>
+                  <div className="font-bold text-theme-primary dark:text-white text-sm">Operational Assessment</div>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Operational assessment benchmarked against your existing staff, ticketing load, and security posture.
+                  </p>
+                </div>
+                <div className={`p-4 rounded-xl border space-y-1.5 ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                  <div className="font-mono font-bold text-theme-accent">Step 03</div>
+                  <div className="font-bold text-theme-primary dark:text-white text-sm">30-day transition</div>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Structured onboarding, telemetry integration, escalation runbooks, and service agreement alignment.
+                  </p>
+                </div>
+                <div className={`p-4 rounded-xl border space-y-1.5 ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                  <div className="font-mono font-bold text-theme-accent">Step 04</div>
+                  <div className="font-bold text-theme-primary dark:text-white text-sm">Monthly Coverage &amp; Review</div>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Ongoing monthly coverage with transparent monthly operational reporting and a quarterly executive review.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Managed Services Dual CTA Footer */}
+            <div className={`p-5 rounded-2xl border flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 ${isDark ? 'bg-slate-800/80 border-slate-700' : 'bg-white border-slate-200'}`}>
+              <div className="space-y-1">
+                <div className="text-xs font-mono font-bold uppercase text-theme-accent">
+                  Scoped After a Fit Call
+                </div>
+                <div className="text-sm font-bold text-theme-primary dark:text-white">
+                  Request a managed-services assessment — or bundle all three operational pillars.
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-400">
+                  Response-time targets and monthly scope are defined transparently in your service agreement following assessment.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 shrink-0">
+                <a
+                  href={getCalUrl('managed_services_primary_cta')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('cal_booking_click', { location: 'managed_services_primary_cta', ...utmParams })}
+                  className="px-5 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs transition-all shadow whitespace-nowrap"
+                >
+                  Request a managed-services assessment
+                </a>
+                <button
+                  type="button"
+                  onClick={() => scrollToForm('managed_services_bundle_cta', 'Bundle all three (Helpdesk + 24x7 SOC + Infrastructure) or start with an assessment')}
+                  className={`px-4 py-2.5 border font-bold rounded-xl text-xs transition-colors cursor-pointer whitespace-nowrap ${isDark ? 'border-slate-600 text-white hover:bg-slate-700' : 'border-slate-300 text-slate-800 hover:bg-slate-100'}`}
+                >
+                  Bundle all three — or start with an assessment
+                </button>
+                <a
+                  href="mailto:info@nexisai.us?subject=Managed%20Services%20Inquiry"
+                  onClick={() => handleEmailClick('managed_services')}
+                  className="text-xs font-semibold text-theme-primary dark:text-theme-accent underline whitespace-nowrap"
+                >
+                  Email info@nexisai.us
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 6C-TER: NEW MANAGED AI GOVERNANCE (RETAINER) */}
+        <section
+          id="managed-ai-governance"
+          aria-labelledby="managed-ai-governance-heading"
+          className="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8 scroll-mt-24"
+        >
+          <div className="text-center max-w-3xl mx-auto space-y-2">
+            <span className="text-xs font-mono font-bold uppercase text-theme-accent flex items-center justify-center gap-1.5">
+              <ShieldCheck className="w-4 h-4" />
+              <span>New · The Diagnostic, Continued</span>
+            </span>
+            <h2
+              id="managed-ai-governance-heading"
+              className="text-2xl sm:text-3xl font-extrabold text-theme-primary dark:text-white"
+            >
+              Managed AI Governance
+            </h2>
+            <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+              The 30-day diagnostic finds the risks; this ongoing monthly retainer keeps every new AI tool, vendor update, and board report governed.
+            </p>
+          </div>
+
+          <div className={`border rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 transition-colors ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+              <div className={`p-5 rounded-2xl border space-y-2 ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <div className="font-mono font-bold text-theme-accent">01. Policy &amp; Intake</div>
+                <h3 className="text-sm font-bold text-theme-primary dark:text-white">
+                  Policy Administration &amp; New-Tool Intake Reviews
+                </h3>
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Maintain living institutional AI acceptable-use policies and vet every new clinical, faculty, or administrative AI vendor request before procurement or go-live.
+                </p>
+              </div>
+
+              <div className={`p-5 rounded-2xl border space-y-2 ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <div className="font-mono font-bold text-theme-accent">02. Ongoing Risk</div>
+                <h3 className="text-sm font-bold text-theme-primary dark:text-white">
+                  Continuous Risk Assessments &amp; Staff Training
+                </h3>
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Ongoing NIST AI RMF risk tier updates, BAA/data-privacy audits, and role-based clinician, faculty, and staff training so shadow AI stays closed.
+                </p>
+              </div>
+
+              <div className={`p-5 rounded-2xl border space-y-2 ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <div className="font-mono font-bold text-theme-accent">03. Board Evidence</div>
+                <h3 className="text-sm font-bold text-theme-primary dark:text-white">
+                  Compliance Evidence &amp; Quarterly Board Reporting
+                </h3>
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Audit-ready governance logs, vendor compliance evidence packages, and quarterly board briefings summarizing active AI tools, risk changes, and spend.
+                </p>
+              </div>
+            </div>
+
             <div className={`p-5 rounded-2xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${isDark ? 'bg-slate-800/80 border-slate-700' : 'bg-white border-slate-200'}`}>
               <div className="space-y-1">
                 <div className="text-xs font-mono font-bold uppercase text-theme-accent">
-                  Tailored Operational Coverage
+                  Monthly Retainer Scope
                 </div>
                 <div className="text-sm font-bold text-theme-primary dark:text-white">
-                  Bundle Helpdesk, 24x7 SOC &amp; Infrastructure Services — or Start with an Assessment
+                  Scoped after the diagnostic or a fit call.
                 </div>
                 <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Every operational scope is benchmarked against your existing staff, ticketing load, and security posture on a 30-minute fit call.
+                  Transitions directly from your 30-Day AI Governance &amp; Pilot Diagnostic readout or an initial executive fit call.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => scrollToForm('managed_services_cta', 'Interested in Nexis AI Managed Services: Helpdesk, 24x7 SOC, and/or Infrastructure Services')}
-                className="shrink-0 px-5 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow cursor-pointer whitespace-nowrap"
-              >
-                Book 30-min services fit call
-              </button>
+              <div className="flex flex-wrap items-center gap-3 shrink-0">
+                <a
+                  href={getCalUrl('managed_ai_governance_cta')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('cal_booking_click', { location: 'managed_ai_governance_cta', ...utmParams })}
+                  className="px-5 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow whitespace-nowrap"
+                >
+                  Scope a retainer after a fit call
+                </a>
+                <a
+                  href="mailto:info@nexisai.us?subject=Managed%20AI%20Governance%20Retainer"
+                  onClick={() => handleEmailClick('managed_ai_governance')}
+                  className="text-xs font-semibold text-theme-primary dark:text-theme-accent underline whitespace-nowrap"
+                >
+                  Email info@nexisai.us
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -2009,9 +2478,11 @@ export default function App() {
 
         {/* SECTION 7: ABOUT SHAFIQ */}
         <section
+          id="about"
           aria-labelledby="bio-heading"
-          className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8"
+          className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8 scroll-mt-24"
         >
+          <span id="about-shafiq" className="scroll-mt-24" aria-hidden="true" />
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-mono font-bold uppercase text-theme-primary dark:text-slate-300">
               Leadership
@@ -2043,22 +2514,22 @@ export default function App() {
                   Shafiq Rahman, MS, MBA, MCS, PMP®
                 </h3>
                 <p className="text-xs text-slate-500 font-mono">
-                  Former Maryland State CIO · Founder &amp; Principal, Nexis AI
+                  Former Maryland State CIO · Founder &amp; Principal, Nexis AI, LLC
                 </p>
               </div>
 
               <div className="space-y-3">
                 <p>
-                  <strong>State CIO / Chief Information &amp; Digital Transformation Officer</strong>, Maryland Department of Transportation, October 2023–January 2026. Led a $250M+ IT enterprise, ~1,500 staff across six agencies; co-authored Maryland's first statewide AI governance policy as a member of the Governor's AI Sub-cabinet; modernized mainframe systems to Microsoft Azure; rationalized ~850 applications to ~620, generating ~$6M in recurring annual savings.
+                  <strong>Maryland State CIO / Chief Information &amp; Digital Transformation Officer</strong>, Maryland Department of Transportation, Oct 2023–Jan 2026: $250M+ IT budget, ~1,500 staff across six agencies; co-authored Maryland's first statewide AI governance policy on the Governor's AI Sub-cabinet; modernized mainframe systems to Microsoft Azure; rationalized ~850 applications to ~620, producing ~$6M in recurring annual taxpayer savings.
                 </p>
                 <p>
-                  <strong>Director of Enterprise IT</strong>, University of Maryland School of Medicine, October 2014–October 2023. Led the MEDITECH-to-Epic migration and clinical data interoperability across seven hospitals under HIPAA/HITECH.
+                  <strong>Director of Enterprise IT</strong>, University of Maryland School of Medicine, Oct 2014–Oct 2023: led the MEDITECH-to-Epic migration and clinical data interoperability across seven hospitals under HIPAA/HITECH.
                 </p>
                 <p>
-                  <strong>Founder &amp; Principal</strong>, Nexis AI, March 2026–present. Focuses exclusively on AI governance diagnostics for community healthcare systems.
+                  <strong>Founder &amp; Principal</strong>, Nexis AI, March 2026–present. Leads Nexis AI's advisory and managed-services practices for healthcare, public sector, and higher education.
                 </p>
                 <p>
-                  <strong>Education &amp; Credentials:</strong> MS in Management Information Systems, University of Maryland Global Campus (2021); MBA (2008) and Master of Computer Science (2001), Al-Khair University; PMP® certified. Author of <em>"AI Governance: A Local Government Leader's Guide"</em> (ICMA, March 2024).
+                  <strong>Education:</strong> MS in Management Information Systems, University of Maryland Global Campus (2021); MBA (2008) and Master of Computer Science (2001), Al-Khair University; PMP® certified. Author of <em>"AI Governance: A Local Government Leader's Guide"</em> (ICMA, March 2024).
                 </p>
               </div>
 
@@ -2084,6 +2555,17 @@ export default function App() {
                   <span>Shafiq Rahman on LinkedIn</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
+                <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">·</span>
+                <a
+                  href={getCalUrl('about_section')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('cal_booking_click', { location: 'about_section', ...utmParams })}
+                  className="text-theme-primary dark:text-theme-accent font-semibold hover:underline inline-flex items-center gap-1"
+                >
+                  <span>Book a 30-minute fit call</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
               </div>
             </div>
           </div>
@@ -2091,10 +2573,11 @@ export default function App() {
 
         {/* SECTION 8: HIGHER EDUCATION & ACADEMIC MEDICINE ADVISORY */}
         <section
-          id="higher-education"
+          id="higher-ed"
           aria-labelledby="higher-ed-heading"
           className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8 scroll-mt-24"
         >
+          <span id="higher-education" className="scroll-mt-24" aria-hidden="true" />
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-mono font-bold uppercase text-theme-primary dark:text-slate-300 flex items-center justify-center gap-1.5">
               <GraduationCap className="w-4 h-4 text-theme-accent" />
@@ -2125,13 +2608,24 @@ export default function App() {
                   Shafiq Rahman served 9 years as Director of Enterprise IT, reporting to the Dean and supporting ~3,000 faculty, ~3,000 staff, 1,300+ students, residents, and fellows across 25 academic departments, bridging university campus systems with seven affiliated teaching hospitals.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => scrollToForm('higher_ed_hero_cta', 'Higher Education & Academic Medicine Advisory inquiry')}
-                className="shrink-0 px-4 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast rounded-xl text-xs font-bold transition-opacity cursor-pointer shadow-sm"
-              >
-                Book 30-min fit call
-              </button>
+              <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+                <a
+                  href={getCalUrl('higher_ed_hero_cta')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('cal_booking_click', { location: 'higher_ed_hero_cta', ...utmParams })}
+                  className="px-4 py-2.5 bg-theme-accent hover:opacity-95 text-theme-accent-contrast rounded-xl text-xs font-bold transition-opacity shadow-sm whitespace-nowrap"
+                >
+                  Book a 30-minute fit call
+                </a>
+                <a
+                  href="mailto:info@nexisai.us?subject=Higher%20Education%20IT%20Advisory"
+                  onClick={() => handleEmailClick('higher_ed')}
+                  className="px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-xl text-xs font-semibold text-theme-primary dark:text-theme-accent hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors whitespace-nowrap"
+                >
+                  Email info@nexisai.us
+                </a>
+              </div>
             </div>
 
             {/* 4 Core Focus Areas */}
@@ -2188,7 +2682,7 @@ export default function App() {
                   </h4>
                 </div>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Safeguarding student education records under FERPA, clinical trials under HIPAA, and federal research grants under NIST SP 800-171 and CMMC standards.
+                  Safeguarding student education records under FERPA, clinical trials under HIPAA, and federal research grants under NIST SP 800-171 security controls.
                 </p>
               </div>
             </div>
@@ -2198,13 +2692,25 @@ export default function App() {
               <div>
                 <strong>Are you a Provost, Dean, VP of IT, or Interim CIO?</strong> Discuss your academic technology priorities or AI governance directly with Shafiq Rahman.
               </div>
-              <button
-                type="button"
-                onClick={() => scrollToForm('higher_ed_bottom_cta', 'Higher Education Advisory: Academic AI / Research Computing / Systems Integration')}
-                className="shrink-0 text-theme-primary dark:text-theme-accent font-bold underline hover:opacity-90 cursor-pointer"
-              >
-                Schedule 30-min fit call →
-              </button>
+              <div className="flex flex-wrap items-center gap-3 shrink-0">
+                <a
+                  href={getCalUrl('higher_ed_bottom_cta')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('cal_booking_click', { location: 'higher_ed_bottom_cta', ...utmParams })}
+                  className="text-theme-primary dark:text-theme-accent font-bold underline hover:opacity-90 whitespace-nowrap"
+                >
+                  Book a 30-minute fit call →
+                </a>
+                <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">·</span>
+                <a
+                  href="mailto:info@nexisai.us?subject=Higher%20Education%20IT%20Advisory"
+                  onClick={() => handleEmailClick('higher_ed_bottom')}
+                  className="text-theme-primary dark:text-theme-accent font-semibold underline whitespace-nowrap"
+                >
+                  Email info@nexisai.us
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -2386,7 +2892,7 @@ export default function App() {
                 Book a 30-minute fit call
               </h2>
               <p className={`text-sm max-w-lg mx-auto ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                Discuss your hospital's situation directly with Shafiq Rahman. No sales pressure, no junior teams.
+                Discuss your organization's situation directly with Shafiq Rahman. No sales pressure — and the diagnostic is delivered personally by Shafiq.
               </p>
             </div>
 
@@ -2635,11 +3141,12 @@ export default function App() {
                     >
                       <option value="30-Day AI Governance & Pilot Diagnostic ($6,500)">30-Day AI Governance &amp; Pilot Diagnostic ($6,500)</option>
                       <option value="Healthcare Fractional CIO Leadership">Healthcare Fractional CIO Leadership</option>
+                      <option value="Managed AI Governance Retainer">Managed AI Governance (Monthly Retainer)</option>
                       <option value="Public Sector IT Modernization">Public Sector &amp; Government IT Modernization</option>
                       <option value="Higher Education & Academic Medicine Advisory">Higher Education &amp; Academic Medicine Advisory</option>
-                      <option value="Managed Helpdesk Services">Managed Helpdesk Services</option>
-                      <option value="24x7 Security Operations Center (SOC)">24x7 Security Operations Center (SOC)</option>
-                      <option value="Enterprise Infrastructure Services">Enterprise Infrastructure Services</option>
+                      <option value="Managed Helpdesk (Tier 1–3)">Managed Helpdesk (Tier 1–3)</option>
+                      <option value="24x7 SOC — Cyber Defense">24x7 SOC — Cyber Defense</option>
+                      <option value="Enterprise Infrastructure Services">Infrastructure Services</option>
                       <option value="Bundled Managed Operations (Helpdesk + 24x7 SOC + Infrastructure)">Bundled Managed Operations (Helpdesk + 24x7 SOC + Infrastructure)</option>
                     </select>
                   </div>
@@ -2731,8 +3238,9 @@ export default function App() {
 
         {/* SECTION 10: FAQ */}
         <section
+          id="faq"
           aria-labelledby="faq-heading"
-          className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8"
+          className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8 scroll-mt-24"
         >
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-mono font-bold uppercase text-theme-primary dark:text-slate-300">
@@ -2754,15 +3262,15 @@ export default function App() {
               },
               {
                 q: 'Do you offer ongoing Fractional CIO work?',
-                a: 'Yes. While the entry point for hospitals is typically the 30-day diagnostic (and a fit call for public sector agencies), leadership frequently invites Shafiq to serve as interim or Fractional CIO post-findings. In this capacity, he governs EHR/clinical interface remediations, audits vendor contracts, oversees cyber insurance posture, and manages ongoing NIST/HIPAA compliance. This is scoped on a dedicated monthly advisory agreement.',
+                a: 'Yes. While the entry point for hospitals is typically the 30-day diagnostic (and a fit call for public sector agencies), leadership frequently invites Shafiq to serve as interim or Fractional CIO post-findings. In this capacity, he governs EHR/clinical interface remediations, audits vendor contracts, oversees cyber insurance posture, and manages ongoing NIST/HIPAA alignment.',
               },
               {
                 q: 'Do you implement the fixes?',
-                a: 'The diagnostic itself ends with the 60-minute findings briefing and board one-pager — there are no hidden or surprise ongoing fees. We do not do junior developer coding. However, if hospital leadership or agency directors invite ongoing executive stewardship, Shafiq can steward your internal staff and vendors through remediation under a separate Fractional CIO or advisory scope.',
+                a: 'The diagnostic itself ends with the 60-minute findings briefing and board one-pager. Implementation and ongoing operation are available as separate scopes — Fractional CIO leadership, Managed Helpdesk, 24x7 SOC, Infrastructure Services, or a Managed AI Governance retainer.',
               },
               {
                 q: 'Do you serve hospitals and organizations nationwide, or larger health systems?',
-                a: 'Yes. Nexis AI serves clients nationwide across the United States. The fixed-price $6,500 30-day diagnostic is calibrated for 100–400 bed community hospitals anywhere in the U.S. Larger multi-hospital health systems, state and local government agencies, and universities nationwide engage via custom-scoped Fractional CIO advisory, Managed Helpdesk, 24x7 SOC, and Infrastructure Services.',
+                a: 'Yes. Nexis AI serves clients nationwide across the United States. The fixed-price $6,500 30-day diagnostic is calibrated for 100–400 bed community hospitals anywhere in the U.S. Larger multi-hospital health systems, state and local government agencies, and universities nationwide engage via custom-scoped Fractional CIO advisory, Managed Helpdesk, 24x7 SOC, Infrastructure Services, or Managed AI Governance.',
               },
               {
                 q: 'Will this slow down our clinicians?',
@@ -2774,11 +3282,11 @@ export default function App() {
               },
               {
                 q: 'Who does the work?',
-                a: 'Shafiq himself. Every interview, document review, risk evaluation, and briefing is conducted personally by Shafiq Rahman. There are no junior analysts, outsourced contractors, or delegated teams.',
+                a: 'The diagnostic is done personally by Shafiq Rahman — every interview, document review, risk evaluation, and briefing. Managed services are delivered by the Nexis AI team together with vetted subcontractor partners, under his direction.',
               },
               {
                 q: 'Do you provide Managed Helpdesk, 24x7 SOC, and Infrastructure Services?',
-                a: 'Yes. In addition to executive AI governance and Fractional CIO leadership, Nexis AI provides Managed Helpdesk Services (Tier 1–3 clinical and administrative support), 24x7 Security Operations Center (SOC) monitoring and incident containment, and Enterprise Infrastructure Services covering Microsoft Azure, hybrid cloud, IoMT network segmentation, and immutable backups.',
+                a: 'Yes. In addition to executive AI governance and Fractional CIO leadership, Nexis AI provides Managed Helpdesk Services (Tier 1–3 clinical, agency, and campus support), 24x7 Security Operations Center (SOC) monitoring and incident containment, and Infrastructure Services covering Microsoft Azure, hybrid cloud, IoMT network segmentation, and immutable backups.',
               },
             ].map((faq, idx) => (
               <div
@@ -2808,6 +3316,85 @@ export default function App() {
           </div>
         </section>
 
+        {/* SECTION 11: DIRECT EXECUTIVE CONTACT */}
+        <section
+          id="contact"
+          aria-labelledby="contact-heading"
+          className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto scroll-mt-24"
+        >
+          <div className={`border rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 transition-colors ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+              <div className="space-y-1">
+                <span className="text-xs font-mono font-bold uppercase text-theme-accent">
+                  Direct Contact
+                </span>
+                <h2
+                  id="contact-heading"
+                  className="text-2xl sm:text-3xl font-extrabold text-theme-primary dark:text-white"
+                >
+                  Connect with Nexis AI, LLC
+                </h2>
+                <p className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                  Serving hospitals, state and local government agencies, and higher education institutions nationwide across the United States.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 shrink-0">
+                <a
+                  href={getCalUrl('contact_section_cta')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('cal_booking_click', { location: 'contact_section', ...utmParams })}
+                  className="px-5 py-3 bg-theme-accent hover:opacity-95 text-theme-accent-contrast font-bold rounded-xl text-xs sm:text-sm transition-all shadow whitespace-nowrap flex items-center gap-2"
+                >
+                  <span>Book a 30-minute fit call</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+                <a
+                  href="mailto:info@nexisai.us?subject=Nexis%20AI%20Executive%20Inquiry"
+                  onClick={() => handleEmailClick('contact_section')}
+                  className={`px-4 py-3 border font-semibold rounded-xl text-xs sm:text-sm transition-colors whitespace-nowrap ${isDark ? 'border-slate-700 text-slate-200 hover:bg-slate-800' : 'border-slate-300 text-slate-800 hover:bg-slate-100'}`}
+                >
+                  Email info@nexisai.us
+                </a>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <a
+                href="tel:+14109347773"
+                onClick={() => handlePhoneClick('contact_section')}
+                className={`p-4 rounded-2xl border flex items-center gap-3 transition-colors ${isDark ? 'bg-slate-800/50 border-slate-700/80 hover:border-theme-accent' : 'bg-white border-slate-200 hover:border-theme-accent'}`}
+              >
+                <Phone className="w-4 h-4 text-theme-accent shrink-0" />
+                <div>
+                  <div className="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400">Direct Phone</div>
+                  <div className="font-bold text-theme-primary dark:text-white">+1 (410) 934-7773</div>
+                </div>
+              </a>
+
+              <a
+                href="mailto:info@nexisai.us"
+                onClick={() => handleEmailClick('contact_section_card')}
+                className={`p-4 rounded-2xl border flex items-center gap-3 transition-colors ${isDark ? 'bg-slate-800/50 border-slate-700/80 hover:border-theme-accent' : 'bg-white border-slate-200 hover:border-theme-accent'}`}
+              >
+                <Mail className="w-4 h-4 text-theme-accent shrink-0" />
+                <div>
+                  <div className="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400">Email</div>
+                  <div className="font-bold text-theme-primary dark:text-white">info@nexisai.us</div>
+                </div>
+              </a>
+
+              <div className={`p-4 rounded-2xl border flex items-center gap-3 ${isDark ? 'bg-slate-800/50 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+                <MapPin className="w-4 h-4 text-theme-accent shrink-0" />
+                <div>
+                  <div className="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400">Headquarters</div>
+                  <div className="font-bold text-theme-primary dark:text-white">Ellicott City, Howard County, MD 21042</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       {/* FOOTER */}
@@ -2815,12 +3402,12 @@ export default function App() {
         <div className="max-w-5xl mx-auto space-y-8">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-white/10 pb-8">
             <div className="space-y-1">
-              <span className="text-xl font-bold font-mono text-white">Nexis AI</span>
+              <span className="text-xl font-bold font-mono text-white">Nexis AI, LLC</span>
               <p className="text-xs text-slate-300">
-                Healthcare AI Governance Advisory · Founded by Shafiq Rahman, Former Maryland State CIO
+                AI Governance, Fractional CIO &amp; Managed IT Services · Founded by Shafiq Rahman, Former Maryland State CIO
               </p>
               <p className="text-xs text-slate-400">
-                Ellicott City, Howard County, MD 21042 · Serving Healthcare, Public Sector &amp; Higher Education Nationwide
+                info@nexisai.us · +1 (410) 934-7773 · Ellicott City, Howard County, MD 21042
               </p>
             </div>
 
@@ -2848,7 +3435,7 @@ export default function App() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-            <p>© {new Date().getFullYear()} Nexis AI. All rights reserved. 30-Day AI Governance &amp; Pilot Diagnostic ($6,500).</p>
+            <p>© {new Date().getFullYear()} Nexis AI, LLC. All rights reserved.</p>
             <div className="flex items-center gap-4">
               <a
                 href="https://icma.org/articles/pm-magazine/ai-governance-local-government-leaders-guide"

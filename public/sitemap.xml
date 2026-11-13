@@ -11,23 +11,17 @@
     <image:image>
       <image:loc>https://nexisai.us/profile_circle.png</image:loc>
       <image:title>Shafiq Rahman, MS, MBA, MCS, PMP® — Founder, Nexis AI &amp; Former Maryland State CIO</image:title>
-      <image:caption>Shafiq Rahman leads the 30-Day AI Governance &amp; Pilot Diagnostic ($6,500), Fractional CIO Advisory, Managed Helpdesk, 24x7 SOC, and Infrastructure Services nationwide across the United States.</image:caption>
+      <image:caption>Shafiq Rahman leads the 30-Day AI Governance &amp; Pilot Diagnostic ($6,500), Fractional CIO Advisory, Managed Helpdesk, 24x7 SOC, Infrastructure Services, and Managed AI Governance nationwide across the United States.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://nexisai.us/#two-practices</loc>
+    <loc>https://nexisai.us/#diagnostic</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://nexisai.us/#healthcare-fractional-cio</loc>
-    <lastmod>2026-11-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://nexisai.us/#public-sector</loc>
+    <loc>https://nexisai.us/#fractional-cio</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -39,16 +33,46 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://nexisai.us/#higher-education</loc>
+    <loc>https://nexisai.us/#managed-helpdesk</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#soc</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#infrastructure</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#managed-ai-governance</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#public-sector</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/#higher-ed</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://nexisai.us/#it-maturity-assessment</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://nexisai.us/#board-checklist</loc>
@@ -57,7 +81,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nexisai.us/#about-shafiq</loc>
+    <loc>https://nexisai.us/#about</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -66,10 +90,10 @@
     <loc>https://nexisai.us/#faq</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://nexisai.us/#fit-call</loc>
+    <loc>https://nexisai.us/#contact</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
