@@ -2569,6 +2569,71 @@ export default function App() {
               </div>
             </div>
           </div>
+
+          {/* Credentials & Standards Strip */}
+          <div
+            aria-labelledby="credentials-heading"
+            className={`border rounded-2xl p-5 sm:p-6 space-y-4 transition-colors ${isDark ? 'bg-slate-900/70 border-slate-800' : 'bg-slate-50 border-slate-200'}`}
+          >
+            <h3
+              id="credentials-heading"
+              className="text-xs font-mono font-bold uppercase tracking-wider text-theme-primary dark:text-slate-300"
+            >
+              Credentials &amp; Standards
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              <div className={`p-3.5 rounded-xl border space-y-1 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
+                <div className="text-xs font-bold text-theme-primary dark:text-white leading-snug">
+                  PMP® — Project Management Professional
+                </div>
+                <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
+                  PMI — Cert. #4362628, valid through April 2029
+                </div>
+              </div>
+
+              <div className={`p-3.5 rounded-xl border space-y-1 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
+                <div className="text-xs font-bold text-theme-primary dark:text-white leading-snug">
+                  M.S. Management Information Systems
+                </div>
+                <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
+                  University of Maryland Global Campus, 2021
+                </div>
+              </div>
+
+              <div className={`p-3.5 rounded-xl border space-y-1 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
+                <div className="text-xs font-bold text-theme-primary dark:text-white leading-snug">
+                  MBA
+                </div>
+                <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
+                  AK University, 2008
+                </div>
+              </div>
+
+              <div className={`p-3.5 rounded-xl border space-y-1 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
+                <div className="text-xs font-bold text-theme-primary dark:text-white leading-snug">
+                  Master of Computer Science (MCS)
+                </div>
+                <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
+                  AK University, 2001
+                </div>
+              </div>
+            </div>
+
+            {/*
+              FUTURE BADGE PLACEHOLDERS (HTML/JSX comments only — NOT visible on page; do not activate until verified):
+              1. [PLACEHOLDER] Google Cloud Skills Boost — Introduction to Responsible AI (completion badge)
+              2. [PLACEHOLDER] Microsoft Learn — Responsible AI Principles & Practices (achievement badge)
+              3. [PLACEHOLDER] IBM SkillsBuild — AI Fundamentals (Credly badge)
+              4. [PLACEHOLDER] Cisco Networking Academy — Introduction to Cybersecurity (Credly badge — COURSE badge, NOT a Cisco certification; label "Course Completion" if ever displayed)
+            */}
+
+            <div className="pt-3 border-t border-slate-200 dark:border-slate-800">
+              <p className="text-xs font-medium text-slate-700 dark:text-slate-300">
+                Frameworks we work to: NIST AI RMF · NIST SP 800-53 · HIPAA
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* SECTION 8: HIGHER EDUCATION & ACADEMIC MEDICINE ADVISORY */}
