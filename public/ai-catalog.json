@@ -36,11 +36,11 @@
       "identifier": "urn:ai:nexisai.us:services:managed-helpdesk",
       "type": "application/json",
       "name": "Managed Helpdesk (Tier 1–3)",
-      "description": "Tier 1–3 multi-channel managed IT helpdesk and service desk operations supporting clinical shifts, EHR workstations, MFA/SSO identity resets, and agency/campus end-users nationwide.",
+      "description": "Tier 1–3 multi-channel managed IT helpdesk and ServiceNow ITIL service desk operations supporting Epic/MEDITECH workstations, Microsoft 365, Intune MDM, Okta/Entra ID MFA/SSO, and agency/campus end-users nationwide.",
       "representativeQueries": [
         "managed healthcare IT helpdesk service desk",
-        "clinical Tier 1-3 helpdesk support EHR workstations",
-        "public sector managed IT helpdesk Nexis AI"
+        "clinical Tier 1-3 helpdesk support Epic MEDITECH workstations",
+        "Microsoft 365 Intune ServiceNow managed IT helpdesk Nexis AI"
       ],
       "url": "https://nexisai.us/#managed-helpdesk"
     },
@@ -48,11 +48,11 @@
       "identifier": "urn:ai:nexisai.us:services:24x7-soc",
       "type": "application/json",
       "name": "24x7 Security Operations Center (SOC)",
-      "description": "Continuous security monitoring, SIEM log correlation, EDR telemetry, ransomware isolation, and HIPAA / NIST SP 800-53 compliance reporting nationwide.",
+      "description": "Continuous 24x7x365 security monitoring, Microsoft Sentinel SIEM & SOAR correlation, CrowdStrike Falcon & Defender EDR telemetry, Zero Trust IAM/PAM, Palo Alto & Fortinet firewall defense, ransomware isolation, and HIPAA / NIST SP 800-53 reporting nationwide.",
       "representativeQueries": [
         "24x7 SOC managed security operations hospital",
-        "healthcare 24x7 SIEM EDR ransomware monitoring",
-        "NIST SP 800-53 HIPAA SOC services Nexis AI"
+        "healthcare CrowdStrike Sentinel SIEM EDR ransomware monitoring",
+        "Zero Trust HIPAA NIST SP 800-53 cybersecurity SOC Nexis AI"
       ],
       "url": "https://nexisai.us/#soc"
     },
@@ -60,11 +60,11 @@
       "identifier": "urn:ai:nexisai.us:services:infrastructure-services",
       "type": "application/json",
       "name": "Enterprise Infrastructure Services",
-      "description": "Hybrid cloud architecture (Microsoft Azure), virtualization management, IoMT network segmentation, firewall governance, immutable backups, and BC/DR failover testing nationwide.",
+      "description": "Microsoft Azure and AWS hybrid cloud architecture, VMware & Hyper-V virtualization, Cisco SD-WAN & core networking, IoMT network segmentation, firewall governance, immutable backups, and BC/DR failover testing nationwide.",
       "representativeQueries": [
-        "healthcare cloud infrastructure services Azure hybrid",
-        "IoMT medical device network segmentation",
-        "hospital immutable backups disaster recovery infrastructure"
+        "healthcare cloud infrastructure services Microsoft Azure AWS VMware",
+        "IoMT medical device VLAN network segmentation Cisco SD-WAN",
+        "hospital immutable backups disaster recovery BC/DR infrastructure"
       ],
       "url": "https://nexisai.us/#infrastructure"
     },

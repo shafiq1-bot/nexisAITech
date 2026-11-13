@@ -70,13 +70,18 @@ Plus dedicated Public Sector & Government IT Modernization (#public-sector) and 
 Delivered by Nexis AI's in-house team together with vetted subcontractor partners, under Shafiq Rahman's direction. Response-time targets are set in the service agreement.
 1. **Managed Helpdesk (Tier 1–3) (#managed-helpdesk)**:
    - Multi-channel technical support built for clinical shifts, agency staff, and campus end-users nationwide.
-   - EHR, endpoint, workstation, and identity (MFA/SSO) ticket triage with structured escalation runbooks and monthly ticket trend analytics.
-2. **24x7 Security Operations Center (SOC) (#soc)**:
-   - Continuous SIEM log correlation, EDR telemetry, and anomaly response aligned with HIPAA, NIST SP 800-53, and cyber insurance requirements.
-   - Rapid ransomware isolation, endpoint containment, continuous vulnerability scanning, and board compliance reporting.
+   - Clinical EHR (Epic / MEDITECH), workstation & VDI ticket triage; Microsoft 365, Intune MDM, Okta / Entra ID MFA & SSO provisioning; ServiceNow ITIL escalation runbooks and root-cause analytics.
+2. **24x7 Security Operations Center (SOC) & Cyber Defense (#soc)**:
+   - Continuous SIEM/SOAR log correlation (Microsoft Sentinel), EDR/XDR telemetry (CrowdStrike Falcon / Microsoft Defender), and Zero Trust IAM/PAM anomaly response aligned with HIPAA and NIST SP 800-53.
+   - Palo Alto Networks & Fortinet next-gen firewall monitoring, rapid ransomware isolation, vulnerability & patch management, phishing defense, and board compliance reporting.
 3. **Enterprise Infrastructure Services (#infrastructure)**:
-   - Microsoft Azure, hybrid cloud, and virtualization administration.
-   - IoMT medical device VLAN segmentation, firewall governance, immutable backup verification, patching, and BC/DR failover testing.
+   - Microsoft Azure, AWS hybrid cloud, and VMware vSphere / Hyper-V virtualization administration.
+   - Cisco switching, Wi-Fi & SD-WAN, IoMT medical device VLAN segmentation, Active Directory / Entra ID federation, immutable air-gapped backup verification, and BC/DR failover drills.
+4. **Supported Platforms**:
+   - Clinical & Healthcare EHRs: Epic, MEDITECH, Oracle Health, HL7/FHIR engines.
+   - Cloud & Infrastructure: Microsoft Azure, AWS, VMware, Cisco, Palo Alto Networks, Fortinet.
+   - Cybersecurity & Identity: Microsoft Sentinel, Defender XDR, CrowdStrike, Okta, Entra ID.
+   - Workplace, ITSM & ERP/SIS: Microsoft 365, Intune, ServiceNow, Workday, PeopleSoft, Ellucian Banner, Tyler, CGI, SAP.
 
 ---
 
@@ -106,8 +111,12 @@ A 5-minute interactive self-assessment evaluating 9 enterprise capabilities acro
 ## 9. Leadership Biography & Verified Credentials (#about)
 - **Executive**: Shafiq Rahman, MS, MBA, MCS, PMP®
 - **Title**: Founder & Principal, Nexis AI, LLC; Former Maryland State CIO
-- **Education (Verified)**:
-  "MS in Management Information Systems, University of Maryland Global Campus (2021); MBA (2008) and Master of Computer Science (2001), Al-Khair University; PMP® certified."
+- **Verified Credentials**:
+  - PMP® — Project Management Professional, PMI — Cert. #4362628, valid through April 2029
+  - M.S. Management Information Systems — University of Maryland Global Campus, 2021
+  - MBA — AK University, 2008
+  - Master of Computer Science (MCS) — AK University, 2001
+- **Frameworks**: Frameworks we work to: NIST AI RMF · NIST SP 800-53 · HIPAA
 - **Verified Experience**:
   - Maryland State CIO / Chief Information & Digital Transformation Officer, Maryland Department of Transportation, Oct 2023–Jan 2026: $250M+ IT budget, ~1,500 staff across six agencies; co-authored Maryland's first statewide AI governance policy on the Governor's AI Sub-cabinet; modernized mainframe systems to Microsoft Azure; rationalized ~850 applications to ~620, producing ~$6M in recurring annual taxpayer savings.
   - Director of Enterprise IT, University of Maryland School of Medicine, Oct 2014–Oct 2023: led the MEDITECH-to-Epic migration and clinical data interoperability across seven hospitals under HIPAA/HITECH.

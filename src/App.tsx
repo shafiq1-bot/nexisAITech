@@ -56,6 +56,86 @@ const trackEvent = (eventName: string, params: Record<string, any> = {}) => {
 
 type ThemePalette = 'cyan' | 'cobalt' | 'emerald' | 'amber';
 
+// Compact geometric vector marks for verified credentials & supported enterprise platforms
+const BrandBadgeMark = ({
+  code,
+  bg,
+  accent,
+  type = 'monogram',
+}: {
+  code: string;
+  bg: string;
+  accent: string;
+  type?: 'monogram' | 'shield' | 'cloud' | 'network' | 'pulse' | 'crest';
+}) => (
+  <svg
+    viewBox="0 0 32 32"
+    width="28"
+    height="28"
+    aria-hidden="true"
+    className="w-7 h-7 rounded-lg shrink-0 shadow-2xs border border-white/10"
+  >
+    <rect width="32" height="32" rx="7" fill={bg} />
+    {type === 'shield' && (
+      <path
+        d="M16 5.5L8.5 8.8v6.1c0 5 3.2 9.4 7.5 11.1 4.3-1.7 7.5-6.1 7.5-11.1V8.8L16 5.5z"
+        fill="none"
+        stroke={accent}
+        strokeWidth="1.8"
+      />
+    )}
+    {type === 'cloud' && (
+      <path
+        d="M11 22h10.5a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 11.4 13a4.5 4.5 0 0 0-.4 9z"
+        fill="none"
+        stroke={accent}
+        strokeWidth="1.7"
+      />
+    )}
+    {type === 'network' && (
+      <g stroke={accent} strokeWidth="1.6" fill="none">
+        <circle cx="16" cy="9" r="2.2" />
+        <circle cx="9.5" cy="21.5" r="2.2" />
+        <circle cx="22.5" cy="21.5" r="2.2" />
+        <path d="M14.7 10.9L10.7 19.6M17.3 10.9l4 8.7M11.7 21.5h8.6" />
+      </g>
+    )}
+    {type === 'pulse' && (
+      <path
+        d="M5 17h4.5l2.5-6 3.8 11 2.7-7.5 2 2.5H27"
+        fill="none"
+        stroke={accent}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    )}
+    {type === 'crest' && (
+      <path
+        d="M16 6l8 3.5-8 3.5-8-3.5L16 6zm-5.5 6.8v4.7c0 2.1 2.5 3.8 5.5 3.8s5.5-1.7 5.5-3.8v-4.7"
+        fill="none"
+        stroke={accent}
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    )}
+    {type === 'monogram' && (
+      <text
+        x="16"
+        y="19.5"
+        textAnchor="middle"
+        fill={accent}
+        fontSize={code.length >= 4 ? '8.2' : code.length === 3 ? '9.5' : '11.5'}
+        fontWeight="800"
+        fontFamily="JetBrains Mono, monospace"
+      >
+        {code}
+      </text>
+    )}
+  </svg>
+);
+
 export default function App() {
   // Dynamic Theme and Dark/Light Mode state
   const [theme, setTheme] = useState<ThemePalette>(() => {
@@ -2167,20 +2247,20 @@ export default function App() {
                       </h3>
                     </div>
                     <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                      Multi-channel technical support for clinical shifts, agency staff, and campus end-users nationwide.
+                      Multi-channel Tier 1–3 technical support, endpoint administration, and ITIL service workflows for clinical shifts, agency staff, and campus end-users nationwide.
                     </p>
                     <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-200 dark:border-slate-700/70 pt-3">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
-                        <span>Clinical EHR, workstation &amp; identity (MFA/SSO) ticket triage</span>
+                        <span>Clinical EHR (Epic / MEDITECH), workstation &amp; VDI ticket triage</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
-                        <span>Structured escalation runbooks to EHR/app specialists</span>
+                        <span>Microsoft 365, Intune MDM, Okta / Entra ID MFA &amp; SSO provisioning</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
-                        <span>Monthly ticket trend analytics &amp; root-cause elimination</span>
+                        <span>ServiceNow / ITIL escalation runbooks &amp; root-cause analytics</span>
                       </li>
                     </ul>
                     <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400 pt-1">
@@ -2207,7 +2287,7 @@ export default function App() {
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-xs font-mono text-theme-accent">
-                      <span className="font-bold">02. 24x7 SOC</span>
+                      <span className="font-bold">02. 24x7 SOC &amp; Cyber</span>
                       <span>Cyber Defense</span>
                     </div>
                     <div className="flex items-center gap-3">
@@ -2219,20 +2299,20 @@ export default function App() {
                       </h3>
                     </div>
                     <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                      Continuous threat detection, telemetry monitoring, and incident containment aligned with HIPAA, NIST SP 800-53, and cyber insurance requirements.
+                      Continuous threat detection, Zero Trust identity controls, SIEM/XDR monitoring, and incident containment aligned with HIPAA and NIST SP 800-53.
                     </p>
                     <ul className="space-y-2 text-xs text-slate-200 border-t border-white/10 pt-3">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
-                        <span>24x7 SIEM log correlation, EDR telemetry &amp; anomaly response</span>
+                        <span>24x7 SIEM/SOAR correlation &amp; CrowdStrike / Defender EDR telemetry</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
-                        <span>Rapid ransomware isolation &amp; endpoint containment</span>
+                        <span>Zero Trust IAM/PAM, phishing defense &amp; rapid ransomware isolation</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
-                        <span>Continuous vulnerability scanning &amp; board compliance reporting</span>
+                        <span>Vulnerability management, cyber insurance readiness &amp; board reporting</span>
                       </li>
                     </ul>
                     <p className="text-[11px] font-mono text-slate-400 pt-1">
@@ -2260,7 +2340,7 @@ export default function App() {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
                       <span className="font-bold text-theme-accent">03. Infrastructure</span>
-                      <span>Hybrid &amp; Cloud</span>
+                      <span>Cloud &amp; Network</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="p-2.5 rounded-xl bg-theme-primary/10 dark:bg-white/10 text-theme-primary dark:text-theme-accent shrink-0">
@@ -2271,20 +2351,20 @@ export default function App() {
                       </h3>
                     </div>
                     <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                      Resilient cloud, network, and core server architecture supporting clinical, agency, and research workloads.
+                      Resilient hybrid cloud, core networking, virtualization, and storage architecture supporting clinical, agency, and campus workloads.
                     </p>
                     <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-200 dark:border-slate-700/70 pt-3">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
-                        <span>Microsoft Azure, hybrid cloud &amp; virtualization administration</span>
+                        <span>Microsoft Azure, AWS hybrid cloud &amp; VMware / Hyper-V operations</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
-                        <span>IoMT medical device VLAN segmentation &amp; firewall governance</span>
+                        <span>Cisco SD-WAN, Palo Alto / Fortinet firewalls &amp; IoMT VLAN segmentation</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
-                        <span>Immutable backup verification, patching &amp; BC/DR failover testing</span>
+                        <span>Active Directory / Entra ID, immutable backups &amp; BC/DR failover testing</span>
                       </li>
                     </ul>
                     <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400 pt-1">
@@ -2302,6 +2382,81 @@ export default function App() {
                   </div>
                 </article>
               )}
+            </div>
+
+            {/* Supported Cybersecurity, IT, Infrastructure & Platform Matrix */}
+            <div className={`p-6 rounded-2xl border space-y-5 ${isDark ? 'bg-slate-950/70 border-slate-800' : 'bg-white border-slate-200'}`}>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div>
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-theme-accent">
+                    Cybersecurity, IT Services, Infrastructure &amp; Platforms We Support
+                  </h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
+                    Operational architecture and day-to-day administration across core clinical, government, higher-ed, and enterprise stacks.
+                  </p>
+                </div>
+                <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 shrink-0">
+                  Vendor-Agnostic Stewardship
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                <div className={`p-4 rounded-xl border space-y-2.5 ${isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                  <div className="flex items-center gap-2">
+                    <BrandBadgeMark code="SOC" bg="#0F2A44" accent="#22D3EE" type="shield" />
+                    <div className="font-bold text-theme-primary dark:text-white text-xs">Cybersecurity &amp; 24x7 SOC</div>
+                  </div>
+                  <ul className="space-y-1.5 text-[11px] text-slate-600 dark:text-slate-300">
+                    <li>• Microsoft Sentinel &amp; Defender XDR</li>
+                    <li>• CrowdStrike Falcon EDR / MDR</li>
+                    <li>• Palo Alto Networks &amp; Fortinet NGFW</li>
+                    <li>• Zero Trust IAM, MFA &amp; PAM Controls</li>
+                    <li>• Vulnerability Scans &amp; Tabletop Drills</li>
+                  </ul>
+                </div>
+
+                <div className={`p-4 rounded-xl border space-y-2.5 ${isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                  <div className="flex items-center gap-2">
+                    <BrandBadgeMark code="M365" bg="#1E3A8A" accent="#93C5FD" />
+                    <div className="font-bold text-theme-primary dark:text-white text-xs">Managed IT &amp; Service Desk</div>
+                  </div>
+                  <ul className="space-y-1.5 text-[11px] text-slate-600 dark:text-slate-300">
+                    <li>• Tier 1–3 Clinical &amp; Campus Helpdesk</li>
+                    <li>• Microsoft 365 &amp; Intune MDM</li>
+                    <li>• Okta &amp; Microsoft Entra ID (SSO/MFA)</li>
+                    <li>• ServiceNow ITIL Ticket Governance</li>
+                    <li>• Endpoint Patching &amp; VDI Workstations</li>
+                  </ul>
+                </div>
+
+                <div className={`p-4 rounded-xl border space-y-2.5 ${isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                  <div className="flex items-center gap-2">
+                    <BrandBadgeMark code="CLD" bg="#0C4A6E" accent="#38BDF8" type="cloud" />
+                    <div className="font-bold text-theme-primary dark:text-white text-xs">Cloud &amp; Core Infrastructure</div>
+                  </div>
+                  <ul className="space-y-1.5 text-[11px] text-slate-600 dark:text-slate-300">
+                    <li>• Microsoft Azure &amp; AWS Hybrid Cloud</li>
+                    <li>• VMware vSphere &amp; Hyper-V Clusters</li>
+                    <li>• Cisco Switching, Wi-Fi &amp; SD-WAN</li>
+                    <li>• IoMT Medical Device VLAN Isolation</li>
+                    <li>• Immutable Backups &amp; BC/DR Failover</li>
+                  </ul>
+                </div>
+
+                <div className={`p-4 rounded-xl border space-y-2.5 ${isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                  <div className="flex items-center gap-2">
+                    <BrandBadgeMark code="EHR" bg="#064E3B" accent="#34D399" type="pulse" />
+                    <div className="font-bold text-theme-primary dark:text-white text-xs">EHR &amp; Enterprise Platforms</div>
+                  </div>
+                  <ul className="space-y-1.5 text-[11px] text-slate-600 dark:text-slate-300">
+                    <li>• Epic &amp; MEDITECH EHR Environments</li>
+                    <li>• Oracle Health &amp; HL7 / FHIR Engines</li>
+                    <li>• Workday, PeopleSoft &amp; Ellucian Banner</li>
+                    <li>• Tyler / CGI / SAP Government Cores</li>
+                    <li>• Slurm GPU Research Enclaves</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             {/* 4-Step Managed Services Engagement Model */}
@@ -2581,7 +2736,7 @@ export default function App() {
           {/* Credentials & Standards Strip */}
           <div
             aria-labelledby="credentials-heading"
-            className={`border rounded-2xl p-5 sm:p-6 space-y-4 transition-colors ${isDark ? 'bg-slate-900/70 border-slate-800' : 'bg-slate-50 border-slate-200'}`}
+            className={`border rounded-2xl p-5 sm:p-6 space-y-5 transition-colors ${isDark ? 'bg-slate-900/70 border-slate-800' : 'bg-slate-50 border-slate-200'}`}
           >
             <h3
               id="credentials-heading"
@@ -2591,39 +2746,51 @@ export default function App() {
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-              <div className={`p-3.5 rounded-xl border space-y-1 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
-                <div className="text-xs font-bold text-theme-primary dark:text-white leading-snug">
-                  PMP® — Project Management Professional
-                </div>
-                <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
-                  PMI — Cert. #4362628, valid through April 2029
-                </div>
-              </div>
-
-              <div className={`p-3.5 rounded-xl border space-y-1 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
-                <div className="text-xs font-bold text-theme-primary dark:text-white leading-snug">
-                  M.S. Management Information Systems
-                </div>
-                <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
-                  University of Maryland Global Campus, 2021
+              <div className={`p-3.5 rounded-xl border flex items-start gap-2.5 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
+                <BrandBadgeMark code="PMP" bg="#0F2A44" accent="#22D3EE" />
+                <div className="space-y-1">
+                  <div className="text-xs font-bold text-theme-primary dark:text-white leading-snug">
+                    PMP® — Project Management Professional
+                  </div>
+                  <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
+                    PMI — Cert. #4362628, valid through April 2029
+                  </div>
                 </div>
               </div>
 
-              <div className={`p-3.5 rounded-xl border space-y-1 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
-                <div className="text-xs font-bold text-theme-primary dark:text-white leading-snug">
-                  MBA
-                </div>
-                <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
-                  AK University, 2008
+              <div className={`p-3.5 rounded-xl border flex items-start gap-2.5 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
+                <BrandBadgeMark code="MS" bg="#1E3A5F" accent="#FFFFFF" type="crest" />
+                <div className="space-y-1">
+                  <div className="text-xs font-bold text-theme-primary dark:text-white leading-snug">
+                    M.S. Management Information Systems
+                  </div>
+                  <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
+                    University of Maryland Global Campus, 2021
+                  </div>
                 </div>
               </div>
 
-              <div className={`p-3.5 rounded-xl border space-y-1 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
-                <div className="text-xs font-bold text-theme-primary dark:text-white leading-snug">
-                  Master of Computer Science (MCS)
+              <div className={`p-3.5 rounded-xl border flex items-start gap-2.5 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
+                <BrandBadgeMark code="MBA" bg="#0F2A44" accent="#38BDF8" />
+                <div className="space-y-1">
+                  <div className="text-xs font-bold text-theme-primary dark:text-white leading-snug">
+                    MBA
+                  </div>
+                  <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
+                    AK University, 2008
+                  </div>
                 </div>
-                <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
-                  AK University, 2001
+              </div>
+
+              <div className={`p-3.5 rounded-xl border flex items-start gap-2.5 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}>
+                <BrandBadgeMark code="MCS" bg="#082F49" accent="#22D3EE" />
+                <div className="space-y-1">
+                  <div className="text-xs font-bold text-theme-primary dark:text-white leading-snug">
+                    Master of Computer Science (MCS)
+                  </div>
+                  <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
+                    AK University, 2001
+                  </div>
                 </div>
               </div>
             </div>
@@ -2635,6 +2802,49 @@ export default function App() {
               3. [PLACEHOLDER] IBM SkillsBuild — AI Fundamentals (Credly badge)
               4. [PLACEHOLDER] Cisco Networking Academy — Introduction to Cybersecurity (Credly badge — COURSE badge, NOT a Cisco certification; label "Course Completion" if ever displayed)
             */}
+
+            {/* Supported Platforms, Cybersecurity & Infrastructure Ecosystem Logos */}
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-3">
+              <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                Supported Platforms, Cybersecurity &amp; Infrastructure Ecosystem
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
+                {[
+                  { name: 'Microsoft Azure', role: 'Cloud Infrastructure', code: 'Az', bg: '#005A9E', accent: '#FFFFFF' },
+                  { name: 'AWS Cloud', role: 'Hybrid Compute', code: 'AWS', bg: '#1E293B', accent: '#F59E0B' },
+                  { name: 'Microsoft 365', role: 'Workplace & Intune', code: 'M365', bg: '#1D4ED8', accent: '#FFFFFF' },
+                  { name: 'Epic EHR', role: 'Clinical Systems', code: 'Epic', bg: '#7F1D1D', accent: '#FCA5A5' },
+                  { name: 'MEDITECH', role: 'Hospital EHR', code: 'MT', bg: '#065F46', accent: '#6EE7B7' },
+                  { name: 'Oracle Health', role: 'Clinical Interop', code: 'OH', bg: '#991B1B', accent: '#FECACA' },
+                  { name: 'CrowdStrike', role: '24x7 EDR / SOC', code: 'EDR', bg: '#991B1B', accent: '#F87171', type: 'shield' as const },
+                  { name: 'MS Sentinel', role: 'SIEM Telemetry', code: 'SIEM', bg: '#0F2A44', accent: '#38BDF8', type: 'shield' as const },
+                  { name: 'Palo Alto / Fortinet', role: 'NGFW Perimeter', code: 'FW', bg: '#7C2D12', accent: '#FDBA74', type: 'shield' as const },
+                  { name: 'Cisco & SD-WAN', role: 'Core Networking', code: 'NET', bg: '#0E7490', accent: '#67E8F9', type: 'network' as const },
+                  { name: 'Okta & Entra ID', role: 'Zero Trust IAM', code: 'IAM', bg: '#1E3A8A', accent: '#93C5FD' },
+                  { name: 'ServiceNow / VMware', role: 'ITSM & Virtualization', code: 'ITSM', bg: '#14532D', accent: '#86EFAC' },
+                ].map((platform) => (
+                  <div
+                    key={platform.name}
+                    className={`p-2.5 rounded-xl border flex items-center gap-2 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}
+                  >
+                    <BrandBadgeMark
+                      code={platform.code}
+                      bg={platform.bg}
+                      accent={platform.accent}
+                      type={platform.type}
+                    />
+                    <div className="min-w-0">
+                      <div className="text-[11px] font-bold text-theme-primary dark:text-white truncate">
+                        {platform.name}
+                      </div>
+                      <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+                        {platform.role}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             <div className="pt-3 border-t border-slate-200 dark:border-slate-800">
               <p className="text-xs font-medium text-slate-700 dark:text-slate-300">
@@ -3359,7 +3569,15 @@ export default function App() {
               },
               {
                 q: 'Do you provide Managed Helpdesk, 24x7 SOC, and Infrastructure Services?',
-                a: 'Yes. In addition to executive AI governance and Fractional CIO leadership, Nexis AI provides Managed Helpdesk Services (Tier 1–3 clinical, agency, and campus support), 24x7 Security Operations Center (SOC) monitoring and incident containment, and Infrastructure Services covering Microsoft Azure, hybrid cloud, IoMT network segmentation, and immutable backups.',
+                a: 'Yes. In addition to executive AI governance and Fractional CIO leadership, Nexis AI provides Managed Helpdesk Services (Tier 1–3 clinical, agency, and campus support), 24x7 Security Operations Center (SOC) monitoring and incident containment, and Infrastructure Services covering Microsoft Azure, AWS hybrid cloud, VMware virtualization, IoMT network segmentation, and immutable backups.',
+              },
+              {
+                q: 'Which EHR, cloud, cybersecurity, and IT platforms does Nexis AI support?',
+                a: 'Nexis AI supports clinical and enterprise platforms nationwide including Epic EHR, MEDITECH, Oracle Health, Microsoft Azure, AWS, VMware, Microsoft 365 & Intune, Entra ID, Okta, CrowdStrike, Microsoft Sentinel & Defender, Palo Alto Networks, Fortinet, Cisco networking & SD-WAN, ServiceNow, Workday, PeopleSoft, and Banner.',
+              },
+              {
+                q: 'What cybersecurity and infrastructure capabilities are included in Nexis AI Managed Services?',
+                a: 'Capabilities span 24x7 SIEM/SOAR and XDR/EDR telemetry monitoring, Zero Trust identity and MFA/PAM controls, ransomware isolation and tabletop recovery drills, continuous vulnerability and patch management, hybrid cloud (Azure/AWS) and VMware administration, SD-WAN and firewall governance, IoMT VLAN segmentation, and immutable BC/DR backups aligned with HIPAA and NIST SP 800-53.',
               },
             ].map((faq, idx) => (
               <div

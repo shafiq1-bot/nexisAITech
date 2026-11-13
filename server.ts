@@ -1379,6 +1379,27 @@ Direct phone: ${phone || 'N/A'}
     }
   });
 
+  // Explicit Browser Tab & App Icon Handlers (always return 200 without 1-year immutable lock)
+  const rootIconFiles = [
+    '/favicon.ico',
+    '/favicon.svg',
+    '/favicon-32x32.png',
+    '/favicon-16x16.png',
+    '/apple-touch-icon.png',
+    '/icon-192.png',
+    '/icon-512.png',
+    '/site.webmanifest',
+  ];
+  app.get(rootIconFiles, (req, res, next) => {
+    const fileName = req.path.replace(/^\/+/, '');
+    const publicFilePath = path.join(process.cwd(), 'public', fileName);
+    if (fs.existsSync(publicFilePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=86400, must-revalidate');
+      return res.sendFile(publicFilePath);
+    }
+    return next();
+  });
+
   // Vite development middleware vs production static server
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
@@ -1398,6 +1419,8 @@ Direct phone: ${phone || 'N/A'}
       setHeaders: (res, filePath) => {
         if (filePath.endsWith('.html')) {
           res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+        } else if (filePath.includes('favicon') || filePath.endsWith('apple-touch-icon.png') || filePath.includes('icon-192') || filePath.includes('icon-512')) {
+          res.setHeader('Cache-Control', 'public, max-age=86400, must-revalidate');
         } else if (filePath.match(/\.(jpg|jpeg|png|webp|svg|gif|ico|woff2?|ttf|eot)$/)) {
           res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
         } else if (filePath.endsWith('.xml') || filePath.endsWith('.txt') || filePath.endsWith('.json') || filePath.endsWith('.webmanifest')) {
