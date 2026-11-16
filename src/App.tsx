@@ -56,82 +56,249 @@ const trackEvent = (eventName: string, params: Record<string, any> = {}) => {
 
 type ThemePalette = 'cyan' | 'cobalt' | 'emerald' | 'amber';
 
-// Compact geometric vector marks for verified credentials & supported enterprise platforms
+type BrandLogoKey =
+  | 'azure'
+  | 'aws'
+  | 'm365'
+  | 'epic'
+  | 'meditech'
+  | 'aria'
+  | 'raystation'
+  | 'ecw'
+  | 'oracle-health'
+  | 'crowdstrike'
+  | 'sentinel'
+  | 'firewall'
+  | 'cisco'
+  | 'okta-entra'
+  | 'servicenow-vmware'
+  | 'nist-ai-rmf'
+  | 'nist-800-53'
+  | 'hipaa';
+
+// Compact custom vector brand emblems for verified credentials, supported enterprise/clinical platforms, and frameworks
 const BrandBadgeMark = ({
   code,
   bg,
   accent,
   type = 'monogram',
+  brand,
 }: {
   code: string;
   bg: string;
   accent: string;
   type?: 'monogram' | 'shield' | 'cloud' | 'network' | 'pulse' | 'crest';
+  brand?: BrandLogoKey;
 }) => (
   <svg
     viewBox="0 0 32 32"
-    width="28"
-    height="28"
+    width="30"
+    height="30"
     aria-hidden="true"
-    className="w-7 h-7 rounded-lg shrink-0 shadow-2xs border border-white/10"
+    className="w-7.5 h-7.5 rounded-lg shrink-0 shadow-2xs border border-white/15"
   >
     <rect width="32" height="32" rx="7" fill={bg} />
-    {type === 'shield' && (
-      <path
-        d="M16 5.5L8.5 8.8v6.1c0 5 3.2 9.4 7.5 11.1 4.3-1.7 7.5-6.1 7.5-11.1V8.8L16 5.5z"
-        fill="none"
-        stroke={accent}
-        strokeWidth="1.8"
-      />
-    )}
-    {type === 'cloud' && (
-      <path
-        d="M11 22h10.5a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 11.4 13a4.5 4.5 0 0 0-.4 9z"
-        fill="none"
-        stroke={accent}
-        strokeWidth="1.7"
-      />
-    )}
-    {type === 'network' && (
-      <g stroke={accent} strokeWidth="1.6" fill="none">
-        <circle cx="16" cy="9" r="2.2" />
-        <circle cx="9.5" cy="21.5" r="2.2" />
-        <circle cx="22.5" cy="21.5" r="2.2" />
-        <path d="M14.7 10.9L10.7 19.6M17.3 10.9l4 8.7M11.7 21.5h8.6" />
+    {brand === 'azure' ? (
+      <g>
+        <path d="M17.2 6.5L9.5 23.5h5.2l3.8-8.8 3.2 8.8h4.8L17.2 6.5z" fill="#38BDF8" />
+        <path d="M13.5 16.8l-4 6.7h11.8l-2.6-3.2h-4.4l-.8-3.5z" fill="#FFFFFF" opacity="0.92" />
       </g>
-    )}
-    {type === 'pulse' && (
-      <path
-        d="M5 17h4.5l2.5-6 3.8 11 2.7-7.5 2 2.5H27"
-        fill="none"
-        stroke={accent}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    )}
-    {type === 'crest' && (
-      <path
-        d="M16 6l8 3.5-8 3.5-8-3.5L16 6zm-5.5 6.8v4.7c0 2.1 2.5 3.8 5.5 3.8s5.5-1.7 5.5-3.8v-4.7"
-        fill="none"
-        stroke={accent}
-        strokeWidth="1.7"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    )}
-    {type === 'monogram' && (
-      <text
-        x="16"
-        y="19.5"
-        textAnchor="middle"
-        fill={accent}
-        fontSize={code.length >= 4 ? '8.2' : code.length === 3 ? '9.5' : '11.5'}
-        fontWeight="800"
-        fontFamily="JetBrains Mono, monospace"
-      >
-        {code}
-      </text>
+    ) : brand === 'aws' ? (
+      <g>
+        <text
+          x="16"
+          y="16.5"
+          textAnchor="middle"
+          fill="#FFFFFF"
+          fontSize="8.8"
+          fontWeight="800"
+          fontFamily="Plus Jakarta Sans, sans-serif"
+          letterSpacing="0.3"
+        >
+          aws
+        </text>
+        <path d="M7.5 20.5c4.6 3.2 11.4 3.4 16.5.5" fill="none" stroke="#FF9900" strokeWidth="2.1" strokeLinecap="round" />
+        <path d="M22.2 19.6l2.6.9-1.1 2.5" fill="none" stroke="#FF9900" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    ) : brand === 'm365' ? (
+      <g>
+        <rect x="7" y="7" width="8" height="8" rx="1.4" fill="#F25022" />
+        <rect x="17" y="7" width="8" height="8" rx="1.4" fill="#7FBA00" />
+        <rect x="7" y="17" width="8" height="8" rx="1.4" fill="#00A4EF" />
+        <rect x="17" y="17" width="8" height="8" rx="1.4" fill="#FFB900" />
+      </g>
+    ) : brand === 'epic' ? (
+      <g>
+        <rect x="4" y="4" width="24" height="24" rx="5" fill="none" stroke="#FCA5A5" strokeWidth="1.1" opacity="0.45" />
+        <text
+          x="16"
+          y="19.8"
+          textAnchor="middle"
+          fill="#FFFFFF"
+          fontSize="10.2"
+          fontWeight="800"
+          fontStyle="italic"
+          fontFamily="Plus Jakarta Sans, sans-serif"
+        >
+          Epic
+        </text>
+      </g>
+    ) : brand === 'meditech' ? (
+      <g>
+        <path d="M13.5 7h5v6.5H25v5h-6.5V25h-5v-6.5H7v-5h6.5V7z" fill="#34D399" opacity="0.24" />
+        <path d="M14.3 8h3.4v6.3H24v3.4h-6.3V24h-3.4v-6.3H8v-3.4h6.3V8z" fill="none" stroke="#6EE7B7" strokeWidth="1.6" strokeLinejoin="round" />
+        <circle cx="16" cy="16" r="2.1" fill="#FFFFFF" />
+      </g>
+    ) : brand === 'aria' ? (
+      <g>
+        <ellipse cx="16" cy="16" rx="9.5" ry="4.5" transform="rotate(-32 16 16)" fill="none" stroke="#22D3EE" strokeWidth="1.7" />
+        <ellipse cx="16" cy="16" rx="9.5" ry="4.5" transform="rotate(32 16 16)" fill="none" stroke="#A5F3FC" strokeWidth="1.5" opacity="0.8" />
+        <circle cx="16" cy="16" r="2.6" fill="#FFFFFF" />
+      </g>
+    ) : brand === 'raystation' ? (
+      <g>
+        <path d="M7.5 23.5L23.5 8.5" stroke="#38BDF8" strokeWidth="2.1" strokeLinecap="round" />
+        <path d="M10.5 24.5L24.5 14" stroke="#93C5FD" strokeWidth="1.5" strokeLinecap="round" opacity="0.85" />
+        <path d="M7.5 18L18 7.5" stroke="#93C5FD" strokeWidth="1.5" strokeLinecap="round" opacity="0.85" />
+        <circle cx="22.5" cy="9.5" r="2.3" fill="#FACC15" />
+      </g>
+    ) : brand === 'ecw' ? (
+      <g>
+        <path d="M5.5 19.5h4.2l2.1-5.2 2.9 7.7 2.2-5.3 1.7 2.8h7.9" fill="none" stroke="#93C5FD" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+        <text
+          x="16"
+          y="12.5"
+          textAnchor="middle"
+          fill="#FFFFFF"
+          fontSize="7.4"
+          fontWeight="800"
+          fontFamily="JetBrains Mono, monospace"
+        >
+          eCW
+        </text>
+      </g>
+    ) : brand === 'oracle-health' ? (
+      <g>
+        <rect x="6.5" y="10.5" width="19" height="11" rx="5.5" fill="none" stroke="#FFFFFF" strokeWidth="2.6" />
+        <line x1="11.5" y1="16" x2="20.5" y2="16" stroke="#FCA5A5" strokeWidth="1.6" strokeLinecap="round" />
+      </g>
+    ) : brand === 'crowdstrike' ? (
+      <g>
+        <path d="M16 6l8.5 4.2-3.4 9.5L16 25.5l-5.1-5.8L7.5 10.2 16 6z" fill="none" stroke="#F87171" strokeWidth="1.9" strokeLinejoin="round" />
+        <path d="M11.5 13.5L16 17l4.5-3.5" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    ) : brand === 'sentinel' ? (
+      <g>
+        <path d="M16 5.5L8.5 8.8v6.2c0 5 3.2 9.4 7.5 11.2 4.3-1.8 7.5-6.2 7.5-11.2V8.8L16 5.5z" fill="none" stroke="#38BDF8" strokeWidth="1.8" />
+        <circle cx="16" cy="14.8" r="2.6" fill="#22D3EE" />
+        <path d="M12 20c1.1-1.3 2.5-2 4-2s2.9.7 4 2" fill="none" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
+      </g>
+    ) : brand === 'firewall' ? (
+      <g>
+        <rect x="6.5" y="8" width="19" height="16" rx="2.2" fill="none" stroke="#FDBA74" strokeWidth="1.7" />
+        <line x1="6.5" y1="13.5" x2="25.5" y2="13.5" stroke="#FDBA74" strokeWidth="1.4" />
+        <line x1="6.5" y1="18.5" x2="25.5" y2="18.5" stroke="#FDBA74" strokeWidth="1.4" />
+        <line x1="13" y1="8" x2="13" y2="13.5" stroke="#FFFFFF" strokeWidth="1.4" />
+        <line x1="19" y1="13.5" x2="19" y2="18.5" stroke="#FFFFFF" strokeWidth="1.4" />
+        <line x1="13" y1="18.5" x2="13" y2="24" stroke="#FFFFFF" strokeWidth="1.4" />
+      </g>
+    ) : brand === 'cisco' ? (
+      <g stroke="#67E8F9" strokeWidth="2.1" strokeLinecap="round">
+        <line x1="7" y1="14.5" x2="7" y2="18.5" />
+        <line x1="10.5" y1="11.5" x2="10.5" y2="20.5" />
+        <line x1="14" y1="8.5" x2="14" y2="22.5" stroke="#FFFFFF" />
+        <line x1="18" y1="8.5" x2="18" y2="22.5" stroke="#FFFFFF" />
+        <line x1="21.5" y1="11.5" x2="21.5" y2="20.5" />
+        <line x1="25" y1="14.5" x2="25" y2="18.5" />
+      </g>
+    ) : brand === 'okta-entra' ? (
+      <g>
+        <circle cx="12.5" cy="16" r="4.8" fill="none" stroke="#93C5FD" strokeWidth="2.2" />
+        <path d="M20.5 9.5l5.5 6.5-5.5 6.5-5.5-6.5 5.5-6.5z" fill="#38BDF8" opacity="0.88" />
+      </g>
+    ) : brand === 'servicenow-vmware' ? (
+      <g>
+        <circle cx="12.5" cy="16" r="5" fill="none" stroke="#86EFAC" strokeWidth="2.1" />
+        <circle cx="12.5" cy="16" r="1.6" fill="#FFFFFF" />
+        <rect x="17.5" y="10" width="7.5" height="7.5" rx="1.6" fill="none" stroke="#FFFFFF" strokeWidth="1.7" />
+        <rect x="15" y="14.5" width="7.5" height="7.5" rx="1.6" fill="none" stroke="#4ADE80" strokeWidth="1.7" />
+      </g>
+    ) : brand === 'nist-ai-rmf' ? (
+      <g>
+        <rect x="6" y="6" width="20" height="20" rx="4" fill="none" stroke="#38BDF8" strokeWidth="1.5" />
+        <path d="M10.5 20.5l5.5-10 5.5 10M12.3 17.3h7.4" fill="none" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    ) : brand === 'nist-800-53' ? (
+      <g>
+        <path d="M16 5.5L8.5 8.8v6.1c0 5 3.2 9.4 7.5 11.1 4.3-1.7 7.5-6.1 7.5-11.1V8.8L16 5.5z" fill="none" stroke="#38BDF8" strokeWidth="1.8" />
+        <rect x="12.5" y="14" width="7" height="5.5" rx="1.2" fill="#FFFFFF" opacity="0.92" />
+        <path d="M14 14v-1.6a2 2 0 0 1 4 0V14" fill="none" stroke="#38BDF8" strokeWidth="1.5" />
+      </g>
+    ) : brand === 'hipaa' ? (
+      <g>
+        <path d="M16 5.5L8.5 8.8v6.1c0 5 3.2 9.4 7.5 11.1 4.3-1.7 7.5-6.1 7.5-11.1V8.8L16 5.5z" fill="none" stroke="#34D399" strokeWidth="1.8" />
+        <path d="M14.8 11.5h2.4v3.3h3.3v2.4h-3.3v3.3h-2.4v-3.3h-3.3v-2.4h3.3v-3.3z" fill="#FFFFFF" />
+      </g>
+    ) : (
+      <>
+        {type === 'shield' && (
+          <path
+            d="M16 5.5L8.5 8.8v6.1c0 5 3.2 9.4 7.5 11.1 4.3-1.7 7.5-6.1 7.5-11.1V8.8L16 5.5z"
+            fill="none"
+            stroke={accent}
+            strokeWidth="1.8"
+          />
+        )}
+        {type === 'cloud' && (
+          <path
+            d="M11 22h10.5a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 11.4 13a4.5 4.5 0 0 0-.4 9z"
+            fill="none"
+            stroke={accent}
+            strokeWidth="1.7"
+          />
+        )}
+        {type === 'network' && (
+          <g stroke={accent} strokeWidth="1.6" fill="none">
+            <circle cx="16" cy="9" r="2.2" />
+            <circle cx="9.5" cy="21.5" r="2.2" />
+            <circle cx="22.5" cy="21.5" r="2.2" />
+            <path d="M14.7 10.9L10.7 19.6M17.3 10.9l4 8.7M11.7 21.5h8.6" />
+          </g>
+        )}
+        {type === 'pulse' && (
+          <path
+            d="M5 17h4.5l2.5-6 3.8 11 2.7-7.5 2 2.5H27"
+            fill="none"
+            stroke={accent}
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        )}
+        {type === 'crest' && (
+          <path
+            d="M16 6l8 3.5-8 3.5-8-3.5L16 6zm-5.5 6.8v4.7c0 2.1 2.5 3.8 5.5 3.8s5.5-1.7 5.5-3.8v-4.7"
+            fill="none"
+            stroke={accent}
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        )}
+        {type === 'monogram' && (
+          <text
+            x="16"
+            y="19.5"
+            textAnchor="middle"
+            fill={accent}
+            fontSize={code.length >= 4 ? '8.2' : code.length === 3 ? '9.5' : '11.5'}
+            fontWeight="800"
+            fontFamily="JetBrains Mono, monospace"
+          >
+            {code}
+          </text>
+        )}
+      </>
     )}
   </svg>
 );
@@ -2449,11 +2616,11 @@ export default function App() {
                     <div className="font-bold text-theme-primary dark:text-white text-xs">EHR &amp; Enterprise Platforms</div>
                   </div>
                   <ul className="space-y-1.5 text-[11px] text-slate-600 dark:text-slate-300">
-                    <li>• Epic &amp; MEDITECH EHR Environments</li>
+                    <li>• Epic, MEDITECH &amp; eClinicalWorks (ECW)</li>
+                    <li>• ARIA Varian &amp; RayStation Oncology Systems</li>
                     <li>• Oracle Health &amp; HL7 / FHIR Engines</li>
                     <li>• Workday, PeopleSoft &amp; Ellucian Banner</li>
-                    <li>• Tyler / CGI / SAP Government Cores</li>
-                    <li>• Slurm GPU Research Enclaves</li>
+                    <li>• Tyler / CGI / SAP &amp; Slurm GPU Enclaves</li>
                   </ul>
                 </div>
               </div>
@@ -2692,7 +2859,7 @@ export default function App() {
                   <strong>Founder &amp; Principal</strong>, Nexis AI, March 2026–present. Leads Nexis AI's advisory and managed-services practices for healthcare, public sector, and higher education.
                 </p>
                 <p>
-                  <strong>Education:</strong> MS in Management Information Systems, University of Maryland Global Campus (2021); MBA (2008) and Master of Computer Science (2001), Al-Khair University; PMP® certified. Author of <em>"AI Governance: A Local Government Leader's Guide"</em> (ICMA, March 2024).
+                  <strong>Education:</strong> MS in Management Information Systems, University of Maryland Global Campus (2021); MBA (2008) and Master of Computer Science (2001), AK University; PMP® certified. Author of <em>"AI Governance: A Local Government Leader's Guide"</em> (ICMA, March 2024).
                 </p>
               </div>
 
@@ -2808,30 +2975,33 @@ export default function App() {
               <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 Supported Platforms, Cybersecurity &amp; Infrastructure Ecosystem
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5">
                 {[
-                  { name: 'Microsoft Azure', role: 'Cloud Infrastructure', code: 'Az', bg: '#005A9E', accent: '#FFFFFF' },
-                  { name: 'AWS Cloud', role: 'Hybrid Compute', code: 'AWS', bg: '#1E293B', accent: '#F59E0B' },
-                  { name: 'Microsoft 365', role: 'Workplace & Intune', code: 'M365', bg: '#1D4ED8', accent: '#FFFFFF' },
-                  { name: 'Epic EHR', role: 'Clinical Systems', code: 'Epic', bg: '#7F1D1D', accent: '#FCA5A5' },
-                  { name: 'MEDITECH', role: 'Hospital EHR', code: 'MT', bg: '#065F46', accent: '#6EE7B7' },
-                  { name: 'Oracle Health', role: 'Clinical Interop', code: 'OH', bg: '#991B1B', accent: '#FECACA' },
-                  { name: 'CrowdStrike', role: '24x7 EDR / SOC', code: 'EDR', bg: '#991B1B', accent: '#F87171', type: 'shield' as const },
-                  { name: 'MS Sentinel', role: 'SIEM Telemetry', code: 'SIEM', bg: '#0F2A44', accent: '#38BDF8', type: 'shield' as const },
-                  { name: 'Palo Alto / Fortinet', role: 'NGFW Perimeter', code: 'FW', bg: '#7C2D12', accent: '#FDBA74', type: 'shield' as const },
-                  { name: 'Cisco & SD-WAN', role: 'Core Networking', code: 'NET', bg: '#0E7490', accent: '#67E8F9', type: 'network' as const },
-                  { name: 'Okta & Entra ID', role: 'Zero Trust IAM', code: 'IAM', bg: '#1E3A8A', accent: '#93C5FD' },
-                  { name: 'ServiceNow / VMware', role: 'ITSM & Virtualization', code: 'ITSM', bg: '#14532D', accent: '#86EFAC' },
+                  { name: 'Microsoft Azure', role: 'Cloud Infrastructure', code: 'Az', bg: '#0A2E5C', accent: '#38BDF8', brand: 'azure' as const },
+                  { name: 'AWS Cloud', role: 'Hybrid Compute', code: 'AWS', bg: '#1E293B', accent: '#FF9900', brand: 'aws' as const },
+                  { name: 'Microsoft 365', role: 'Workplace & Intune', code: 'M365', bg: '#0F172A', accent: '#FFFFFF', brand: 'm365' as const },
+                  { name: 'Epic EHR', role: 'Clinical Systems', code: 'Epic', bg: '#881337', accent: '#FFFFFF', brand: 'epic' as const },
+                  { name: 'MEDITECH', role: 'Hospital EHR', code: 'MT', bg: '#064E3B', accent: '#6EE7B7', brand: 'meditech' as const },
+                  { name: 'ARIA Varian', role: 'Oncology OIS', code: 'ARIA', bg: '#0F4C5C', accent: '#22D3EE', brand: 'aria' as const },
+                  { name: 'RAYSTATION', role: 'Radiation Planning', code: 'RAY', bg: '#1E1B4B', accent: '#38BDF8', brand: 'raystation' as const },
+                  { name: 'ECW', role: 'eClinicalWorks EHR', code: 'eCW', bg: '#1E3A8A', accent: '#93C5FD', brand: 'ecw' as const },
+                  { name: 'Oracle Health', role: 'Clinical Interop', code: 'OH', bg: '#991B1B', accent: '#FFFFFF', brand: 'oracle-health' as const },
+                  { name: 'CrowdStrike', role: '24x7 EDR / SOC', code: 'EDR', bg: '#450A0A', accent: '#F87171', brand: 'crowdstrike' as const },
+                  { name: 'MS Sentinel', role: 'SIEM Telemetry', code: 'SIEM', bg: '#0F2A44', accent: '#38BDF8', brand: 'sentinel' as const },
+                  { name: 'Palo Alto / Fortinet', role: 'NGFW Perimeter', code: 'FW', bg: '#7C2D12', accent: '#FDBA74', brand: 'firewall' as const },
+                  { name: 'Cisco & SD-WAN', role: 'Core Networking', code: 'NET', bg: '#0E7490', accent: '#67E8F9', brand: 'cisco' as const },
+                  { name: 'Okta & Entra ID', role: 'Zero Trust IAM', code: 'IAM', bg: '#1E3A8A', accent: '#93C5FD', brand: 'okta-entra' as const },
+                  { name: 'ServiceNow / VMware', role: 'ITSM & Virtualization', code: 'ITSM', bg: '#14532D', accent: '#86EFAC', brand: 'servicenow-vmware' as const },
                 ].map((platform) => (
                   <div
                     key={platform.name}
-                    className={`p-2.5 rounded-xl border flex items-center gap-2 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}
+                    className={`p-2.5 rounded-xl border flex items-center gap-2.5 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}
                   >
                     <BrandBadgeMark
                       code={platform.code}
                       bg={platform.bg}
                       accent={platform.accent}
-                      type={platform.type}
+                      brand={platform.brand}
                     />
                     <div className="min-w-0">
                       <div className="text-[11px] font-bold text-theme-primary dark:text-white truncate">
@@ -2846,10 +3016,37 @@ export default function App() {
               </div>
             </div>
 
-            <div className="pt-3 border-t border-slate-200 dark:border-slate-800">
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-3">
               <p className="text-xs font-medium text-slate-700 dark:text-slate-300">
                 Frameworks we work to: NIST AI RMF · NIST SP 800-53 · HIPAA
               </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                {[
+                  { name: 'NIST AI RMF', role: 'AI Risk Management Framework', code: 'AI', bg: '#0F2A44', accent: '#38BDF8', brand: 'nist-ai-rmf' as const },
+                  { name: 'NIST SP 800-53', role: 'Security & Privacy Controls', code: '800', bg: '#082F49', accent: '#38BDF8', brand: 'nist-800-53' as const },
+                  { name: 'HIPAA', role: 'Privacy & Security Safeguards', code: 'PHI', bg: '#064E3B', accent: '#34D399', brand: 'hipaa' as const },
+                ].map((fw) => (
+                  <div
+                    key={fw.name}
+                    className={`p-2.5 rounded-xl border flex items-center gap-2.5 transition-colors ${isDark ? 'bg-slate-950/60 border-slate-800' : 'bg-white border-slate-200'}`}
+                  >
+                    <BrandBadgeMark
+                      code={fw.code}
+                      bg={fw.bg}
+                      accent={fw.accent}
+                      brand={fw.brand}
+                    />
+                    <div className="min-w-0">
+                      <div className="text-[11px] font-bold text-theme-primary dark:text-white truncate">
+                        {fw.name}
+                      </div>
+                      <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+                        {fw.role}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -3400,6 +3597,8 @@ export default function App() {
                         <option value="Epic">Epic</option>
                         <option value="MEDITECH">MEDITECH</option>
                         <option value="Oracle Health / Cerner">Oracle Health / Cerner</option>
+                        <option value="eClinicalWorks (ECW)">eClinicalWorks (ECW)</option>
+                        <option value="ARIA Varian / RayStation">ARIA Varian / RayStation Oncology</option>
                         <option value="Both">Both (Migration / Mixed)</option>
                         <option value="Public Sector Core / Legacy">Government Core (CGI, Tyler, SAP, Oracle Cloud, Mainframe)</option>
                         <option value="Campus SIS / ERP">Campus SIS / ERP (Workday, Banner, PeopleSoft)</option>
@@ -3573,7 +3772,7 @@ export default function App() {
               },
               {
                 q: 'Which EHR, cloud, cybersecurity, and IT platforms does Nexis AI support?',
-                a: 'Nexis AI supports clinical and enterprise platforms nationwide including Epic EHR, MEDITECH, Oracle Health, Microsoft Azure, AWS, VMware, Microsoft 365 & Intune, Entra ID, Okta, CrowdStrike, Microsoft Sentinel & Defender, Palo Alto Networks, Fortinet, Cisco networking & SD-WAN, ServiceNow, Workday, PeopleSoft, and Banner.',
+                a: 'Nexis AI supports clinical and enterprise platforms nationwide including Epic EHR, MEDITECH, ARIA Varian, RayStation, eClinicalWorks (ECW), Oracle Health, Microsoft Azure, AWS, VMware, Microsoft 365 & Intune, Entra ID, Okta, CrowdStrike, Microsoft Sentinel & Defender, Palo Alto Networks, Fortinet, Cisco networking & SD-WAN, ServiceNow, Workday, PeopleSoft, and Banner.',
               },
               {
                 q: 'What cybersecurity and infrastructure capabilities are included in Nexis AI Managed Services?',

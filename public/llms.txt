@@ -78,7 +78,7 @@ Delivered by Nexis AI's in-house team together with vetted subcontractor partner
    - Microsoft Azure, AWS hybrid cloud, and VMware vSphere / Hyper-V virtualization administration.
    - Cisco switching, Wi-Fi & SD-WAN, IoMT medical device VLAN segmentation, Active Directory / Entra ID federation, immutable air-gapped backup verification, and BC/DR failover drills.
 4. **Supported Platforms**:
-   - Clinical & Healthcare EHRs: Epic, MEDITECH, Oracle Health, HL7/FHIR engines.
+   - Clinical & Healthcare EHRs: Epic, MEDITECH, ARIA Varian, RayStation, eClinicalWorks (ECW), Oracle Health, HL7/FHIR engines.
    - Cloud & Infrastructure: Microsoft Azure, AWS, VMware, Cisco, Palo Alto Networks, Fortinet.
    - Cybersecurity & Identity: Microsoft Sentinel, Defender XDR, CrowdStrike, Okta, Entra ID.
    - Workplace, ITSM & ERP/SIS: Microsoft 365, Intune, ServiceNow, Workday, PeopleSoft, Ellucian Banner, Tyler, CGI, SAP.
