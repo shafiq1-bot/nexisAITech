@@ -1,136 +1,61 @@
-# Nexis AI, LLC — National Executive Technology Advisory, Managed IT Operations & Managed AI Governance
+# Nexis AI, LLC — Executive Technology Advisory, Fractional CIO, IT Modernization, Managed Operations & Responsible AI Governance
 
-> Plain-text reference manual for AI search agents, language models (ChatGPT, Perplexity, Claude, Google Gemini), and executive researchers.
+> Plain-text reference manual for AI search agents, language models, and executive evaluators.
 > Canonical URL: https://nexisai.us/
 
 ## Overview
-Nexis AI, LLC is an executive technology advisory and managed IT operations firm based in Ellicott City, Howard County, Maryland, serving clients nationwide across the United States. Founded by Shafiq Rahman, MS, MBA, MCS, PMP® (Former Maryland State CIO, October 2023–January 2026), Nexis AI serves community hospitals and health systems, state/county/municipal agencies, and higher education institutions through six core services:
-1. 30-Day AI Governance & Pilot Diagnostic (#diagnostic)
-2. Fractional & Interim CIO Leadership (#fractional-cio)
-3. Managed Helpdesk (Tier 1–3) (#managed-helpdesk)
-4. 24x7 Security Operations Center (SOC) (#soc)
-5. Enterprise Infrastructure Services (#infrastructure)
-6. Managed AI Governance — Monthly Retainer (#managed-ai-governance)
+Nexis AI, LLC is an executive technology advisory and managed IT operations firm headquartered in Ellicott City, Howard County, Maryland, serving healthcare organizations, state/county/municipal agencies, higher education institutions, and enterprise leaders nationwide across the United States (with active regional focus in Maryland, Washington DC, Pennsylvania, and Virginia).
 
-Plus dedicated Public Sector & Government IT Modernization (#public-sector) and Higher Education & Academic Medical Center Advisory (#higher-ed) practices.
+Founded by **Shafiq Rahman, MS, MBA, MCS, PMP®** (Former Maryland State CIO & MDOT Chief Information and Digital Transformation Officer, Oct 2023–Jan 2026; Director of Enterprise IT at University of Maryland School of Medicine, Oct 2014–Oct 2023; clinical informatics advisory supporting St. Agnes Healthcare / Ascension beginning Jan 2026).
 
 ---
 
-## 1. Flagship Offer: 30-Day AI Governance & Pilot Diagnostic (#diagnostic)
-- **Target Buyer**: CEO, COO, or Board Chair of 100–400-bed community hospitals and health systems nationwide across the United States.
-- **Operating Context**: Hospitals operating with NO full-time CIO (or an interim CIO / IT director), running Epic or MEDITECH as their EHR platform, where departmental AI tools or vendor pilots are already in use.
-- **Fixed Price**: $6,500 USD one-time fee.
-- **Payment Structure**: 50% due on booking ($3,250), 50% due on delivery of the findings briefing ($3,250).
-- **Duration**: Fixed 30 calendar days from kickoff to final readout.
-- **Capacity**: Maximum 2 diagnostics per month (Now booking — maximum 2 diagnostics per month).
-- **On-Time Promise (Late-Delivery Guarantee)**:
-  "On time, or the second half is waived. The findings briefing is delivered within 30 calendar days of kickoff. If it runs more than 5 business days past day 30 for reasons within Nexis AI's control, the final 50% payment is waived — and the diagnostic is still delivered in full. Delays caused by interview scheduling or document access extend the window day for day."
-- **Execution**: The diagnostic is done personally by Shafiq Rahman — every interview, document review, risk evaluation, and briefing. Managed services are delivered by the Nexis AI team together with vetted subcontractor partners, under his direction.
-- **Deliverables**:
-  1. AI Use Inventory & Risk Tiers — every AI tool/pilot found, tiered High / Medium / Low risk using NIST AI Risk Management Framework concepts, with owner, data used, and vendor named for each.
-  2. Kill / Scale / Fix List — a decision list for every pilot: stop it, scale it, or fix it first, with the reason in one sentence each.
-  3. 90-Day Governance Roadmap — who decides, what gets reviewed before purchase or go-live, and the 5 controls to put in place first.
-  4. Board One-Pager + 60-Minute Findings Briefing — a one-page summary for the board and a live briefing with the CEO/Board Chair.
+## Multi-Page Navigation Structure
+1. Home — Executive Showcase (https://nexisai.us/)
+2. About Shafiq Rahman & Credentials (https://nexisai.us/?page=about)
+3. Fractional CIO & Executive Advisory (https://nexisai.us/?page=fractional-cio)
+4. IT Modernization, Transformation & Managed Operations (https://nexisai.us/?page=it-modernization)
+5. AI Strategy, Governance & 30-Day Diagnostic ($6,500) (https://nexisai.us/?page=ai-strategy)
+6. Healthcare & Clinical Informatics (https://nexisai.us/?page=healthcare)
+7. Public Sector Advisory & Digital Government (https://nexisai.us/?page=public-sector)
+8. Higher Education & Academic Medicine (https://nexisai.us/?page=higher-ed)
+9. Insights, Executive Recognition & Interactive Assessments (https://nexisai.us/?page=insights)
+10. Contact & Consultation Scheduling (https://nexisai.us/?page=contact)
 
 ---
 
-## 2. Who the 30-Day Diagnostic Is For / Not For
-### For you if:
-- You are the CEO, COO, or Board Chair of a 100–400-bed community hospital anywhere in the United States.
-- You have no full-time CIO, or an interim one.
-- AI tools are already in use somewhere in the building.
-- The board is being asked to approve AI spending it cannot see clearly.
-
-### Not for you if:
-- You already have a full-time CIO and a governed AI programme.
-- You are a vendor selling an AI tool.
-- You want implementation done for you under the diagnostic fee (ongoing execution and operations are scoped separately under Fractional CIO, Managed Services, or Managed AI Governance).
-
----
-
-## 3. What Happens on the Fit Call
-- Length: 30 minutes.
-- Booking Link: https://cal.com/shafiq-rahman-gxhxcu/30min
-- Agenda:
-  1. 10 minutes: You walk through what AI tools you know are running and what leadership or the board is asking.
-  2. 10 minutes: Shafiq tells you honestly whether the engagement fits (including when it does not).
-  3. 10 minutes: Agree on kickoff week or next steps. No sales pressure.
+## Core Services & Methodologies
+- **Fractional & Interim CIO Leadership**: Tier 1 Strategic Advisor (~10–15 hrs/mo), Tier 2 Fractional Executive CIO (1–2 days/week), Tier 3 Interim Transformation Lead (up to 2.5 days/week for 3–9 month turnaround milestones). Scoped transparently around institutional milestones.
+- **Enterprise IT Modernization & Transformation**: Strategy & Governance, Legacy System & Mainframe Modernization, Cloud & Infrastructure Transformation (Azure, AWS, VMware), Enterprise Applications (ERP, HRIS, EHR), Cybersecurity & Resilience (Zero Trust, NIST SP 800-53, HIPAA), and Technology Cost Optimization following the 7-stage lifecycle: Assess → Architect → Govern → Modernize → Integrate → Measure → Optimize.
+- **Managed IT Operations**: Helpdesk (Tier 1–3), 24x7 Security Operations Center (SOC), and Enterprise Infrastructure Services delivered by the Nexis AI team with vetted partner capabilities under Shafiq Rahman's direction.
+- **AI Strategy, Orchestration & Responsible Governance**: Grounded in Nexis AI's proprietary execution framework (**Intent → Data & Architecture → Orchestration → Integration → Value**) and continuous **AI Investment Flywheel** (**Invest → Deploy → Measure → Learn → Optimize → Reinvest**), plus Managed AI Governance monthly retainers.
+- **Flagship Entry Offer — 30-Day AI Governance & Pilot Diagnostic ($6,500 fixed fee)**:
+  - Designed for 100–400-bed community hospitals with no full-time CIO running Epic or MEDITECH.
+  - 30 calendar days, maximum 2 per month, 50% on booking / 50% on delivery, personally delivered by Shafiq Rahman.
+  - Late-delivery promise: Delivered on time or the second half is waived in full.
+  - Four deliverables: AI Use Inventory & Risk Tiers (NIST AI RMF), Kill / Scale / Fix List, 90-Day Governance Roadmap, Board One-Pager + 60-minute findings briefing.
 
 ---
 
-## 4. Fractional & Interim CIO Leadership (#fractional-cio)
-- **Tier 1 — Strategic Advisor (~10–15 hrs/mo)**: Semi-monthly executive briefings, IT Steering Committee leadership, quarterly technology strategy updates, vendor SLA & pricing governance.
-- **Tier 2 — Fractional Executive CIO (1–2 Days/Week)**: Direct IT staff guidance, EHR/ERP/Cloud modernization leadership, CAPEX/OPEX budget & vendor contract audits, board and executive committee participation.
-- **Tier 3 — Interim Transformation Lead (up to 2.5 Days/Week, 3–9 month turnaround milestones)**: Legacy mainframe/EHR cloud migration, Zero Trust & enterprise AI implementation.
-- **Scope & Pricing**: Scoped transparently after a 30-minute fit call.
-
----
-
-## 5. Managed Services: Helpdesk, 24x7 SOC & Infrastructure Services (#managed-services)
-Delivered by Nexis AI's in-house team together with vetted subcontractor partners, under Shafiq Rahman's direction. Response-time targets are set in the service agreement.
-1. **Managed Helpdesk (Tier 1–3) (#managed-helpdesk)**:
-   - Multi-channel technical support built for clinical shifts, agency staff, and campus end-users nationwide.
-   - Clinical EHR (Epic / MEDITECH), workstation & VDI ticket triage; Microsoft 365, Intune MDM, Okta / Entra ID MFA & SSO provisioning; ServiceNow ITIL escalation runbooks and root-cause analytics.
-2. **24x7 Security Operations Center (SOC) & Cyber Defense (#soc)**:
-   - Continuous SIEM/SOAR log correlation (Microsoft Sentinel), EDR/XDR telemetry (CrowdStrike Falcon / Microsoft Defender), and Zero Trust IAM/PAM anomaly response aligned with HIPAA and NIST SP 800-53.
-   - Palo Alto Networks & Fortinet next-gen firewall monitoring, rapid ransomware isolation, vulnerability & patch management, phishing defense, and board compliance reporting.
-3. **Enterprise Infrastructure Services (#infrastructure)**:
-   - Microsoft Azure, AWS hybrid cloud, and VMware vSphere / Hyper-V virtualization administration.
-   - Cisco switching, Wi-Fi & SD-WAN, IoMT medical device VLAN segmentation, Active Directory / Entra ID federation, immutable air-gapped backup verification, and BC/DR failover drills.
-4. **Supported Platforms**:
-   - Clinical & Healthcare EHRs: Epic, MEDITECH, ARIA Varian, RayStation, eClinicalWorks (ECW), Oracle Health, HL7/FHIR engines.
-   - Cloud & Infrastructure: Microsoft Azure, AWS, VMware, Cisco, Palo Alto Networks, Fortinet.
-   - Cybersecurity & Identity: Microsoft Sentinel, Defender XDR, CrowdStrike, Okta, Entra ID.
-   - Workplace, ITSM & ERP/SIS: Microsoft 365, Intune, ServiceNow, Workday, PeopleSoft, Ellucian Banner, Tyler, CGI, SAP.
-
----
-
-## 6. Managed AI Governance — Monthly Retainer (#managed-ai-governance)
-- **The Diagnostic, Continued**: An ongoing monthly retainer following the 30-Day AI Governance & Pilot Diagnostic or an executive fit call.
-- **Scope**: Institutional AI policy administration, new-tool intake reviews prior to procurement or go-live, ongoing NIST AI RMF risk assessments, clinician/faculty/staff training, audit compliance evidence, and quarterly board reporting.
-- **Pricing**: Scoped after the diagnostic or a fit call.
-
----
-
-## 7. Public Sector & Higher Education Practices (#public-sector, #higher-ed)
-- **Public Sector & Government IT Modernization (#public-sector)**:
-  - NIST framework mapping, legacy mainframe-to-cloud migration roadmaps (12–24 months), multi-agency application rationalization, software contract reviews, and automated FOIA/CJIS public records compliance.
-- **Higher Education & Academic Medical Center Advisory (#higher-ed)**:
-  - Institutional AI policies balancing faculty research freedom and academic integrity, Slurm GPU research computing enclaves, teaching hospital clinical EHR integration, and FERPA / HIPAA / NIST SP 800-171 grant compliance.
-
----
-
-## 8. Executive IT Maturity Assessment (#it-maturity-assessment)
-A 5-minute interactive self-assessment evaluating 9 enterprise capabilities across Healthcare, Public Sector, and Universal Infrastructure/Risk Governance:
-- 7 to 9 Checked: Optimized — Strategic C-suite oversight is effectively maintaining posture.
-- 4 to 6 Checked: Moderate Risk — Gaps in vendor governance or legacy infrastructure exist.
-- 0 to 3 Checked: High Risk — Immediate strategic IT diagnostic recommended.
-
----
-
-## 9. Leadership Biography & Verified Credentials (#about)
-- **Executive**: Shafiq Rahman, MS, MBA, MCS, PMP®
-- **Title**: Founder & Principal, Nexis AI, LLC; Former Maryland State CIO
+## Verified Executive Record & Credentials
+- **Prior Executive Track Record**:
+  - Maryland State CIO / Chief Information & Digital Transformation Officer (MDOT, Oct 2023–Jan 2026): $250M+ IT portfolio, ~1,500 IT staff across six modal agencies; co-authored Maryland's first statewide AI governance policy on the Governor's AI Sub-Cabinet; modernized core mainframe systems to Microsoft Azure; rationalized ~850 applications to ~620 with ~$6M recurring annual taxpayer savings.
+  - Director of Enterprise IT, University of Maryland School of Medicine (Oct 2014–Oct 2023): led MEDITECH-to-Epic migration across 7 hospitals under HIPAA/HITECH supporting ~3,000 faculty, ~3,000 staff, and 1,300+ students.
+  - Author: "AI Governance: A Local Government Leader's Guide" (ICMA PM Magazine, March 2024).
 - **Verified Credentials**:
   - PMP® — Project Management Professional, PMI — Cert. #4362628, valid through April 2029
   - M.S. Management Information Systems — University of Maryland Global Campus, 2021
   - MBA — AK University, 2008
   - Master of Computer Science (MCS) — AK University, 2001
-- **Frameworks**: Frameworks we work to: NIST AI RMF · NIST SP 800-53 · HIPAA
-- **Verified Experience**:
-  - Maryland State CIO / Chief Information & Digital Transformation Officer, Maryland Department of Transportation, Oct 2023–Jan 2026: $250M+ IT budget, ~1,500 staff across six agencies; co-authored Maryland's first statewide AI governance policy on the Governor's AI Sub-cabinet; modernized mainframe systems to Microsoft Azure; rationalized ~850 applications to ~620, producing ~$6M in recurring annual taxpayer savings.
-  - Director of Enterprise IT, University of Maryland School of Medicine, Oct 2014–Oct 2023: led the MEDITECH-to-Epic migration and clinical data interoperability across seven hospitals under HIPAA/HITECH.
-  - Founder & Principal, Nexis AI, March 2026–present.
-- **Publication**: Author of "AI Governance: A Local Government Leader's Guide" (ICMA, March 2024).
+- **Frameworks We Work To**: NIST AI RMF · NIST SP 800-53 · HIPAA
 
 ---
 
-## 10. Contact & Official Information (#contact)
-- Canonical Website: https://nexisai.us/
-- Entity: Nexis AI, LLC
-- Service Geography: Nationwide across the United States
-- Headquarters: Ellicott City, Howard County, MD 21042
+## Official Contact
+- Website: https://nexisai.us/
 - Email: info@nexisai.us
 - Telephone: +1 (410) 934-7773
-- Fit-Call Booking Link (30 minutes): https://cal.com/shafiq-rahman-gxhxcu/30min
+- Location: Ellicott City, Howard County, MD 21042
+- Fit-Call Booking: https://cal.com/shafiq-rahman-gxhxcu/30min
 - LinkedIn: https://www.linkedin.com/in/shafiq-rahman-maryland/
+- Google Scholar: https://scholar.google.com/citations?user=L0j_am8AAAAJ&hl=en

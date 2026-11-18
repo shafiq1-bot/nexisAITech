@@ -2,121 +2,93 @@
   "$schema": "https://agentic-resource-discovery.org/schemas/v1.0/ai-catalog.json",
   "specVersion": "1.0",
   "host": {
-    "displayName": "Nexis AI, LLC — AI Governance, Fractional CIO & Managed IT Services",
+    "displayName": "Nexis AI, LLC — Executive Technology Advisory, Fractional CIO, IT Modernization & AI Governance",
     "url": "https://nexisai.us"
   },
   "entries": [
     {
+      "identifier": "urn:ai:nexisai.us:services:fractional-cio",
+      "type": "application/json",
+      "name": "Fractional CIO & Executive Technology Advisory",
+      "description": "Board-level executive IT stewardship structured across Strategic Advisor (~10–15 hrs/mo), Fractional Executive CIO (1–2 days/week), and Interim Transformation Lead (3–9 month turnaround milestones).",
+      "representativeQueries": [
+        "fractional CIO former state CIO",
+        "healthcare fractional CIO community hospital Epic MEDITECH",
+        "executive IT governance advisory Shafiq Rahman"
+      ],
+      "url": "https://nexisai.us/?page=fractional-cio"
+    },
+    {
+      "identifier": "urn:ai:nexisai.us:services:it-modernization",
+      "type": "application/json",
+      "name": "Enterprise IT Modernization, Cloud Transformation & Managed Operations",
+      "description": "End-to-end IT transformation across Strategy & Governance, Legacy Mainframe Modernization, Microsoft Azure/AWS Cloud, Enterprise Applications, Cybersecurity & Resilience, Cost Optimization, Managed Helpdesk Tier 1–3, 24x7 SOC, and Infrastructure Services.",
+      "representativeQueries": [
+        "legacy mainframe modernization Microsoft Azure",
+        "application portfolio rationalization cost savings",
+        "managed helpdesk 24x7 SOC enterprise infrastructure services"
+      ],
+      "url": "https://nexisai.us/?page=it-modernization"
+    },
+    {
       "identifier": "urn:ai:nexisai.us:services:hospital-ai-diagnostic",
       "type": "application/json",
-      "name": "30-Day AI Governance & Pilot Diagnostic",
-      "description": "Fixed-price $6,500 30-day AI governance diagnostic for 100-400 bed community hospitals nationwide running Epic or MEDITECH with no full-time CIO. Delivers AI Use Inventory, Kill/Scale/Fix list, 90-day roadmap, and board one-pager.",
+      "name": "30-Day AI Governance & Pilot Diagnostic ($6,500)",
+      "description": "Fixed-price $6,500 30-day diagnostic for 100–400 bed community hospitals running Epic or MEDITECH with no full-time CIO. Delivers AI Use Inventory, Kill/Scale/Fix list, 90-day governance roadmap, and board one-pager.",
       "representativeQueries": [
         "hospital AI governance diagnostic 100-400 beds",
-        "community hospital interim CIO AI risk inventory",
-        "Epic and MEDITECH AI pilot risk roadmap nationwide",
-        "Shafiq Rahman former State CIO healthcare AI advisory"
+        "30 day AI governance assessment $6500",
+        "Epic MEDITECH AI pilot risk inventory"
       ],
-      "url": "https://nexisai.us/#diagnostic"
+      "url": "https://nexisai.us/?page=ai-strategy#diagnostic"
     },
     {
-      "identifier": "urn:ai:nexisai.us:services:healthcare-fractional-cio",
+      "identifier": "urn:ai:nexisai.us:services:healthcare-practice",
       "type": "application/json",
-      "name": "Fractional & Interim CIO Leadership",
-      "description": "Board-level executive IT leadership for community hospitals, health systems, public sector agencies, and universities nationwide covering EHR governance (Epic/MEDITECH), HIPAA security, IoMT segmentation, cyber insurance posture, and vendor cost audits.",
+      "name": "Healthcare & Clinical Informatics Advisory",
+      "description": "Executive IT and clinical informatics advisory across Epic, MEDITECH, ARIA Varian, RayStation, eClinicalWorks (ECW), Oracle Health, HL7/FHIR interoperability, IoMT segmentation, and HIPAA security.",
       "representativeQueries": [
-        "healthcare fractional CIO community hospital",
-        "interim hospital CIO Epic MEDITECH advisory",
-        "hospital IT governance cyber insurance readiness",
-        "national fractional CIO executive leadership"
+        "clinical informatics advisory community hospital",
+        "ARIA Varian RayStation oncology IT cybersecurity",
+        "HL7 FHIR clinical interoperability Epic MEDITECH"
       ],
-      "url": "https://nexisai.us/#fractional-cio"
+      "url": "https://nexisai.us/?page=healthcare"
     },
     {
-      "identifier": "urn:ai:nexisai.us:services:managed-helpdesk",
-      "type": "application/json",
-      "name": "Managed Helpdesk (Tier 1–3)",
-      "description": "Tier 1–3 multi-channel managed IT helpdesk and ServiceNow ITIL service desk operations supporting Epic, MEDITECH, ARIA Varian, RayStation, eClinicalWorks (ECW), Microsoft 365, Intune MDM, Okta/Entra ID MFA/SSO, and agency/campus end-users nationwide.",
-      "representativeQueries": [
-        "managed healthcare IT helpdesk service desk",
-        "clinical Tier 1-3 helpdesk support Epic MEDITECH ARIA Varian RayStation ECW",
-        "Microsoft 365 Intune ServiceNow managed IT helpdesk Nexis AI"
-      ],
-      "url": "https://nexisai.us/#managed-helpdesk"
-    },
-    {
-      "identifier": "urn:ai:nexisai.us:services:24x7-soc",
-      "type": "application/json",
-      "name": "24x7 Security Operations Center (SOC)",
-      "description": "Continuous 24x7x365 security monitoring, Microsoft Sentinel SIEM & SOAR correlation, CrowdStrike Falcon & Defender EDR telemetry, Zero Trust IAM/PAM, Palo Alto & Fortinet firewall defense, ransomware isolation, and HIPAA / NIST SP 800-53 reporting nationwide.",
-      "representativeQueries": [
-        "24x7 SOC managed security operations hospital",
-        "healthcare CrowdStrike Sentinel SIEM EDR ransomware monitoring",
-        "Zero Trust HIPAA NIST SP 800-53 cybersecurity SOC Nexis AI"
-      ],
-      "url": "https://nexisai.us/#soc"
-    },
-    {
-      "identifier": "urn:ai:nexisai.us:services:infrastructure-services",
-      "type": "application/json",
-      "name": "Enterprise Infrastructure Services",
-      "description": "Microsoft Azure and AWS hybrid cloud architecture, VMware & Hyper-V virtualization, Cisco SD-WAN & core networking, IoMT network segmentation, firewall governance, immutable backups, and BC/DR failover testing nationwide.",
-      "representativeQueries": [
-        "healthcare cloud infrastructure services Microsoft Azure AWS VMware",
-        "IoMT medical device VLAN network segmentation Cisco SD-WAN",
-        "hospital immutable backups disaster recovery BC/DR infrastructure"
-      ],
-      "url": "https://nexisai.us/#infrastructure"
-    },
-    {
-      "identifier": "urn:ai:nexisai.us:services:managed-ai-governance",
-      "type": "application/json",
-      "name": "Managed AI Governance (Monthly Retainer)",
-      "description": "Ongoing monthly AI governance retainer following the 30-day diagnostic: policy administration, new-tool intake reviews, ongoing risk assessments, staff training, compliance evidence, and quarterly board reporting. Scoped after the diagnostic or a fit call.",
-      "representativeQueries": [
-        "managed AI governance retainer hospital",
-        "ongoing AI vendor intake review NIST AI RMF",
-        "healthcare board AI governance reporting retainer"
-      ],
-      "url": "https://nexisai.us/#managed-ai-governance"
-    },
-    {
-      "identifier": "urn:ai:nexisai.us:services:public-sector-modernization",
+      "identifier": "urn:ai:nexisai.us:services:public-sector",
       "type": "application/json",
       "name": "Public Sector & Government IT Modernization",
-      "description": "Nationwide strategic IT modernization for state and local government leaders, NIST framework mapping, legacy mainframe migrations, multi-agency application rationalization, and FOIA e-discovery compliance.",
+      "description": "Statewide and municipal IT strategy, legacy system transformation, NIST SP 800-53 compliance, Zero Trust, CJIS/FOIA compliance, and multi-agency application rationalization led by former Maryland State CIO Shafiq Rahman.",
       "representativeQueries": [
-        "state government CIO advisory modernization",
-        "NIST framework alignment public sector IT",
-        "legacy mainframe migration to Azure state agency",
-        "former Maryland State CIO Shafiq Rahman advisory"
+        "state local government IT modernization former state CIO",
+        "NIST SP 800-53 municipal cybersecurity governance",
+        "ICMA AI governance local government leader guide"
       ],
-      "url": "https://nexisai.us/#public-sector"
+      "url": "https://nexisai.us/?page=public-sector"
     },
     {
-      "identifier": "urn:ai:nexisai.us:services:higher-education-advisory",
+      "identifier": "urn:ai:nexisai.us:services:higher-ed",
       "type": "application/json",
       "name": "Higher Education & Academic Medical Center Advisory",
-      "description": "Nationwide executive technology advisory for University Presidents, Provosts, Deans, and Interim CIOs covering institutional AI policies, research computing Slurm GPU enclaves, campus SIS/ERP modernization, and FERPA/HIPAA/NIST SP 800-171 compliance.",
+      "description": "Executive technology advisory for University Presidents, Provosts, Deans, and Campus CIOs covering faculty/student AI policy, Slurm GPU research enclaves, teaching hospital integration, and FERPA/HIPAA/NIST SP 800-171 compliance.",
       "representativeQueries": [
-        "higher education AI governance policy university provost",
-        "academic medical center IT advisory Shafiq Rahman",
-        "research computing Slurm GPU cluster governance higher ed",
-        "university interim CIO advisory nationwide"
+        "higher education AI governance university provost",
+        "academic medical center IT advisory",
+        "Slurm GPU research computing enclave FERPA HIPAA"
       ],
-      "url": "https://nexisai.us/#higher-ed"
+      "url": "https://nexisai.us/?page=higher-ed"
     },
     {
-      "identifier": "urn:ai:nexisai.us:tools:it-maturity-assessment",
+      "identifier": "urn:ai:nexisai.us:insights:assessment-tools",
       "type": "application/json",
-      "name": "Executive IT Maturity Assessment",
-      "description": "5-minute 9-point self-assessment tool for healthcare, public sector, and enterprise C-suites to calculate maturity scores across interoperability, HIPAA/NIST compliance, cyber insurance readiness, and vendor governance.",
+      "name": "Executive Insights, Recognition & Interactive Readiness Assessments",
+      "description": "Thought leadership center, Google Scholar clinical cybersecurity publications, executive media kit, and preliminary self-assessment instruments including Executive IT Maturity Assessment and Enterprise Modernization Readiness.",
       "representativeQueries": [
-        "executive IT maturity assessment 5-minute self assessment",
-        "hospital CIO IT audit score clinical readiness",
-        "public sector NIST compliance self assessment"
+        "executive IT maturity assessment self assessment",
+        "hospital board 5-point AI governance checklist",
+        "Shafiq Rahman publications recognition CIO profile"
       ],
-      "url": "https://nexisai.us/#it-maturity-assessment"
+      "url": "https://nexisai.us/?page=insights"
     }
   ]
 }

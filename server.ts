@@ -73,9 +73,10 @@ async function startServer() {
   app.get('/api/health', (req, res) => {
     res.json({
       status: 'ok',
-      service: 'Nexis AI Enterprise Platform API',
+      service: 'Nexis AI Executive Technology Advisory & Managed IT Platform API',
       domain: 'nexisai.us',
       legalEntity: 'Nexis AI, LLC (Ellicott City, Howard County, MD 21042)',
+      founder: 'Shafiq Rahman, MS, MBA, MCS, PMP®',
       timestamp: new Date().toISOString(),
       securityStatus: {
         dmarc: 'v=DMARC1; p=quarantine',
@@ -83,7 +84,7 @@ async function startServer() {
         securityTxtRFC9116: 'Active',
         frameworks: ['NIST AI RMF 1.0', 'NIST SP 800-53', 'HIPAA / HITECH'],
       },
-      region: 'United States Nationwide',
+      region: 'United States Nationwide (with active focus in MD, DC, PA, VA)',
     });
   });
 
@@ -142,72 +143,60 @@ Offer: 30-Day AI Governance & Pilot Diagnostic
     <xhtml:link rel="canonical" href="https://nexisai.us/" />
     <image:image>
       <image:loc>https://nexisai.us/profile_circle.png</image:loc>
-      <image:title>Shafiq Rahman, MS, MBA, MCS, PMP® — Founder, Nexis AI</image:title>
-      <image:caption>Shafiq Rahman leads the 30-Day AI Governance &amp; Pilot Diagnostic, Fractional CIO Advisory, Managed Helpdesk, 24x7 SOC, and Infrastructure Services nationwide across the United States.</image:caption>
+      <image:title>Shafiq Rahman, MS, MBA, MCS, PMP® — Founder &amp; Principal, Nexis AI</image:title>
+      <image:caption>Former Maryland State CIO Shafiq Rahman leads Nexis AI across Fractional CIO Advisory, Enterprise IT Modernization, Managed Helpdesk, 24x7 SOC, Infrastructure Services, and Responsible AI Governance nationwide.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://nexisai.us/#diagnostic</loc>
+    <loc>https://nexisai.us/?page=about</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/?page=fractional-cio</loc>
     <lastmod>${lastMod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://nexisai.us/#fractional-cio</loc>
+    <loc>https://nexisai.us/?page=it-modernization</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/?page=ai-strategy</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://nexisai.us/?page=healthcare</loc>
     <lastmod>${lastMod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://nexisai.us/#managed-services</loc>
+    <loc>https://nexisai.us/?page=public-sector</loc>
     <lastmod>${lastMod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://nexisai.us/#managed-helpdesk</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://nexisai.us/#soc</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://nexisai.us/#infrastructure</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://nexisai.us/#managed-ai-governance</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://nexisai.us/#public-sector</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://nexisai.us/#higher-ed</loc>
+    <loc>https://nexisai.us/?page=higher-ed</loc>
     <lastmod>${lastMod}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://nexisai.us/#about</loc>
+    <loc>https://nexisai.us/?page=insights</loc>
     <lastmod>${lastMod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://nexisai.us/#contact</loc>
+    <loc>https://nexisai.us/?page=contact</loc>
     <lastmod>${lastMod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -292,19 +281,9 @@ Host: https://nexisai.us`;
 
       const ai = getGeminiClient();
 
-      const systemPrompt = `You are the Executive Chief Technology Officer & Lead AI Strategy Consultant at Nexis Tech Group.
-Your company serves enterprise clients in the United States, Saudi Arabia (KSA), and United Arab Emirates (UAE) in Higher Education, Healthcare, Government, and SMBs.
-Provide an authoritative, clear, highly structured, and actionable advisory answer.
-
-User Region Context: ${contextRegion || 'Global'}
-Industry Focus: ${industryFocus || 'General Enterprise'}
-
-Formatting instructions:
-1. Provide a direct Executive Summary (2-3 sentences).
-2. Outline 3 Strategic Action Pillars (with bullet points).
-3. Detail Compliance & Governance considerations (referencing relevant frameworks like HIPAA, NIST 800-53, FERPA, KSA NDMO / NCA, UAE ISR).
-4. Recommend concrete Architecture & Tech Stack choices (e.g. RAG, Vector DB, FHIR APIs, Zero Trust IAM, GPU Compute).
-Keep your tone executive, trustworthy, concise, and professional.`;
+      const systemPrompt = `You are an Executive Technology Advisory assistant supporting Nexis AI, LLC (nexisai.us), led by Founder & Principal Shafiq Rahman, MS, MBA, MCS, PMP® (Former Maryland State CIO).
+The firm serves healthcare organizations, public-sector agencies, higher education institutions, and enterprise leaders nationwide across the United States.
+Provide a clear, structured, executive advisory response aligned with NIST AI RMF, NIST SP 800-53, and HIPAA safeguards.`;
 
       const response = await ai.models.generateContent({
         model: 'gemini-3.6-flash',
@@ -315,18 +294,18 @@ Keep your tone executive, trustworthy, concise, and professional.`;
         },
       });
 
-      const advisoryResponse = response.text || 'Unable to generate advisory at this moment. Please schedule a direct consultation with our team.';
+      const advisoryResponse = response.text || 'Unable to generate advisory at this moment. Please schedule a direct consultation with Shafiq Rahman at info@nexisai.us.';
 
       res.json({
         success: true,
         query: userQuery,
         region: contextRegion,
         advisorOutput: advisoryResponse,
-        recommendedConsultant: 'Tariq Al-Ghamdi & Dr. Marcus Vance',
+        recommendedConsultant: 'Shafiq Rahman, MS, MBA, MCS, PMP®',
         nextSteps: [
-          'Schedule an Executive Discovery Workshop',
-          'Run a Zero Trust & AI Readiness Audit',
-          'Download our Sovereign Cloud & Compliance Architecture Blueprint',
+          'Schedule a Confidential 30-Minute Executive Consultation',
+          'Complete the Preliminary Executive IT Maturity Assessment',
+          'Review the 30-Day AI Governance & Pilot Diagnostic ($6,500)',
         ],
       });
     } catch (error: any) {
@@ -334,7 +313,7 @@ Keep your tone executive, trustworthy, concise, and professional.`;
       res.status(500).json({
         error: 'Failed to process AI Strategy request.',
         details: error.message || String(error),
-        fallbackAdvisory: `Nexis Tech Group recommends an initial Discovery Audit to evaluate your organization's ${req.body.industryFocus || 'technology'} ecosystem against regional compliance frameworks (NIST, HIPAA, NCA ECC). Contact our executive team at shafiqs1@gmail.com for an immediate briefing.`,
+        fallbackAdvisory: `Nexis AI, LLC recommends an initial executive discovery consultation to review your ${req.body.industryFocus || 'technology'} environment against NIST AI RMF, NIST SP 800-53, and HIPAA. Contact Shafiq Rahman at info@nexisai.us or +1 (410) 934-7773.`,
       });
     }
   });
@@ -398,11 +377,11 @@ Keep your tone executive, trustworthy, concise, and professional.`;
       record,
       status: 'Submitted & Saved in Database',
       crmExportPreview: crmPayload,
-      confirmationMessage: `Thank you, ${fullName}. Your request (${record.id}) has been recorded in our database. An Enterprise Technology Advisor from our ${lead.region || 'US'} regional hub will contact you within 4 business hours.`,
+      confirmationMessage: `Thank you, ${fullName}. Your confidential inquiry (${record.id}) has been logged for Shafiq Rahman at Nexis AI, LLC (info@nexisai.us).`,
       welcomeSequence: {
-        email1: `Sent: Welcome to Nexis Tech Group - Preparing for your Consultation`,
-        email2: `Scheduled (Day 2): Executive Guide to Enterprise AI & Zero Trust`,
-        email3: `Scheduled (Day 5): Customized Case Studies for ${lead.industry || lead.sector || 'your industry'}`,
+        email1: `Logged: Confidential Executive Inquiry for Nexis AI, LLC`,
+        email2: `Direct Booking Available: https://cal.com/shafiq-rahman-gxhxcu/30min`,
+        email3: `Inquiry Category: ${lead.industry || lead.sector || 'Executive Technology Advisory'}`,
       },
     });
   });
@@ -751,7 +730,7 @@ Instructions for Email Draft:
       res.status(500).json({
         error: 'Failed to generate AI response draft.',
         fallbackSubject: `Re: Your Nexis AI Inquiry - Executive Follow-up`,
-        fallbackBody: `Dear ${req.body.clientName || 'Executive'},\n\nThank you for reaching out to Nexis Tech Group regarding your ${req.body.industry || 'enterprise'} initiative.\n\nOur team in ${req.body.region || 'US'} has reviewed your details and would like to invite you to an executive briefing session with our Lead Architect.\n\nPlease let us know your availability for a 30-minute consultation next week.\n\nBest regards,\nNexis AI Architecture Team\nNexis Tech Group | nexisai.us`,
+        fallbackBody: `Dear ${req.body.clientName || 'Executive'},\n\nThank you for reaching out to Nexis AI, LLC regarding your ${req.body.industry || 'enterprise'} initiative.\n\nShafiq Rahman has received your inquiry details and looks forward to connecting for a confidential 30-minute consultation.\n\nBest regards,\nShafiq Rahman, MS, MBA, MCS, PMP®\nFounder & Principal, Nexis AI, LLC | nexisai.us`,
       });
     }
   });
@@ -765,7 +744,7 @@ Instructions for Email Draft:
       return;
     }
 
-    const targetNumber = recipientPhone || '+1 (443) 608-5425';
+    const targetNumber = recipientPhone || '+1 (410) 934-7773';
     
     // Save SMS log as a consultation/lead record in database
     const record = Database.addConsultation({
@@ -789,10 +768,10 @@ Instructions for Email Draft:
       smsId: `SMS-${Date.now().toString().slice(-6)}`,
       recordId: record.id,
       recipientPhone: targetNumber,
-      deliveryStatus: 'Delivered to Nexis Hotline',
+      deliveryStatus: 'Delivered to Nexis AI Executive Line',
       carrierAck: 'ACK-200-SMS-DISPATCHED',
       timestamp: new Date().toISOString(),
-      confirmation: `Your text message has been dispatched directly to Nexis Tech Group hotline (${targetNumber}). Our team has received your text and will reply to ${senderPhone}.`,
+      confirmation: `Your message has been logged for Nexis AI (${targetNumber}). Our office will follow up at ${senderPhone}.`,
     });
   });
 
